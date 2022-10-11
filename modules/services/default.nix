@@ -1,0 +1,11 @@
+[
+    ./betterlockscreen.nix
+    ./dunst.nix
+    ./flameshot.nix
+    ./keyring.nix
+    ./mpd.nix
+    ./picom.nix
+    ./polybar.nix
+    ./sxhkd.nix
+    ./unclutter.nix
+]

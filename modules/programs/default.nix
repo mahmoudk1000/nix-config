@@ -1,0 +1,10 @@
+[
+    ./bspwm.nix
+    ./git.nix
+    ./rofi.nix
+    ./starship.nix
+    ./thunar.nix
+    ./urxvt.nix
+    ./zathura.nix
+    ./zsh.nix
+]
