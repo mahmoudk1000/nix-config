@@ -1,6 +1,6 @@
 configuration {
     modi: "drun";
-    display-drun: "";
+    display-drun: "";
     drun-display-format: "{icon} {name}";
     show-icons: true;
     font: "Iosevka 9";

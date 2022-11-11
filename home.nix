@@ -1,7 +1,11 @@
 { config, pkgs, ... }:
 
 {
-    imports = (import ./modules/programs) ++ (import ./modules/services) ++ (import ./modules/x);
+    imports = [
+        ./modules/programs
+        ./modules/services
+        ./modules/x
+    ];
 
     home = {
         username = "mahmoud";
@@ -18,15 +22,15 @@
             pamixer
             neovim
 
-            python3
             psmisc
-            htop
             ytmdl
             mpc-cli
             ncmpcpp
             xclip
             pfetch
-            any-nix-shell
+            spotdl
+            irssi
+            ventoy-bin
 
             st
             ranger
@@ -48,24 +52,23 @@
             thunderbird
             anki-bin
             spotify
-            nextcloud-client
-            ventoy-bin
             tdesktop
             element-desktop
             signal-desktop
             foliate
             obsidian
-            vscode
             netbeans
             zotero
             evince
-            xarchiver
             mpv
             gimp
             krita
             bitwarden
+
             libsForQt5.breeze-icons
             xorg.xmodmap
+
+            python3Full
         ];
 
         sessionVariables = {
@@ -81,7 +84,7 @@
             enable = true;
             documents = "\$HOME/docs";
             download = "\$HOME/download";
-            music = "\$HOME/musik4";
+            music = "\$HOME/musik";
             pictures = "\$HOME/pics";
             videos = "\$HOME/videos";
         };
@@ -89,8 +92,7 @@
 
     programs = {
         home-manager.enable = true;
-        command-not-found.enable = true;
-        autojump = {
+        nix-index ={
             enable = true;
             enableZshIntegration = true;
         };
@@ -99,7 +101,9 @@
     xsession = {
         enable = true;
         windowManager = {
-            bspwm.enable = true;
+            bspwm.enable = false;
+            herbstluftwm.enable = true;
+            # command = "herbstluftwm";
         };
     };
 

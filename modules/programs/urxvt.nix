@@ -5,8 +5,8 @@
         enable = true;
         iso14755 = true;
         fonts = [
-            "xft:Iosevka Term Curly Slab:style=Regular:pixelsize=12:antialias=true:autohint=true"
-            "xft:Iosevka Term Curly Slab:style=Bold Italic:pixelsize=12:antialias=true:autohint=true"
+            "xft:Iosevka Term:style=Regular:pixelsize=12:antialias=true:autohint=true"
+            "xft:Iosevka Term:style=Bold Italic:pixelsize=12:antialias=true:autohint=true"
         ];
         keybindings = {
             #"Shift-Up" = "command:\033]720;1\007";

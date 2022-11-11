@@ -2,7 +2,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [   # Include the results of the hardware scan.
         ./hardware-configuration.nix
     ];
 
@@ -28,6 +28,19 @@
         interfaces.enp2s0.useDHCP = true;
     };
 
+    # DNS Over TLS
+    services.resolved = {
+        enable = true;
+        extraConfig = ''
+            [Resolve]
+            DNS=45.90.28.0#b28d16.dns1.nextdns.io
+            DNS=2a07:a8c0::#b28d16.dns1.nextdns.io
+            DNS=45.90.30.0#b28d16.dns2.nextdns.io
+            DNS=2a07:a8c1::#b28d16.dns2.nextdns.io
+            DNSOverTLS=yes
+        '';
+    };
+
     # Bluetooth
     hardware.bluetooth = {
         enable = true;
@@ -39,6 +52,7 @@
     programs = {
         light.enable = true;
         adb.enable = true;
+        htop.enable = true;
         gnupg.agent = {
             enable = true;
             enableSSHSupport = true;
@@ -106,6 +120,8 @@
         pulse.enable = true;
         wireplumber.enable = true;
     };
+    sound.enable = true;
+    hardware.pulseaudio.enable = false;
 
     # User Account.
     users.users.mahmoud = {
@@ -125,16 +141,13 @@
         man-pages
     ];
 
-    # Environment
-    environment = {
-        sessionVariables.TERMINAL = [ "urxvt" ];
-        sessionVariables.EDITOR = [ "nvim" ];
+    # Enable nonFOSS.
+    nixpkgs.config = {
+        allowUnfree = true;
+        input-fonts.acceptLicense = true;
     };
 
-    # Enable nonFOSS.
-    nixpkgs.config.allowUnfree = true;
-
-    # Keyring.
+    # Security.
     security = {
         polkit = {
             enable = true;
@@ -167,6 +180,33 @@
         openssh.enable = true;
         printing.enable = true;
         gnome.gnome-keyring.enable = true;
+    };
+
+    # Fonts
+    fonts = {
+        fonts = with pkgs; [
+            iosevka
+            nerdfonts
+            input-fonts
+            dejavu_fonts
+            jetbrains-mono
+            amiri
+            nika-fonts
+            liberation_ttf
+            noto-fonts
+            noto-fonts-emoji
+            roboto
+            fira
+            fira-code
+            siji
+            unifont
+        ];
+        fontDir.enable = true;
+        fontconfig = {
+            enable = true;
+            antialias = true;
+            hinting.enable = false;
+        };
     };
 
     # Nix

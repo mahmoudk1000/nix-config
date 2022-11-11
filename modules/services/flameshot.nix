@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ pkgs, user, theme, ... }:
 
 {
     services.flameshot = {
@@ -6,8 +6,10 @@
         settings = {
             General = {
                 savePath = "/home/mahmoud/scrots";
+                filenamePattern = ''%F_%H-%M'';
+                savePathFixed = true;
                 saveAsFileExtension = ".png";
-                uiColor = "#bd93f9";
+                uiColor = theme.base06;
                 showHelp = "false";
                 disabledTrayIcon = "true";
             };

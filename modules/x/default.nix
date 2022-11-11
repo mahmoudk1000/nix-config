@@ -1,6 +1,10 @@
-[
-	# ./xcompose.nix
-	./xft.nix
-    ./xresources.nix
-    ./xinitrc.nix
-]
+{ config, pkgs, theme, ... }:
+
+{
+    imports = [
+        ./xcompose.nix
+        ./xft.nix
+        ./xresources.nix
+        ./xinitrc.nix
+    ];
+}

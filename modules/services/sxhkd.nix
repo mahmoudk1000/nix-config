@@ -2,13 +2,13 @@
 
 {
     services.sxhkd = {
-        enable = true;
+        enable = false;
         keybindings = {
             "super + Return" = "urxvt";
             "super + d" = "rofi -show drun";
-            "super + p" = "~/.bin/rofi-poww";
+            "super + i" = "~/.bin/rofi-wifi.sh";
             "super + b" = "~/.bin/rofi-bluetooth";
-            "super + i" = "~/.bin/networkmanager_dmenu";
+            "super + p" = "~/.bin/rofi-poww";
             "super + l" = "betterlockscreen -l";
 
             "super + {a, f, g, m, o, s, t, w}" = "{anki, thunar, teams, thunderbird, obsidian, spotify, telegram-desktop, firefox}";
@@ -29,7 +29,7 @@
             "XF86Audio{Raise,Lower}Volume" = "pamixer {-i 5,-d 5}";
             "XF86AudioMute" = "pamixer --toggle-mute";
             "XF86Audio{Next,Prev,Play}" = "playerctl {next,previous,play-pause}";
-            "ctrl + XF86Audio{Next,Prev,Play,Play}" = "mpc {next,prev,pause,play}";
+            "ctrl + XF86Audio{Next,Prev,Play}" = "mpc {next,prev,toggle}";
             "{_,shift,alt} + Print" = "flameshot {full,gui,full -d 5000}";
 
             "super + alt + {q,r}" = "bspc {quit,wm -r}";

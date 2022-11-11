@@ -13,7 +13,7 @@
             };
             character = {
                 success_symbol = "[⨟](bold green) ";
-                error_symbol = "[✘](bold red) ";
+                error_symbol = "[⦂](bold red) ";
             };
             package = {
                 disabled = true;
@@ -49,39 +49,44 @@
             };
             git_branch = {
                 disabled = false;
-                symbol = " ";
+                symbol = "療";
                 style = "fg:${theme.base04} bg:${theme.base09}";
-                format = "[[](fg:${theme.base09} bg:${theme.base00})$symbol$branch[](bg:${theme.base00} fg:${theme.base09})]($style)";
+                format = "[[ ](fg:${theme.base09} bg:${theme.base00})$symbol$branch[ ](bg:${theme.base00} fg:${theme.base09})]($style)";
             };
             git_commit = {
                 style = "fg:${theme.base07} bg:${theme.base09}";
                 commit_hash_length = 4;
-                format = "[[](fg:${theme.base09} bg:${theme.base00})#$hash[](fg:${theme.base09} bg:${theme.base00})]($style)";
+                format = "[[ ](fg:${theme.base09} bg:${theme.base00})#$hash[ ](fg:${theme.base09} bg:${theme.base00})]($style)";
             };
             git_state = {
                 style = "fg:${theme.base05} bg:${theme.base09}";
                 rebase = "rebasing";
                 merge = "merging";
                 revert = "reverting";
-                cherry_pick = " picking";
+                cherry_pick = " picking";
                 bisect = "bisecting";
                 am = "am'ing";
                 am_or_rebase = "am/rebase";
-                format = "\([[](fg:${theme.base09} bg:${theme.base00})$state($progress_current/$progress_total)[](fg:${theme.base09} bg:${theme.base00})]($style)\)";
+                format = "\([[ ](fg:${theme.base09} bg:${theme.base00})$state($progress_current/$progress_total)[ ](fg:${theme.base09} bg:${theme.base00})]($style)\)";
             };
             git_status = {
                 style = "fg:${theme.base05} bg:${theme.base09}";
-                stashed = "  \${count}";
-                ahead = " ﲗ \${count}";
-                behind = " ↧ \${count}";
-                diverged = " 李 \${ahead_count} \${behind_count}";
-                conflicted = "  \${count}";
-                deleted = "  \${count}";
-                renamed = " 﫦 \${count} ";
-                modified = " 凜 \${count}";
-                staged = "  \${count}";
-                untracked = "  \${count}";
-                format = "([[](fg:${theme.base09} bg:${theme.base00})$stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[](fg:${theme.base09} bg:${theme.base00})]($style))";
+                stashed = " ⊎ \${count}";
+                ahead = " ⇈ \${count}";
+                behind = " ⇊ \${count}";
+                diverged = "  \${ahead_count} \${behind_count}";
+                conflicted = " ✘ \${count}";
+                deleted = " ␡ \${count}";
+                renamed = "  \${count} ";
+                modified = "  \${count}";
+                staged = " ✔ \${count}";
+                untracked = "  \${count}";
+                format = "([[ ](fg:${theme.base09} bg:${theme.base00})$stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[ ](fg:${theme.base09} bg:${theme.base00})]($style))";
+            };
+            nix_shell = {
+                symbol = "";
+                style = "bold blue";
+                format = "[ $symbol  $name ]($style)";
             };
         };
     };
