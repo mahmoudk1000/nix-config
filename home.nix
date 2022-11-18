@@ -63,7 +63,6 @@
             gimp
             krita
             bitwarden
-            notable
 
             libsForQt5.breeze-icons
             xorg.xmodmap
