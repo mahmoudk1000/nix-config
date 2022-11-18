@@ -71,16 +71,16 @@
             };
             git_status = {
                 style = "fg:${theme.base05} bg:${theme.base09}";
-                stashed = " ⊎ \${count}";
-                ahead = " ⇈ \${count}";
-                behind = " ⇊ \${count}";
-                diverged = "  \${ahead_count} \${behind_count}";
-                conflicted = " ✘ \${count}";
-                deleted = " ␡ \${count}";
+                stashed = " ⊎ \${count} ";
+                ahead = " ⇈ \${count} ";
+                behind = " ⇊ \${count} ";
+                diverged = "  \${ahead_count} \${behind_count} ";
+                conflicted = " ✘ \${count} ";
+                deleted = " ␡ \${count} ";
                 renamed = "  \${count} ";
-                modified = "  \${count}";
-                staged = " ✔ \${count}";
-                untracked = "  \${count}";
+                modified = "  \${count} ";
+                staged = " ✔ \${count} ";
+                untracked = "  \${count} ";
                 format = "([[ ](fg:${theme.base09} bg:${theme.base00})$stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[ ](fg:${theme.base09} bg:${theme.base00})]($style))";
             };
             nix_shell = {

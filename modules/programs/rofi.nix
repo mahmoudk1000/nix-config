@@ -20,60 +20,56 @@ in
             "*" = {
                 bg = mkLiteral theme.base00;
                 fg = mkLiteral theme.base01;
-                al = mkLiteral theme.base09;
+                al = mkLiteral theme.base02;
                 background-color = mkLiteral "@bg";
                 text-color = mkLiteral "@fg";
             };
-            window {
+            window = {
                 border = mkLiteral "5";
                 border-color = mkLiteral "@al";
-                transparency = mkLiteral "real";
+                transparency = mkLiteral ''"real"'';
                 orientation = mkLiteral "vertical";
                 width = mkLiteral "33%";
             };
-            mainbox {
-                children = map mkLiteral [ inputbar, listview ];
+            mainbox = {
+                children = map mkLiteral [ "inputbar"  "listview" ];
                 spacing = mkLiteral "5px";
                 padding = mkLiteral "5px 5px 5px 5px";
             };
-            prompt {
-                font = mkLiteral "feather 12";
+            prompt = {
+                font = mkLiteral ''"feather 12"'';
                 background-color = mkLiteral "@al";
                 vertical-align = mkLiteral "0.5";
                 padding = mkLiteral "0.6em 0.75em";
                 border-radius = mkLiteral "4px";
             };
-            inputbar {
+            inputbar = {
                 orientation = mkLiteral "horizontal";
-                children = map mkLiteral [ prompt, entry ];
+                children = map mkLiteral [ "prompt"  "entry" ];
             };
-            listview {
+            listview = {
                 columns = mkLiteral "2";
                 spacing = mkLiteral "1.5px";
                 lines = mkLiteral "9";
             };
-            entry {
-                placeholder = mkLiteral "Search...";
+            entry = {
+                placeholder = mkLiteral ''"Search..."'';
                 expand = mkLiteral "false";
                 width = mkLiteral "25%";
                 padding = mkLiteral "0.65em";
             };
-            element {
+            element = {
                 padding = mkLiteral "0.65em 0.75em";
             };
-            element selected {
+            "element selected" = {
                 border-radius = mkLiteral "4px";
                 background-color = mkLiteral "@al";
             };
-            element-text {
+            "element-text, element-icon" = {
                 background-color = mkLiteral "inherit";
                 text-color = mkLiteral "inherit";
             };
-            element-icon {
-                background-color = mkLiteral "inherit";
-                text-color = mkLiteral "inherit";
-            };
-            element-icon {
+            element-icon = {
                 size = mkLiteral "15px";
             };
         };

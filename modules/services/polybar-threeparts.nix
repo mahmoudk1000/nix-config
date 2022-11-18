@@ -12,7 +12,7 @@
         };
         config =  {
             "bar/ein" = {
-                monitor = "eDP1";
+                monitor = "eDP-1";
                 bottom = true;
                 height = 40;
                 offset-y = 10;

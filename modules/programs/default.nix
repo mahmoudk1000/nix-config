@@ -3,6 +3,7 @@
 {
     imports = [
         ./bspwm.nix
+        ./firefox.nix
         ./git.nix
         ./herbstluftwm.nix
         ./ncmpcpp.nix

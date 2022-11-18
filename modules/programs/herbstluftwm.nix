@@ -22,7 +22,7 @@
                 mouse_recenter_gap = 0;
                 focus_follows_mouse = true;
                 tree_style = ''╾│ ├└╼─┐'';
-                default_frame_layout = "horizontal";
+                default_frame_layout = "grid";
             };
             keybinds = {
                 Mod4-q = "close";
@@ -153,11 +153,10 @@
 
                 herbstclient attr theme.background_color '${theme.base00}'
 
-                herbstclient pad 0 0 0 35
                 herbstclient detect_monitors
 
                 # Runs
-                $HOME/.config/conky/Moo/start.sh
+                conky -c $HOME/.config/conky/Moo.conf &> /dev/null &
                 xsetroot -cursor_name left_ptr
                 pkill polybar
                 sleep 1;

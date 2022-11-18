@@ -4,37 +4,43 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    imports =[
+        (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+    boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "sr_mod" ];
+    boot.initrd.kernelModules = [ "dm-snapshot" ];
+    boot.kernelModules = [ "kvm-intel" ];
+    boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/NIXOS";
-      fsType = "xfs";
+    fileSystems."/" =
+        { device = "/dev/disk/by-label/NIXOS";
+        fsType = "xfs";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-label/BOOT";
-      fsType = "vfat";
+    fileSystems."/boot" =
+        { device = "/dev/disk/by-label/BOOT";
+        fsType = "vfat";
     };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-label/HOME";
-      fsType = "ext4";
+    fileSystems."/home" =
+        { device = "/dev/disk/by-label/HOME";
+        fsType = "ext4";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-label/SWAP"; }
+    swapDevices = [
+        { device = "/dev/disk/by-label/SWAP"; }
     ];
 
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-  nix.settings.max-jobs = lib.mkDefault 8;
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    hardware.opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+    };
+    powerManagement = {
+        cpuFreqGovernor = lib.mkDefault "powersave";
+    };
+    nixpkgs.hostPlatform = "x86_64-linux";
+    nix.settings.max-jobs = lib.mkDefault 8;
+    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

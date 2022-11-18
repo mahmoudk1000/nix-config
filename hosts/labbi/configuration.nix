@@ -28,19 +28,6 @@
         interfaces.enp2s0.useDHCP = true;
     };
 
-    # DNS Over TLS
-    services.resolved = {
-        enable = true;
-        extraConfig = ''
-            [Resolve]
-            DNS=45.90.28.0#b28d16.dns1.nextdns.io
-            DNS=2a07:a8c0::#b28d16.dns1.nextdns.io
-            DNS=45.90.30.0#b28d16.dns2.nextdns.io
-            DNS=2a07:a8c1::#b28d16.dns2.nextdns.io
-            DNSOverTLS=yes
-        '';
-    };
-
     # Bluetooth
     hardware.bluetooth = {
         enable = true;
@@ -101,10 +88,21 @@
                 disableWhileTyping = true;
             };
         };
-        videoDrivers = [
-            "intel"
-            "nvidia"
-        ];
+    };
+
+    # GPU
+    services.xserver.videoDrivers = [ "nvidia" ];
+    hardware.nvidia = {
+        modesetting.enable = true;
+        prime = {
+            offload.enable = true;
+            nvidiaBusId = "PCI:01:00:0";
+            intelBusId = "PCI:00:02:0";
+        };
+        powerManagement = {
+            enable = true;
+            finegrained = true;
+        };
     };
 
     # Sound.

@@ -14,7 +14,7 @@
             "bar/main" = {
                 font-0 = "Iosevka:style=Semibold:size=9;3";
                 font-1 = "NotoMono Nerd Font:size=10;3";
-                monitor = "eDP1";
+                monitor = "eDP-1";
                 height = 35;
                 width = "80%";
                 offset-x = "10%";

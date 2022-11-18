@@ -20,7 +20,7 @@
             jq
             playerctl
             pamixer
-            neovim
+            neovim-nightly
 
             psmisc
             ytmdl
@@ -40,7 +40,6 @@
             feh
             conky
 
-            firefox
             zoom-us
             lite-xl
             inkscape
@@ -64,9 +63,11 @@
             gimp
             krita
             bitwarden
+            notable
 
             libsForQt5.breeze-icons
             xorg.xmodmap
+            cudatoolkit
 
             python3Full
         ];

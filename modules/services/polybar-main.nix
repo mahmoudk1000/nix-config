@@ -13,7 +13,7 @@
         config =  {
             "bar/main" = {
                 font-0 = "Iosevka:style=Heavy Extended Oblique::size=9;4";
-                monitor = "eDP1";
+                monitor = "eDP-1";
                 height = 35;
                 width = "100%";
                 offset-x = "0%";
@@ -57,9 +57,9 @@
                 battery = "BAT0";
                 adapter = "ADP0";
                 poll-interval = 5;
-                format-charging = "CHR: <label-charging>%";
+                format-charging = "CHR: <label-charging>";
                 format-charging-foreground = theme.base08;
-                format-discharging = "BAT: <label-discharging>%";
+                format-discharging = "BAT: <label-discharging>";
                 format-discharging-foreground = theme.base08;
                 format-full = "BAT: <label-full>";
                 format-full-foreground = theme.base07;
