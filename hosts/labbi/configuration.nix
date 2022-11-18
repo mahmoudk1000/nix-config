@@ -128,6 +128,7 @@
         home = "/home/mahmoud";
         shell = pkgs.zsh;
         extraGroups = [ "wheel" "video" "audio" "users" "tty" "input" ];
+        hashedPassword = "$6$RC/pIIRmYnXN6vWB$pkDeNbr/SewvTKH4oK5ZzXXdnx8/Az8Wxp0Bg1imM44ECcjmj/eLjSAm0yx6dbozZY0RAN5QXWr/vdQBo35Lq/";
     };
     environment.pathsToLink = [ "/share/zsh" ];
 
@@ -225,7 +226,7 @@
         gc = {
             automatic = true;
             dates = "weekly";
-            options = "--delete-older-than 7d";
+            options = "--delete-older-than 14d";
         };
     };
 
