@@ -2,7 +2,7 @@
 
 {
     imports = [
-       ./autorandr.nix
+        ./autorandr.nix
         ./betterlockscreen.nix
         ./dunst.nix
         ./flameshot.nix
@@ -10,7 +10,6 @@
         ./mpd.nix
         ./nextcloud.nix
         ./picom.nix
-        # ./polybar-threeparts.nix
         ./polybar-main.nix
         ./sxhkd.nix
         ./unclutter.nix
