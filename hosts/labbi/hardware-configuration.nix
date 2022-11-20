@@ -13,18 +13,18 @@
     boot.kernelModules = [ "kvm-intel" ];
     boot.extraModulePackages = [ ];
 
-    fileSystems."/" =
-        { device = "/dev/disk/by-label/NIXOS";
+    fileSystems."/" = {
+        device = "/dev/disk/by-label/NIXOS";
         fsType = "xfs";
     };
 
-    fileSystems."/boot" =
-        { device = "/dev/disk/by-label/BOOT";
+    fileSystems."/boot" = {
+        device = "/dev/disk/by-label/BOOT";
         fsType = "vfat";
     };
 
-    fileSystems."/home" =
-        { device = "/dev/disk/by-label/HOME";
+    fileSystems."/home" = {
+        device = "/dev/disk/by-label/HOME";
         fsType = "ext4";
     };
 

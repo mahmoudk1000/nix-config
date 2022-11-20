@@ -4,8 +4,7 @@
     services.picom = {
         enable = true;
         backend = "glx";
-        experimentalBackends = true;
-        vSync = true;
+        extraArgs = [ "--experimental-backends" ];
         fade = true;
         fadeDelta = 10;
         fadeSteps = [ (0.04) (0.04) ];
