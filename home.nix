@@ -103,7 +103,6 @@
         windowManager = {
             bspwm.enable = false;
             herbstluftwm.enable = true;
-            # command = "herbstluftwm";
         };
     };
 

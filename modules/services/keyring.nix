@@ -8,13 +8,4 @@
         enableSshSupport = true;
         pinentryFlavor = "gnome3";
     };
-
-    services.gnome-keyring = {
-        enable = true;
-        components = [
-            "pkcs11"
-            "secrets"
-            "ssh"
-        ];
-    };
 }

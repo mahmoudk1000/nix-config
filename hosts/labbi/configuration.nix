@@ -178,7 +178,6 @@
         blueman.enable = true;
         openssh.enable = true;
         printing.enable = true;
-        gnome.gnome-keyring.enable = true;
     };
 
     # TLP. (https://linrunner.de/tlp/settings/)
