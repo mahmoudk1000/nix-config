@@ -147,102 +147,100 @@
                 command = "workbench.view.explorer";
             }
         ];
-        userSettings =  [
-            {
-                # Editor
-                "editor.fontSize" = 12;
-                "editor.fontFamily" = "'Iosevka', 'Iosevka Term'";
-                "editor.fontLigatures" = true;
-                "editor.acceptSuggestionOnEnter" = "off";
-                "editor.autoClosingBrackets" = "always";
-                "editor.cursorBlinking" = "smooth";
-                "editor.cursorSmoothCaretAnimation" = true;
-                "editor.formatOnPaste" = true;
-                "editor.formatOnSave" = true;
-                "editor.formatOnType" = true;
-                "editor.renderFinalNewline" = false;
-                "editor.rulers" = [ 80 ];
+        userSettings =  {
+            # Editor
+            "editor.fontSize" = 12;
+            "editor.fontFamily" = "'Iosevka', 'Iosevka Term'";
+            "editor.fontLigatures" = true;
+            "editor.acceptSuggestionOnEnter" = "off";
+            "editor.autoClosingBrackets" = "always";
+            "editor.cursorBlinking" = "smooth";
+            "editor.cursorSmoothCaretAnimation" = true;
+            "editor.formatOnPaste" = true;
+            "editor.formatOnSave" = true;
+            "editor.formatOnType" = true;
+            "editor.renderFinalNewline" = false;
+            "editor.rulers" = [ 80 ];
+            "editor.tabSize" = 4;
+            "editor.smoothScrolling" = true;
+            "editor.stickyTabStops" = true;
+            "editor.wordWrap" = "on";
+            "editor.bracketPairColorization.enabled" = true;
+            "editor.guides.bracketPairs" = "active";
+
+            # Window
+            "window.zoomLevel" = -0.5;
+            "window.menuBarVisibility" = "toggle";
+            "window.titleBarStyle" = "native";
+            "extensions.autoUpdate" = false;
+
+            # Workbench
+            "workbench.colorTheme" = "Mont";
+            "workbench.iconTheme" = "eq-material-theme-icons-light";
+            "workbench.productIconTheme" = "fluent-icons";
+            "workbench.editor.showTabs" = true;
+
+            # Terminal
+            "terminal.integrated.fontFamily" = "Iosevka Term";
+            "terminal.integrated.fontSize" = 10;
+            "terminal.integrated.allowChords" = false;
+            "terminal.integrated.gpuAcceleration" = "on";
+            "terminal.integrated.cursorStyle" = "line";
+            "terminal.integrated.cursorBlinking" = true;
+
+            # Files
+            "files.autoSave" = "onFocusChange";
+            "files.trimTrailingWhitespace" = true;
+            "files.trimFinalNewlines" = true;
+
+            # Telemetry
+            "githubPullRequests.telemetry.enabled" = false;
+            "telemetry.telemetryLevel" = "off";
+
+            # Updates
+            "update.mode" = "none";
+
+            # Git
+            "git.autofetch" = true;
+            "gitlens.codeLens.enabled" = false;
+            "gitlens.currentLine.enabled" = false;
+
+            # Python
+            "python.analysis.typeCheckingMode" = "basic";
+            "python.linting.enabled" = true;
+            "python.linting.pylintEnabled" = true;
+            "python.linting.pylintPath" = "${pkgs.python3Packages.pylint}/bin/pylint";
+            "python.formatting.autopep8Path" = "${pkgs.python3Packages.autopep8}/bin/autopep8";
+
+            # Languages
+            ## Nix
+            "nix.enableLanguageServer" = true;
+            "nixEnvSelector.nixFile" = "\${workspaceRoot}/shell.nix";
+            "[nix]" = {
                 "editor.tabSize" = 4;
-                "editor.smoothScrolling" = true;
-                "editor.stickyTabStops" = true;
-                "editor.wordWrap" = "on";
-                "editor.bracketPairColorization.enabled" = true;
-                "editor.guides.bracketPairs" = "active";
-
-                # Window
-                "window.zoomLevel" = "-0.5";
-                "window.titleBarStyle" = "custom";
-                "window.menuBarVisibility" = "toggle";
-                "extensions.autoUpdate" = false;
-
-                # Workbench
-                "workbench.colorTheme" = "Mont";
-                "workbench.iconTheme" = "eq-material-theme-icons-light";
-                "workbench.productIconTheme" = "fluent-icons";
-                "workbench.editor.showTabs" = true;
-
-                # Terminal
-                "terminal.integrated.fontFamily" = "Iosevka Term";
-                "terminal.integrated.fontSize" = 10;
-                "terminal.integrated.allowChords" = false;
-                "terminal.integrated.gpuAcceleration" = "on";
-                "terminal.integrated.cursorStyle" = "line";
-                "terminal.integrated.cursorBlinking" = true;
-
-                # Files
-                "files.autoSave" = "onFocusChange";
-                "files.trimTrailingWhitespace" = true;
-                "files.trimFinalNewlines" = true;
-
-                # Telemetry
-                "githubPullRequests.telemetry.enabled" = false;
-                "telemetry.telemetryLevel" = "off";
-
-                # Updates
-                "update.mode" = "none";
-
-                # Git
-                "git.autofetch" = true;
-                "gitlens.codeLens.enabled" = false;
-                "gitlens.currentLine.enabled" = false;
-
-                # Python
-                "python.analysis.typeCheckingMode" = "basic";
-                "python.linting.enabled" = true;
-                "python.linting.pylintEnabled" = true;
-                "python.linting.pylintPath" = "${pkgs.python3Packages.pylint}/bin/pylint";
-                "python.formatting.autopep8Path" = "${pkgs.python3Packages.autopep8}/bin/autopep8";
-
-                # Languages
-                ## Nix
-                "nix.enableLanguageServer" = true;
-                "nixEnvSelector.nixFile" = "\${workspaceRoot}/shell.nix";
-                "[nix]" = {
-                    "editor.tabSize" = 4;
-                };
-                ## java
-                "[java]" = {
-                    "editor.defaultFormatter" = "redhat.java";
-                };
-                ## Docker
-                "[dockerfile]" = {
-                    "editor.defaultFormatter" = "ms-azuretools.vscode-docker";
-                };
-                ## Web
-                "[html][javascript][javascriptreact][json][typescript][typescriptreact][scss]" = {
-                    "editor.defaultFormatter" = "esbenp.prettier-vscode";
-                };
-                ## Bash
-                "[shellscript]" = {
-                    "editor.tabSize" = 2;
-                    "editor.insertSpaces" = false;
-                };
-                ## C, CPP
-                "[cpp][c]" = {
-                    "editor.defaultFormatter" = "xaver.clang-format";
-                };
-            }
-        ];
+            };
+            ## java
+            "[java]" = {
+                "editor.defaultFormatter" = "redhat.java";
+            };
+            ## Docker
+            "[dockerfile]" = {
+                "editor.defaultFormatter" = "ms-azuretools.vscode-docker";
+            };
+            ## Web
+            "[html][javascript][javascriptreact][json][typescript][typescriptreact][scss]" = {
+                "editor.defaultFormatter" = "esbenp.prettier-vscode";
+            };
+            ## Bash
+            "[shellscript]" = {
+                "editor.tabSize" = 2;
+                "editor.insertSpaces" = false;
+            };
+            ## C, CPP
+            "[cpp][c]" = {
+                "editor.defaultFormatter" = "xaver.clang-format";
+            };
+        };
     };
 
     home.file.".vscode-oss/extensions/mahmoudk1000.mont/package.json".text = ''
