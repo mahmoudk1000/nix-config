@@ -181,6 +181,23 @@
         gnome.gnome-keyring.enable = true;
     };
 
+    # TLP. (https://linrunner.de/tlp/settings/)
+    services.thermald.enable = true;
+    services.tlp = {
+        enable = true;
+        settings = {
+            CPU_BOOST_ON_AC = 1;
+            CPU_BOOST_ON_BAT = 0;
+            USB_AUTOSUSPEND = 0;
+            WIFI_PWR_ON_BAT = "off";
+            CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+            ENERGY_PERF_POLICY_ON_BAT = "powersave";
+            SATA_LINKPWR_ON_BAT = "max_performance";
+            START_CHARGE_THRESH_BAT0 = 75;
+            STOP_CHARGE_THRESH_BAT0 = 80;
+        };
+    };
+
     # Fonts
     fonts = {
         fonts = with pkgs; [
