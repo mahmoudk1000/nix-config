@@ -40,7 +40,6 @@
             privacy-redirect
             privacy-badger
             languagetool
-            disconnect
         ];
         profiles = {
             mahmoud = {
