@@ -9,10 +9,8 @@
             "xft:Iosevka Term:style=Bold Italic:pixelsize=12:antialias=true:autohint=true"
         ];
         keybindings = {
-            #"Shift-Up" = "command:\033]720;1\007";
-            "Shift-Up" = ''command:\033[1;2A'';
-            #"Shift-Down" = "command:\033]721;1\007";
-            "Shift-Down" = ''command:\033[1;2B'';
+            "Shift-Up" = ''command:\033]720;1\007'';
+            "Shift-Down" = ''command:\033]721;1\007'';
             "C-Up" = "perl:font-size:increase";
             "C-Down" = "perl:font-size:decrease";
             "C-equal" = "perl:font-size:reset";
