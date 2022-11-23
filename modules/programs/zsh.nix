@@ -31,6 +31,7 @@
                 sv = "sudo nvim";
 
                 g = "git";
+                ga = "git add";
                 glg = "git log";
                 gl = "git clone";
                 gs = "git status --short";
