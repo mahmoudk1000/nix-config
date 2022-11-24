@@ -72,7 +72,8 @@
 
         sessionVariables = {
             BROWSER = "firefox";
-            EDITOR = "neovim";
+            EDITOR = "nvim";
+            VISUAL = "nvim";
             TERMINAL = "urxvt";
             SSH_AUTH_SOCK = "$(gpgconf --list-dirs agent-ssh-socket)";
         };
