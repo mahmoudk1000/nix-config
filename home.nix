@@ -66,7 +66,6 @@
 
             libsForQt5.breeze-icons
             xorg.xmodmap
-            cudatoolkit
 
             python3Full
         ];
