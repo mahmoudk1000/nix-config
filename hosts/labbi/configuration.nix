@@ -188,7 +188,10 @@
             CPU_BOOST_ON_AC = 1;
             CPU_BOOST_ON_BAT = 0;
             USB_AUTOSUSPEND = 0;
+            CPU_HWP_DYN_BOOST_ON_AC = 1;
+            CPU_HWP_DYN_BOOST_ON_BAT = 0;
             WIFI_PWR_ON_BAT = "off";
+            RESTORE_DEVICE_STATE_ON_STARTUP = 1;
             CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
             ENERGY_PERF_POLICY_ON_BAT = "powersave";
             SATA_LINKPWR_ON_BAT = "max_performance";
