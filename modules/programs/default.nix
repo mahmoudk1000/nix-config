@@ -10,6 +10,7 @@
         ./rofi.nix
         ./starship.nix
         ./thunar.nix
+        ./thunderbird.nix
         ./urxvt.nix
         ./vscode.nix
         ./zathura.nix

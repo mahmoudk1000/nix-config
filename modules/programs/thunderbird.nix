@@ -1,59 +1,52 @@
-{ config, pkgs, ... }:
+{ config, pkgs, theme, ... }:
 
 {
-
-    accounts.email = {
-        maildirBasePath = "Mail";
-        accounts = {
-            "mahmoudk1000@gmail.com" = {
-                primary = true;
-                address = "mahmoudk1000@gmail.com";
-                userName = "Mahmoud Ayman";
-                realName = "H. M. Test";
-                passwordCommand = "password-command";
-                imap.host = "imap.example.com";
-                smtp.host = "smtp.example.com";
-            };
-            hm-account = {
-                address = "hm@example.org";
-                userName = "home.manager.jr";
-                realName = "H. M. Test Jr.";
-                passwordCommand = "password-command 2";
-                imap.host = "imap.example.org";
-                smtp.host = "smtp.example.org";
-                smtp.tls.useStartTls = true;
-            };
-        };
-    };
-
-
-    accounts.email.accounts = {
-        "mahmoudk1000@gmail.com" = {
-            userName = "Mahmoud A. Asran";
-            thunderbird = {
-                enable = true;
-                profiles = [ "first" ];
-            };
-            imap = {
-              port = 123;
-              tls.enable = true;
-            };
-            smtp.port = 456;
-        }
-    };
-
     programs.thunderbird = {
         enable = true;
+        package = pkgs.thunderbird;
         profiles = {
-            first = {
+            mahmoud = {
                 isDefault = true;
-                withExternalGnupg = true;
             };
-            second.settings = { "second.setting" = "some-test-setting"; };
         };
         settings = {
-            "general.useragent.override" = "";
+            # Themeing
+            "browser.display.background_color" = theme.base00;
+            "browser.anchor_color" = theme.base06;
+            "browser.display.foreground_color" = theme.base01;
+            "browser.visited_color" = theme.base06;
+
+            # General
+            "general.warnOnAboutConfig" = false;
+            "gfx.downloadable_fonts.disable_cache" = true;
             "privacy.donottrackheader.enabled" = true;
+            "dom.webaudio.enabled" = false;
+            "media.video_stats.enabled" = false;
+            "geo.enabled" = false;
+            "browser.search.geoip.timeout" = 1;
+
+            # Disable cookie tracking and history
+            "network.cookie.cookieBehavior" = 1;
+            "network.cookie.lifetimePolicy" = 2;
+            "network.cookie.prefsMigrated" = true;
+            "places.history.enabled" = false;
+
+            # Disable telemetry data for Mozilla
+            "datareporting.policy.dataSubmissionEnabled" = false;
+            "toolkit.telemetry.enabled" = false;
+            "toolkit.telemetry.unified" = false;
+            "toolkit.telemetry.server" = "";
+        };
+    };
+
+    systemd.user.services.thunderbird = {
+        Unit.PartOf = [ "graphical-session.target" ];
+        Install.WantedBy = [ "graphical-session.target" ];
+        Service = {
+            ExecStart = ''
+                ${pkgs.thunderbird}/bin/thunderbird --headless
+            '';
+            Restart = "on-failure";
         };
     };
 }

@@ -48,7 +48,6 @@
             discord
             teams
             zotero
-            thunderbird
             anki-bin
             spotify
             tdesktop
