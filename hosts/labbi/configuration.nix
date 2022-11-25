@@ -164,7 +164,6 @@
         pam = {
             enableSSHAgentAuth = true;
             services.login.gnupg.enable = true;
-            services.login.enableGnomeKeyring = true;
         };
     };
 
