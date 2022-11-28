@@ -104,6 +104,11 @@
             finegrained = true;
         };
     };
+    hardware.opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+    };
 
     # Sound.
     security.rtkit.enable = true;

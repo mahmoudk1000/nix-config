@@ -32,11 +32,6 @@
         { device = "/dev/disk/by-label/SWAP"; }
     ];
 
-    hardware.opengl = {
-        enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
-    };
     powerManagement = {
         cpuFreqGovernor = lib.mkDefault "powersave";
     };
