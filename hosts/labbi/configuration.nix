@@ -214,14 +214,12 @@
             RESTORE_DEVICE_STATE_ON_STARTUP = 1;
 
             # Disable on Network Connect
-            DEVICES_TO_DISABLE_ON_LAN_CONNECT="wifi wwan"
-            DEVICES_TO_DISABLE_ON_WIFI_CONNECT="wwan"
-            DEVICES_TO_DISABLE_ON_WWAN_CONNECT="wifi"
+            DEVICES_TO_DISABLE_ON_LAN_CONNECT = "wifi wwan";
+            DEVICES_TO_DISABLE_ON_WIFI_CONNECT = "wwan";
 
             # Enable on Network Disconnect
-            DEVICES_TO_ENABLE_ON_LAN_DISCONNECT="wifi wwan"
-            DEVICES_TO_ENABLE_ON_WIFI_DISCONNECT=""
-            DEVICES_TO_ENABLE_ON_WWAN_DISCONNECT=""
+            DEVICES_TO_ENABLE_ON_LAN_DISCONNECT = "wifi wwan";
+            DEVICES_TO_ENABLE_ON_WIFI_DISCONNECT = "";
         };
     };
 
