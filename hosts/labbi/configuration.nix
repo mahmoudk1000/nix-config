@@ -170,7 +170,6 @@
     # Daemons.
     services = {
         gvfs.enable = true;
-        dbus.enable = true;
         upower.enable = true;
         urxvtd.enable = true;
         udisks2.enable = true;
@@ -186,16 +185,38 @@
         settings = {
             CPU_BOOST_ON_AC = 1;
             CPU_BOOST_ON_BAT = 0;
-            USB_AUTOSUSPEND = 0;
-            CPU_HWP_DYN_BOOST_ON_AC = 1;
-            CPU_HWP_DYN_BOOST_ON_BAT = 0;
-            WIFI_PWR_ON_BAT = "off";
-            RESTORE_DEVICE_STATE_ON_STARTUP = 1;
-            CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+            CPU_HWP_DYN_BOOST_ON_AC = 0;
+            CPU_HWP_DYN_BOOST_ON_BAT = 1;
+
+            ENERGY_PERF_POLICY_ON_AC = "performance";
             ENERGY_PERF_POLICY_ON_BAT = "powersave";
-            SATA_LINKPWR_ON_BAT = "max_performance";
-            START_CHARGE_THRESH_BAT0 = 75;
+
+            CPU_SCALING_GOVERNOR_ON_AC = "performance";
+            CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+            START_CHARGE_THRESH_BAT0 = 25;
             STOP_CHARGE_THRESH_BAT0 = 80;
+
+            MAX_LOST_WORK_SECS_ON_AC = 15;
+            MAX_LOST_WORK_SECS_ON_BAT = 60;
+
+            DISK_IDLE_SECS_ON_AC = 0;
+            DISK_IDLE_SECS_ON_BAT = 2;
+
+            # Radio Device
+            DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
+            RESTORE_DEVICE_STATE_ON_STARTUP = 1;
+
+            # Disable on Network Connect
+            DEVICES_TO_DISABLE_ON_LAN_CONNECT="wifi wwan"
+            DEVICES_TO_DISABLE_ON_WIFI_CONNECT="wwan"
+            DEVICES_TO_DISABLE_ON_WWAN_CONNECT="wifi"
+
+            # Enable on Network Disconnect
+            DEVICES_TO_ENABLE_ON_LAN_DISCONNECT="wifi wwan"
+            DEVICES_TO_ENABLE_ON_WIFI_DISCONNECT=""
+            DEVICES_TO_ENABLE_ON_WWAN_DISCONNECT=""
         };
     };
 
