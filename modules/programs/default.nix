@@ -7,6 +7,7 @@
         ./git.nix
         ./herbstluftwm.nix
         ./ncmpcpp.nix
+        ./neovim.nix
         ./rofi.nix
         ./starship.nix
         ./thunar.nix

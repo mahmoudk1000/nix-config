@@ -20,7 +20,6 @@
             jq
             playerctl
             pamixer
-            neovim-nightly
 
             psmisc
             ytmdl
