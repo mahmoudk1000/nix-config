@@ -62,7 +62,6 @@
                 Mod4-Shift-e = "pseudotile toggle";
 
                 Mod4-Tab = "cycle";
-                Mod4-Shift-Tab = "cycle -1";
                 Mod4-space = "cycle_layout 1";
                 Mod4-Shift-space = "cycle_layout -1";
                 Mod4-Shift-a = "use_index -1 --skip-visible";
@@ -79,8 +78,6 @@
                 Mod4-Shift-Left = "shift left";
 
                 Mod4-u = "split auto";
-                Mod4-s = "chain , split bottom 0.5 , focus down";
-                Mod4-v = "chain , split right 0.5 , focus right";
                 Mod4-Mod1-Up = "chain , split top 0.5 , focus up";
                 Mod4-Mod1-Down = "chain , split bottom 0.5 , focus down";
                 Mod4-Mod1-Right = "chain , split right  0.5 , focus right";
