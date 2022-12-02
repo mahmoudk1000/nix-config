@@ -44,7 +44,7 @@
         Install.WantedBy = [ "graphical-session.target" ];
         Service = {
             ExecStart = ''
-                ${pkgs.thunderbird}/bin/thunderbird --headless
+                ${pkgs.thunderbird}/bin/thunderbird
             '';
             Restart = "on-failure";
         };
