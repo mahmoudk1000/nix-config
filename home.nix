@@ -30,6 +30,7 @@
             spotdl
             irssi
             ventoy-bin
+            rssguard
 
             st
             ranger
