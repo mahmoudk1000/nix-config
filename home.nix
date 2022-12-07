@@ -62,6 +62,7 @@
             gimp
             krita
             bitwarden
+            popcorntime
 
             libsForQt5.breeze-icons
             xorg.xmodmap
