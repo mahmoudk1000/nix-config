@@ -30,6 +30,10 @@
             yzhang.markdown-all-in-one
             eamodio.gitlens
             redhat.vscode-yaml
+            vscjava.vscode-maven
+            vscjava.vscode-java-dependency
+            vscjava.vscode-java-test
+            vscjava.vscode-java-debug
             shardulm94.trailing-spaces
             streetsidesoftware.code-spell-checker
             ms-ceintl.vscode-language-pack-de
@@ -45,6 +49,12 @@
                 publisher = "Equinusocio";
                 version = "2.4.0";
                 sha256 = "sha256-2M/Pvfaxeouc6h5FwmXxky4aQX+Nqqj0CQhJq83SOD8=";
+            }
+            {
+                name = "vscodeintellicode";
+                publisher = "VisualStudioExptTeam";
+                version = "1.2.29";
+                sha256 = "sha256-Wl++d7mCOjgL7vmVVAKPQQgWRSFlqL4ry7v0wob1OyU=";
             }
         ];
         keybindings = [
@@ -182,7 +192,7 @@
 
             # Terminal
             "terminal.integrated.fontFamily" = "Iosevka Term";
-            "terminal.integrated.fontSize" = 10;
+            "terminal.integrated.fontSize" = 12;
             "terminal.integrated.allowChords" = false;
             "terminal.integrated.gpuAcceleration" = "on";
             "terminal.integrated.cursorStyle" = "line";
@@ -192,6 +202,12 @@
             "files.autoSave" = "onFocusChange";
             "files.trimTrailingWhitespace" = true;
             "files.trimFinalNewlines" = true;
+            "files.exclude" = {
+                "**/.classpath" = true;
+                "**/.project" = true;
+                "**/.settings" = true;
+                "**/.factorypath" = true;
+            };
 
             # Telemetry
             "githubPullRequests.telemetry.enabled" = false;
@@ -222,6 +238,7 @@
             ## java
             "[java]" = {
                 "editor.defaultFormatter" = "redhat.java";
+                "java.format.settings.profile" = "GoogleStyle";
             };
             ## Docker
             "[dockerfile]" = {
