@@ -8,7 +8,13 @@ in
         enable = true;
         font = "Iosevka 9";
         terminal = "urxvt";
-        plugins = with pkgs; [ rofi-calc rofi-emoji rofi-rbw ];
+        package = pkgs.rofi.override {
+            plugins = with pkgs; [
+                rofimoji
+                rofi-rbw
+                rofi-bluetooth
+            ];
+        };
         extraConfig = {
             "modi" = "drun";
             "display-drun" = "";
