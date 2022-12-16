@@ -28,9 +28,8 @@
             xclip
             pfetch
             spotdl
-            irssi
             ventoy-bin
-            rssguard
+            newsboat
 
             st
             ranger
