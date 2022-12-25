@@ -1,13 +1,23 @@
 { config, pkgs, ... }:
 
+let
+  thunar-with-plugins = with pkgs.xfce; (
+        thunar.override {
+            thunarPlugins = [
+                thunar-volman
+                thunar-archive-plugin
+                thunar-media-tags-plugin
+            ];
+        }
+    );
+in
+
 {
-    home.packages = with pkgs; [
-        xfce.thunar
-        xfce.exo
-        xfce.thunar-archive-plugin
-        xfce.thunar-volman
-        xfce.tumbler
-        xfce.xfconf
-        xfce.mousepad
+    home.packages = with pkgs.xfce; [
+        thunar-with-plugins
+        exo
+        tumbler
+        xfconf
+        mousepad
     ];
 }
