@@ -28,6 +28,16 @@
         interfaces.enp2s0.useDHCP = true;
     };
 
+    # NextDNS
+    services.nextdns = {
+        enable = true;
+        arguments = [
+            "-config" "b28d16"
+            "-report-client-info"
+            "-auto-activate"
+        ];
+    };
+
     # Bluetooth
     hardware.bluetooth = {
         enable = true;
@@ -56,6 +66,18 @@
             package = pkgs.jdk;
         };
     };
+
+    documentation = {
+        dev.enable = true;
+        man.generateCaches = true;
+    };
+
+    users.motd = with config; ''
+        Host       ${networking.hostName}
+        OS         NixOS ${system.nixos.release} (${system.nixos.codeName})
+        Version    ${system.nixos.version}
+        Kernel     ${boot.kernelPackages.kernel.version}
+    '';
 
     # Set your time zone.
     time.timeZone = "Africa/Cairo";
@@ -181,6 +203,7 @@
         blueman.enable = true;
         openssh.enable = true;
         printing.enable = true;
+        tumbler.enable = true;
     };
 
     # TLP. (https://linrunner.de/tlp/settings/)
@@ -210,6 +233,7 @@
             DISK_IDLE_SECS_ON_BAT = 2;
 
             # Radio Device
+            WIFI_PWR_ON_BAT = 1;
             DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
             RESTORE_DEVICE_STATE_ON_STARTUP = 1;
 
@@ -275,7 +299,7 @@
     # NixOS
     system = {
         autoUpgrade = {
-            enable = true;
+            enable = false;
             channel = "https://nixos.org/channels/nixos-unstable";
         };
         stateVersion = "22.05";
