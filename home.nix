@@ -62,6 +62,7 @@
             krita
             bitwarden
             popcorntime
+            nextcloud-client
 
             libsForQt5.breeze-icons
             xorg.xmodmap
