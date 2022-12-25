@@ -57,15 +57,16 @@
                 Control-XF86AudioPrev = "spawn mpc prev";
                 Control-XF86AudioPlay = "spawn mpc toggle";
 
-                Mod4-Shift-d = "floating toggle";
+                Mod4-Shift-e = "floating toggle";
                 Mod4-Shift-f = "fullscreen toggle";
-                Mod4-Shift-e = "pseudotile toggle";
+                Mod4-Shift-t = "pseudotile toggle";
 
                 Mod4-Tab = "cycle";
                 Mod4-space = "cycle_layout 1";
                 Mod4-Shift-space = "cycle_layout -1";
                 Mod4-Shift-a = "use_index -1 --skip-visible";
                 Mod4-Shift-s = "use_index +1 --skip-visible";
+                Mod4-Shift-d = "attr clients.focus.floating toggle";
 
                 Mod4-Up = "focus up";
                 Mod4-Down = "focus down";
