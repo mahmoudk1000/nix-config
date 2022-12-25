@@ -12,6 +12,7 @@
         ./starship.nix
         ./thunar.nix
         ./thunderbird.nix
+        ./tmux.nix
         ./urxvt.nix
         ./vscode.nix
         ./zathura.nix
