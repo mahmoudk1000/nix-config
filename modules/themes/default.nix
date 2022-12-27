@@ -4,4 +4,4 @@ let
     dunkellicht = import ./dunkellicht.nix;
     night = import ./night.nix;
 in
-coral
+blaulicht
