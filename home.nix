@@ -69,13 +69,6 @@
 
             python3Full
         ];
-
-        sessionVariables = {
-            BROWSER = "firefox";
-            EDITOR = "nvim";
-            VISUAL = "nvim";
-            TERMINAL = "urxvt";
-        };
     };
 
     xdg = {
