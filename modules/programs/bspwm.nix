@@ -1,5 +1,37 @@
 { config, pkgs, theme, ... }:
 
+let
+    borders = pkgs.writeScriptBin "borders" ''
+        outer="${theme.base00}" # outer
+        innr1="${theme.base02}" # focused
+        innr2="${theme.base09}" # normal
+
+        trap 'bspc config border_width 0; kill -9 -$$' INT TERM
+
+        targets() {
+            case $1 in
+                focused) bspc query -N -n .local.focused.\!fullscreen ;;
+                normal) bspc query -N -n .\!focused.\!fullscreen ;;
+            esac
+        }
+
+        bspc config border_width 10
+
+        draw() {
+            chwb2 -I "$inner" -O "$outer" -i "3" -o "7" $*
+        }
+
+        {
+            echo
+            bspc subscribe node_geometry node_focus
+        } |
+            while read -r _; do
+                [ "$v" ] || v='abcdefg'
+                inner=$innr1 draw $(targets focused)
+                inner=$innr2 draw $(targets normal)
+            done >/dev/null 2>&1
+    '';
+in
 {
     xsession = {
         windowManager = {
@@ -68,6 +100,7 @@
                     focused_border_color = theme.base02;
                 };
                 extraConfig = ''
+                    ${borders}
                     pkill polybar
                     sleep 1;
                     polybar ein &
@@ -77,4 +110,8 @@
             };
         };
     };
+
+    home.packages = with pkgs; [
+        wmutils-opt
+    ];
 }
