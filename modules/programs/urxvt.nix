@@ -3,6 +3,7 @@
 {
     programs.urxvt = {
         enable = true;
+        package = pkgs.rxvt-unicode-unwrapped;
         iso14755 = true;
         fonts = [
             "xft:Iosevka Term:style=Regular:pixelsize=12:antialias=true:autohint=true"
