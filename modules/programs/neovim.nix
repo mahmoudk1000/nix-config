@@ -48,5 +48,6 @@
     home.packages = with pkgs; [
         nodePackages.bash-language-server
         rnix-lsp
+        gcc
     ];
 }
