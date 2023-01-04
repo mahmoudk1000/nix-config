@@ -6,7 +6,7 @@
             enable = true;
             enableZshIntegration = true;
         };
-        programs.direnv = {
+        direnv = {
             enable = true;
             nix-direnv.enable = true;
             enableZshIntegration = true;
