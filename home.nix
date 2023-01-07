@@ -30,6 +30,7 @@
             spotdl
             ventoy-bin
             newsboat
+            yt-dlp
 
             st
             ranger
@@ -55,7 +56,6 @@
             foliate
             obsidian
             netbeans
-            zotero
             evince
             mpv
             gimp
