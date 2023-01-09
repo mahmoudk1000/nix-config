@@ -4,12 +4,27 @@
     programs.neovim = {
         enable = true;
         package = pkgs.neovim-nightly;
+        vimAlias = true;
         withPython3 = true;
         withNodeJs = true;
         defaultEditor = true;
+        extraPackages = with pkgs; [
+            nodePackages_latest.dockerfile-language-server-nodejs
+            nodePackages_latest.typescript-language-server
+            nodePackages_latest.bash-language-server
+            nodePackages_latest.yaml-language-server
+            sumneko-lua-language-server
+            python-language-server
+            python39Packages.yapf
+            java-language-server
+            rnix-lsp
+            gcc
+        ];
         plugins = with pkgs.vimPlugins; [
 
-            (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+            (nvim-treesitter.withPlugins (
+                _: pkgs.tree-sitter.allGrammars
+            ))
             alpha-nvim
             auto-pairs
             bufferline-nvim
@@ -44,10 +59,4 @@
 
         ];
     };
-
-    home.packages = with pkgs; [
-        nodePackages.bash-language-server
-        rnix-lsp
-        gcc
-    ];
 }
