@@ -1,40 +1,28 @@
 { config, pkgs, theme, ... }:
 
-let
-    date-bst = pkgs.writeScriptBin "date-bst" ''
-        env TZ=Africa/Cairo date +"%H%M"
-    '';
-in
 {
     programs.tmux = {
         enable = true;
+        prefix = "C-Space";
+        baseIndex = 1;
+        escapeTime = 20;
+        shell = "${pkgs.zsh}/bin/zsh";
+        terminal = "screen-256color";
+        keyMode = "vi";
         plugins = with pkgs; [
             tmuxPlugins.fingers
             tmuxPlugins.yank
-            tmuxPlugins.vim-tmux-navigator
             tmuxPlugins.better-mouse-mode
         ];
         extraConfig = ''
-            unbind-key C-b
-            set -g prefix C-Space
-            setw -g mode-keys vi
             bind q kill-pane
             bind s set status
             bind-key C-t send-prefix
 
             bind r source-file ~/.config/tmux/tmux.conf
 
-            set-option -g default-terminal "xterm-256color"
-            set -ag terminal-overrides ",xterm-256color:RGB"
-
-            set escape-time 20
-            set -q -g status-utf8 on
-            setw -q -g utf8 on
             set -g mouse on
             set-option -g focus-events on
-
-            set -g base-index 1
-            setw -g pane-base-index 1
 
             # pane binds
             unbind-key E
@@ -72,27 +60,25 @@ in
 
             set-window-option -g allow-rename off
 
-            set -g pane-border-style fg=${theme.base01}
-            set -g pane-active-border-style fg=colour8
+            set -g pane-border-style fg=${theme.base02}
+            set -g pane-active-border-style fg=${theme.base09}
 
             set-option -g status-justify absolute-centre
             set-option -g status-position bottom
 
-            set -g window-status-current-format " #[fg=${theme.base01}]#W#{?window_zoomed_flag, #[fg=${theme.base02}]+,}#{?window_activity_flag, #[fg=${theme.base03}]!,}"
-            set -g window-status-format         " #[fg=${theme.base01}]#W#{?window_zoomed_flag, #[fg=${theme.base02]+,}"
+            set -g window-status-format         "#[fg=${theme.base06}]#[fg=${theme.base00}]#[bg=${theme.base06}]#I #[bg=${theme.base09}]#[fg=${theme.base01}] #W#[fg=${theme.base09}]#[bg=${theme.base00}]  "
+            set -g window-status-current-format "#[fg=${theme.base08}]#[fg=${theme.base00}]#[bg=${theme.base08}]#I #[bg=${theme.base09}]#[fg=${theme.base01}] #W#[fg=${theme.base09}]#[bg=${theme.base00}]  "
+
+            set -g status-style "bg=${theme.base00}"
+            set -ag status-style "fg=${theme.base01}"
 
             # status right
-            set -g  status-style "bg=${theme.base00}"
-            set -ag status-style "fg=${theme.base06}"
-
-            set status-right-length 70
-            set -g  status-right "#[fg=colour15]#(date +"%H%M") #[fg=${theme.base03}]IST  "
-            set -ag status-right "#[fg=colour15]#(${date-bst}/bin/date-bst) #[fg=${theme.base03}]BST  "
-            set -ag status-right "#[fg=colour15]#(date +"%d/%m")#[fg=${theme.base06}] #(date +"%Y")"
+            set -g status-right-length 70
+            set -g status-right "#[fg=${theme.base07}]█#[fg=${theme.base01}]#[bg=${theme.base09}] %a, %d %b #[fg=${theme.base03}]#[bg=${theme.base09}]•#[fg=${theme.base07}]#[bg=${theme.base09}] %R#[fg=${theme.base09}]#[bg=${theme.base00}]  "
 
             # status left
-            set status-left-length 70
-            set -g status-left "#[fg=colour7]#(cat /sys/class/power_supply/BAT0/capacity)%  "
+            set -g status-left-length 70
+            set -g status-left "#[fg=${theme.base03}]█#[fg=${theme.base01}]#[bg=${theme.base09}] #(mpc current | sed 's/-/~/')#[fg=${theme.base09}]#[bg=${theme.base00}]  "
         '';
     };
 }
