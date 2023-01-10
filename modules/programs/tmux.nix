@@ -67,8 +67,8 @@
             set-option -g status-justify absolute-centre
             set-option -g status-position bottom
 
-            set -g window-status-format         "#[fg=cyan,bg=default]#[fg=black,bg=cyan]#I #[bg=brightblack,fg=white] #W#[fg=brightblack,bg=default]  "
-            set -g window-status-current-format "#[fg=blue,bg=default]#[fg=black,bg=blue]#I #[bg=brightblack,fg=white] #W#[fg=brightblack,bg=default]  "
+            set -g window-status-format         "#[fg=cyan,bg=default]#[fg=black,bg=cyan]#I #[bg=brightblack,fg=white] #W#[fg=brightblack,bg=default]"
+            set -g window-status-current-format "#[fg=blue,bg=default]#[fg=black,bg=blue]#I #[bg=brightblack,fg=white] #W#[fg=brightblack,bg=default]"
 
             set -g status-style "bg=${theme.base00}"
             set -ag status-style "fg=${theme.base01}"

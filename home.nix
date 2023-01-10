@@ -46,7 +46,6 @@
             libreoffice
             discord
             teams
-            zotero
             anki-bin
             spotify
             tdesktop
