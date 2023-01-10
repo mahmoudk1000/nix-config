@@ -32,7 +32,6 @@
             newsboat
             yt-dlp
 
-            st
             ranger
             arandr
             imagemagick
