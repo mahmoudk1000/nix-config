@@ -30,12 +30,10 @@
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             ublock-origin
             privacy-badger
-            https-everywhere
             bitwarden
             clearurls
             decentraleyes
             duckduckgo-privacy-essentials
-            floccus
             ghostery
             privacy-redirect
             privacy-badger
