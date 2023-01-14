@@ -3,7 +3,7 @@
 {
     xsession = {
         windowManager.herbstluftwm = {
-            tags = [ "1" "2" "3" "4" "5" "6" ];
+            tags = [ "2" "3" "4" "5" "6" ];
             settings = {
                 window_gap = 10;
                 window_border_width = 10;
@@ -22,7 +22,8 @@
                 mouse_recenter_gap = 0;
                 focus_follows_mouse = true;
                 tree_style = ''╾│ ├└╼─┐'';
-                default_frame_layout = "grid";
+                default_frame_layout = 3;
+                set_layout = "grid";
             };
             keybinds = {
                 Mod4-q = "close";
@@ -111,11 +112,6 @@
             ];
             extraConfig = ''
                 herbstclient rename default 1
-                herbstclient add 2
-                herbstclient add 3
-                herbstclient add 4
-                herbstclient add 5
-                herbstclient add 6
 
                 herbstclient keybind Mod4-1 use 1
                 herbstclient keybind Mod4-2 use 2
