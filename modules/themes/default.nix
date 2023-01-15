@@ -5,5 +5,6 @@ let
     iceberg = import ./iceberg.nix;
     mountain = import ./mountain.nix;
     tokyonight = import ./tokyonight.nix;
+    uwu = import ./uwu.nix;
 in
 blaulicht
