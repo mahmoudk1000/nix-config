@@ -6,6 +6,7 @@ let
     iceberg = import ./iceberg.nix;
     mountain = import ./mountain.nix;
     rnvy = import ./rnvy.nix;
+    seaul = import ./seaul.nix;
     tokyonight = import ./tokyonight.nix;
     uwu = import ./uwu.nix;
 in
