@@ -1,0 +1,60 @@
+diff --git a/config.h b/config.h
+index 0985d2e..b1c7a7b 100644
+--- a/config.h
++++ b/config.h
+@@ -40,7 +40,12 @@ static const uint8_t borders[] = {3,5,5,4};
+ #define LOOK_INTO "WM_NAME"
+ static const char *ignore_names[] = {"bar", "xclock"};
+ ///--Menus and Programs---///
+-static const char *menucmd[]   = { "", NULL };
++static const char *termcmd[] = { "urxvt", NULL };
++static const char *browser[] = { "firefox", NULL };
++static const char *files[] = { "thunar", NULL };
++static const char *obsidian[] = { "obsidian", NULL };
++static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
++static const char *locker[] =  { "betterlockscreen", "-l", NULL };
+ ///--Custom foo---///
+ static void halfandcentered(const Arg *arg)
+ {
+@@ -193,7 +198,12 @@ static key keys[] = {
+     {  MOD |SHIFT,        XK_Right,      cursor_move,       {.i=TWOBWM_CURSOR_RIGHT}},
+     {  MOD |SHIFT,        XK_Left,       cursor_move,       {.i=TWOBWM_CURSOR_LEFT}},
+     // Start programs
+-    {  MOD ,              XK_w,          start,             {.com = menucmd}},
++    {  MOD ,              XK_d,          start,             {.com = dmenucmd}},
++    {  MOD ,              XK_z,		 start,             {.com = locker}},
++    {  MOD ,              XK_Return,     start,             {.com = termcmd}},
++    {  MOD ,              XK_e,		 start,             {.com = files}},
++    {  MOD ,              XK_w,		 start,             {.com = browser}},
++    {  MOD ,              XK_o,		 start,             {.com = obsidian}},
+     // Exit or restart 2bwm
+     {  MOD |CONTROL,      XK_q,          twobwm_exit,       {.i=0}},
+     {  MOD |CONTROL,      XK_r,          twobwm_restart,    {.i=0}},
+@@ -206,16 +216,12 @@ static key keys[] = {
+        DESKTOPCHANGE(     XK_4,                             3)
+        DESKTOPCHANGE(     XK_5,                             4)
+        DESKTOPCHANGE(     XK_6,                             5)
+-       DESKTOPCHANGE(     XK_7,                             6)
+-       DESKTOPCHANGE(     XK_8,                             7)
+-       DESKTOPCHANGE(     XK_9,                             8)
+-       DESKTOPCHANGE(     XK_0,                             9)
+ };
+ // the last argument makes it a root window only event
+ static Button buttons[] = {
+     {  MOD        ,XCB_BUTTON_INDEX_1,     mousemotion,   {.i=TWOBWM_MOVE}, false},
+     {  MOD        ,XCB_BUTTON_INDEX_3,     mousemotion,   {.i=TWOBWM_RESIZE}, false},
+-    {  0          ,XCB_BUTTON_INDEX_3,     start,         {.com = menucmd}, true},
++    {  0          ,XCB_BUTTON_INDEX_3,     start,         {.com = dmenucmd}, true},
+     {  MOD|SHIFT,  XCB_BUTTON_INDEX_1,     changeworkspace, {.i=0}, false},
+     {  MOD|SHIFT,  XCB_BUTTON_INDEX_3,     changeworkspace, {.i=1}, false},
+     {  MOD|ALT,    XCB_BUTTON_INDEX_1,     changescreen,    {.i=1}, false},
+diff --git a/definitions.h b/definitions.h
+index a380a3a..8aa8a45 100644
+--- a/definitions.h
++++ b/definitions.h
+@@ -1,4 +1,4 @@
+-#define WORKSPACES      10
++#define WORKSPACES      6
+ #define BUTTONMASK      XCB_EVENT_MASK_BUTTON_PRESS|XCB_EVENT_MASK_BUTTON_RELEASE
+ #define NET_WM_FIXED    0xffffffff  // Value in WM hint which means this window is fixed on all workspaces.
+ #define TWOBWM_NOWS     0xfffffffe  // This means we didn't get any window hint at all.

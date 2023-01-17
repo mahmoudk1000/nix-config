@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./2bwm.nix
         ./alacritty.nix
         ./bspwm.nix
         ./firefox.nix

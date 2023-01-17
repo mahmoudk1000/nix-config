@@ -165,10 +165,15 @@
         wget
         git
         man-pages
+        _2bwm
     ];
 
-    # Enable nonFOSS.
+    # Settings
     nixpkgs.config = {
+        "2bwm".patches = [
+            ../../modules/patches/momo-patch.diff
+        ];
+
         allowUnfree = true;
         input-fonts.acceptLicense = true;
     };
