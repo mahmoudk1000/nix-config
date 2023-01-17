@@ -4,6 +4,7 @@ let
     bluewery = import ./bluewery.nix;
     coral = import ./coral.nix;
     iceberg = import ./iceberg.nix;
+    late = import ./late.nix;
     mountain = import ./mountain.nix;
     night = import ./night.nix;
     rnvy = import ./rnvy.nix;
