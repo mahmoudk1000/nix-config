@@ -66,7 +66,7 @@
             xorg.xmodmap
 
             python3Full
-        ];
+        ] ++ (import ./modules/scripts { inherit pkgs; });
     };
 
     xdg = {
