@@ -18,6 +18,7 @@
             python39Packages.yapf
             java-language-server
             rnix-lsp
+            clang
             gcc
         ];
         plugins = with pkgs.vimPlugins; [
