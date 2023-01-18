@@ -130,56 +130,33 @@
                         -moz-appearance: none !important;
                         background-image: none !important;
                         border: none !important;
-                        box-shadow: none !important;
-                    }
-                    ::selection {
-                        background-color: ${theme.base09};
-                         color: ${theme.base02};
                     }
                     .tab-background[selected="true"] {
                         background-color: ${theme.base00} !important;
                         -moz-appearance: none !important;
                         background-image: none !important;
+                        border: none !important;
                     }
                     .tab-background {
                         background-color: ${theme.base02} !important;
                         border-radius: 0px !important;
-                        border: none !important;
-                        margin: 0!important;
-                        margin-left: -1.6px!important;
-                        padding: 0!important;
+                        margin-block: 0px !important;
                     }
-                    .tabbrowser-tabs {
-                          border: none !important;
-                          opacity: 0 !important;
+                    .tabbrowser-tab:hover .tab-background {
+                        background-color: ${theme.base09} !important;
                     }
-                    .tabbrowser-tab {
-                        border-radius: 15px 15px 0px 0px / 15px 15px 0px 0px !important;
-                        height: 25px !important;
-                        z-index: 1000 !important;
-                        padding: none !important;
-                        padding-inline: 0px !important;
-                    }
-                    .tabbrowser-tab::before, .tabbrowser-tab::after{
-                          opacity: 0 !important;
-                          border-left: none !important;
-                    }
-                    .titlebar-placeholder {
-                          border: none !important;
-                    }
-                    .tab-line {
-                        display: none !important;
+                    .tabbrowser-tab[fadein] {
+                        max-width: 100vw !important;
                     }
                     #urlbar {
                         background-color: #11171D !important;
                         border-radius: 10px !important;
                     }
                     #nav-bar {
-                        background: ${theme.base02} !important;
+                        background-color: ${theme.base02} !important;
                         -moz-appearance: none !important;
                         background-image: none !important;
                         border: none !important;
-                        box-shadow: none !important;
                         transition: margin 0.5s !important;
                     }
                     #TabsToolbar {
@@ -191,6 +168,12 @@
                         border: 0 !important;
                         border-radius: 0px !important;
                         padding: 0px 0px 0px 0px  !important;
+                    }
+                    .tabbrowser-tab {
+                        height: 25px !important;
+                        z-index: 1000 !important;
+                        padding: none !important;
+                        padding-inline: 0px !important;
                     }
                     #navigator-toolbox:not(:focus-within):not(:hover) #nav-bar {
                         margin-top: -40px !important;
@@ -336,9 +319,12 @@
                 '';
                 userContent = ''
                     @namespace url("http://www.w3.org/1999/xhtml");
-                    :root { scrollbar-color: ${theme.base00} ${theme.base02}; }
-                    * { scrollbar-width: thin; }
-
+                    :root {
+                        scrollbar-color: ${theme.base00} ${theme.base02};
+                    }
+                    * {
+                        scrollbar-width: thin;
+                    }
                     @-moz-document url-prefix("about:") {
                         :root {
                             --in-content-page-background: ${theme.base00} !important;
@@ -346,7 +332,6 @@
                             --toolbarbutton-active-background: ${theme.base06} !important;
                         }
                     }
-
                     @-moz-document url("about:newtab"), url("about:home") {
                         * {
                             font-family: "Iosevka" !important;
