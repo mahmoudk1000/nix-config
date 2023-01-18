@@ -10,7 +10,7 @@
         ./mpd.nix
         ./nextcloud.nix
         ./picom.nix
-        ./polybar-main.nix
+        ./polybar-hoch.nix
         ./sxhkd.nix
         ./unclutter.nix
     ];

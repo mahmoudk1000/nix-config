@@ -2,7 +2,7 @@
 
 {
     services.polybar = {
-        enable = true;
+        enable = false;
         script = ''
             # WM does this job
         '';
