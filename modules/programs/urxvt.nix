@@ -20,16 +20,15 @@
             "M-v" = "eval:paste_clipboard";
         };
         extraConfig = {
-            "depth" = 32;
             "letterSpace" = 0;
             "lineSpace" = 0;
             "geometry" = "70x35";
             "internalBorder" = 25;
             "cursorBlink" = true;
             "cursorUnderline" = false;
-            "URxvt.thickness" = 5;
-            "URxvt.titleBar" = false;
-            "URxvt.intensityStyles" = false;
+            "thickness" = 5;
+            "titleBar" = false;
+            "intensityStyles" = false;
 
             "perl-ext-common" = "default,matcher,font-size,clipboard";
             "url-launcher" = "firefox";
