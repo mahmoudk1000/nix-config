@@ -6,8 +6,8 @@
         keybindings = {
             # "super + Return" = "urxvt";
             # "super + d" = "rofi -show drun";
-            "super + b" = "~/.bin/rofi-bluetooth";
-            "super + p" = "~/.bin/rofi-poww";
+            # "super + b" = "rofi-bluetooth";
+            # "super + p" = "rofi-power";
             # "super + l" = "betterlockscreen -l";
 
             "XF86MonBrightness{Up,Down}" = "light -{A,U} 10";

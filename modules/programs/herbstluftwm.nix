@@ -150,8 +150,6 @@
                 herbstclient detect_monitors
 
                 # Runs
-                conky -c $HOME/.config/conky/Moo.conf &> /dev/null &
-                xsetroot -cursor_name left_ptr
                 pkill polybar
                 sleep 1;
                 polybar main &

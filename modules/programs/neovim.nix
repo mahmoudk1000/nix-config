@@ -17,8 +17,8 @@
             python-language-server
             python39Packages.yapf
             java-language-server
+            tree-sitter
             rnix-lsp
-            clang
             gcc
         ];
         plugins = with pkgs.vimPlugins; [
