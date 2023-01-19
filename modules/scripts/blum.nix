@@ -1,7 +1,7 @@
 { pkgs, ...  }:
 
 let
-    name = "bluetooth-menu";
+    name = "blum";
 in
 pkgs.writeScriptBin name
     ''
