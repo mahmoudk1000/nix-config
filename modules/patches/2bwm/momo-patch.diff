@@ -1,36 +1,40 @@
 diff --git a/config.h b/config.h
-index 0985d2e..b1c7a7b 100644
+index 0985d2e..9b25b63 100644
 --- a/config.h
 +++ b/config.h
-@@ -40,7 +40,12 @@ static const uint8_t borders[] = {3,5,5,4};
+@@ -40,7 +40,14 @@ static const uint8_t borders[] = {3,5,5,4};
  #define LOOK_INTO "WM_NAME"
  static const char *ignore_names[] = {"bar", "xclock"};
  ///--Menus and Programs---///
 -static const char *menucmd[]   = { "", NULL };
-+static const char *termcmd[] = { "urxvt", NULL };
++static const char *termcmd[] = { "st", NULL };
 +static const char *browser[] = { "firefox", NULL };
 +static const char *files[] = { "thunar", NULL };
 +static const char *obsidian[] = { "obsidian", NULL };
 +static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
-+static const char *locker[] =  { "betterlockscreen", "-l", NULL };
++static const char *zzzz[] =  { "betterlockscreen", "-l", NULL };
++static const char *poww[] = { "poww", NULL };
++static const char *blum[] = { "blum", NULL };
  ///--Custom foo---///
  static void halfandcentered(const Arg *arg)
  {
-@@ -193,7 +198,12 @@ static key keys[] = {
+@@ -193,7 +200,14 @@ static key keys[] = {
      {  MOD |SHIFT,        XK_Right,      cursor_move,       {.i=TWOBWM_CURSOR_RIGHT}},
      {  MOD |SHIFT,        XK_Left,       cursor_move,       {.i=TWOBWM_CURSOR_LEFT}},
      // Start programs
 -    {  MOD ,              XK_w,          start,             {.com = menucmd}},
 +    {  MOD ,              XK_d,          start,             {.com = dmenucmd}},
-+    {  MOD ,              XK_z,		 start,             {.com = locker}},
++    {  MOD ,              XK_z,		 start,             {.com = zzzz}},
 +    {  MOD ,              XK_Return,     start,             {.com = termcmd}},
 +    {  MOD ,              XK_e,		 start,             {.com = files}},
 +    {  MOD ,              XK_w,		 start,             {.com = browser}},
 +    {  MOD ,              XK_o,		 start,             {.com = obsidian}},
++    {  ALT ,              XK_p,		 start,             {.com = poww}},
++    {  ALT ,              XK_b,		 start,             {.com = blum}},
      // Exit or restart 2bwm
      {  MOD |CONTROL,      XK_q,          twobwm_exit,       {.i=0}},
      {  MOD |CONTROL,      XK_r,          twobwm_restart,    {.i=0}},
-@@ -206,16 +216,12 @@ static key keys[] = {
+@@ -206,16 +220,12 @@ static key keys[] = {
         DESKTOPCHANGE(     XK_4,                             3)
         DESKTOPCHANGE(     XK_5,                             4)
         DESKTOPCHANGE(     XK_6,                             5)
