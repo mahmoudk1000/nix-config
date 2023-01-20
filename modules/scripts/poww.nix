@@ -1,7 +1,7 @@
 { pkgs, ...  }:
 
 let
-    name = "rofi-power";
+    name = "poww";
 in
 pkgs.writeScriptBin name
     ''

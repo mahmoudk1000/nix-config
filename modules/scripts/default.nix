@@ -1,11 +1,10 @@
 { pkgs, ... }:
 
 let
-    rofi-power = import ./rofi-power.nix pkgs;
-    
+    poww = import ./poww.nix pkgs;
     blum = import ./blum.nix pkgs;
 in
 [
     blum
-    rofi-power
+    poww
 ]
