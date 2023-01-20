@@ -31,6 +31,7 @@
             ventoy-bin
             newsboat
             yt-dlp
+            st
 
             ranger
             arandr
