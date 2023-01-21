@@ -6,7 +6,7 @@ let
     url = ''"api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${apiKey}&cnt=5&units=metric&lang=en"'';
 
     klima = pkgs.writeScriptBin "klima" ''
-        ${pkgs.curl} -s ${url} -o ~/.cache/weather.json
+        ${pkgs.curl}/bin/curl -s ${url} -o ~/.cache/weather.json
     '';
 
     description = pkgs.writeScriptBin "description" ''
@@ -47,9 +47,9 @@ let
         }
         conky.text = [[
         ''${execi 600 ${klima}/bin/klima}\
-        ''${offset 0}''${voffset 0}''${font Iosevka:style=Heavy Extended:size=35}''${color}''${time %H.%M} \
+        ''${offset -5}''${voffset 0}''${font Iosevka:style=Heavy Extended:size=35}''${color}''${time %H.%M} \
         ''${offset -18}''${voffset -20}''${color}''${font Iosevka:style=Heavy Extended:size=11}''${execi 1 ${pkgs.mpc-cli}/bin/mpc current | ${pkgs.gnused}/bin/sed -r 's/ - /\n/g' | ${pkgs.coreutils}/bin/head -1}
-        ''${offset 150}''${voffset -3}''${color}''${font Iosevka:style=Heavy Extended:size=13}''${execi 1 ${pkgs.mpc-cli}/bin/mpc current | ${pkgs.gnused}/bin/sed -r 's/ - /\n/g' | ${pkgs.coreutils}/bin/tail -1}
+        ''${offset 145}''${voffset -3}''${color}''${font Iosevka:style=Heavy Extended:size=13}''${execi 1 ${pkgs.mpc-cli}/bin/mpc current | ${pkgs.gnused}/bin/sed -r 's/ - /\n/g' | ${pkgs.coreutils}/bin/tail -1}
         ''${offset 0}''${voffset 5}''${font Iosevka:style=Heavy Extended:size=13}''${color1}''${execi 600 ${pkgs.coreutils}/bin/cat ~/.cache/weather.json | ${pkgs.jq}/bin/jq '.main.temp'}°C\
         ''${offset 10}''${voffset 0}''${font Iosevka:style=Heavy Extended:size=13}''${color}''${execi 600 ${description}/bin/description}
         ]]
