@@ -1,5 +1,14 @@
 { config, pkgs, theme, ... }:
 
+let
+    blum-stat = pkgs.writeScriptBin "blum-stat" ''   
+        if ${pkgs.bluez}/bin/bluetoothctl show | ${pkgs.gnugrep}/bin/grep -q "Powered: yes"; then
+            ${pkgs.coreutils}/bin/echo "On"
+        else
+            ${pkgs.coreutils}/bin/echo "Off"
+        fi
+    '';
+in
 {
     services.polybar = {
         enable = true;
@@ -68,11 +77,11 @@
                 battery = "BAT0";
                 adapter = "ADP0";
                 poll-interval = 5;
-                format-charging = "<label-charging>%";
+                format-charging = "<label-charging>";
                 format-charging-foreground = theme.base04;
-                format-discharging = "<label-discharging>%";
+                format-discharging = "<label-discharging>";
                 format-discharging-foreground = theme.base06;
-                format-full = "<label-full>%";
+                format-full = "<label-full>";
                 format-full-foreground = theme.base07;
             };
             "module/backlight" = {
@@ -102,7 +111,7 @@
             "module/bluetooth" = {
                 type = "custom/script";
                 tail = true;
-                exec = "/nix/store/*-blum/bin/blum --status";
+                exec = "${blum-stat}/bin/blum-stat";
                 format = "<label>";
                 format-foreground = theme.base08;
             };
