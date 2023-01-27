@@ -3,7 +3,7 @@
 let
     apiKey = "a89384ad87d37345cca9848d9e0b477f";
     cityId = "361058";
-    url = ''"api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${apiKey}&cnt=5&units=metric&lang=en"'';
+    url = ''"https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${apiKey}&cnt=5&units=metric&lang=en"'';
 
     klima = pkgs.writeScriptBin "klima" ''
         ${pkgs.curl}/bin/curl -s ${url} -o ~/.cache/weather.json
