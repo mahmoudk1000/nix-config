@@ -16,7 +16,14 @@
         };
     };
 
-    outputs = { self, nixpkgs, home-manager, nur, neovim-nightly, ... } @ inputs: {
+    outputs = { self, nixpkgs, home-manager, nur, neovim-nightly, ... } @ inputs:
+        let
+            overlays = [
+                inputs.nur.overlay
+                # inputs.neovim-nightly.overlay
+            ];
+        in
+        {
         nixosConfigurations = {
             labbi = nixpkgs.lib.nixosSystem {
                 modules = [
@@ -33,10 +40,7 @@
                             _module.args.nur = { inherit nur; };
                             _module.args.theme = import ./modules/themes;
                         };
-                        nixpkgs.overlays = [
-                            nur.overlay
-                            neovim-nightly.overlay
-                        ];
+                        nixpkgs.overlays = overlays;
                     }
                 ];
             };

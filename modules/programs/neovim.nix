@@ -3,7 +3,7 @@
 {
     programs.neovim = {
         enable = true;
-        package = pkgs.neovim-nightly;
+        # package = pkgs.neovim-nightly;
         vimAlias = true;
         withPython3 = true;
         withNodeJs = true;
@@ -17,6 +17,7 @@
             python-language-server
             python39Packages.yapf
             java-language-server
+            nixpkgs-fmt
             tree-sitter
             rnix-lsp
             gcc
