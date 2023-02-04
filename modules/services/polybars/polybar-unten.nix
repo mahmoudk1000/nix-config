@@ -13,8 +13,8 @@ in
     services.polybar = {
         enable = true;
         script = ''
-            polybar hoch &
-            polybar hocher &
+            polybar left &
+            polybar right &
         '';
         package = pkgs.polybar.override {
             alsaSupport = true;
@@ -22,42 +22,35 @@ in
             iwSupport = true;
         };
         config =  {
-            "bar/hoch" = {
+            "section/base" = {
                 monitor = "eDP-1";
                 bottom = true;
-                height = 35;
+                height = 40;
                 offset-y = "3%";
                 module-margin = 1;
-                fixed-center = true;
+                fixed-center = false;
                 wm-restack = "generic";
                 border-size = 2;
                 border-color = theme.base02;
-                font-0 = "Iosevka:style=Semibold:size=8;3";
+                font-0 = "Iosevka Term:style=Semibold:size=8;3";
                 background = theme.base00;
                 foreground = theme.base01;
+            };
+            "bar/right" = {
+                "inherit" = "section/base";
                 width = "15%";
                 offset-x = "82.5%";
                 modules-center = "pulseaudio  sep backlight sep bluetooth sep battery";
             };
-            "bar/hocher" = {
-                monitor = "eDP-1";
-                bottom = true;
-                height = 35;
-                offset-y = "3%";
-                module-margin = 1;
-                fixed-center = true;
-                wm-restack = "generic";
-                border-size = 2;
-                border-color = theme.base02;
-                font-0 = "Iosevka:style=Semibold:size=8;3";
-                background = theme.base00;
-                foreground = theme.base01;
+            "bar/left" = {
+                "inherit" = "section/base";
                 width = "15%";
                 offset-x = "2.5%";
                 modules-center = "time sep ewmh";
             };
             "module/ewmh" = {
                 type = "internal/xworkspaces";
+                enable-scroll = false;
                 label-active = "⭕";
                 label-active-padding = 1;
                 label-active-foreground = theme.base07;
@@ -77,23 +70,23 @@ in
                 battery = "BAT0";
                 adapter = "ADP0";
                 poll-interval = 5;
-                format-charging = "<label-charging>";
+                format-charging = "ﮣ <label-charging>";
                 format-charging-foreground = theme.base04;
-                format-discharging = "<label-discharging>";
+                format-discharging = " <label-discharging>";
                 format-discharging-foreground = theme.base06;
-                format-full = "<label-full>";
-                format-full-foreground = theme.base07;
+                format-full = "♥ <label-full>";
+                format-full-foreground = theme.base03;
             };
             "module/backlight" = {
                 type = "custom/script";
                 exec = ''${pkgs.light}/bin/light | ${pkgs.coreutils}/bin/cut -d. -f1'';
-                format = "<label>%";
+                format = " <label>%";
                 format-forground = theme.base03;
                 tail = true;
             };
             "module/pulseaudio" = {
                 type = "internal/pulseaudio";
-                format-volume = "<label-volume>%";
+                format-volume = "♪ <label-volume>%";
                 format-volume-foreground = theme.base05;
                 label-volume =  "%percentage%";
                 label-muted = "Muted";
@@ -112,7 +105,7 @@ in
                 type = "custom/script";
                 tail = true;
                 exec = "${blum-stat}/bin/blum-stat";
-                format = "<label>";
+                format = " <label>";
                 format-foreground = theme.base08;
             };
             "module/sep" = {
