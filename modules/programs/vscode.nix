@@ -162,7 +162,7 @@
         userSettings =  {
             # Editor
             "editor.fontSize" = 12;
-            "editor.fontFamily" = "'Iosevka', 'Iosevka Term'";
+            "editor.fontFamily" = "'Iosevka', 'IosevkaTerm Nerd Font'";
             "editor.fontLigatures" = true;
             "editor.acceptSuggestionOnEnter" = "off";
             "editor.autoClosingBrackets" = "always";
@@ -193,7 +193,7 @@
             "workbench.editor.showTabs" = true;
 
             # Terminal
-            "terminal.integrated.fontFamily" = "Iosevka Term";
+            "terminal.integrated.fontFamily" = "IosevkaTerm Nerd Font";
             "terminal.integrated.fontSize" = 12;
             "terminal.integrated.allowChords" = false;
             "terminal.integrated.gpuAcceleration" = "on";

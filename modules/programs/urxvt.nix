@@ -5,7 +5,7 @@
         enable = true;
         package = pkgs.rxvt-unicode;
         iso14755 = true;
-        fonts = [ "xft:Iosevka Term:pixelsize=12:antialias=true:autohint=true" ];
+        fonts = [ "xft:IosevkaTerm Nerd Font:pixelsize=12:antialias=true:autohint=true" ];
         keybindings = {
             "Shift-Up" = ''command:\033]720;1\007'';
             "Shift-Down" = ''command:\033]721;1\007'';
@@ -20,6 +20,7 @@
             "M-v" = "eval:paste_clipboard";
         };
         extraConfig = {
+            "background" = "[100]${theme.base00}";
             "letterSpace" = 0;
             "lineSpace" = 0;
             "geometry" = "70x35";

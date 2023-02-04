@@ -20,19 +20,19 @@
             font = {
                 size = 9;
                 normal = {
-                    family = "Iosevka Term";
+                    family = "IosevkaTerm Nerd Font";
                     style = "Regular";
                 };
                 bold = {
-                    family = "Iosevka Term";
+                    family = "IosevkaTerm Nerd Font";
                     style = "Bold";
                 };
                 italic = {
-                    family = "Iosevka Term";
+                    family = "IosevkaTerm Nerd Font";
                     style = "Italic";
                 };
                 bold_italic = {
-                    family = "Iosevka Term";
+                    family = "IosevkaTerm Nerd Font";
                     style = "Bold Italic";
                 };
                 offset = {

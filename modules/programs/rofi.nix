@@ -7,10 +7,10 @@ in
     programs.rofi = {
         enable = true;
         font = "Iosevka 9";
-        terminal = "urxvt";
+        terminal = "st";
         extraConfig = {
             "modi" = "drun";
-            "display-drun" = "";
+            "display-drun" = "";
             "drun-display-format" = "{icon} {name}";
             "show-icons" = true;
             "icon-theme" = "MoDelta";
@@ -36,7 +36,7 @@ in
                 padding = mkLiteral "5px 5px 5px 5px";
             };
             prompt = {
-                font = mkLiteral ''"feather 12"'';
+                font = mkLiteral ''"IosevkaTerm Nerd Font 12"'';
                 background-color = mkLiteral "@al";
                 vertical-align = mkLiteral "0.5";
                 padding = mkLiteral "0.6em 0.75em";

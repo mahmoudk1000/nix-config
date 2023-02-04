@@ -32,7 +32,7 @@ in
                 wm-restack = "generic";
                 border-size = 2;
                 border-color = theme.base02;
-                font-0 = "Iosevka Term:style=Semibold:size=8;3";
+                font-0 = "IosevkaTerm Nerd Font:style=Semibold:size=8;3";
                 background = theme.base00;
                 foreground = theme.base01;
             };
@@ -51,16 +51,16 @@ in
             "module/ewmh" = {
                 type = "internal/xworkspaces";
                 enable-scroll = false;
-                label-active = "⭕";
+                label-active = "⭘";
                 label-active-padding = 1;
                 label-active-foreground = theme.base07;
-                label-occupied = "⭕";
+                label-occupied = "⭘";
                 label-occupied-padding = 1;
                 label-occupied-foreground = theme.base09;
-                label-urgent = "⭕";
+                label-urgent = "⭘";
                 label-urgent-padding = 1;
                 label-urgent-foreground = theme.base03;
-                label-empty = "⬤";
+                label-empty = "󰝥";
                 label-empty-padding = 1;
                 label-empty-foreground = theme.base09;
             };
