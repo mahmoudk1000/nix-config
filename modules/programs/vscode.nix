@@ -37,6 +37,8 @@
             shardulm94.trailing-spaces
             streetsidesoftware.code-spell-checker
             ms-ceintl.vscode-language-pack-de
+            jnoortheen.nix-ide
+            bbenoist.nix
         ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {
                 name = "fluent-icons";
@@ -232,8 +234,11 @@
             ## Nix
             "nix.enableLanguageServer" = true;
             "nixEnvSelector.nixFile" = "\${workspaceRoot}/shell.nix";
+            "nix.serverPath" = "${pkgs.rnix-lsp}/bin/rnix-lsp";
             "[nix]" = {
                 "editor.tabSize" = 4;
+                "formatterPath" = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+                "editor.defaultFormatter" = "jnoortheen.nix-ide";
             };
             ## java
             "[java]" = {
