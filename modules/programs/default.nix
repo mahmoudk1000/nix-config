@@ -3,13 +3,13 @@
 {
     imports = [
         ./ncmpcpp
+        ./neovim/neovim.nix
         ./2bwm.nix
         ./alacritty.nix
         ./bspwm.nix
         ./firefox.nix
         ./git.nix
         ./herbstluftwm.nix
-        ./neovim.nix
         ./rofi.nix
         ./starship.nix
         ./thunar.nix

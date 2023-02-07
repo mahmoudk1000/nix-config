@@ -3,6 +3,7 @@
 {
     programs.neovim = {
         enable = true;
+        extraConfig = builtins.readFile ./init.lua;
         # package = pkgs.neovim-nightly;
         vimAlias = true;
         withPython3 = true;
@@ -17,6 +18,7 @@
             python-language-server
             python39Packages.yapf
             java-language-server
+            quick-lint-js
             nixpkgs-fmt
             tree-sitter
             rnix-lsp
