@@ -96,6 +96,7 @@
                     # Tab
                     "browser.urlbar.suggest.quickactions" = false;
                     "browser.urlbar.suggest.topsites" = false;
+                    "browser.tabs.tabmanager.enabled" = false;
                 };
                 extraConfig = ''
                     user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
