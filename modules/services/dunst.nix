@@ -19,8 +19,8 @@
                 padding = 20;
                 horizontal_padding = 20;
 
-                frame_width = 10;
-                separator_height = 5;
+                frame_width = 6;
+                separator_height = 3;
                 frame_color = theme.base09;
                 separator_color = theme.base09;
 
