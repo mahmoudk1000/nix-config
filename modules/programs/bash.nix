@@ -53,7 +53,7 @@
                 gaa = "git add --all";
                 gcp = "git cherry-pick";
                 gcm = "git commit --verbose -m ";
-                gam = "git commit --amend";
+                gca = "git commit --amend";
                 gpl = "git pull";
                 gp = "git push";
                 gff = "git diff --minimal";
