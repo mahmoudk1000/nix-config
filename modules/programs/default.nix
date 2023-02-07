@@ -10,6 +10,7 @@
         ./firefox.nix
         ./git.nix
         ./herbstluftwm.nix
+        ./newsboat.nix
         ./rofi.nix
         ./starship.nix
         ./thunar.nix
