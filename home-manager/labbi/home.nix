@@ -2,9 +2,9 @@
 
 {
     imports = [
-        ./modules/programs
-        ./modules/services
-        ./modules/x
+        ../../modules/programs
+        ../../modules/services
+        ../../modules/x
     ];
 
     home = {
@@ -16,7 +16,6 @@
             unzip
             curl
             wget
-            tmux
             jq
             playerctl
             pamixer
@@ -29,7 +28,6 @@
             pfetch
             spotdl
             ventoy-bin
-            newsboat
             yt-dlp
             st
 
@@ -61,13 +59,11 @@
             krita
             bitwarden
             popcorntime
-            nextcloud-client
 
             libsForQt5.breeze-icons
             xorg.xmodmap
-
-            python3Full
-        ] ++ (import ./modules/scripts { inherit pkgs; });
+            hsetroot
+        ] ++ (import ../../modules/scripts { inherit pkgs; });
     };
 
     xdg = {

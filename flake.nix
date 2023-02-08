@@ -36,7 +36,7 @@
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
                         home-manager.users.mahmoud = {
-                            imports = [ ./home.nix ];
+                            imports = [ ./home-manager/labbi/home.nix ];
                             _module.args.nur = { inherit nur; };
                             _module.args.theme = import ./modules/themes;
                         };
