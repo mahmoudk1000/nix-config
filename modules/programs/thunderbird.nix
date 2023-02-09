@@ -17,6 +17,7 @@
             "browser.visited_color" = theme.base06;
 
             # General
+            "general.useragent.override" = "";
             "general.warnOnAboutConfig" = false;
             "gfx.downloadable_fonts.disable_cache" = true;
             "privacy.donottrackheader.enabled" = true;
