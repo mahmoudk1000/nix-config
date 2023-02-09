@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, theme, ... }:
 
 {
     home.file.".xinitrc".text = ''
@@ -14,7 +14,7 @@
         xsetroot -cursor_name left_ptr
         xrdb -load $HOME/.Xresources
         xset r rate 150 50
-        $HOME/.fehbg
+        ${pkgs.hsetroot}/bin/hsetroot -solid "${theme.base06}"
 
         # Session
         exec $HOME/.xsession

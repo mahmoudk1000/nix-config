@@ -19,7 +19,7 @@ let
             alignment = 'top_left',
             gap_x = 48,
             gap_y = 35,
-            maximum_width = 400,
+            maximum_width = 500,
             minimum_height = 70,
             minimum_width = 420,
         -- Text settings --
@@ -27,7 +27,7 @@ let
             font = 'Iosevkat:size=9',
         -- Color Settings --
             default_color = '${theme.base09}',
-            color1 = '${theme.base06}',
+            color1 = '${theme.base01}',
         -- Window Settings --
             background = false,
             border_width = 0,
