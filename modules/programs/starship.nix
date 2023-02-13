@@ -29,8 +29,8 @@
                 repo_root_style = "bold fg:${theme.base06} bg:${theme.base00}";
             };
             hostname = {
-                ssh_only = false;
-                format = "[mö](\$style) in ";
+                ssh_only = true;
+                format = "[🌐$hostname](\$style) in ";
                 trim_at = "-";
                 style = "bold dimmed purple";
                 disabled = false;
@@ -71,22 +71,23 @@
             };
             git_status = {
                 style = "fg:${theme.base05} bg:${theme.base09}";
-                stashed = " ⊎ \${count} ";
+                stashed = " ⨀ \${count} ";
                 ahead = " ⇈ \${count} ";
                 behind = " ⇊ \${count} ";
                 diverged = "  \${ahead_count} \${behind_count} ";
                 conflicted = " ✘ \${count} ";
-                deleted = " ␡ \${count} ";
+                deleted = "  \${count} ";
                 renamed = "  \${count} ";
-                modified = "  \${count} ";
+                modified = "   \${count} ";
                 staged = " ✔ \${count} ";
                 untracked = "  \${count} ";
                 format = "([[ ](fg:${theme.base09} bg:${theme.base00})$stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[ ](fg:${theme.base09} bg:${theme.base00})]($style))";
             };
             nix_shell = {
-                symbol = "";
-                style = "bold blue";
-                format = "[ $symbol  $name ]($style)";
+                disabled = false;
+                impure_msg = "[impure shell](bold red)";
+                pure_msg = "[pure shell](bold green)";
+                format = "via [  $state( \($name\))](bold blue) ";
             };
         };
     };
