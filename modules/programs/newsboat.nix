@@ -50,6 +50,8 @@
             { url = "https://blog.unhappyfolk.org/index.xml"; }
             { url = "https://moftasa.net/feeds/rss.xml"; }
             { url = "http://feeds.feedburner.com/thingfromuntil/iUjL"; }
+            { url = "https://blog.sekun.dev/posts/index.xml"; }
+            { url = "https://www.kuketz-blog.de/feed/"; }
         ];
         extraConfig = ''
             # unbind defaults
