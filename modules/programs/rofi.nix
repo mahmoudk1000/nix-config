@@ -6,12 +6,16 @@ in
 {
     programs.rofi = {
         enable = true;
-        font = "Iosevka 9";
+        font = "IosevkaTerm Nerd Font 9";
         terminal = "st";
         extraConfig = {
-            "modi" = "drun";
+            "modi" = "drun,run,filebrowser,window";
             "display-drun" = "";
+            "display-run" = "";
+            "display-filebrowser" = "";
+            "display-window" = "";
             "drun-display-format" = "{icon} {name}";
+            "window-format" = " {w} · {c} · {t}";
             "show-icons" = true;
             "icon-theme" = "MoDelta";
         };
@@ -20,6 +24,7 @@ in
                 bg = mkLiteral theme.base00;
                 fg = mkLiteral theme.base01;
                 al = mkLiteral theme.base02;
+                ac = mkLiteral theme.base06;
                 background-color = mkLiteral "@bg";
                 text-color = mkLiteral "@fg";
             };
@@ -31,12 +36,11 @@ in
                 width = mkLiteral "33%";
             };
             mainbox = {
-                children = map mkLiteral [ "inputbar"  "listview" ];
+                children = map mkLiteral [ "inputbar" "mode-switcher" "listview" ];
                 spacing = mkLiteral "5px";
                 padding = mkLiteral "5px 5px 5px 5px";
             };
             prompt = {
-                font = mkLiteral ''"IosevkaTerm Nerd Font 10"'';
                 background-color = mkLiteral "@al";
                 vertical-align = mkLiteral "0.5";
                 padding = mkLiteral "0.6em 1.1em 0.6em 0.75em";
@@ -70,6 +74,55 @@ in
             };
             element-icon = {
                 size = mkLiteral "15px";
+            };
+            mode-switcher = {
+                enabled = mkLiteral "true";
+                expand = mkLiteral "false";
+                spacing = mkLiteral "10px";
+                margin = mkLiteral "0px";
+                padding = mkLiteral "0px";
+                border = mkLiteral "0px solid";
+                border-radius = mkLiteral "0px";
+                border-color = mkLiteral "@fg";
+                background-color = mkLiteral "transparent";
+                text-color = mkLiteral "@fg";
+            };
+            button = {
+                padding = mkLiteral "12px";
+                border = mkLiteral "0px solid";
+                border-radius = mkLiteral "8px";
+                border-color = mkLiteral "@al";
+                background-color = mkLiteral "@bg";
+                text-color = mkLiteral "inherit";
+                cursor = mkLiteral "pointer";
+            };
+            "button selected" = {
+                background-color = mkLiteral "@ac";
+                text-color = mkLiteral "@bg";
+            };
+            num-filtered-rows = {
+                enabled = mkLiteral "true";
+                expand = mkLiteral "false";
+                background-color = mkLiteral "inherit";
+                text-color = mkLiteral "inherit";
+            };
+            textbox-num-sep = {
+                enabled = mkLiteral "true";
+                expand = mkLiteral "false";
+                str = mkLiteral ''"/"'';
+                background-color = mkLiteral "inherit";
+                text-color = mkLiteral "inherit";
+            };
+            num-rows = {
+                enabled = mkLiteral "true";
+                expand = mkLiteral "false";
+                background-color = mkLiteral "inherit";
+                text-color = mkLiteral "inherit";
+            };
+            case-indicator = {
+                enabled = mkLiteral "true";
+                background-color = mkLiteral "inherit";
+                text-color = mkLiteral "inherit";
             };
         };
     };
