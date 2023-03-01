@@ -7,7 +7,7 @@
         settings = {
             add_newline = true;
             scan_timeout = 30;
-            command_timeout = 500;
+            command_timeout = 1000;
             line_break = {
                 disabled = false;
             };
