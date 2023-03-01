@@ -64,8 +64,6 @@
             sessionVariables = {
                 "EDITOR" = "nvim";
                 "BROWSER" = "firefox";
-                "HISTFILE" = "$HOME/.zsh_history";
-                "MAKEFLAGS" = " -j 8";
             };
             initExtra = ''
                 eval "$(starship init bash)"
