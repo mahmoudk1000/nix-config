@@ -2,7 +2,8 @@
 
 {
     services.nextcloud-client = {
-        enable = true;
+        enable = false;
+        package = pkgs.nextcloud-client;
         startInBackground = true;
     };
 }
