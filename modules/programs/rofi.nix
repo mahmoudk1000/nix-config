@@ -90,7 +90,7 @@ in
             button = {
                 padding = mkLiteral "12px";
                 border = mkLiteral "0px solid";
-                border-radius = mkLiteral "8px";
+                border-radius = mkLiteral "4px";
                 border-color = mkLiteral "@al";
                 background-color = mkLiteral "@bg";
                 text-color = mkLiteral "inherit";
