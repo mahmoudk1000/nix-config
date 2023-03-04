@@ -1,6 +1,7 @@
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
+local keymap = vim.keymap.set
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
@@ -95,25 +96,69 @@ vim.wo.signcolumn = 'yes'
 vim.o.autoindent = true
 vim.o.clipboard = "unnamedplus"              -- use system clipboard by default
 vim.o.completeopt = 'menuone,noselect'       -- Set completeopt to have a better completion experience
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.opt.list = true
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("eol:↴")
 
 vim.o.termguicolors = true                   -- Set colorscheme
 vim.cmd [[colorscheme dunkelsee]]
 
 -- Keymaps
-require('keymaps')
+-- Set <space> as the leader key
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
--- Configs Calling configs
-require('configs.alpha')
-require('configs.bufferline')
-require('configs.cmp-conf')
-require('configs.cmp')
-require('configs.indent')
-require('configs.lsp')
-require('configs.lspconfig')
-require('configs.lualine')
-require('configs.nvimtree')
-require('configs.toggleterm')
-require('configs.treesitter')
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+keymap({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Move text up and down (visual mode)
+keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+-- Move text up and down (insert mode)
+keymap("i", "<A-Up>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
+keymap("i", "<A-Down>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
+keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
+keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
+
+-- Default Text Editors Keymaps
+keymap('n', '<c-s>', ':w<CR>', {})
+keymap('n', 'Q', '<c-v>', {})
+keymap('n', 'fq', ':q!<CR>', {})
+keymap('n', 'qq', ':q<CR>', {})
+
+-- UI
+keymap('n', '<leader>v', ':vsplit<CR>', {})
+keymap('n', '<leader>s', ':split<CR>', {})
+keymap('n', '<leader>t', ':vsplit<CR>:terminal<CR>', {})
+keymap('n', '<leader>w', ':set wrap<CR>', {})
+
+-- Indent
+keymap("v", "<", "<gv", { noremap = true, silent = true })
+keymap("v", ">", ">gv", { noremap = true, silent = true })
+
+-- Plugins
+keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+keymap('n', '<C-f>', ':lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
+
+-- Telescope
+keymap('n', '<leader>/', function()
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = '[/] Fuzzily search in current buffer]' })
+keymap('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+keymap('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+keymap('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+keymap('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+keymap('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- Once the plugins have been loaded, Lua-based plugins need to be required and started up
 -- For plugins with their own configuration file, that file is loaded and is responsible for

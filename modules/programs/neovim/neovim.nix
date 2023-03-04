@@ -3,8 +3,8 @@
 {
     programs.neovim = {
         enable = true;
-        extraConfig = builtins.readFile ./init.lua;
-        # package = pkgs.neovim-nightly;
+        extraLuaConfig = builtins.readFile ./init.lua;
+        package = pkgs.neovim-nightly;
         vimAlias = true;
         withPython3 = true;
         withNodeJs = true;
@@ -15,23 +15,64 @@
             nodePackages_latest.bash-language-server
             nodePackages_latest.yaml-language-server
             sumneko-lua-language-server
-            python-language-server
+            python310Packages.python-lsp-server
             python39Packages.yapf
             java-language-server
             quick-lint-js
             nixpkgs-fmt
             tree-sitter
             rnix-lsp
+            shfmt
             gcc
         ];
         plugins = with pkgs.vimPlugins; [
 
-            (nvim-treesitter.withPlugins (
-                _: pkgs.tree-sitter.allGrammars
-            ))
-            alpha-nvim
+            {
+                plugin = nvim-treesitter.withAllGrammars;
+                type = "lua";
+                config = builtins.readFile ./config/treesitter.lua;
+            }
+            {
+                plugin = alpha-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/alpha.lua;
+            }
+            {
+                plugin = bufferline-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/bufferline.lua;
+            }
+            {
+                plugin = indent-blankline-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/indent.lua;
+            }
+            {
+                plugin = nvim-lspconfig;
+                type = "lua";
+                config = builtins.readFile ./config/lspconfig.lua;
+            }
+            {
+                plugin = lualine-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/lualine.lua;
+            }
+            {
+                plugin = nvim-tree-lua;
+                type = "lua";
+                config = builtins.readFile ./config/nvimtree.lua;
+            }
+            {
+                plugin = toggleterm-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/toggleterm.lua;
+            }
+            {
+                plugin = nvim-cmp;
+                type = "lua";
+                config = builtins.readFile ./config/cmp.lua;
+            }
             auto-pairs
-            bufferline-nvim
             cmp-buffer
             cmp-cmdline
             cmp-nvim-lsp
@@ -41,17 +82,11 @@
             fzf-vim
             gitsigns-nvim
             impatient-nvim
-            indent-blankline-nvim
-            lualine-nvim
             luasnip
             neoscroll-nvim
-            nvim-cmp
-            nvim-lspconfig
-            nvim-tree-lua
             popup-nvim
             telescope-fzf-native-nvim
             telescope-nvim
-            toggleterm-nvim
             vim-fugitive
             vim-gitgutter
             vim-nix
