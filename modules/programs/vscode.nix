@@ -212,6 +212,9 @@
             };
 
             # Telemetry
+            "telemetry.enableCrashReporter" = false;
+            "telemetry.enableTelemetry" = false;
+            "redhat.telemetry.enabled" = false;
             "githubPullRequests.telemetry.enabled" = false;
             "telemetry.telemetryLevel" = "off";
 
@@ -257,6 +260,7 @@
             "[shellscript]" = {
                 "editor.tabSize" = 2;
                 "editor.insertSpaces" = false;
+                "shellformat.path" = "${pkgs.shfmt}/bin/shfmt";
             };
             ## C, CPP
             "[cpp][c]" = {
