@@ -27,18 +27,6 @@
                 };
             };
         };
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-            ublock-origin
-            privacy-badger
-            bitwarden
-            clearurls
-            decentraleyes
-            duckduckgo-privacy-essentials
-            ghostery
-            privacy-redirect
-            privacy-badger
-            languagetool
-        ];
         profiles = {
             mahmoud = {
                 id = 0;
@@ -71,6 +59,18 @@
                         "eBay".metaData.hidden = true;
                     };
                 };
+                extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+                    ublock-origin
+                    privacy-badger
+                    bitwarden
+                    clearurls
+                    decentraleyes
+                    duckduckgo-privacy-essentials
+                    libredirect
+                    ghostery
+                    privacy-badger
+                    languagetool
+                ];
                 settings = {
                     # Smooth scroll
                     "general.smoothScroll" = true;
