@@ -44,7 +44,6 @@
             freetube
             libreoffice
             discord
-            teams
             anki-bin
             spotify
             tdesktop
