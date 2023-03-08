@@ -35,7 +35,7 @@
             arandr
             imagemagick
             rtorrent
-            feh
+            nsxiv
             conky
 
             zoom-us
