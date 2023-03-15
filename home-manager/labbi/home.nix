@@ -39,7 +39,6 @@
             conky
 
             zoom-us
-            lite-xl
             inkscape
             freetube
             libreoffice
