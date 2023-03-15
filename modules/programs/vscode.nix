@@ -39,6 +39,7 @@
             ms-ceintl.vscode-language-pack-de
             jnoortheen.nix-ide
             bbenoist.nix
+            ms-python.vscode-pylance
         ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {
                 name = "fluent-icons";
@@ -227,6 +228,8 @@
             "gitlens.currentLine.enabled" = false;
 
             # Python
+            "python.languageServer" = "Pylance";
+            "python.analysis.autoImportCompletions" = true;
             "python.analysis.typeCheckingMode" = "basic";
             "python.linting.enabled" = true;
             "python.linting.pylintEnabled" = true;
