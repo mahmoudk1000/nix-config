@@ -19,7 +19,7 @@ require"toggleterm".setup {
       guibg  = "#11171D"
     },
     NormalFloat = {
-      guibg = "#1A242D"
+      guibg = "#11171D"
     },
     FloatBorder = {
       guifg = "#24313D",

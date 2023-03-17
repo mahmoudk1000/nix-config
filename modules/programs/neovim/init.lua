@@ -141,11 +141,12 @@ vim.keymap.set('n', '<c-s>', ':w<CR>', {})
 vim.keymap.set('n', 'Q', '<c-v>', {})
 vim.keymap.set('n', 'fq', ':q!<CR>', {})
 vim.keymap.set('n', 'qq', ':q<CR>', {})
+vim.keymap.set('i', '<C-b>', '<ESC>^i', {})
+vim.keymap.set('i', '<C-e>', '<End>', {})
 
 -- UI
 vim.keymap.set('n', '<leader>v', ':vsplit<CR>', {})
-vim.keymap.set('n', '<leader>s', ':split<CR>', {})
-vim.keymap.set('n', '<leader>t', ':vsplit<CR>:terminal<CR>', {})
+vim.keymap.set('n', '<leader>h', ':split<CR>', {})
 vim.keymap.set('n', '<leader>w', ':set wrap<CR>', {})
 
 -- Indent
@@ -154,7 +155,10 @@ vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 
 -- Plugins
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-o>', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-f>', ':lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-t>', ':ToggleTerm<CR>', {})
+vim.keymap.set('n', '<A-i>', ':ToggleTerm direction=float<CR>', {})
 
 -- Telescope
 vim.keymap.set('n', '<leader>/', function()
@@ -167,7 +171,8 @@ vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { des
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = 'Search by [G]it [C]omment' })
+vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = 'Search by [G]it [S]tatus' })
 
 -- Once the plugins have been loaded, Lua-based plugins need to be required and started up
 -- For plugins with their own configuration file, that file is loaded and is responsible for
