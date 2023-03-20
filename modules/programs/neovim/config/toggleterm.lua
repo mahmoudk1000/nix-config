@@ -4,13 +4,23 @@ if not status_ok then
 end
 
 require"toggleterm".setup {
-  size = 12,
-  open_mapping = [[<c-\>]],
+  size = function(term)
+  if term.direction == "horizontal" then
+      return 15
+    elseif term.direction == "vertical" then
+      return vim.o.columns * 0.4
+    end
+  end,
+  hide_numbers = true,
+  open_mapping = "<C-x>",
   shade_filetypes = {},
   shade_terminals = true,
   shading_factor = '1',
   start_in_insert = true,
   persist_size = true,
+  persist_mode = false,
+  close_on_exit = true,
+  shell = vim.o.shell,
   direction = 'horizontal',
   highlights = {
     -- highlights which map to a highlight group name and a table of it's values
@@ -31,8 +41,12 @@ require"toggleterm".setup {
     -- see :h nvim_open_win for details on borders however
     -- the 'curved' border is a custom border type
     -- not natively supported but implemented in this plugin.
-    border = 'curved',
+    border = 'single',
     -- like `size`, width and height can be a number or function which is passed the current terminal
     winblend = 3,
+    highlights = {
+      border = "Normal",
+      background = "Normal",
+    },
   },
 }
