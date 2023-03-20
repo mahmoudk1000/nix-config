@@ -7,6 +7,7 @@ let
     jotai = import ./jotai.nix;
     kalt = import ./kalt.nix;
     late = import ./late.nix;
+    mongo = import ./mongo.nix;
     mountain = import ./mountain.nix;
     night = import ./night.nix;
     rnvy = import ./rnvy.nix;

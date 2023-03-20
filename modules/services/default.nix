@@ -12,6 +12,7 @@
         ./mpd.nix
         ./nextcloud.nix
         ./picom.nix
+        ./redshift.nix
         ./sxhkd.nix
         ./unclutter.nix
     ];
