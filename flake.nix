@@ -3,7 +3,7 @@
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-        nur.url = github:nix-community/NUR;
+        nur.url = "github:nix-community/NUR";
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -12,9 +12,21 @@
             url = "github:nix-community/neovim-nightly-overlay";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        codeium-nvim = {
+            url = "github:jcdickinson/codeium.nvim";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, nixpkgs, home-manager, nur, neovim-nightly, ... } @ inputs:
+    outputs = 
+        { self 
+        , nixpkgs
+        , home-manager
+        , nur
+        , neovim-nightly
+        , codeium-nvim
+        , ... 
+        } @ inputs: 
         let
             overlays = [
                 inputs.nur.overlay
@@ -25,8 +37,10 @@
         nixosConfigurations = {
             labbi = nixpkgs.lib.nixosSystem {
                 modules = [
+                    ({ config = { nix.registry.nixpkgs.flake = nixpkgs; }; })
                     {
                         imports = [ ./hosts/labbi/configuration.nix ];
+                        _module.args.self = self;
                     }
                     nur.nixosModules.nur
                     home-manager.nixosModules.home-manager
@@ -35,7 +49,8 @@
                         home-manager.useUserPackages = true;
                         home-manager.users.mahmoud = {
                             imports = [ ./home-manager/labbi/home.nix ];
-                            _module.args.nur = { inherit nur; };
+                            _module.args.self = self;
+                            _module.args.inputs = inputs;
                             _module.args.theme = import ./modules/themes;
                         };
                         nixpkgs.overlays = overlays;
