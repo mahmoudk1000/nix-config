@@ -12,6 +12,13 @@
         shadowOpacity = 0.25;
         shadowOffsets = [ (-10) (-10) ];
         shadowExclude = [ "class_g = 'firefox' && argb" ];
+        settings = {
+            shadow-radius = 10;
+            glx-no-stencil = true;
+            glx-no-rebind-pixmap = true;
+            unredir-if-possible = true;
+            xrender-sync-fence = true;
+        };
         wintypes = {
             tooltip = {
                 fade = true;
