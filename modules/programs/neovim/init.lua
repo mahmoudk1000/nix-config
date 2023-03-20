@@ -70,6 +70,7 @@ require('lazy').setup({
     'kyazdani42/nvim-tree.lua',
     'lewis6991/impatient.nvim',
     'tpope/vim-sleuth',
+    'nvim-treesitter/playground',
     {
       'nvim-telescope/telescope.nvim',
       dependencies = {
@@ -85,6 +86,10 @@ require('lazy').setup({
     },
     {
       'Exafunction/codeium.vim',
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "hrsh7th/nvim-cmp",
+      },
       config = function()
         -- Change '<C-g>' here to any keycode you like.
         vim.keymap.set('i', '<C-c>', function() return vim.fn['codeium#Accept']() end, { expr = true })
@@ -123,6 +128,7 @@ vim.o.completeopt = 'menuone,noselect'       -- Set completeopt to have a better
 vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
 vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
@@ -165,8 +171,7 @@ vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 
 -- Plugins
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-o>', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-f>', ':lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-f>', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<A-t>', ':ToggleTerm<CR>', {})
 vim.keymap.set('n', '<A-i>', ':ToggleTerm direction=float<CR>', {})
 
