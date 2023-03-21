@@ -1,26 +1,18 @@
 {
     base00 = "#061621";
-    base01 = "#d1f5e0";
+    base01 = "#F2F0EB";
     base02 = "#21313c";
-    base03 = "#f68d66";
-    base04 = "#dcfd95";
-    base05 = "#fae698";
-    base06 = "#83cdc0";
-    base07 = "";
-    base08 = "";
-    base09 = "";
-    base0A = "";
-    base0B = "";
-    base0C = "";
-    base0D = "";
-    base0E = "";
-    base0F = "";
+    base03 = "#EAD0D6";
+    base04 = "#81BE83";
+    base05 = "#ECEBBD";
+    base06 = "#96AED0";
+    base07 = "#D79FC7";
+    base08 = "#C7D8DD";
+    base09 = "#0d3149";
+    base0A = "#ecd5da";
+    base0B = "#8ec48f";
+    base0C = "#eeedc4";
+    base0D = "#a0b6d5";
+    base0E = "#dba9cd";
+    base0F = "#cddce0";
 }
-
-#F2F0EB
-#EAD0D6
-#81BE83
-#ECEBBD
-#96AED0
-#D79FC7
-#C7D8DD
