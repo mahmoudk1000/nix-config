@@ -90,6 +90,7 @@ in
             gitsigns-nvim
             impatient-nvim
             luasnip
+            lspkind-nvim
             neoscroll-nvim
             popup-nvim
             telescope-fzf-native-nvim

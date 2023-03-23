@@ -51,7 +51,15 @@ end
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem = {
+  documentationFormat = { "markdown", "plaintext" },
+  snippetSupport = true,
+  preselectSupport = true,
+  insertReplaceSupport = true,
+  labelDetailsSupport = true,
+  deprecatedSupport = true,
+  commitCharactersSupport = true,
+}
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
@@ -71,16 +79,13 @@ lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT)
         version = 'LuaJIT',
-        -- Setup your lua path
         path = runtime_path,
       },
       diagnostics = {
         globals = { 'vim' },
       },
       workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-      -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = { enable = false, },
     },
   },

@@ -29,6 +29,7 @@ require('lazy').setup({
     'tpope/vim-fugitive',
     'karb94/neoscroll.nvim',
     'tpope/vim-rhubarb',
+    'onsails/lspkind.nvim',
     'goolord/alpha-nvim',
     { 
       'lewis6991/gitsigns.nvim',
@@ -49,7 +50,6 @@ require('lazy').setup({
     'neovim/nvim-lspconfig',
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
-    'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
@@ -91,8 +91,7 @@ require('lazy').setup({
         "hrsh7th/nvim-cmp",
       },
       config = function()
-        -- Change '<C-g>' here to any keycode you like.
-        vim.keymap.set('i', '<C-c>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+        vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
         vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
         vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
         vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
@@ -136,8 +135,7 @@ vim.opt.listchars:append("eol:↴")
 vim.o.termguicolors = true                   -- Set colorscheme
 vim.cmd [[colorscheme dunkelsee]]
 
--- vim.keymap.sets
--- See `:help vim.vim.keymap.set.set()`
+-- Keymaps
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Move text up and down (visual mode)
@@ -152,7 +150,7 @@ vim.keymap.set("i", "<A-Down>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent 
 vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
 vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
 
--- Default Text Editors vim.keymap.sets
+-- Default Text Editors
 vim.keymap.set('n', '<c-s>', ':w<CR>', {})
 vim.keymap.set('n', 'Q', '<c-v>', {})
 vim.keymap.set('n', 'fq', ':q!<CR>', {})
@@ -171,7 +169,6 @@ vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 
 -- Plugins
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-f>', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<A-t>', ':ToggleTerm<CR>', {})
 vim.keymap.set('n', '<A-i>', ':ToggleTerm direction=float<CR>', {})
 
@@ -205,9 +202,9 @@ require('impatient')
 require("mason").setup({
     ui = {
         icons = {
-            package_installed = "✔",
-            package_pending = "‽",
-            package_uninstalled = "✘"
+            package_installed = " ",
+            package_pending = " ",
+            package_uninstalled = "ﮊ "
         }
     }
 })
@@ -216,6 +213,33 @@ require("mason-lspconfig").setup()
 -- Telescope
 require('telescope').setup {
   defaults = {
+    prompt_prefix = "   ",
+    selection_caret = "  ",
+    entry_prefix = "  ",
+    initial_mode = "insert",
+    selection_strategy = "reset",
+    sorting_strategy = "ascending",
+    layout_strategy = "horizontal",
+    layout_config = {
+      horizontal = {
+        prompt_position = "top",
+        preview_width = 0.55,
+        results_width = 0.8,
+      },
+      vertical = {
+        mirror = false,
+      },
+      width = 0.87,
+      height = 0.80,
+      preview_cutoff = 120,
+    },
+    file_sorter = require("telescope.sorters").get_fuzzy_file,
+    file_ignore_patterns = { "node_modules" },
+    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+    path_display = { "truncate" },
+    border = {},
+    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    color_devicons = true,
     mappings = {
       i = {
         ['<C-u>'] = false,
@@ -227,10 +251,11 @@ require('telescope').setup {
 -- Github
 require('gitsigns').setup {
   signs = {
-    add = { text = '🞧' },
-    change = { text = '⏺' },
-    delete = { text = '🭸' },
-    topdelete = { text = '🭶' },
-    changedelete = { text = '~' },
+    add = { hl = "DiffAdd", text = '🞧', numhl = "GitSignsAddNr" },
+    change = { hl = "DiffChange", text = '⏺', numhl = "GitSignsChangeNr" },
+    delete = { hl = "DiffDelete", text = '🭸', numhl = "GitSignsDeleteNr" },
+    topdelete = { hl = "DiffDelete", text = '🭶', numhl = "GitSignsDeleteNr" },
+    changedelete = { hl = "DiffChangeDelete", text = '~', numhl = "GitSignsChangeNr" },
+    untracked = { hl = "GitSignsAdd", text = '', numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
   },
 }
