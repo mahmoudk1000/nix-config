@@ -104,6 +104,7 @@ in
             vim-unimpaired
             vimwiki
             playground
+            glow-nvim
             codeium-nvim
 
         ];

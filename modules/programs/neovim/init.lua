@@ -72,6 +72,11 @@ require('lazy').setup({
     'tpope/vim-sleuth',
     'nvim-treesitter/playground',
     {
+      'ellisonleao/glow.nvim',
+      config = true,
+      cmd = 'Glow'
+    },
+    {
       'nvim-telescope/telescope.nvim',
       dependencies = {
         'nvim-lua/plenary.nvim'
