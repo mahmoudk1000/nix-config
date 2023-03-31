@@ -42,7 +42,6 @@ cmp.setup({
       mode = "symbol",
       maxwidth = 50,
       ellipsis_char = '...',
-      symbol_map = { Codeium = "", }
     }),
   },
   sources = cmp.config.sources({
@@ -50,7 +49,6 @@ cmp.setup({
     { name = 'luasnip' },
   }, {
     { name = 'buffer' },
-    { name = "codeium" },
   })
 })
 

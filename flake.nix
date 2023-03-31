@@ -12,10 +12,6 @@
             url = "github:nix-community/neovim-nightly-overlay";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        codeium-nvim = {
-            url = "github:jcdickinson/codeium.nvim";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
     };
 
     outputs = 
@@ -24,7 +20,6 @@
         , home-manager
         , nur
         , neovim-nightly
-        , codeium-nvim
         , ... 
         } @ inputs: 
         let

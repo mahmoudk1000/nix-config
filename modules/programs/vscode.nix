@@ -59,12 +59,6 @@
                 version = "1.2.29";
                 sha256 = "sha256-Wl++d7mCOjgL7vmVVAKPQQgWRSFlqL4ry7v0wob1OyU=";
             }
-            {
-                name = "codeium";
-                publisher = "Codeium";
-                version = "1.1.59";
-                sha256 = "sha256-dzud31HwCEojfx1YXgw1lSE8u0xvPOr4Fw/VSDHcdfI=";
-            }
         ];
         keybindings = [
             {

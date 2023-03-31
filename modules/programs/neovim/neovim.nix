@@ -1,11 +1,5 @@
 { config, pkgs, inputs, ... }:
 
-let
-    codeium-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
-        name = "codeium-vim";
-        src = inputs.codeium-nvim;
-    };
-in
 {
     programs.neovim = {
         enable = true;
@@ -105,7 +99,6 @@ in
             vimwiki
             playground
             glow-nvim
-            codeium-nvim
 
         ];
     };
