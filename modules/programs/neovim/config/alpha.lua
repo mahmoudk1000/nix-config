@@ -40,11 +40,10 @@ local headerPadding = fn.max { 2, fn.floor(fn.winheight(0) * marginTopPercent) }
 dashboard.section.buttons = {
     type = "group",
     val = {
-        dashboard.button("e", "new file", ":ene <BAR> startinsert<CR>"),
-        dashboard.button("f", "find file", ":Telescope find_files<CR>"),
-        dashboard.button("x", "nix", ":e ~/.config/nixpkgs/flake.nix<CR>"),
-        dashboard.button("n", "nvim", ":e ~/.config/nvim/init.lua<CR>"),
-        dashboard.button("q", "quit nvim", ":qa<CR>"),
+        dashboard.button("n f", "  New File", ":ene <BAR> startinsert<CR>"),
+        dashboard.button("f f", "  Find File", ":Telescope find_files<CR>"),
+        dashboard.button("b k", "  Bookmarks", ":Telescope marks<CR>"),
+        dashboard.button("q q", "ﮊ  Quit Nvim", ":qa<CR>"),
     },
     opts = {
         position = "center",
