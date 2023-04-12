@@ -70,6 +70,7 @@
                     ghostery
                     privacy-badger
                     languagetool
+                    tab-session-manager
                 ];
                 settings = {
                     # Smooth scroll
