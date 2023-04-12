@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -148,6 +148,11 @@
     sound.enable = true;
     hardware.pulseaudio.enable = false;
 
+    systemd.user.services.pipewire.environment.LADSPA_PATH = lib.makeSearchPathOutput "lib" "lib/ladspa" (with pkgs; [
+        rnnoise-plugin
+        lsp-plugins
+    ]);
+
     # User Account.
     users.users.mahmoud = {
         description = "Mahmoud Asran";
@@ -166,7 +171,10 @@
         git
         man-pages
         _2bwm
-    ];
+    ] ++ (with config.boot.kernelPackages; [
+        cpupower
+        perf
+    ]);
 
     # Settings
     nixpkgs.config = {
