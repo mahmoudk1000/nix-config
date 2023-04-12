@@ -71,6 +71,7 @@
                     privacy-badger
                     languagetool
                     tab-session-manager
+                    search-by-image
                 ];
                 settings = {
                     # Smooth scroll
