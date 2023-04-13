@@ -72,6 +72,11 @@
                 type = "lua";
                 config = builtins.readFile ./config/cmp.lua;
             }
+            {
+                plugin = which-key-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/whichkey.lua;
+            }
             auto-pairs
             cmp-buffer
             cmp-cmdline

@@ -71,6 +71,7 @@ require('lazy').setup({
     'lewis6991/impatient.nvim',
     'tpope/vim-sleuth',
     'nvim-treesitter/playground',
+    'folke/which-key.nvim',
     {
       'ellisonleao/glow.nvim',
       config = true,
