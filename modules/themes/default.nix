@@ -1,5 +1,6 @@
 let
     blaulicht = import ./blaulicht.nix;
+    blind = import ./blind.nix;
     bliss = import ./bliss.nix;
     bluewery = import ./bluewery.nix;
     coral = import ./coral.nix;
