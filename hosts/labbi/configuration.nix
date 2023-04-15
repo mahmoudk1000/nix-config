@@ -50,6 +50,7 @@
         light.enable = true;
         adb.enable = true;
         htop.enable = true;
+        zsh.enable = true;
         gnupg.agent = {
             enable = true;
             enableSSHSupport = true;
