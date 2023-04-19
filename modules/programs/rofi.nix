@@ -9,7 +9,8 @@ in
         font = "IosevkaTerm Nerd Font 9";
         terminal = "st";
         extraConfig = {
-            "modi" = "drun,run,filebrowser,window";
+            # "modi" = "drun,run,filebrowser,window";
+            "modi" = "drun";
             "display-drun" = "";
             "display-run" = "";
             "display-filebrowser" = "";
@@ -36,7 +37,8 @@ in
                 width = mkLiteral "33%";
             };
             mainbox = {
-                children = map mkLiteral [ "inputbar" "mode-switcher" "listview" ];
+                # children = map mkLiteral [ "inputbar" "mode-switcher" "listview" ];
+                children = map mkLiteral [ "inputbar" "listview" ];
                 spacing = mkLiteral "5px";
                 padding = mkLiteral "5px 5px 5px 5px";
             };
