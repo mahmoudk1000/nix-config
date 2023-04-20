@@ -52,6 +52,12 @@
             { url = "http://feeds.feedburner.com/thingfromuntil/iUjL"; }
             { url = "https://blog.sekun.dev/posts/index.xml"; }
             { url = "https://www.kuketz-blog.de/feed/"; }
+            { url = "https://functor.tokyo/blog/feed"; }
+            { url = "https://gnulinux.ch/rss.xml"; }
+            { url = "https://monospacedmonologues.com/index.xml"; }
+            { url = "https://mahmoudk1000.me/posts/index.xml"; }
+            { url = "https://www.clippings.ws/feed/"; }
+            { url = "https://www.tutomena.com/rss.xml"; }
         ];
         extraConfig = ''
             # unbind defaults
