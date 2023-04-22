@@ -6,6 +6,7 @@
         ./neovim/neovim.nix
         ./2bwm.nix
         ./alacritty.nix
+        ./awesomewm.nix
         # ./bash.nix
         ./bspwm.nix
         ./firefox.nix

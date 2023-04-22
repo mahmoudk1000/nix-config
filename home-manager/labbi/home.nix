@@ -89,6 +89,7 @@
             command = "2bwm";
             bspwm.enable = false;
             herbstluftwm.enable = false;
+            awesome.enable = false;
         };
     };
 
