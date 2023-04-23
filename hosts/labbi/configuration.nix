@@ -55,17 +55,6 @@
             enable = true;
             enableSSHSupport = true;
         };
-        npm = {
-            enable = true;
-            npmrc = ''
-                prefix = /home/mahmoud/.npm
-                color = true
-            '';
-        };
-        java = {
-            enable = true;
-            package = pkgs.jdk;
-        };
     };
 
     documentation = {
