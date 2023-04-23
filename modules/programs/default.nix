@@ -5,6 +5,7 @@
         ./ncmpcpp
         ./neovim/neovim.nix
         ./2bwm.nix
+        ./accounts.nix
         ./alacritty.nix
         ./awesomewm.nix
         # ./bash.nix
@@ -16,7 +17,6 @@
         ./rofi.nix
         ./starship.nix
         ./thunar.nix
-        ./thunderbird.nix
         ./tmux.nix
         ./urxvt.nix
         ./vscode.nix

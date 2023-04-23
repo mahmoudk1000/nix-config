@@ -19,6 +19,9 @@
             jq
             playerctl
             pamixer
+            isync
+            bitwarden-cli
+            pass
 
             psmisc
             ytmdl
@@ -55,7 +58,6 @@
             mpv
             gimp
             krita
-            bitwarden
             popcorntime
 
             libsForQt5.breeze-icons
