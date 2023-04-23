@@ -5,153 +5,198 @@
 }:
 
 {
-    accounts.email.accounts = {
-        mahmoudk1000 = {
-            primary = true;
-            flavor = "gmail.com";
-            address = "mahmoudk1000@gmail.com";
-            realName = "Mahmoud Asran";
-            userName = "mahmoudk1000@gmail.com";
-            passwordCommand = "pass show Mail/mahmoudk1000";
-            imap = {
-                host = "imap.gmail.com";
-            };
-            smtp = {
-                host = "smtp.gmail.com";
-                tls.enable = true;
-            };
-            offlineimap.enable = true;
-            offlineimap.extraConfig.remote = {
-                folderfilter = "lambda name: name not in ['[Gmail]/All Mail']";
-            };
-            mbsync = {
-                enable = true;
-                create = "both";
-                patterns = [ "*" ];
-                extraConfig.remote = {
-                    UseNamespace = "no";
+    accounts.email = {
+        maildirBasePath = ".maildir";
+        accounts = {
+            mahmoudk1000 = {
+                primary = true;
+                flavor = "gmail.com";
+                address = "mahmoudk1000@gmail.com";
+                realName = "Mahmoud Asran";
+                userName = "mahmoudk1000@gmail.com";
+                maildir.path = "mahmoudk1000";
+                passwordCommand = "${pkgs.pass}/bin/pass show Mail/mahmoudk1000";
+                imap = {
+                    host = "imap.gmail.com";
                 };
-            };
-            imapnotify = {
-                enable = true;
-                boxes = ["Inbox" "*"];
-                onNotifyPost = {
-                    mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: mahmoudk1000@gmail.com!'";
+                smtp = {
+                    host = "smtp.gmail.com";
+                    tls.enable = true;
                 };
-                onNotify = "${pkgs.isync}/bin/mbsync -a";
-            };
-            thunderbird.enable = true;
-        };
-        dodok1000 = {
-            flavor = "gmail.com";
-            address = "dodok1000@gmail.com";
-            realName = "Mahmoud Asran";
-            userName = "dodok1000@gmail.com";
-            passwordCommand = "pass show Mail/dodok1000";
-            imap = {
-                host = "imap.gmail.com";
-            };
-            smtp = {
-                host = "smtp.gmail.com";
-                tls.enable = true;
-            };
-            offlineimap.enable = true;
-            offlineimap.extraConfig.remote = {
-                folderfilter = "lambda name: name not in ['[Gmail]/All Mail']";
-            };
-            mbsync = {
-                enable = true;
-                create = "both";
-                patterns = [ "*" ];
-                extraConfig.remote = {
-                    UseNamespace = "no";
+                offlineimap.enable = true;
+                offlineimap.extraConfig.remote = {
+                    folderfilter = "lambda name: name not in ['[Gmail]/All Mail']";
                 };
-            };
-            imapnotify = {
-                enable = true;
-                boxes = [ "Inbox" ];
-                onNotifyPost = {
-                    mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: dodok1000@gmail.com!'";
+                mbsync = {
+                    enable = true;
+                    create = "both";
+                    expunge = "both";
+                    patterns = [ "*" ];
+                    extraConfig.remote = {
+                        UseNamespace = "no";
+                    };
                 };
-                onNotify = "${pkgs.isync}/bin/mbsync -a";
-            };
-            thunderbird.enable = true;
-        };
-        "mahmoud.a.asran" = {
-            flavor = "outlook.office365.com";
-            address = "mahmoud.a.asran@outlook.com";
-            realName = "Mahmoud Asran";
-            userName = "mahmoud.a.asran@outlook.com";
-            passwordCommand = "pass show Mail/mahmoud.asran";
-            imap = {
-                host = "outlook.office365.com";
-                port = 993;
-                tls.enable = true;
-            };
-            smtp = {
-                host = "smtp.office365.com";
-                port = 587;
-                tls.enable = true;
-            };
-            offlineimap.enable = true;
-            mbsync = {
-                enable = true;
-                create = "both";
-                patterns = [ "*" ];
-                extraConfig.remote = {
-                    UseNamespace = "no";
+                imapnotify = {
+                    enable = true;
+                    boxes = ["Inbox" "*"];
+                    onNotifyPost = {
+                        mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: mahmoudk1000@gmail.com!'";
+                    };
+                    onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
+                neomutt.enable = true;
+                msmtp.enable = true;
+                mu.enable = true;
+                thunderbird.enable = true;
             };
-            imapnotify = {
-                enable = true;
-                boxes = [ "Inbox" ];
-                onNotifyPost = {
-                    mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: mahmoud.a.asran@outlook.com!'";
+            dodok1000 = {
+                flavor = "gmail.com";
+                address = "dodok1000@gmail.com";
+                realName = "Mahmoud Asran";
+                userName = "dodok1000@gmail.com";
+                maildir.path = "dodok1000";
+                passwordCommand = "${pkgs.pass}/bin/pass show Mail/dodok1000";
+                imap = {
+                    host = "imap.gmail.com";
                 };
-                onNotify = "${pkgs.isync}/bin/mbsync -a";
-            };
-            thunderbird.enable = true;
-        };
-        uni = {
-            flavor = "outlook.office365.com";
-            address = "sim.mahmoudayman3129@alexu.edu.eg";
-            realName = "Mahmoud Asran";
-            userName = "sim.mahmoudayman3129@alexu.edu.eg";
-            passwordCommand = "pass show Mail/uni";
-            imap = {
-                host = "outlook.office365.com";
-                port = 993;
-                tls.enable = true;
-            };
-            smtp = {
-                host = "smtp.office365.com";
-                port = 587;
-                tls.enable = true;
-            };
-            offlineimap.enable = true;
-            mbsync = {
-                enable = true;
-                create = "both";
-                patterns = [ "*" ];
-                extraConfig.remote = {
-                    UseNamespace = "no";
+                smtp = {
+                    host = "smtp.gmail.com";
+                    tls.enable = true;
                 };
-            };
-            imapnotify = {
-                enable = true;
-                boxes = ["Inbox" ];
-                onNotifyPost = {
-                    mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: sim.mahmoudayman3129@alexu.edu.eg!'";
+                offlineimap.enable = true;
+                offlineimap.extraConfig.remote = {
+                    folderfilter = "lambda name: name not in ['[Gmail]/All Mail']";
                 };
-                onNotify = "${pkgs.isync}/bin/mbsync -a";
+                mbsync = {
+                    enable = true;
+                    create = "both";
+                    expunge = "both";
+                    patterns = [ "*" ];
+                    extraConfig.remote = {
+                        UseNamespace = "no";
+                    };
+                };
+                imapnotify = {
+                    enable = true;
+                    boxes = [ "Inbox" ];
+                    onNotifyPost = {
+                        mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: dodok1000@gmail.com!'";
+                    };
+                    onNotify = "${pkgs.isync}/bin/mbsync -a";
+                };
+                neomutt.enable = true;
+                msmtp.enable = true;
+                mu.enable = true;
+                thunderbird.enable = true;
             };
-            thunderbird.enable = true;
+            "mahmoud.a.asran" = {
+                flavor = "outlook.office365.com";
+                address = "mahmoud.a.asran@outlook.com";
+                realName = "Mahmoud Asran";
+                userName = "mahmoud.a.asran@outlook.com";
+                maildir.path = "mahmoud.a.asran";
+                passwordCommand = "${pkgs.pass}/bin/pass show Mail/mahmoud.asran";
+                imap = {
+                    host = "outlook.office365.com";
+                    port = 993;
+                    tls.enable = true;
+                };
+                smtp = {
+                    host = "smtp.office365.com";
+                    port = 587;
+                    tls.enable = true;
+                };
+                offlineimap.enable = true;
+                mbsync = {
+                    enable = true;
+                    create = "both";
+                    expunge = "both";
+                    patterns = [ "*" ];
+                    extraConfig.remote = {
+                        UseNamespace = "no";
+                    };
+                };
+                imapnotify = {
+                    enable = true;
+                    boxes = [ "Inbox" ];
+                    onNotifyPost = {
+                        mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: mahmoud.a.asran@outlook.com!'";
+                    };
+                    onNotify = "${pkgs.isync}/bin/mbsync -a";
+                };
+                neomutt.enable = true;
+                msmtp.enable = true;
+                mu.enable = true;
+                thunderbird.enable = true;
+            };
+            university = {
+                flavor = "outlook.office365.com";
+                address = "sim.mahmoudayman3129@alexu.edu.eg";
+                realName = "Mahmoud Asran";
+                userName = "sim.mahmoudayman3129@alexu.edu.eg";
+                maildir.path = "university";
+                passwordCommand = "${pkgs.pass}/bin/pass show Mail/uni";
+                imap = {
+                    host = "outlook.office365.com";
+                    port = 993;
+                    tls.enable = true;
+                };
+                smtp = {
+                    host = "smtp.office365.com";
+                    port = 587;
+                    tls.enable = true;
+                };
+                offlineimap.enable = true;
+                mbsync = {
+                    enable = true;
+                    create = "both";
+                    expunge = "both";
+                    patterns = [ "*" ];
+                    extraConfig = {
+                        account = {
+                            AuthMechs = "XOAUTH2";
+                        };
+                        remote = {
+                            UseNamespace = "no";
+                        };
+                    };
+                };
+                imapnotify = {
+                    enable = true;
+                    boxes = [ "Inbox" ];
+                    onNotifyPost = {
+                        mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: sim.mahmoudayman3129@alexu.edu.eg!'";
+                    };
+                    onNotify = "${pkgs.isync}/bin/mbsync -a";
+                };
+                neomutt.enable = true;
+                msmtp.enable = true;
+                mu.enable = true;
+                thunderbird.enable = true;
+            };
         };
     };
 
     programs = {
         mbsync = {
             enable = true;
+        };
+        msmtp = {
+            enable = true;
+        };
+        mu = {
+            enable = true;
+        };
+        neomutt = {
+            enable = true;
+            vimKeys = true;
+            sort = "date-received";
+            checkStatsInterval = 60;
+            sidebar = {
+                enable = true;
+                shortPath = true;
+                width = 25;
+            };
         };
         thunderbird = {
             enable = true;

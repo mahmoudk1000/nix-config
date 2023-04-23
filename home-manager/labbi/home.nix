@@ -22,6 +22,7 @@
             isync
             bitwarden-cli
             pass
+            libnotify
 
             psmisc
             ytmdl
