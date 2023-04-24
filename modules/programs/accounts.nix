@@ -38,10 +38,8 @@
                 };
                 imapnotify = {
                     enable = true;
-                    boxes = ["Inbox" "*"];
-                    onNotifyPost = {
-                        mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: mahmoudk1000@gmail.com!'";
-                    };
+                    boxes = [ "Inbox" ];
+                    onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: mahmoudk1000@gmail.com!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
                 neomutt.enable = true;
@@ -79,9 +77,7 @@
                 imapnotify = {
                     enable = true;
                     boxes = [ "Inbox" ];
-                    onNotifyPost = {
-                        mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: dodok1000@gmail.com!'";
-                    };
+                    onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: dodok1000@gmail.com!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
                 neomutt.enable = true;
@@ -119,9 +115,7 @@
                 imapnotify = {
                     enable = true;
                     boxes = [ "Inbox" ];
-                    onNotifyPost = {
-                        mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: mahmoud.a.asran@outlook.com!'";
-                    };
+                    onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: mahmoud.a.asran@outlook.com!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
                 neomutt.enable = true;
@@ -164,9 +158,7 @@
                 imapnotify = {
                     enable = true;
                     boxes = [ "Inbox" ];
-                    onNotifyPost = {
-                        mail = "${pkgs.libnotify}/bin/notify-send 'New Mail: sim.mahmoudayman3129@alexu.edu.eg!'";
-                    };
+                    onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: sim.mahmoudayman3129@alexu.edu.eg!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
                 neomutt.enable = true;
