@@ -121,7 +121,7 @@ vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
-vim.opt.list = true
+vim.o.list = true
 vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
 
@@ -164,6 +164,7 @@ vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<A-t>', ':ToggleTerm<CR>', {})
 vim.keymap.set('n', '<A-i>', ':ToggleTerm direction=float<CR>', {})
+vim.keymap.set('n', '<leader>md', ':Glow<CR>', {noremap=true, silent=true})
 
 -- Telescope
 vim.keymap.set('n', '<leader>/', function()
@@ -252,3 +253,9 @@ require('gitsigns').setup {
     untracked = { hl = "GitGutterAdd", text = '🞧', numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
   },
 }
+
+require('glow').setup({
+  width = 120,
+  height = 120,
+  glow_border = "rounded",
+})

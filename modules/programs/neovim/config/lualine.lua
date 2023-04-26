@@ -60,5 +60,5 @@ require('lualine').setup {
     lualine_z = { 'location' },
   },
   tabline = {},
-  extensions = {},
+  extensions = { minimap, 'nvim-tree', 'fugitive' },
 }
