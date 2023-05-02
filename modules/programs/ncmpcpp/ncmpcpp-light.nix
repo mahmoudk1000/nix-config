@@ -15,6 +15,7 @@
             lines_scrolled = "1";
             follow_now_playing_lyrics = "yes";
             lyrics_fetchers = "musixmatch";
+            lyrics_directory = ".config/ncmpcpp/lyrics";
 
             visualizer_data_source = "/tmp/mpd.fifo";
             visualizer_output_name = "mpd_visualizer";
@@ -42,7 +43,7 @@
             current_item_prefix = "$b$2| ";
             current_item_suffix = "$/b$5";
 
-            now_playing_prefix = "$b$5| ";
+            now_playing_prefix = ''"$b$5‣ "'';
             now_playing_suffix = "$/b$5";   
             song_library_format = "{{%a - %t} (%b)}|{%f}";
 

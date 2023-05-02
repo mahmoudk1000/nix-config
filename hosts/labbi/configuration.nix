@@ -216,7 +216,6 @@
     services = {
         gvfs.enable = true;
         upower.enable = true;
-        urxvtd.enable = true;
         udisks2.enable = true;
         blueman.enable = true;
         openssh.enable = true;

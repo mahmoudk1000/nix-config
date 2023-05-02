@@ -25,7 +25,6 @@
             libnotify
 
             psmisc
-            ytmdl
             mpc-cli
             ncmpcpp
             xclip
@@ -35,7 +34,6 @@
             yt-dlp
             st
 
-            ranger
             arandr
             imagemagick
             rtorrent
@@ -54,10 +52,8 @@
             signal-desktop
             foliate
             obsidian
-            netbeans
             evince
             mpv
-            gimp
             krita
             popcorntime
 

@@ -42,9 +42,6 @@
                     onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: mahmoudk1000@gmail.com!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
-                neomutt.enable = true;
-                msmtp.enable = true;
-                mu.enable = true;
                 thunderbird.enable = true;
             };
             dodok1000 = {
@@ -80,9 +77,6 @@
                     onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: dodok1000@gmail.com!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
-                neomutt.enable = true;
-                msmtp.enable = true;
-                mu.enable = true;
                 thunderbird.enable = true;
             };
             "mahmoud.a.asran" = {
@@ -118,9 +112,6 @@
                     onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: mahmoud.a.asran@outlook.com!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
-                neomutt.enable = true;
-                msmtp.enable = true;
-                mu.enable = true;
                 thunderbird.enable = true;
             };
             university = {
@@ -161,9 +152,6 @@
                     onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: sim.mahmoudayman3129@alexu.edu.eg!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
-                neomutt.enable = true;
-                msmtp.enable = true;
-                mu.enable = true;
                 thunderbird.enable = true;
             };
         };
@@ -174,13 +162,13 @@
             enable = true;
         };
         msmtp = {
-            enable = true;
+            enable = false;
         };
         mu = {
-            enable = true;
+            enable = false;
         };
         neomutt = {
-            enable = true;
+            enable = false;
             vimKeys = true;
             sort = "date-received";
             checkStatsInterval = 60;
