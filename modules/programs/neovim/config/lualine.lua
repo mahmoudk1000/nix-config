@@ -1,6 +1,3 @@
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
 local lualine = require('lualine')
 
 -- Color table for highlights
@@ -36,11 +33,21 @@ local my_theme = {
 require('lualine').setup {
   options = {
     theme = my_theme,
-    component_separators = '|',
+    component_separators = { left = "", right = "" },
     section_separators = { left = '█▓▒', right = '▒▓█' },
+    disabled_filetypes = {
+      statusline = { "dashboard", "NvimTree" },
+    },
+    ignore_focus = { "NvimTree" },
+    always_divide_middle = true,
+    globalstatus = true,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+    },
   },
   sections = {
-    lualine_a = { ' ',
+    lualine_a = { 
       { 'mode', separator = { left = '▒▓█' }, right_padding = 2 },
     },
     lualine_b = { 'filename', 'branch' },
@@ -52,13 +59,17 @@ require('lualine').setup {
     },
   },
   inactive_sections = {
-    lualine_a = { 'filename' },
+    lualine_a = {},
     lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
+    lualine_c = { 'filename' },
+    lualine_x = { 'location' },
     lualine_y = {},
-    lualine_z = { 'location' },
+    lualine_z = {},
   },
   tabline = {},
-  extensions = { minimap, 'nvim-tree', 'fugitive' },
+  extensions = {
+    minimap, 
+    'nvim-tree', 
+    'fugitive' 
+  },
 }
