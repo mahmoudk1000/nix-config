@@ -49,7 +49,7 @@
             };
             git_branch = {
                 disabled = false;
-                symbol = "療";
+                symbol = "  ";
                 style = "fg:${theme.base04} bg:${theme.base09}";
                 format = "[[ ](fg:${theme.base09} bg:${theme.base00})$symbol$branch[ ](bg:${theme.base00} fg:${theme.base09})]($style)";
             };

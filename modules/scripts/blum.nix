@@ -215,7 +215,7 @@ pkgs.writeScriptBin name
                 options="$power\nExit"
             fi
 
-            chosen="$(echo -e "$options" | $rofi_command "")"
+            chosen="$(echo -e "$options" | $rofi_command " 󰂯")"
 
             case $chosen in
                 "" | $divider)

@@ -70,26 +70,26 @@ in
                 battery = "BAT0";
                 adapter = "ADP0";
                 poll-interval = 5;
-                format-charging = "ﮣ <label-charging>";
+                format-charging = "  <label-charging>";
                 format-charging-foreground = theme.base04;
-                format-discharging = " <label-discharging>";
+                format-discharging = "󰂎 <label-discharging>";
                 format-discharging-foreground = theme.base06;
-                format-full = "♥ <label-full>";
+                format-full = "♥  <label-full>";
                 format-full-foreground = theme.base03;
             };
             "module/backlight" = {
                 type = "custom/script";
                 exec = ''${pkgs.light}/bin/light | ${pkgs.coreutils}/bin/cut -d. -f1'';
-                format = " <label>%";
+                format = "  <label>%";
                 format-forground = theme.base03;
                 tail = true;
             };
             "module/pulseaudio" = {
                 type = "internal/pulseaudio";
-                format-volume = "♪ <label-volume>%";
+                format-volume = "  <label-volume>%";
                 format-volume-foreground = theme.base05;
                 label-volume =  "%percentage%";
-                label-muted = "Muted";
+                label-muted = "  Mute";
                 label-muted-foreground = theme.base05;
             };
             "module/time" = {
@@ -105,7 +105,7 @@ in
                 type = "custom/script";
                 tail = true;
                 exec = "${blum-stat}/bin/blum-stat";
-                format = " <label>";
+                format = "  <label>";
                 format-foreground = theme.base08;
             };
             "module/sep" = {

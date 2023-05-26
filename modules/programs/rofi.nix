@@ -131,7 +131,7 @@ in
 
     home.file.".config/rofi/poww.rasi".text = ''
         configuration {
-	    font:   "Material Design Icons Desktop 20";
+	    font:   "Material Design Icons Desktop 18";
 	    disable-history:    false;
 	    sidebar-mode:   false;
 	    show-icons:    false;
@@ -174,7 +174,7 @@ in
             expand:             true;
             horizontal-align:   0.5;
             vertical-align:     0.5;
-            margin:             15px 15px 15px 15px;
+            margin:             15px 15px 15px 10px;
         }
         element selected {
             text-color: 	@bg;
