@@ -212,4 +212,13 @@
         };
     };
     services.imapnotify.enable = true;
+    systemd.user.services.thunderbird = {
+        Service = {
+            Type = "simple";
+            ExecStart = "${pkgs.thunderbird}/bin/thunderbird";
+            Restart = "on-failure";
+        };
+        Unit.PartOf = [ "graphical-session.target" ];
+        Install.WantedBy = [ "graphical-session.target" ];
+    };
 }
