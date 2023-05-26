@@ -49,7 +49,6 @@
             spotify
             tdesktop
             element-desktop
-            signal-desktop
             foliate
             obsidian
             evince

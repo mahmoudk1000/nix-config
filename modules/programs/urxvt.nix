@@ -2,7 +2,7 @@
 
 {
     programs.urxvt = {
-        enable = true;
+        enable = false;
         package = pkgs.rxvt-unicode;
         iso14755 = true;
         fonts = [ "xft:IosevkaTerm Nerd Font:pixelsize=12:antialias=true:autohint=true" ];

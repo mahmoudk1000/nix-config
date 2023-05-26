@@ -16,7 +16,6 @@
             nodePackages_latest.yaml-language-server
             sumneko-lua-language-server
             python310Packages.python-lsp-server
-            python39Packages.yapf
             java-language-server
             quick-lint-js
             nixpkgs-fmt
