@@ -4,11 +4,12 @@ local parser_install_dir = "~/.config/nvim-plugins/treesitter/parsers"
 vim.opt.runtimepath:append(parser_install_dir)
 
 local present, treesitter = pcall(require, "nvim-treesitter.configs")
+
 if not present then
   return
 end
 
-treesitter.setup {
+treesitter.setup({
   autotag = {
     enable = true,
   },
@@ -111,4 +112,4 @@ treesitter.setup {
       },
     },
   },
-}
+})

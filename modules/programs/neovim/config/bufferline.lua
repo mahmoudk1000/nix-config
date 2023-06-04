@@ -2,8 +2,8 @@ local status_ok, bufferline = pcall(require, "bufferline")
 if not status_ok then
   return
 end
--- Hap[ppy :)]
-bufferline.setup {
+
+bufferline.setup({
     options = {
         offsets = {
             { filetype = "NvimTree",
@@ -38,4 +38,4 @@ bufferline.setup {
             end,
         },
    }
-}
+})

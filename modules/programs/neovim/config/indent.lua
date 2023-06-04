@@ -4,7 +4,7 @@ if not present then
   return
 end
 
-indent_blankline.setup {
+indent_blankline.setup({
   char = '┊',
   space_char_blankline = " ",
   indentLine_enabled = 1,
@@ -29,4 +29,4 @@ indent_blankline.setup {
     "alpha",
     "nofile", 
   },
-}
+})

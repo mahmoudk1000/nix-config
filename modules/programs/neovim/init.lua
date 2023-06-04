@@ -67,7 +67,14 @@ require('lazy').setup({
       }, 
     },
     'nvim-lualine/lualine.nvim',
-    'kyazdani42/nvim-tree.lua',
+    { 
+      'nvim-neo-tree/neo-tree.nvim',
+       dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons",
+        "MunifTanjim/nui.nvim",
+       },
+    },
     'lewis6991/impatient.nvim',
     'tpope/vim-sleuth',
     'nvim-treesitter/playground',
@@ -161,7 +168,7 @@ vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 
 -- Plugins
-vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-n>', ':NeoTreeShowToggle<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<A-t>', ':ToggleTerm<CR>', {})
 vim.keymap.set('n', '<A-i>', ':ToggleTerm direction=float<CR>', {})
 vim.keymap.set('n', '<leader>md', ':Glow<CR>', {noremap=true, silent=true})
@@ -187,18 +194,16 @@ require('Comment').setup()
 require('colorizer').setup()
 require('nvim-autopairs').setup()
 require('gitsigns').setup()
-require('nvim-tree').setup()
 require('neoscroll').setup()
-require('lspconfig')
 require('impatient')
 
 -- Mason
 require("mason").setup({
     ui = {
         icons = {
-            package_installed = " ",
+            package_installed = "󰄳 ",
             package_pending = " ",
-            package_uninstalled = "ﮊ "
+            package_uninstalled = "󰚌 "
         }
     }
 })

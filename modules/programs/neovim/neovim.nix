@@ -57,9 +57,9 @@
                 config = builtins.readFile ./config/lualine.lua;
             }
             {
-                plugin = nvim-tree-lua;
+                plugin = neo-tree-nvim;
                 type = "lua";
-                config = builtins.readFile ./config/nvimtree.lua;
+                config = builtins.readFile ./config/neotree.lua;
             }
             {
                 plugin = toggleterm-nvim;
@@ -85,6 +85,8 @@
             comment-nvim
             dressing-nvim
             fzf-vim
+            nui-nvim
+            nvim-web-devicons
             gitsigns-nvim
             impatient-nvim
             luasnip

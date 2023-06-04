@@ -30,15 +30,15 @@ local my_theme = {
   },
 }
 
-require('lualine').setup {
+lualine.setup({
   options = {
     theme = my_theme,
     component_separators = { left = "", right = "" },
     section_separators = { left = '█▓▒', right = '▒▓█' },
     disabled_filetypes = {
-      statusline = { "dashboard", "NvimTree" },
+      statusline = { "dashboard", "NvimTree", "NeoTree" },
     },
-    ignore_focus = { "NvimTree" },
+    ignore_focus = { "NvimTree", "NeoTree" },
     always_divide_middle = true,
     globalstatus = true,
     refresh = {
@@ -72,4 +72,4 @@ require('lualine').setup {
     'nvim-tree', 
     'fugitive' 
   },
-}
+})

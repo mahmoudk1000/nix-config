@@ -3,6 +3,7 @@ local configs = require ("lspconfig.configs")
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 -- Enable the following language servers
 local servers = { 'clangd', 'bashls', 'lua_ls', 'html', 'jdtls', 'pylsp', 'quick_lint_js', 'rnix', 'pyright', 'tsserver' }
 
