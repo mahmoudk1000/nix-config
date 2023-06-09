@@ -21,6 +21,7 @@
             nixpkgs-fmt
             tree-sitter
             rnix-lsp
+            ripgrep
             shfmt
             gcc
         ];
@@ -82,11 +83,16 @@
             cmp-git
             cmp-nvim-lsp
             cmp-path
+            cmp_luasnip
             comment-nvim
+            colorizer
+            mason-nvim
+            mason-lspconfig-nvim
             dressing-nvim
             fzf-vim
             nui-nvim
             nvim-web-devicons
+            nvim-ts-autotag
             gitsigns-nvim
             impatient-nvim
             luasnip

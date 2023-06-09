@@ -19,7 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- stylua: ignore start
 require('lazy').setup({
-    'nvim-lua/popup.nvim',
     'stevearc/dressing.nvim',
     'windwp/nvim-ts-autotag',
     'norcalli/nvim-colorizer.lua',
@@ -75,7 +74,6 @@ require('lazy').setup({
         "MunifTanjim/nui.nvim",
        },
     },
-    'lewis6991/impatient.nvim',
     'tpope/vim-sleuth',
     'nvim-treesitter/playground',
     'folke/which-key.nvim',
@@ -195,7 +193,6 @@ require('colorizer').setup()
 require('nvim-autopairs').setup()
 require('gitsigns').setup()
 require('neoscroll').setup()
-require('impatient')
 
 -- Mason
 require("mason").setup({
@@ -247,6 +244,7 @@ require('telescope').setup {
     },
   },
 }
+
 -- Github
 require('gitsigns').setup {
   signs = {
@@ -259,6 +257,7 @@ require('gitsigns').setup {
   },
 }
 
+-- Glow
 require('glow').setup({
   width = 120,
   height = 120,
