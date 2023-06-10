@@ -70,6 +70,7 @@ lualine.setup({
   extensions = {
     minimap, 
     'nvim-tree', 
+    'neo-tree',
     'fugitive' 
   },
 })

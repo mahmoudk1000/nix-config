@@ -62,7 +62,8 @@ require('lazy').setup({
     { 
       'L3MON4D3/LuaSnip',
       dependencies = { 
-        'saadparwaiz1/cmp_luasnip' 
+        'saadparwaiz1/cmp_luasnip', 
+        'rafamadriz/friendly-snippets'
       }, 
     },
     'nvim-lualine/lualine.nvim',

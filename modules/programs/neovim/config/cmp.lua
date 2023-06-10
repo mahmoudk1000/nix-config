@@ -5,7 +5,7 @@ cmp.setup({
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
-      require('luasnip').lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
   window = {
@@ -49,15 +49,7 @@ cmp.setup({
     { name = 'luasnip' },
   }, {
     { name = 'buffer' },
-  })
-})
-
- -- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources({
-    { name = 'cmp_git' },
-  }, {
-    { name = 'buffer' },
+    { name = "path" },
   })
 })
 
@@ -78,3 +70,5 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
+
+require("luasnip.loaders.from_vscode").lazy_load()

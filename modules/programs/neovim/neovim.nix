@@ -80,7 +80,6 @@
             auto-pairs
             cmp-buffer
             cmp-cmdline
-            cmp-git
             cmp-nvim-lsp
             cmp-path
             cmp_luasnip
@@ -110,6 +109,7 @@
             vim-unimpaired
             vimwiki
             playground
+            friendly-snippets
             glow-nvim
 
         ];
