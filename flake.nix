@@ -4,6 +4,10 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         nur.url = "github:nix-community/NUR";
+        nixpkgs-f2k = {
+            url = "github:fortuneteller2k/nixpkgs-f2k";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -20,12 +24,19 @@
         , home-manager
         , nur
         , neovim-nightly
+        , nixpkgs-f2k
         , ... 
         } @ inputs: 
         let
-            overlays = [
-                inputs.nur.overlay
-                inputs.neovim-nightly.overlay
+            overlays = with inputs;
+            [
+                (final: prev:
+                let inherit (final) system; in
+                { awesome = with nixpkgs-f2k.packages.${system}; awesome-git; })
+                nur.overlay
+                neovim-nightly.overlay
+                nixpkgs-f2k.overlays.window-managers
+                nixpkgs-f2k.overlays.stdenvs
             ];
         in
         {
