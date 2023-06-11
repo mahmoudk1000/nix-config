@@ -208,7 +208,7 @@ require("mason").setup({
 require("mason-lspconfig").setup()
 
 -- Telescope
-require('telescope').setup {
+require('telescope').setup({
   defaults = {
     prompt_prefix = "   ",
     selection_caret = "  ",
@@ -244,10 +244,10 @@ require('telescope').setup {
       },
     },
   },
-}
+})
 
 -- Github
-require('gitsigns').setup {
+require('gitsigns').setup({
   signs = {
     add = { hl = "GitGutterAdd", text = '🞧', numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
     change = { hl = "GitGutterChange", text = '⏺', numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
@@ -256,11 +256,11 @@ require('gitsigns').setup {
     changedelete = { hl = "GitGutterChange", text = '~', numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
     untracked = { hl = "GitGutterAdd", text = '🞧', numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
   },
-}
+})
 
 -- Glow
 require('glow').setup({
-  width = 120,
+  width = 140,
   height = 120,
   glow_border = "rounded",
 })
