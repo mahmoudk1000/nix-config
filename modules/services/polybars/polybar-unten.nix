@@ -11,7 +11,7 @@ let
 in
 {
     services.polybar = {
-        enable = true;
+        enable = false;
         script = ''
             polybar left &
             polybar right &

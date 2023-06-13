@@ -11,13 +11,10 @@ let
         }
     );
 in
-
 {
     home.packages = with pkgs.xfce; [
         thunar-with-plugins
         exo
-        tumbler
         xfconf
-        mousepad
     ];
 }

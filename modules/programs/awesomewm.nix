@@ -10,6 +10,7 @@
                 luaposix
                 vicious
                 ldbus
+                lgi
             ];
         };
     };
