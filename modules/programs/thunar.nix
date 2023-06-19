@@ -15,6 +15,5 @@ in
     home.packages = with pkgs.xfce; [
         thunar-with-plugins
         exo
-        xfconf
     ];
 }

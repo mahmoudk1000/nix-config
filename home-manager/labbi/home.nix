@@ -84,10 +84,10 @@
     xsession = {
         enable = true;
         windowManager = {
-            command = "2bwm";
+            # command = "2bwm";
             bspwm.enable = false;
             herbstluftwm.enable = false;
-            awesome.enable = false;
+            awesome.enable = true;
         };
     };
 
