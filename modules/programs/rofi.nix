@@ -9,122 +9,87 @@ in
         font = "IosevkaTerm Nerd Font 9";
         terminal = "st";
         extraConfig = {
-            # "modi" = "drun,run,filebrowser,window";
-            "modi" = "drun";
+            "location" = 5;
+            "modi" = "drun,run";
             "display-drun" = "";
-            "display-run" = "";
-            "display-filebrowser" = "";
-            "display-window" = "";
-            "drun-display-format" = "{icon} {name}";
-            "window-format" = " {w} · {c} · {t}";
-            "show-icons" = true;
-            "icon-theme" = "MoDelta";
+            "display-run" = "";
+            "drun-display-format" = "{name}";
+            "show-icons" = false;
         };
         theme = {
             "*" = {
                 bg = mkLiteral theme.base00;
                 fg = mkLiteral theme.base01;
                 al = mkLiteral theme.base02;
-                ac = mkLiteral theme.base06;
                 background-color = mkLiteral "@bg";
                 text-color = mkLiteral "@fg";
             };
             window = {
-                border = mkLiteral "5";
-                border-color = mkLiteral "@al";
-                transparency = mkLiteral ''"real"'';
-                orientation = mkLiteral "vertical";
-                width = mkLiteral "33%";
+                border = mkLiteral "0px";
+                height = mkLiteral "40px";
+                width = mkLiteral "100%";
+                padding = mkLiteral "0px";
             };
             mainbox = {
-                # children = map mkLiteral [ "inputbar" "mode-switcher" "listview" ];
-                children = map mkLiteral [ "inputbar" "listview" ];
-                spacing = mkLiteral "5px";
-                padding = mkLiteral "5px 5px 5px 5px";
+                children = map mkLiteral [ "inputbar" ];
+                background-color = mkLiteral "@bg";
+                margin = mkLiteral "0px 20px 0px 20px";
             };
             prompt = {
-                background-color = mkLiteral "@al";
-                vertical-align = mkLiteral "0.5";
-                padding = mkLiteral "0.6em 1.1em 0.6em 0.75em";
-                border-radius = mkLiteral "4px";
+                text-color = mkLiteral "@fg";
+                enabled = mkLiteral "true";
+                padding = mkLiteral "13px 13px 13px 0px";
             };
             inputbar = {
-                orientation = mkLiteral "horizontal";
-                children = map mkLiteral [ "prompt"  "entry" ];
+                children = map mkLiteral [ "prompt" "textbox-prompt-divider" "entry" "listview" ];
+                spacing = mkLiteral "0";
             };
             listview = {
-                columns = mkLiteral "2";
-                spacing = mkLiteral "1.5px";
-                lines = mkLiteral "9";
+                background-color = mkLiteral "@bg";
+                lines = mkLiteral "100";
+                cycle = mkLiteral "true";
+                layout = mkLiteral "horizontal";
+                horizontal-align = mkLiteral "0.5";
             };
             entry = {
+                background-color = mkLiteral "@bg";
+                padding = mkLiteral "13px 10px 13px 10px";
+                text-color = mkLiteral "@fg";
+                placeholder-color = mkLiteral "@fg";
                 placeholder = mkLiteral ''"Search..."'';
+                horizontal-align = mkLiteral "0";
                 expand = mkLiteral "false";
-                width = mkLiteral "25%";
-                padding = mkLiteral "0.65em";
+                width = mkLiteral "17.5%";
+                cursor = mkLiteral "text";
             };
             element = {
-                padding = mkLiteral "0.65em 0.75em";
-            };
-            "element selected" = {
+                text-color = mkLiteral "@fg";
+                padding = mkLiteral "10px 10px 8px 10px";
+                expand = mkLiteral "false";
+                cursor = mkLiteral "pointer";
+                margin = mkLiteral "3px";
                 border-radius = mkLiteral "4px";
+            };
+            "element.selected" = {
+                text-color = mkLiteral "@fg";
                 background-color = mkLiteral "@al";
             };
-            "element-text, element-icon" = {
+            element-text = {
                 background-color = mkLiteral "inherit";
-                text-color = mkLiteral "inherit";
-            };
-            element-icon = {
-                size = mkLiteral "15px";
-            };
-            mode-switcher = {
-                enabled = mkLiteral "true";
-                expand = mkLiteral "false";
-                spacing = mkLiteral "10px";
-                margin = mkLiteral "0px";
-                padding = mkLiteral "0px";
-                border = mkLiteral "0px solid";
-                border-radius = mkLiteral "0px";
-                border-color = mkLiteral "@fg";
-                background-color = mkLiteral "transparent";
-                text-color = mkLiteral "@fg";
-            };
-            button = {
-                padding = mkLiteral "12px";
-                border = mkLiteral "0px solid";
-                border-radius = mkLiteral "4px";
-                border-color = mkLiteral "@al";
-                background-color = mkLiteral "@bg";
                 text-color = mkLiteral "inherit";
                 cursor = mkLiteral "pointer";
             };
-            "button selected" = {
-                background-color = mkLiteral "@ac";
-                text-color = mkLiteral "@bg";
+            "element-text selected" = {
+                background-color = mkLiteral "inherit";
+                text-color = mkLiteral "inherit";
+                cursor = mkLiteral "pointer";
+                highlight = mkLiteral "none";
             };
-            num-filtered-rows = {
-                enabled = mkLiteral "true";
+            textbox-prompt-divider = {
                 expand = mkLiteral "false";
-                background-color = mkLiteral "inherit";
-                text-color = mkLiteral "inherit";
-            };
-            textbox-num-sep = {
-                enabled = mkLiteral "true";
-                expand = mkLiteral "false";
-                str = mkLiteral ''"/"'';
-                background-color = mkLiteral "inherit";
-                text-color = mkLiteral "inherit";
-            };
-            num-rows = {
-                enabled = mkLiteral "true";
-                expand = mkLiteral "false";
-                background-color = mkLiteral "inherit";
-                text-color = mkLiteral "inherit";
-            };
-            case-indicator = {
-                enabled = mkLiteral "true";
-                background-color = mkLiteral "inherit";
-                text-color = mkLiteral "inherit";
+                str = mkLiteral ''"::"'';
+                text-color = mkLiteral "@fg";
+                padding = mkLiteral "13px 0px 13px 0px";
             };
         };
     };
