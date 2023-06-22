@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+    fonts.fontconfig.enable = true;
+
     gtk = {
         enable = true;
         
@@ -20,6 +22,8 @@
         gtk4.extraConfig = {
             gtk-application-prefer-dark-theme = true;
             gtk-decoration-layout = "menu:";
+            gtk-enable-event-sounds = false;
+            gtk-enable-input-feedback-sounds = false;
         };
 
         iconTheme = {
@@ -34,7 +38,7 @@
     home.pointerCursor = {
         name = "phinger-cursors-light";
         package = pkgs.phinger-cursors;
-        size = 32;
+        size = 24;
         gtk.enable = true;
         x11.enable = true;
     };
