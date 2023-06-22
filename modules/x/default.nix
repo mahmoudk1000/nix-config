@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./gtk.nix
         ./xcompose.nix
         ./xft.nix
         ./xresources.nix
