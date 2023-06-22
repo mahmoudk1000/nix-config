@@ -5,7 +5,7 @@
         ./polybars
         ./autorandr.nix
         ./betterlockscreen.nix
-        ./conky.nix
+        # ./conky.nix
         ./dunst.nix
         ./flameshot.nix
         ./keyring.nix
