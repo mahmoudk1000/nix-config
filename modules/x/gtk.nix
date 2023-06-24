@@ -42,4 +42,13 @@
         gtk.enable = true;
         x11.enable = true;
     };
+
+    qt = {
+        enable = true;
+        platformTheme = "gnome";
+        style = {
+            name = "breeze";
+            package = pkgs.libsForQt5.breeze-qt5;
+        };
+    };
 }

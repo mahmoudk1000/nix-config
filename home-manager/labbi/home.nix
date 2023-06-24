@@ -58,7 +58,6 @@
 
             libsForQt5.breeze-icons
             xorg.xmodmap
-            hsetroot
         ] ++ (import ../../modules/scripts { inherit pkgs; });
     };
 
