@@ -279,6 +279,7 @@
             liberation_ttf
             noto-fonts
             noto-fonts-emoji
+            ibm-plex
             roboto
             fira
             fira-code
