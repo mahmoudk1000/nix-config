@@ -5,7 +5,6 @@
         awesome = {
             luaModules = with pkgs.luaPackages; [
                 luafilesystem
-                luadbi-mysql
                 luarocks
                 luaposix
                 vicious

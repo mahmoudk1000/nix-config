@@ -5,12 +5,12 @@
         enable = true;
         settings = {
             env = {
-                TERM = "rxvt-unicode-256color";
+                TERM = "xterm-256color";
             };
             window = {
                 padding = {
-                    x = 12;
-                    y = 6;
+                    x = 50;
+                    y = 25;
                 };
                 dimensions = {
                     columns = 80;
@@ -50,8 +50,8 @@
                     foreground = "${theme.base01}";
                 };
                 cursor = {
-                    text = "${theme.base01}";
-                    cursor = "${theme.base09}";
+                    text = "${theme.base09}";
+                    cursor = "${theme.base01}";
                 };
                 selection = {
                     text = "${theme.base01}";

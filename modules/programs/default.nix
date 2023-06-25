@@ -20,6 +20,7 @@
         ./tmux.nix
         ./urxvt.nix
         ./vscode.nix
+        ./wezterm.nix
         ./zathura.nix
         ./zsh.nix
     ];
