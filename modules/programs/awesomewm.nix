@@ -9,6 +9,7 @@
                 luarocks
                 luaposix
                 vicious
+                dkjson
                 ldbus
                 lgi
             ];
