@@ -10,6 +10,7 @@
                 vicious
                 dkjson
                 ldbus
+                http
                 lgi
             ];
         };
