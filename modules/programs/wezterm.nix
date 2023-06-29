@@ -2,7 +2,7 @@
 
 {
     programs.wezterm = {
-        enable = true;
+        enable = false;
         colorSchemes = {
             dunkelblau = {
                 background = "${theme.base00}";

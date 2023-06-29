@@ -25,9 +25,14 @@
             enableAutosuggestions = true;
             enableCompletion = true;
             enableSyntaxHighlighting = true;
+            enableVteIntegration = true;
             autocd = true;
             completionInit = "autoload -U compinit && compinit";
-            historySubstringSearch.enable = true;
+            historySubstringSearch = {
+                enable = true;
+                searchUpKey = "^[OA";
+                searchDownKey = "^[OB";
+            };
             history = {
                 path = "$HOME/.zsh_history";
                 size = 10000;
@@ -38,9 +43,31 @@
                 expireDuplicatesFirst = true;
                 ignorePatterns = [ "ls" "rm" "kill" "exit" "pkill" ];
             };
+            plugins = [
+                {
+                    name = "zsh-nix-shell";
+                    file = "nix-shell.plugin.zsh";
+                    src = pkgs.fetchFromGitHub {
+                        owner = "chisui";
+                        repo = "zsh-nix-shell";
+                        rev = "v0.5.0";
+                        sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
+                    };
+                }
+                {
+                    name = "zsh-vi-mode";
+                    src = pkgs.zsh-vi-mode;
+                    file = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+                }
+            ];
+            localVariables = {
+                KEYTIMEOUT = "1";
+                ZSH_AUTOSUGGEST_USE_ASYNC = true;
+                ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE = 40;
+                ZSH_AUTOSUGGEST_STRATEGY = ["history" "completion"];
+            };
             shellAliases = {
                 zsh  = "exec zsh";
-                py   = "python3";
                 open = "xdg-open";
                 free = "free -h";
 
@@ -85,14 +112,14 @@
                 bindkey '^f'        forward-char
                 bindkey '^b'        backward-char
                 bindkey '^r'        history-incremental-search-backward
-                bindkey "^[[5~"     beginning-of-line
-                bindkey "^A"	    beginning-of-line
-                bindkey "^[[6~"	    end-of-line
-                bindkey "^E"	    end-of-line
-                bindkey "^[[2~"     overwrite-mode
-                bindkey "^[[3~"	    delete-char
-                bindkey "^[[1;5C"   forward-word
-                bindkey "^[[1;5D"   backward-word
+                bindkey '^[[5~'     beginning-of-line
+                bindkey '^A'	    beginning-of-line
+                bindkey '^[[6~'	    end-of-line
+                bindkey '^E'	    end-of-line
+                bindkey '^[[2~'     overwrite-mode
+                bindkey '^[[3~'	    delete-char
+                bindkey '^[[1;5C'   forward-word
+                bindkey '^[[1;5D'   backward-word
 
                 # Completion
                 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
@@ -116,8 +143,13 @@
                 setopt INC_APPEND_HISTORY
                 setopt HIST_REDUCE_BLANKS
 
+                # Custom history-substring-search setting
+                HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+                HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=default,fg=blue,bold'
+                HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=default,fg=red,bold,underline'
+
                 # Custom Highlight Syntax
-                ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=${theme.base09}"
+                ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=default,fg=light_black,underline"
 
                 # Command Not Found Msg
                 command_not_found_handler() {
