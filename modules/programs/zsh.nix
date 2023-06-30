@@ -28,11 +28,8 @@
             enableVteIntegration = true;
             autocd = true;
             completionInit = "autoload -U compinit && compinit";
-            historySubstringSearch = {
-                enable = true;
-                searchUpKey = "^[OA";
-                searchDownKey = "^[OB";
-            };
+            defaultKeymap = "viins";
+            dotDir = ".config/zsh";
             history = {
                 path = "$HOME/.zsh_history";
                 size = 10000;
@@ -45,19 +42,24 @@
             };
             plugins = [
                 {
+                    name = "zsh-history-substring-search";
+                    src = pkgs.zsh-history-substring-search;
+                    file = "share/zsh-history-substring-search/zsh-history-substring-search.zsh";
+                }
+                {
                     name = "zsh-nix-shell";
-                    file = "nix-shell.plugin.zsh";
-                    src = pkgs.fetchFromGitHub {
-                        owner = "chisui";
-                        repo = "zsh-nix-shell";
-                        rev = "v0.5.0";
-                        sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
-                    };
+                    src = pkgs.zsh-nix-shell;
+                    file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
                 }
                 {
                     name = "zsh-vi-mode";
                     src = pkgs.zsh-vi-mode;
-                    file = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+                    file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+                }
+                {
+                    name = "zsh-autopair";
+                    src = pkgs.zsh-autopair;
+                    file = "share/zsh/zsh-autopair/autopair.zsh";
                 }
             ];
             localVariables = {
@@ -65,9 +67,10 @@
                 ZSH_AUTOSUGGEST_USE_ASYNC = true;
                 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE = 40;
                 ZSH_AUTOSUGGEST_STRATEGY = ["history" "completion"];
+                ZSH_HIGHLIGHT_HIGHLIGHTERS = [ "main" "brackets" "cursor" ];
             };
             shellAliases = {
-                zsh  = "exec zsh";
+                reload  = "exec zsh";
                 open = "xdg-open";
                 free = "free -h";
 
@@ -93,8 +96,10 @@
                 gp  = "git push";
                 gff = "git diff --minimal";
 
-                nc = "ncmpcpp";
-                ra = "ranger";
+                mk = "ncmpcpp";
+
+                cleanup = "sudo nix-collect-garbage --delete-older-than 3d";
+                bloat = "nix path-info -Sh /run/current-system";
             };
             sessionVariables = {
                 "EDITOR" = "nvim";
@@ -103,39 +108,51 @@
             initExtra = ''
                 autoload -Uz promptinit; promptinit
                 eval "$(starship init zsh)"
-            '';
-            initExtraBeforeCompInit = ''
+
                 # Keybinds
-                bindkey '^a'        beginning-of-line
-                bindkey '^e'        end-of-line
-                bindkey '^w'        backward-kill-word
-                bindkey '^f'        forward-char
-                bindkey '^b'        backward-char
-                bindkey '^r'        history-incremental-search-backward
-                bindkey '^[[5~'     beginning-of-line
-                bindkey '^A'	    beginning-of-line
-                bindkey '^[[6~'	    end-of-line
-                bindkey '^E'	    end-of-line
-                bindkey '^[[2~'     overwrite-mode
-                bindkey '^[[3~'	    delete-char
-                bindkey '^[[1;5C'   forward-word
-                bindkey '^[[1;5D'   backward-word
+                bindkey '^a'            beginning-of-line
+                bindkey '^e'            end-of-line
+                bindkey '^w'            backward-kill-word
+                bindkey '^f'            forward-char
+                bindkey '^b'            backward-char
+                bindkey '^r'            history-incremental-search-backward
+                bindkey '^[[5~'         beginning-of-line
+                bindkey '^A'	        beginning-of-line
+                bindkey -M vicmd 'k'    history-substring-search-up
+                bindkey -M vicmd 'j'    history-substring-search-down
+                bindkey '^[[A'          history-substring-search-up
+                bindkey '^[[B'          history-substring-search-down
+                bindkey '^[[6~'	        end-of-line
+                bindkey '^E'	        end-of-line
+                bindkey '^[[2~'         overwrite-mode
+                bindkey '^[[3~'	        delete-char
+                bindkey '^[[1;5C'       forward-word
+                bindkey '^[[1;5D'       backward-word
+                bindkey '^ '            autosuggest-accept
 
                 # Completion
-                zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-                zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
-                zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-                                            /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+                zstyle ':completion:*' menu select
+
+                zstyle ':completion:*:matches' group yes
+                zstyle ':completion:*:descriptions' format '%B%F{yellow}=> %d%f'
+                zstyle ':completion:*:messages' format '%B%F{purple}» %d%f'
+                zstyle ':completion:*:warnings' format '%B%F{red}No matches for:%f %d%b'
+                zstyle ':completion:::::' completer _expand _complete _ignored _approximate
+                zstyle ':completion:*:corrections' format '%B%F{green}=~ %d%f'
+                zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
                 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+                zstyle ':completion:*' group-name '''
                 zstyle ':completion:*' use-cache on
                 zstyle ':completion:*' cache-path ~/.zsh_cache
 
+                zstyle ':completion:*:approximate:*' max-errors 1 numeric
+                zstyle ':completion:*:functions' ignored-patterns '_*'
+                zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=01=31"
+                zstyle ':completion:*:*:kill:*:processes' command 'ps --forest -A -o pid,user,cmd'
+
                 zmodload zsh/complist
+                
                 setopt extendedglob
-                zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
-
-                zstyle ':completion:*' menu select
-
                 setopt APPEND_HISTORY
                 setopt HIST_FIND_NO_DUPS
                 setopt HIST_SAVE_NO_DUPS
@@ -143,13 +160,13 @@
                 setopt INC_APPEND_HISTORY
                 setopt HIST_REDUCE_BLANKS
 
-                # Custom history-substring-search setting
+                # Custom History-Substring-Search Setting
                 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
-                HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=default,fg=blue,bold'
-                HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=default,fg=red,bold,underline'
+                HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=default,fg=blue,bold"
+                HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=default,fg=red,bold,underline"
 
                 # Custom Highlight Syntax
-                ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=default,fg=light_black,underline"
+                ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=default,fg=8,underline"
 
                 # Command Not Found Msg
                 command_not_found_handler() {
@@ -162,10 +179,10 @@
                 fi
             '';
             dirHashes = {
-                docs  = "$HOME/Documents";
-                vids  = "$HOME/Videos";
-                dl    = "$HOME/Downloads";
-                musk  = "$HOME/Musik";
+                doc = "$HOME/docs";
+                vid = "$HOME/videos";
+                dwn = "$HOME/download";
+                msk = "$HOME/musik";
             };
         };
     };
