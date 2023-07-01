@@ -176,16 +176,9 @@
 
         st = {
             conf = builtins.readFile ../../modules/patches/st/config.h;
-            extraLibs = with pkgs; [ harfbuzz ];
+            extraLibs = with pkgs; [ harfbuzz gd glib ];
             patches = [
-                ../../modules/patches/st/bold.diff
-                ../../modules/patches/st/boxdraw.diff
-                ../../modules/patches/st/dynamic-cursor.diff
-                ../../modules/patches/st/glyph-wide.diff
-                # ../../modules/patches/st/ligatures.diff
-                ../../modules/patches/st/scrollback.diff
-                ../../modules/patches/st/universcroll.diff
-                ../../modules/patches/st/xresources.diff
+                ../../modules/patches/st/momo-patch.diff
             ];
         };
 
