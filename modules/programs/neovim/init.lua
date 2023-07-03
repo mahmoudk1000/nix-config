@@ -23,18 +23,18 @@ require('lazy').setup({
     'windwp/nvim-ts-autotag',
     'norcalli/nvim-colorizer.lua',
     'windwp/nvim-autopairs',
-    'akinsho/toggleterm.nvim',      
+    'akinsho/toggleterm.nvim',
     'lukas-reineke/indent-blankline.nvim',
     'tpope/vim-fugitive',
     'karb94/neoscroll.nvim',
     'tpope/vim-rhubarb',
     'onsails/lspkind.nvim',
     'goolord/alpha-nvim',
-    { 
+    {
       'lewis6991/gitsigns.nvim',
-      dependencies = { 
-        'nvim-lua/plenary.nvim' 
-      }, 
+      dependencies = {
+        'nvim-lua/plenary.nvim'
+      },
     },
     { 'numToStr/Comment.nvim', opts = {} },
     {
@@ -55,19 +55,19 @@ require('lazy').setup({
     {
       'hrsh7th/nvim-cmp',
       dependencies = {
-        'hrsh7th/cmp-nvim-lsp' 
-      }, 
+        'hrsh7th/cmp-nvim-lsp'
+      },
     },
     'akinsho/bufferline.nvim',
-    { 
+    {
       'L3MON4D3/LuaSnip',
-      dependencies = { 
-        'saadparwaiz1/cmp_luasnip', 
+      dependencies = {
+        'saadparwaiz1/cmp_luasnip',
         'rafamadriz/friendly-snippets'
-      }, 
+      },
     },
     'nvim-lualine/lualine.nvim',
-    { 
+    {
       'nvim-neo-tree/neo-tree.nvim',
        dependencies = {
         "nvim-lua/plenary.nvim",
