@@ -47,7 +47,6 @@
 
     # Programs
     programs = {
-        light.enable = true;
         adb.enable = true;
         htop.enable = true;
         zsh.enable = true;
@@ -163,6 +162,7 @@
         git
         man-pages
         _2bwm
+        brightnessctl
     ] ++ (with config.boot.kernelPackages; [
         cpupower
         perf
@@ -246,7 +246,6 @@
 
             # Radio Device
             WIFI_PWR_ON_BAT = 1;
-            DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
             RESTORE_DEVICE_STATE_ON_STARTUP = 1;
 
             # Disable on Network Connect
