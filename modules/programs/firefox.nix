@@ -107,6 +107,7 @@
                     user_pref("media.rdd-vpx.enabled", true);
                 '';
                 userChrome = ''
+                    @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
                     * {
                         font-family: "Iosevka" !important;
                         font-size: 12px !important;

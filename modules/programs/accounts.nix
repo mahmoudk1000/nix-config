@@ -184,6 +184,77 @@
             profiles = {
                 mahmoud = {
                     isDefault = true;
+                    userChrome = ''
+                        @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+                        element {
+                            -tab-max-width: 200px !important;
+                        }
+                        * {
+                            font-family: "Iosevka" !important;
+                            font-size: 12px !important;
+                        }
+                        #unifiedToolbar {
+                            display: none !important;
+                        }
+                        #threadTree[rows="thread-card"] {
+                            background-color: ${theme.base00} !important;
+                        }
+                        table[is="tree-view-table"] {
+                            background-color: ${theme.base02} !important;
+                            color: ${theme.base01} !important;
+                        }
+                        .button {
+                            background-color: ${theme.base02} !important;
+                        }
+                        .button.button-primary {
+                            background-color: ${theme.base06} !important;
+                            color: ${theme.base00} !important;
+                            border-color: ${theme.base06} !important;
+                        }
+                        #messagePane {
+                            background-color: ${theme.base00} !important;
+                        }
+                        #accountCentral {
+                            background-color: ${theme.base00} !important;
+                        }
+                        #messageHeader {
+                            background-color: ${theme.base02} !important;
+                        }
+                        #calendarViewHeader {
+                            background-color: ${theme.base02} !important;
+                        }
+                        .calview-toggle {
+                            background-color: ${theme.base00} !important;
+                        }
+                        button.calview-toggle-item {
+                            background-color ${theme.base02} !important;
+                        }
+                        .minimonth-month-box,
+                        .minimonth-cal-box {
+                            background-color: ${theme.base02} !important;
+                        }
+                        .minimonth-nav-section {
+                            background-color: ${theme.base06} !important;
+                        }
+                        .minimonth-week {
+                            background-color: ${theme.base09} !important;
+                            color: ${theme.base01} !important;
+                        }
+                        .minimonth-day[selected="true"][today="true"] {
+                            background-color: ${theme.base06} !important;
+                            border: 1px solid ${theme.base06} !important;
+                            color: ${theme.base00} !important;
+                        }
+                        tr[is="thread-card"][data-properties~="unread"]:not(.selected, :hover) {
+                            background-color: ${theme.base09} !important;
+                        }
+                        #threadTree [data-properties~="new"]:not(.selected) .thread-card-container :is(.subject, .date) {
+                            color: ${theme.base06} !important;
+                        }
+                        button.calview-toggle-item[role="tab"][aria-selected="true"] {
+                            background-color: ${theme.base06} !important;
+                        }
+                    '';
                 };
             };
             settings = {
