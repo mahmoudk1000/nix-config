@@ -24,12 +24,22 @@
       enable = true;
       enableAutosuggestions = true;
       enableCompletion = true;
-      enableSyntaxHighlighting = true;
       enableVteIntegration = true;
       autocd = true;
       completionInit = "autoload -U compinit && compinit";
       defaultKeymap = "viins";
       dotDir = ".config/zsh";
+      syntaxHighlighting = {
+        enable = true;
+        styles = {
+          ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "bg=default,fg=8";
+        };
+      };
+      # historySubstringSearch = {
+      #   enable = true;
+      #   searchUpKey = [ "^[[A" "^[OA" ];
+      #   searchDownKey = [ "^[[B" "^[OB" ];
+      # };
       history = {
         path = "$HOME/.zsh_history";
         size = 10000;
@@ -123,9 +133,9 @@
         bindkey '^h'            fzf-history-widget
         bindkey '^r'            history-incremental-search-backward
         bindkey '^[[A'          history-substring-search-up
-        bindkey '^[[B'          history-substring-search-down
-        bindkey -M vicmd 'k'    history-substring-search-up
-        bindkey -M vicmd 'j'    history-substring-search-down
+-       bindkey '^[[B'          history-substring-search-down
+-       bindkey -M vicmd 'k'    history-substring-search-up
+-       bindkey -M vicmd 'j'    history-substring-search-down
 
         # Completion
         zstyle ':completion:*' menu select
@@ -158,12 +168,9 @@
         setopt HIST_REDUCE_BLANKS
 
         # Custom History-Substring-Search Setting
-        HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
-        HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=default,fg=blue,bold"
-        HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=default,fg=red,bold,underline"
-
-        # Custom Highlight Syntax
-        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=default,fg=8,underline"
+        typeset -g HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+        typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=default,fg=blue,bold"
+        typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=default,fg=red,bold,underline"
 
         # Command Not Found Msg
         command_not_found_handler() {
