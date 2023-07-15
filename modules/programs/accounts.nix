@@ -42,7 +42,10 @@
                     onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: mahmoudk1000@gmail.com!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
-                thunderbird.enable = true;
+                thunderbird = {
+                    enable = true;
+                    profiles = [ "personal" ];
+                };
             };
             dodok1000 = {
                 flavor = "gmail.com";
@@ -77,7 +80,10 @@
                     onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: dodok1000@gmail.com!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
-                thunderbird.enable = true;
+                thunderbird = {
+                    enable = true;
+                    profiles = [ "personal" ];
+                };
             };
             "mahmoud.a.asran" = {
                 flavor = "outlook.office365.com";
@@ -112,7 +118,10 @@
                     onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: mahmoud.a.asran@outlook.com!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
-                thunderbird.enable = true;
+                thunderbird = {
+                    enable = true;
+                    profiles = [ "personal" ];
+                };
             };
             university = {
                 flavor = "outlook.office365.com";
@@ -133,7 +142,7 @@
                 };
                 offlineimap.enable = true;
                 mbsync = {
-                    enable = true;
+                    enable = false;
                     create = "both";
                     expunge = "both";
                     patterns = [ "*" ];
@@ -147,12 +156,15 @@
                     };
                 };
                 imapnotify = {
-                    enable = true;
+                    enable = false;
                     boxes = [ "Inbox" ];
                     onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: sim.mahmoudayman3129@alexu.edu.eg!"'';
                     onNotify = "${pkgs.isync}/bin/mbsync -a";
                 };
-                thunderbird.enable = true;
+                thunderbird = {
+                    enable = true;
+                    profiles = [ "personal" ];
+                };
             };
         };
     };
@@ -182,17 +194,15 @@
             enable = true;
             package = pkgs.thunderbird;
             profiles = {
-                mahmoud = {
+                personal = {
                     isDefault = true;
+                    withExternalGnupg = true;
                     userChrome = ''
                         @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
                         element {
                             -tab-max-width: 200px !important;
                         }
-                        * {
-                            font-family: "Iosevka" !important;
-                            font-size: 12px !important;
-                        }
+                        #unifiedToolbarContainer,
                         #unifiedToolbar {
                             display: none !important;
                         }
@@ -236,6 +246,7 @@
                         .minimonth-nav-section {
                             background-color: ${theme.base06} !important;
                         }
+                        #folderTree:focus-within li.selected > .container, #folderTree li.drop-target > .container,
                         .minimonth-week {
                             background-color: ${theme.base09} !important;
                             color: ${theme.base01} !important;
@@ -245,14 +256,52 @@
                             border: 1px solid ${theme.base06} !important;
                             color: ${theme.base00} !important;
                         }
+                        .btn-hub,
+                        li:not(.selected) > .container:hover,
+                        .tab-background[selected="true"],
                         tr[is="thread-card"][data-properties~="unread"]:not(.selected, :hover) {
                             background-color: ${theme.base09} !important;
                         }
+                        .tab-content {
+                            background-color: ${theme.base02} !important;
+                        }
+                        .tabmail-tab:not([selected], :-moz-lwtheme),
+                        .new-messages > .container > .name,
                         #threadTree [data-properties~="new"]:not(.selected) .thread-card-container :is(.subject, .date) {
                             color: ${theme.base06} !important;
                         }
+                        .notification-button-container, .notification-message {
+                            color: ${theme.base00} !important;
+                        }
+                        .unread > .container > .unread-count,
+                        .new-messages > .container > .unread-count,
                         button.calview-toggle-item[role="tab"][aria-selected="true"] {
                             background-color: ${theme.base06} !important;
+                        }
+                        .notificationbox-stack,
+                        :host([type="info"]) .icon,
+                        .list-header-bar:not([hidden]),
+                        #quick-filter-bar,
+                        #tabs-toolbar,
+                        #toolbar-menubar,
+                        #statusTextBox,
+                        #folderPaneHeaderBar:not([hidden]),
+                        #folderPane {
+                            background-color: ${theme.base00} !important;
+                        }
+                    '';
+                    userContent = ''
+                        .sidebar-footer-icon, .category-icon {
+                            fill: ${theme.base00 + "DD"} !important;
+                        }
+                        #categories > .category[selected],
+                        #searchInput {
+                            background-color: ${theme.base02} !important;
+                        }
+                        .sticky-container,
+                        #pref-category-box,
+                        #preferencesContainer {
+                            background-color: ${theme.base00} !important;
                         }
                     '';
                 };
@@ -279,17 +328,19 @@
                 "toolkit.telemetry.enabled" = false;
                 "toolkit.telemetry.unified" = false;
                 "toolkit.telemetry.server" = "";
+
+                "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             };
         };
     };
     services.imapnotify.enable = true;
-    systemd.user.services.thunderbird = {
-        Service = {
-            Type = "simple";
-            ExecStart = "${pkgs.thunderbird}/bin/thunderbird";
-            Restart = "on-failure";
-        };
-        Unit.PartOf = [ "graphical-session.target" ];
-        Install.WantedBy = [ "graphical-session.target" ];
-    };
+    # systemd.user.services.thunderbird = {
+    #     Service = {
+    #         Type = "simple";
+    #         ExecStart = "${pkgs.thunderbird-thunderbird}/bin/thunderbird";
+    #         Restart = "on-failure";
+    #     };
+    #     Unit.PartOf = [ "graphical-session.target" ];
+    #     Install.WantedBy = [ "graphical-session.target" ];
+    # };
 }
