@@ -259,9 +259,13 @@
                         .btn-hub,
                         li:not(.selected) > .container:hover,
                         .tab-background[selected="true"],
+                        .thread-card-container:focus,
+                        .thread-card-container:active,
+                        .container:focus,
                         tr[is="thread-card"][data-properties~="unread"]:not(.selected, :hover) {
                             background-color: ${theme.base09} !important;
                         }
+                        button.calview-toggle-item,
                         .tab-content {
                             background-color: ${theme.base02} !important;
                         }
@@ -275,16 +279,29 @@
                         }
                         .unread > .container > .unread-count,
                         .new-messages > .container > .unread-count,
+                        li.selected > .container,
                         button.calview-toggle-item[role="tab"][aria-selected="true"] {
                             background-color: ${theme.base06} !important;
+                        }
+                        .recipient-avatar {
+                            background-color: ${theme.base00} !important;
+                            color: ${theme.base06} !important;
+                        }
+                        .message-header-view-button {
+                            fill: ${theme.base06 + "DD"} !important;
                         }
                         .notificationbox-stack,
                         :host([type="info"]) .icon,
                         .list-header-bar:not([hidden]),
                         #quick-filter-bar,
+                        #unifinder-searchBox,
+                        #calendar-panel,
+                        #calSidebar,
+                        #view-box,
                         #tabs-toolbar,
                         #toolbar-menubar,
                         #statusTextBox,
+                        #calendar-list > li.selected,
                         #folderPaneHeaderBar:not([hidden]),
                         #folderPane {
                             background-color: ${theme.base00} !important;
@@ -292,14 +309,20 @@
                     '';
                     userContent = ''
                         .sidebar-footer-icon, .category-icon {
-                            fill: ${theme.base00 + "DD"} !important;
+                            fill: ${theme.base06 + "DD"} !important;
                         }
                         #categories > .category[selected],
                         #searchInput {
                             background-color: ${theme.base02} !important;
                         }
                         .sticky-container,
+                        .main-search,
+                        .main-heading,
+                        #content,
+                        #sidebar,
                         #pref-category-box,
+                        #accountTreeBox,
+                        #containerBox,
                         #preferencesContainer {
                             background-color: ${theme.base00} !important;
                         }
