@@ -12,6 +12,7 @@ let
     mountain = import ./mountain.nix;
     night = import ./night.nix;
     rnvy = import ./rnvy.nix;
+    rouge = import ./rouge.nix;
     seaul = import ./seaul.nix;
     tokyonight = import ./tokyonight.nix;
     uwu = import ./uwu.nix;
