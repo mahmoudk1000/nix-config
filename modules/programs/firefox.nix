@@ -294,7 +294,7 @@
                     #urlbar ::-moz-selection,
                     .searchbar-textbox ::-moz-selection {
                         background-color: ${theme.base01} !important;
-                        color: ${theme.BLACK} !important;
+                        color: ${theme.base09} !important;
                     }
                     #tabbrowser-tabpanels {
                         background-color: ${theme.base01} !important;
@@ -365,7 +365,7 @@
                             text-align: center !important;
                         }
                         .search-wrapper input {
-                            background-color: ${theme.BLACK} !important;
+                            background-color: ${theme.base09} !important;
                             border-radius: 0px !important;
                             background-image: none !important;
                             background-size: none !important;

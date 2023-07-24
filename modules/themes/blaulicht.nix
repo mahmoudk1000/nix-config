@@ -15,5 +15,4 @@
     base0D = "#9AB2C8";
     base0E = "#E1D2Fd";
     base0F = "#AAE0E4";
-    BLACK = "#0C1115";
 }
