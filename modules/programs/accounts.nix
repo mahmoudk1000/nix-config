@@ -262,10 +262,27 @@
                         .thread-card-container:focus,
                         .thread-card-container:active,
                         .container:focus,
+                        .calendar-month-day-box-other-month,
+                        .calendar-month-day-box-current-month[selected="true"],
+                        .calendar-month-day-box-other-month.calendar-month-day-box-day-off,
+                        #agenda-toolbar,
+                        .agenda-date-header,
                         tr[is="thread-card"][data-properties~="unread"]:not(.selected, :hover) {
                             background-color: ${theme.base09} !important;
                         }
+                        .minimonth-day[selected="true"],
+                        .calendar-month-day-box-current-month[selected="true"], .calendar-month-day-box-day-off[selected="true"], .calendar-month-day-box-other-month[selected="true"]{
+                            border: 1px solid ${theme.base06} !important;
+                        }
+                        .calendar-month-day-box-date-label[relation="today"][selected="true"]{
+                            color: ${theme.base00} !important;
+                        }
+                        .calendar-month-day-box-date-label[relation="today"] {
+                            background-color: ${theme.base06} !important;
+                        }
+                        .calendar-month-day-box-day-off,
                         button.calview-toggle-item,
+                        #agenda-toolbar,
                         .tab-content {
                             background-color: ${theme.base02} !important;
                         }
@@ -280,7 +297,10 @@
                         .unread > .container > .unread-count,
                         .new-messages > .container > .unread-count,
                         li.selected > .container,
+                        [is="tree-view-table-body"]:focus > .selected, [is="tree-view-table-body"]:focus-within > .selected, [is="tree-view-table-body"] > .selected:focus-within,
+                        .unread > .container > .unread-count, .new-messages > .container > .unread-count, li.selected > .container, button.calview-toggle-item[role="tab"][aria-selected="true"],
                         button.calview-toggle-item[role="tab"][aria-selected="true"] {
+                            color: ${theme.base00} !important;
                             background-color: ${theme.base06} !important;
                         }
                         .recipient-avatar {
@@ -290,10 +310,29 @@
                         .message-header-view-button {
                             fill: ${theme.base06 + "DD"} !important;
                         }
+                        calendar-day-label {
+                            color: ${theme.base01} !important;
+                            background-color: ${theme.base00} !important;
+                        }
+                        calendar-day-label[relation="today"] {
+                            color: ${theme.base06} !important;
+                            background-color: ${theme.base06 + "30"} !important;
+                        }
+                        #agenda {
+                            background-color: ${theme.base00}  !important;
+                            --selected-background: ${theme.base06} !important;
+                            --selected-foreground: ${theme.base00} !important;
+                        }
                         .notificationbox-stack,
                         :host([type="info"]) .icon,
                         .list-header-bar:not([hidden]),
+                        .monthtable,
+                        .calendar-month-day-box-current-month,
+                        #mini-day-image,
+                        #today-pane-panel > .sidebar-header,
+                        #calendar-task-tree,
                         #quick-filter-bar,
+                        #task-addition-box,
                         #unifinder-searchBox,
                         #calendar-panel,
                         #calSidebar,
@@ -303,6 +342,7 @@
                         #statusTextBox,
                         #calendar-list > li.selected,
                         #folderPaneHeaderBar:not([hidden]),
+                        calendar-month-view, calendar-multiweek-view,
                         #folderPane {
                             background-color: ${theme.base00} !important;
                         }
