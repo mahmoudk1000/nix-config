@@ -4,6 +4,7 @@
     imports = [
         ./polybars
         ./autorandr.nix
+        ./battery.nix
         ./betterlockscreen.nix
         # ./conky.nix
         ./dunst.nix
