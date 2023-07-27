@@ -11,7 +11,9 @@
         username = "mahmoud";
         homeDirectory = "/home/mahmoud";
         stateVersion = "22.05";
+        extraOutputsToInstall = [ "man" ];
         packages = with pkgs; [
+
             vim
             unzip
             curl
@@ -32,14 +34,15 @@
             spotdl
             ventoy-bin
             yt-dlp
-            st
-
+            
+            ffmpeg
             arandr
             imagemagick
             rtorrent
             nsxiv
             conky
 
+            st
             zoom-us
             inkscape
             freetube
@@ -58,6 +61,7 @@
 
             libsForQt5.breeze-icons
             xorg.xmodmap
+
         ] ++ (import ../../modules/scripts { inherit pkgs; });
     };
 

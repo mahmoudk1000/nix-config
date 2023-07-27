@@ -4,6 +4,7 @@
   imports =
     [   # Include the results of the hardware scan.
         ./hardware-configuration.nix
+        ../../modules/services/battery.nix
     ];
 
     # Boot
@@ -222,6 +223,7 @@
         openssh.enable = true;
         printing.enable = true;
         tumbler.enable = true;
+        batteryNotifier.enable = true;
     };
 
     # TLP. (https://linrunner.de/tlp/settings/)
@@ -297,6 +299,7 @@
         package = pkgs.nixUnstable;
         extraOptions = ''
             experimental-features = nix-command flakes
+            warn-dirty = false
             keep-outputs = false
             keep-derivations = false
         '';
