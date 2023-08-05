@@ -16,5 +16,6 @@ let
     seaul = import ./seaul.nix;
     tokyonight = import ./tokyonight.nix;
     uwu = import ./uwu.nix;
+    yuto = import ./yuro.nix;
 in
 blaulicht
