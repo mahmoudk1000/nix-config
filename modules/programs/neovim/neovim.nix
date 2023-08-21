@@ -14,14 +14,22 @@
             nodePackages_latest.typescript-language-server
             nodePackages_latest.bash-language-server
             nodePackages_latest.yaml-language-server
-            sumneko-lua-language-server
             python310Packages.python-lsp-server
+            docker-compose-language-service
+            sumneko-lua-language-server
+            ansible-language-server
             java-language-server
+            terraform-lsp
             quick-lint-js
+            terraform-ls
+            ansible-lint
             nixpkgs-fmt
             tree-sitter
             rnix-lsp
+            yamllint
+            yamlfmt
             ripgrep
+            tflint
             shfmt
             gcc
         ];
@@ -107,6 +115,9 @@
             vim-sleuth
             vim-surround
             vim-unimpaired
+            vim-terraform
+            vim-yaml
+            ansible-vim
             vimwiki
             playground
             friendly-snippets

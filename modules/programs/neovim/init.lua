@@ -78,6 +78,9 @@ require('lazy').setup({
     'tpope/vim-sleuth',
     'nvim-treesitter/playground',
     'folke/which-key.nvim',
+    'stephpy/vim-yaml',
+    'pearofducks/ansible-vim',
+    'hashivim/vim-terraform',
     {
       'ellisonleao/glow.nvim',
       config = true,
@@ -198,6 +201,7 @@ require('neoscroll').setup()
 -- Mason
 require("mason").setup({
     ui = {
+        border = "none",
         icons = {
             package_installed = "󰄳 ",
             package_pending = " ",

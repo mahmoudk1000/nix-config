@@ -40,6 +40,7 @@
             jnoortheen.nix-ide
             bbenoist.nix
             ms-python.vscode-pylance
+            hashicorp.terraform
         ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {
                 name = "fluent-icons";
