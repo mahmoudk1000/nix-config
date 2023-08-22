@@ -13,10 +13,11 @@ treesitter.setup({
   autotag = {
     enable = true,
   },
+  auto_install = true,
+  sync_install = true,
   ensure_installed = { 
     'lua',
     'typescript',
-    'rust',
     'python',
     'bash',
     'c',
@@ -29,6 +30,10 @@ treesitter.setup({
     'markdown',
     'nix',
     'yaml',
+    'xml',
+    'terraform',
+    'sql',
+    'groovy',
   },
   highlight = { 
     enable = true 

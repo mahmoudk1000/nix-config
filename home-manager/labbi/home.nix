@@ -62,6 +62,15 @@
             libsForQt5.breeze-icons
             xorg.xmodmap
 
+            # work
+            terraform
+            terraform-inventory
+            ansible
+            helm
+            kubernetes
+            minikube
+            docker-compose
+
         ] ++ (import ../../modules/scripts { inherit pkgs; });
     };
 

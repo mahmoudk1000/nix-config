@@ -157,7 +157,7 @@
         isNormalUser = true;
         home = "/home/mahmoud";
         shell = pkgs.zsh;
-        extraGroups = [ "wheel" "video" "audio" "users" "tty" "input" ];
+        extraGroups = [ "wheel" "video" "audio" "users" "tty" "input" "docker" ];
         hashedPassword = "$6$RC/pIIRmYnXN6vWB$pkDeNbr/SewvTKH4oK5ZzXXdnx8/Az8Wxp0Bg1imM44ECcjmj/eLjSAm0yx6dbozZY0RAN5QXWr/vdQBo35Lq/";
     };
     environment.pathsToLink = [ "/share/zsh" ];
@@ -213,6 +213,9 @@
             services.login.gnupg.enable = true;
         };
     };
+
+    # Docker
+    virtualisation.docker.enable = true;
 
     # Daemons.
     services = {
