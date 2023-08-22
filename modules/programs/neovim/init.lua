@@ -198,19 +198,6 @@ require('nvim-autopairs').setup()
 require('gitsigns').setup()
 require('neoscroll').setup()
 
--- Mason
-require("mason").setup({
-    ui = {
-        border = "none",
-        icons = {
-            package_installed = "󰄳 ",
-            package_pending = " ",
-            package_uninstalled = "󰚌 "
-        }
-    }
-})
-require("mason-lspconfig").setup()
-
 -- Telescope
 require('telescope').setup({
   defaults = {

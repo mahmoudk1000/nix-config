@@ -25,13 +25,17 @@
             ansible-lint
             nixpkgs-fmt
             tree-sitter
-            rnix-lsp
+            marksman
             yamllint
             yamlfmt
             ripgrep
+            helm-ls
             tflint
+            texlab
+            taplo
             shfmt
             gcc
+            nil
         ];
         plugins = with pkgs.vimPlugins; [
 
@@ -85,6 +89,11 @@
                 type = "lua";
                 config = builtins.readFile ./config/whichkey.lua;
             }
+            {
+                plugin = mason-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/mason.lua;
+            }
             auto-pairs
             cmp-buffer
             cmp-cmdline
@@ -93,7 +102,6 @@
             cmp_luasnip
             comment-nvim
             colorizer
-            mason-nvim
             mason-lspconfig-nvim
             dressing-nvim
             fzf-vim

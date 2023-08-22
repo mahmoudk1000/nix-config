@@ -5,7 +5,31 @@ local configs = require ("lspconfig.configs")
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Enable the following language servers
-local servers = { 'clangd', 'bashls', 'lua_ls', 'html', 'jdtls', 'pylsp', 'quick_lint_js', 'rnix', 'pyright', 'tsserver', 'terraformls', 'tflint', 'yamlls', 'ansiblels', 'dockerls', 'docker_compose_language_service' }
+local servers = {
+    'bashls',
+    'clangd',
+    'cssls',
+    'html',
+    'jsonls',
+    'lua_ls',
+    'pylsp',
+    'marksman',
+    'sqlls',
+    'tsserver',
+    'yamlls',
+    'ansiblels',
+    'dockerls',
+    'docker_compose_language_service',
+    'groovyls',
+    'helm_ls',
+    'jsonls',
+    'java_language_server',
+    'texlab',
+    'nil_ls',
+    'taplo',
+    'terraformls',
+    'tflint',
+}
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
