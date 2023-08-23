@@ -23,9 +23,9 @@ local servers = {
     'groovyls',
     'helm_ls',
     'jsonls',
-    'java_language_server',
+    -- 'java_language_server',
     'texlab',
-    'nil_ls',
+    'rnix',
     'taplo',
     'terraformls',
     'tflint',
@@ -75,7 +75,6 @@ local on_attach = function(_, bufnr)
 end
 
 -- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem = {
   documentationFormat = { "markdown", "plaintext" },
   snippetSupport = true,

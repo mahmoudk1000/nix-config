@@ -27,6 +27,7 @@
             tree-sitter
             marksman
             yamllint
+            rnix-lsp
             yamlfmt
             ripgrep
             helm-ls
@@ -35,7 +36,6 @@
             taplo
             shfmt
             gcc
-            nil
         ];
         plugins = with pkgs.vimPlugins; [
 
@@ -129,6 +129,7 @@
             vimwiki
             playground
             friendly-snippets
+            fidget-nvim
             glow-nvim
 
         ];

@@ -78,9 +78,15 @@ require('lazy').setup({
     'tpope/vim-sleuth',
     'nvim-treesitter/playground',
     'folke/which-key.nvim',
+    'natebosch/vim-lsc',
     'stephpy/vim-yaml',
     'pearofducks/ansible-vim',
     'hashivim/vim-terraform',
+    {
+      "j-hui/fidget.nvim",
+      tag = "legacy",
+      event = "LspAttach",
+    },
     {
       'ellisonleao/glow.nvim',
       config = true,
@@ -197,6 +203,7 @@ require('colorizer').setup()
 require('nvim-autopairs').setup()
 require('gitsigns').setup()
 require('neoscroll').setup()
+require('fidget').setup()
 
 -- Telescope
 require('telescope').setup({
