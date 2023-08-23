@@ -57,6 +57,10 @@
             enable = true;
             enableSSHSupport = true;
         };
+        java = {
+            enable = true;
+            package = pkgs.jdk;
+        };
     };
 
     documentation = {
