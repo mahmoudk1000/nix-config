@@ -78,6 +78,7 @@ require('lazy').setup({
     'tpope/vim-sleuth',
     'nvim-treesitter/playground',
     'folke/which-key.nvim',
+    'martinda/Jenkinsfile-vim-syntax',
     'natebosch/vim-lsc',
     'stephpy/vim-yaml',
     'pearofducks/ansible-vim',

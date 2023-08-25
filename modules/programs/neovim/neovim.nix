@@ -131,6 +131,7 @@
             friendly-snippets
             fidget-nvim
             glow-nvim
+            Jenkinsfile-vim-syntax
 
         ];
     };
