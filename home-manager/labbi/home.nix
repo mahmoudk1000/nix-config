@@ -66,9 +66,10 @@
             terraform
             terraform-inventory
             ansible
-            helm
+            kubernetes-helm
             kubernetes
             minikube
+            kubectl
             docker-compose
 
         ] ++ (import ../../modules/scripts { inherit pkgs; });
