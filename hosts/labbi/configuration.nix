@@ -275,7 +275,7 @@
 
     # Fonts
     fonts = {
-        fonts = with pkgs; [
+        packages = with pkgs; [
             iosevka
             nerdfonts
             input-fonts
