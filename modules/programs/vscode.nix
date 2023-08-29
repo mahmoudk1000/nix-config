@@ -60,12 +60,6 @@
                 version = "1.2.29";
                 sha256 = "sha256-Wl++d7mCOjgL7vmVVAKPQQgWRSFlqL4ry7v0wob1OyU=";
             }
-            {
-                name = "vscode-groovy-lint";
-                publisher = "nvuillam";
-                version = "v2.0.0";
-                sha256 = "sha256-sE0A441QPwokBoLoCqtImDHmlAXd66fj8zsJR7Ci=";
-            }
         ];
         keybindings = [
             {
