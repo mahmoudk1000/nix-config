@@ -11,7 +11,19 @@
         shadow = true;
         shadowOpacity = 0.25;
         shadowOffsets = [ (-10) (-10) ];
-        shadowExclude = [ "class_g = 'firefox' && argb" ];
+        shadowExclude = [
+            "_GTK_FRAME_EXTENTS@:c"
+            "_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
+            "window_type = 'dock'"
+            "window_type = 'desktop'"
+            "window_type = 'menu'"
+            "class_g = 'Peek'"
+            "class_g = 'firefox' && window_type = 'utility'"
+            "class_g = 'firefox' && argb"
+            "class_g *?= 'zoom'"
+            "name = 'cpt_frame_xcb_window'"
+            "name *= 'rect-overlay'"
+        ];
         settings = {
             shadow-radius = 10;
             glx-no-stencil = true;
