@@ -1,4 +1,4 @@
-local mason             = require("mason")
+local mason = require("mason")
 
 local servers = {
     'bashls',

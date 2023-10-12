@@ -1,5 +1,5 @@
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 cmp.setup({
   sources = {

@@ -1,10 +1,4 @@
-local status_ok, whichkey = pcall(require, "which-key")
-
-if not status_ok then
-  return
-end
-
-whichkey.setup({
+require("which-key").setup({
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -24,19 +18,17 @@ whichkey.setup({
       g = true, -- bindings for prefixed with g
     },
   },
-  
-  operators = { gc = "Comments" },
-  
+  operators = {
+    gc = "Comments"
+  },
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = "→ ", -- symbol used between a key and it's label
     group = "+", -- symbol prepended to a group
   },
-
   motions = {
     count = true,
   },
-  
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     -- For example:
@@ -44,24 +36,28 @@ whichkey.setup({
     ["<cr>"] = "RET",
     ["<tab>"] = "TAB",
   },
-  
-    popup_mappings = {
+  popup_mappings = {
     scroll_up = "<c-u>", -- binding to scroll up inside the popup
     scroll_down = "<c-d>", -- binding to scroll down inside the popup
   },
-
   window = {
     border = "none", -- none/single/double/shadow
     margin = { 1, 0, 1, 0 },
     padding = { 2, 2, 2, 2 },
   },
-
   layout = {
     spacing = 6, -- spacing between columns
   },
-
-  hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
-
+  hidden = {
+    "<silent>",
+    "<cmd>",
+    "<Cmd>",
+    "<CR>",
+    "call",
+    "lua",
+    "^:",
+    "^ "
+  },
   triggers = "auto",
   triggers_blacklist = {
     -- list of mode / prefixes that should never be hooked by WhichKey

@@ -24,12 +24,16 @@ require('lazy').setup({
     'norcalli/nvim-colorizer.lua',
     'windwp/nvim-autopairs',
     'akinsho/toggleterm.nvim',
-    'lukas-reineke/indent-blankline.nvim',
     'tpope/vim-fugitive',
     'karb94/neoscroll.nvim',
     'tpope/vim-rhubarb',
     'onsails/lspkind.nvim',
     'goolord/alpha-nvim',
+    {
+      'lukas-reineke/indent-blankline.nvim',
+      main = "ibl",
+      opts = {}
+    },
     {
       'lewis6991/gitsigns.nvim',
       dependencies = {
@@ -259,7 +263,11 @@ require('gitsigns').setup({
 
 -- Glow
 require('glow').setup({
+  glow_path = "",
+  install_path = "~/.local/bin/",
+  style = 'light',
+  border = 'rounded',
+  pager = false,
   width = 140,
   height = 120,
-  glow_border = "rounded",
 })

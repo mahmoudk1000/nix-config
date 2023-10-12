@@ -35,6 +35,7 @@
             texlab
             taplo
             shfmt
+            glow
             gcc
         ];
         plugins = with pkgs.vimPlugins; [

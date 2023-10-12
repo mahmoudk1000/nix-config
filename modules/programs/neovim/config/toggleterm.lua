@@ -1,12 +1,6 @@
-local status_ok, toggleterm = pcall(require, "toggleterm")
-
-if not status_ok then
-  return
-end
-
-toggleterm.setup({
+require("toggleterm").setup({
   size = function(term)
-  if term.direction == "horizontal" then
+    if term.direction == "horizontal" then
       return 15
     elseif term.direction == "vertical" then
       return vim.o.columns * 0.4

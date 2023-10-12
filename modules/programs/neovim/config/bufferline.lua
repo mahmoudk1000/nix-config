@@ -1,17 +1,12 @@
-local status_ok, bufferline = pcall(require, "bufferline")
-
-if not status_ok then
-  return
-end
-
-bufferline.setup({
+require("bufferline").setup({
     options = {
         offsets = {
-            { filetype = "NvimTree",
+            {
+                filetype = "NvimTree",
                 text = "File Explorer",
                 padding = 1,
                 text_align = "center"
-            }, 
+            }
         },
         buffer_close_icon = "✘",
         modified_icon = "",
@@ -28,7 +23,6 @@ bufferline.setup({
         separator_style = "thin",
         themable = true,
         color_icons = true,
-
         -- top right buttons in bufferline
         custom_areas = {
             right = function()
@@ -36,7 +30,7 @@ bufferline.setup({
                     { text = "%@Toggle_theme@" .. vim.g.toggle_theme_icon .. "%X" },
                     { text = "%@Quit_vim@ %X" },
                 }
-            end,
-        },
-   }
+            end
+        }
+    }
 })
