@@ -1,34 +1,31 @@
 local lspconfig = require("lspconfig")
-local configs = require ("lspconfig.configs")
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Enable the following language servers
 local servers = {
-    'bashls',
-    'clangd',
-    'cssls',
-    'html',
-    'jsonls',
-    'lua_ls',
-    'pylsp',
-    'marksman',
-    'sqlls',
-    'tsserver',
-    'yamlls',
-    'ansiblels',
-    'dockerls',
-    'docker_compose_language_service',
-    'groovyls',
-    'helm_ls',
-    'jsonls',
-    -- 'java_language_server',
-    'texlab',
-    'rnix',
-    'taplo',
-    'terraformls',
-    'tflint',
+  'clangd',
+  'cssls',
+  'html',
+  'jsonls',
+  'marksman',
+  'sqlls',
+  'tsserver',
+  'yamlls',
+  'ansiblels',
+  'dockerls',
+  'docker_compose_language_service',
+  'groovyls',
+  'helm_ls',
+  'jsonls',
+  -- 'java_language_server',
+  'texlab',
+  'rnix',
+  'taplo',
+  'terraformls',
+  'tflint',
+  'jedi_language_server'
 }
 
 -- LSP settings.
@@ -69,9 +66,6 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', vim.lsp.buf.format or vim.lsp.buf.formatting, { desc = 'Format current buffer with LSP' })
 end
 
 -- Set up lspconfig.
@@ -82,14 +76,14 @@ capabilities.textDocument.completion.completionItem = {
   insertReplaceSupport = true,
   labelDetailsSupport = true,
   deprecatedSupport = true,
-  commitCharactersSupport = true,
+  commitCharactersSupport = true
 }
 
 for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-    }
+  lspconfig[lsp].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
 end
 
 -- Make runtime files discoverable to the server
@@ -97,7 +91,12 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-lspconfig.lua_ls.setup {
+lspconfig.bashls.setup({
+  cmd = { "bash-language-server", "start" },
+  filetypes = { "sh", "zsh" }
+})
+
+lspconfig.lua_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -112,34 +111,34 @@ lspconfig.lua_ls.setup {
       workspace = { library = vim.api.nvim_get_runtime_file('', true) },
       telemetry = { enable = false, },
     },
-  },
-}
+  }
+})
 
-lspconfig.ccls.setup {
-    capabilities = capabilities, 
-    on_attach = on_attach,
-    init_options = {
-        index = {
-            threads = 0;
-        };
-        clang = {
-            extraArgs = { "-fopenmp" };
-            excludeArgs = { "-frounding-math" } ;
-        };
-    }
-}
-
-lspconfig.pylsp.setup {
-  capabilities = capabilities, 
+lspconfig.pylsp.setup({
+  capabilities = capabilities,
   on_attach = on_attach,
   settings = {
     pylsp = {
       plugins = {
+        black = {
+          enabled = true
+        },
+        pylint = {
+          enabled = true,
+          executable = "pylint"
+        },
+        isort = {
+          enabled = true
+        },
+        jedi_completion = {
+          enabled = true
+        },
         pycodestyle = {
+          enabled = true,
           ignore = {'W391'},
           maxLineLength = 100
         }
       }
     }
   }
-}
+})

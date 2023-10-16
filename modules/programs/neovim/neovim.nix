@@ -9,22 +9,32 @@
         withPython3 = true;
         withNodeJs = true;
         defaultEditor = true;
+        extraPython3Packages = pyPkgs: with pyPkgs; [
+            jedi
+            pylint
+            pynvim
+            pyls-isort
+            pycodestyle
+            python-lsp-black
+            python-lsp-server
+            jedi-language-server
+        ];
         extraPackages = with pkgs; [
             nodePackages_latest.dockerfile-language-server-nodejs
             nodePackages_latest.typescript-language-server
             nodePackages_latest.bash-language-server
             nodePackages_latest.yaml-language-server
-            python310Packages.python-lsp-server
             docker-compose-language-service
-            sumneko-lua-language-server
             ansible-language-server
             java-language-server
+            lua-language-server
             terraform-lsp
             quick-lint-js
             terraform-ls
             ansible-lint
             nixpkgs-fmt
             tree-sitter
+            shellcheck
             marksman
             yamllint
             rnix-lsp
@@ -132,6 +142,8 @@
             friendly-snippets
             fidget-nvim
             glow-nvim
+            jedi-vim
+            vim-shellcheck
             Jenkinsfile-vim-syntax
 
         ];

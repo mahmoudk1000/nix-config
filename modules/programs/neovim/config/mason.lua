@@ -24,6 +24,7 @@ local servers = {
     'taplo',
     'terraformls',
     'tflint',
+    'jedi_language_server'
 }
 
 mason.setup ({

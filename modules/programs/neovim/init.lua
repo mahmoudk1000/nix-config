@@ -263,9 +263,7 @@ require('gitsigns').setup({
 
 -- Glow
 require('glow').setup({
-  glow_path = "",
-  install_path = "~/.local/bin/",
-  style = 'light',
+  style = 'dark',
   border = 'rounded',
   pager = false,
   width = 140,
