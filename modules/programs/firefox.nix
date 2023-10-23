@@ -99,6 +99,8 @@
                     "browser.urlbar.suggest.quickactions" = false;
                     "browser.urlbar.suggest.topsites" = false;
                     "browser.tabs.tabmanager.enabled" = false;
+
+                    "browser.contentblocking.category" = "strict";
                 };
                 extraConfig = ''
                     user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
