@@ -1,9 +1,29 @@
 require("neo-tree").setup({
+  cmd = "NeoTree",
   close_if_last_window = true,
   popup_border_style = "rounded",
   enable_git_status = true,
+  git_status_async = true,
   enable_diagnostics = false,
-  cmd = "NeoTree",
+  source_selector = {
+    winbar = true,
+    separator_active = " ",
+    statusline = false,
+    sources = {
+      {
+        source = "filesystem",
+        display_name = " 󰉓 Files ",
+      },
+      {
+        source = "buffers",
+        display_name = " 󰈙 Buffers ",
+      },
+      {
+        source = "git_status",
+        display_name = " 󰊢 Git ",
+      },
+    },
+  },
   default_component_configs = {
     indent = {
       indent_size = 2,
@@ -100,20 +120,20 @@ require("neo-tree").setup({
         ".null-ls_*",
       },
     },
-    follow_current_file = true,
+    follow_current_file.enabled = { enabled = true },
     hijack_netrw_behavior = "open_current",
-    use_libuv_file_watcher = true,
+    use_libuv_file_watcher = true
   },
   buffers = {
-    follow_current_file = true,
+    follow_current_file = { enabled = true },
     show_unloaded = true,
     window = {
       mappings = {
         ["bd"] = "buffer_delete",
         ["<bs>"] = "navigate_up",
-        ["."] = "set_root",
-      },
-    },
+        ["."] = "set_root"
+      }
+    }
   },
   git_status = {
     window = {
@@ -125,9 +145,9 @@ require("neo-tree").setup({
         ["gr"] = "git_revert_file",
         ["gc"] = "git_commit",
         ["gp"] = "git_push",
-        ["gg"] = "git_commit_and_push",
-      },
-    },
+        ["gg"] = "git_commit_and_push"
+      }
+    }
   },
   event_handlers = {
     {
@@ -138,5 +158,5 @@ require("neo-tree").setup({
         end
       end,
     },
-  },
+  }
 })

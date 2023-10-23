@@ -56,6 +56,7 @@ require('lazy').setup({
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
+    'petertriho/cmp-git',
     {
       'hrsh7th/nvim-cmp',
       dependencies = {
@@ -69,6 +70,7 @@ require('lazy').setup({
         'saadparwaiz1/cmp_luasnip',
         'rafamadriz/friendly-snippets'
       },
+      version = "v2.*",
     },
     'nvim-lualine/lualine.nvim',
     {
@@ -80,6 +82,7 @@ require('lazy').setup({
        },
     },
     'tpope/vim-sleuth',
+    'nathom/filetype.nvim',
     'nvim-treesitter/playground',
     'folke/which-key.nvim',
     'martinda/Jenkinsfile-vim-syntax',
@@ -142,6 +145,7 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.list = true
+vim.g.did_load_filetypes = 1
 vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
 
@@ -208,6 +212,7 @@ require('colorizer').setup()
 require('nvim-autopairs').setup()
 require('gitsigns').setup()
 require('neoscroll').setup()
+require("cmp_git").setup()
 require('fidget').setup()
 
 -- Telescope
@@ -268,4 +273,17 @@ require('glow').setup({
   pager = false,
   width = 140,
   height = 120,
+})
+
+require("filetype").setup({
+  overrides = {
+    shebang = {
+      dash = "sh",
+      sh = "bash",
+    },
+    complex = {
+      -- Set the filetype of any full filename matching the regex to gitconfig
+      [".*git/config"] = "gitconfig", -- Included in the plugin
+    }
+  }
 })

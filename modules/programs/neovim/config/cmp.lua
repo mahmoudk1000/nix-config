@@ -1,13 +1,7 @@
-local cmp = require("cmp")
+local cmp     = require("cmp")
 local luasnip = require("luasnip")
 
 cmp.setup({
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = "path" }
-  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -48,7 +42,23 @@ cmp.setup({
       maxwidth = 50,
       ellipsis_char = '...',
     }),
-  }
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' }
+  }, {
+      { name = 'buffer' },
+      { name = "path" },
+      { name = "git" }
+  })
+})
+
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+  }, {
+    { name = 'buffer' },
+  })
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).

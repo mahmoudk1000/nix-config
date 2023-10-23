@@ -110,6 +110,7 @@
             cmp-cmdline
             cmp-nvim-lsp
             cmp-path
+            cmp-git
             cmp_luasnip
             comment-nvim
             colorizer
