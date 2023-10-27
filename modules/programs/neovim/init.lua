@@ -31,8 +31,7 @@ require('lazy').setup({
     'goolord/alpha-nvim',
     {
       'lukas-reineke/indent-blankline.nvim',
-      main = "ibl",
-      opts = {}
+      main = "ibl"
     },
     {
       'lewis6991/gitsigns.nvim',
@@ -185,7 +184,7 @@ vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 
 -- Plugins
-vim.keymap.set('n', '<C-n>', ':NeoTreeShowToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-n>', ':Neotree toggle reveal<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<A-t>', ':ToggleTerm<CR>', {})
 vim.keymap.set('n', '<A-i>', ':ToggleTerm direction=float<CR>', {})
 vim.keymap.set('n', '<leader>md', ':Glow<CR>', {noremap=true, silent=true})
@@ -203,6 +202,7 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = 'Search by [G]it [C]omment' })
 vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = 'Search by [G]it [S]tatus' })
+vim.keymap.set('n', '<A-Tab>', require('telescope.builtin').buffers, { desc = 'Show Buffers' })
 
 -- Once the plugins have been loaded, Lua-based plugins need to be required and started up
 -- For plugins with their own configuration file, that file is loaded and is responsible for
@@ -277,13 +277,11 @@ require('glow').setup({
 
 require("filetype").setup({
   overrides = {
-    shebang = {
-      dash = "sh",
-      sh = "bash",
+    extensions = {
+      sh = "sh"
     },
-    complex = {
-      -- Set the filetype of any full filename matching the regex to gitconfig
-      [".*git/config"] = "gitconfig", -- Included in the plugin
+    shebang = {
+      dash = "sh"
     }
   }
 })

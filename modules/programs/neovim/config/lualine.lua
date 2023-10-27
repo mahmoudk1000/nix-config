@@ -1,5 +1,3 @@
-local lualine = require('lualine')
-
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
@@ -14,14 +12,14 @@ local colors = {
 
 local my_theme = {
   normal = {
-    a = { fg = colors.dark, bg = colors.blue },
+    a = { fg = colors.dark, bg = colors.blue, gui = 'bold' },
     b = { fg = colors.white, bg = colors.black },
     c = { fg = colors.dark, bg = colors.dark },
   },
 
-  insert = { a = { fg = colors.dark, bg = colors.violet } },
-  visual = { a = { fg = colors.dark, bg = colors.green } },
-  replace = { a = { fg = colors.dark, bg = colors.red } },
+  insert = { a = { fg = colors.dark, bg = colors.violet, gui = 'bold' } },
+  visual = { a = { fg = colors.dark, bg = colors.green, gui = 'bold' } },
+  replace = { a = { fg = colors.dark, bg = colors.red, gui = 'bold' } },
 
   inactive = {
     a = { fg = colors.white, bg = colors.black },
@@ -30,47 +28,40 @@ local my_theme = {
   },
 }
 
-lualine.setup({
+require("lualine").setup({
   options = {
     theme = my_theme,
+    icons_enabled = true,
+    always_divide_middle = true,
+    globalstatus = true,
     component_separators = { left = "", right = "" },
     section_separators = { left = '█▓▒', right = '▒▓█' },
     disabled_filetypes = {
-      statusline = { "dashboard", "NvimTree", "NeoTree" },
+      statusline = { 'dashboard', 'NvimTree', 'neo-tree' },
     },
-    ignore_focus = { "NvimTree", "NeoTree" },
-    always_divide_middle = true,
-    globalstatus = true,
+    ignore_focus = { 'NvimTree', 'NeoTree', 'neo-tree' },
     refresh = {
-      statusline = 1000,
-      tabline = 1000,
+      statusline = 1000
     },
   },
   sections = {
-    lualine_a = { 
+    lualine_a = {
       { 'mode', separator = { left = '▒▓█' }, right_padding = 2 },
     },
-    lualine_b = { 'filename', 'branch' },
-    lualine_c = { 'fileformat' },
-    lualine_x = {},
-    lualine_y = { 'filetype', 'progress' },
+    lualine_b = { 'branch' },
+    lualine_c = { 'diff' },
+    lualine_x = { { 'diagnostics', sources = { 'nvim_diagnostic', 'coc' } } },
+    lualine_y = { 'filename' },
     lualine_z = {
       { 'location', separator = { right = '█▓▒' }, left_padding = 2 },
     },
   },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = { 'filename' },
-    lualine_x = { 'location' },
-    lualine_y = {},
-    lualine_z = {},
-  },
+  inactive_sections = {},
   tabline = {},
   extensions = {
-    minimap, 
-    'nvim-tree', 
+    'nvim-tree',
     'neo-tree',
-    'fugitive' 
-  },
+    'fugitive',
+    'toggleterm'
+  }
 })

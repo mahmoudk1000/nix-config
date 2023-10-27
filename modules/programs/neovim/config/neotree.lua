@@ -1,5 +1,4 @@
 require("neo-tree").setup({
-  cmd = "NeoTree",
   close_if_last_window = true,
   popup_border_style = "rounded",
   enable_git_status = true,
@@ -12,17 +11,13 @@ require("neo-tree").setup({
     sources = {
       {
         source = "filesystem",
-        display_name = " 󰉓 Files ",
-      },
-      {
-        source = "buffers",
-        display_name = " 󰈙 Buffers ",
+        display_name = " 󰉓  Files ",
       },
       {
         source = "git_status",
         display_name = " 󰊢 Git ",
-      },
-    },
+      }
+    }
   },
   default_component_configs = {
     indent = {
@@ -63,7 +58,7 @@ require("neo-tree").setup({
   },
   window = {
     position = "left",
-    width = 30,
+    width = 35,
     mapping_options = {
       noremap = true,
       nowait = true,
@@ -120,12 +115,16 @@ require("neo-tree").setup({
         ".null-ls_*",
       },
     },
-    follow_current_file.enabled = { enabled = true },
+    follow_current_file = {
+      enabled = true
+    },
     hijack_netrw_behavior = "open_current",
     use_libuv_file_watcher = true
   },
   buffers = {
-    follow_current_file = { enabled = true },
+    follow_current_file = {
+      enabled = true
+    },
     show_unloaded = true,
     window = {
       mappings = {
