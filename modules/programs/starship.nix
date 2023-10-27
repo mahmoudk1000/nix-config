@@ -6,8 +6,6 @@
         enableZshIntegration = true;
         settings = {
             add_newline = true;
-            scan_timeout = 100;
-            command_timeout = 1000;
             line_break = {
                 disabled = false;
             };
