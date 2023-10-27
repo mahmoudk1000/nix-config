@@ -1,6 +1,8 @@
-{ config, pkgs, theme, ...  }:
+{ config, lib, pkgs, theme, ...  }:
 
 let
+    conkyWidgetEnabled = false;
+
     apiKey = "a89384ad87d37345cca9848d9e0b477f";
     cityId = "361058";
     url = ''"https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${apiKey}&cnt=5&units=metric&lang=en"'';
@@ -56,7 +58,11 @@ let
     '';
 in
 {
-    config = {
+    home.packages = lib.mkIf conkyWidgetEnabled [
+      pkgs.conky
+    ];
+
+    config = lib.mkIf conkyWidgetEnabled {
         systemd.user.services.conky = {
         Unit = {
             Description = "Conky System Monitor";

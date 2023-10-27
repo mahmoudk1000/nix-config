@@ -40,7 +40,6 @@
             imagemagick
             rtorrent
             nsxiv
-            conky
 
             st
             zoom-us
