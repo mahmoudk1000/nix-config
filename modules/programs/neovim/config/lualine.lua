@@ -34,8 +34,8 @@ require("lualine").setup({
     icons_enabled = true,
     always_divide_middle = true,
     globalstatus = true,
-    component_separators = { left = "", right = "" },
-    section_separators = { left = '█▓▒', right = '▒▓█' },
+    component_separators = '|',
+    section_separators = { right = '▒▓█', left = '█▓▒' },
     disabled_filetypes = {
       statusline = { 'dashboard', 'NvimTree', 'neo-tree' },
     },
@@ -48,10 +48,10 @@ require("lualine").setup({
     lualine_a = {
       { 'mode', separator = { left = '▒▓█' }, right_padding = 2 },
     },
-    lualine_b = { 'branch' },
+    lualine_b = { { 'filename', file_status = false, path = 1 }, 'branch' },
     lualine_c = { 'diff' },
     lualine_x = { { 'diagnostics', sources = { 'nvim_diagnostic', 'coc' } } },
-    lualine_y = { 'filename' },
+    lualine_y = { '%p%%/%L' },
     lualine_z = {
       { 'location', separator = { right = '█▓▒' }, left_padding = 2 },
     },
