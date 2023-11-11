@@ -19,7 +19,7 @@
     };
 
     fileSystems."/" = {
-        device = "/dev/disk/by-label/NIXOS";
+        device = "/dev/linux/nixos";
         fsType = "xfs";
     };
 
@@ -33,9 +33,7 @@
         fsType = "ext4";
     };
 
-    swapDevices = [
-        { device = "/dev/disk/by-label/SWAP"; }
-    ];
+    swapDevices = [ ];
 
     powerManagement = {
         cpuFreqGovernor = lib.mkDefault "powersave";

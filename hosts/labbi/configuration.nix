@@ -301,6 +301,13 @@
         };
     };
 
+    # Zram
+    zramSwap = {
+        enable = true;
+        algorithm = "zstd";
+        memoryPercent = 64;
+    };
+
     # Nix
     nix = {
         package = pkgs.nixUnstable;
