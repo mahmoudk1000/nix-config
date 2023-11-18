@@ -35,11 +35,11 @@
           ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "bg=default,fg=8";
         };
       };
-      # historySubstringSearch = {
-      #   enable = true;
-      #   searchUpKey = [ "^[[A" "^[OA" ];
-      #   searchDownKey = [ "^[[B" "^[OB" ];
-      # };
+      historySubstringSearch = {
+        enable = true;
+        searchUpKey = [ "^[[A" "^[OA" ];
+        searchDownKey = [ "^[[B" "^[OB" ];
+      };
       history = {
         path = "$HOME/.zsh_history";
         size = 10000;
@@ -48,14 +48,9 @@
         ignoreSpace = true;
         ignoreDups = true;
         expireDuplicatesFirst = true;
-        ignorePatterns = [ "ls" "rm" "kill" "exit" "pkill" ];
+        ignorePatterns = [ "ls *" "rm *" "kill *" "exit *" "pkill *" ];
       };
       plugins = [
-        {
-          name = "zsh-history-substring-search";
-          src = pkgs.zsh-history-substring-search;
-          file = "share/zsh-history-substring-search/zsh-history-substring-search.zsh";
-        }
         {
           name = "zsh-nix-shell";
           src = pkgs.zsh-nix-shell;
@@ -132,10 +127,10 @@
         bindkey '^w'            backward-kill-word
         bindkey '^h'            fzf-history-widget
         bindkey '^r'            history-incremental-search-backward
-        bindkey '^[[A'          history-substring-search-up
--       bindkey '^[[B'          history-substring-search-down
--       bindkey -M vicmd 'k'    history-substring-search-up
--       bindkey -M vicmd 'j'    history-substring-search-down
+        # bindkey '^[[A'          history-substring-search-up
+        # bindkey '^[[B'          history-substring-search-down
+        bindkey -M vicmd 'k'    history-substring-search-up
+        bindkey -M vicmd 'j'    history-substring-search-down
 
         # Completion
         zstyle ':completion:*' menu select
@@ -166,6 +161,9 @@
         setopt HIST_VERIFY
         setopt INC_APPEND_HISTORY
         setopt HIST_REDUCE_BLANKS
+
+        zle -N history-substring-search-up
+        zle -N history-substring-search-down
 
         # Custom History-Substring-Search Setting
         typeset -g HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
