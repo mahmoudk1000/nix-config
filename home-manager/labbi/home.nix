@@ -78,6 +78,7 @@
     xdg = {
         userDirs = {
             enable = true;
+            desktop  = "\$HOME/";
             documents = "\$HOME/docs";
             download = "\$HOME/download";
             music = "\$HOME/musik";
