@@ -57,7 +57,6 @@
             mpv
             krita
             popcorntime
-            teams
 
             libsForQt5.breeze-icons
             xorg.xmodmap
