@@ -5,7 +5,7 @@
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         nur.url = "github:nix-community/NUR";
         nixpkgs-f2k = {
-            url = "github:fortuneteller2k/nixpkgs-f2k";
+            url = "github:moni-dz/nixpkgs-f2k";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         home-manager = {

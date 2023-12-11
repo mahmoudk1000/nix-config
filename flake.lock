@@ -270,13 +270,13 @@
       "locked": {
         "lastModified": 1702261920,
         "narHash": "sha256-Dy52WVXra4dUwZNTxKWXpp8Vp9zjz6QJFD9WbzVWq4c=",
-        "owner": "fortuneteller2k",
+        "owner": "moni-dz",
         "repo": "nixpkgs-f2k",
         "rev": "c18b581f1d25b492935f2b5c5981545d18928839",
         "type": "github"
       },
       "original": {
-        "owner": "fortuneteller2k",
+        "owner": "moni-dz",
         "repo": "nixpkgs-f2k",
         "type": "github"
       }
@@ -356,11 +356,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1702319163,
-        "narHash": "sha256-LBLXEzGE5MjYg+7aLj+uzGs5adBsiDMDbfid//yiiJM=",
+        "lastModified": 1702323951,
+        "narHash": "sha256-8Wjstf6vBTK6+YFNbKTzffIsF9EV/En1sKkxXl3W/gg=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "621aae944d776922f3ac9f74b478464a73353660",
+        "rev": "a7203c4adab66958fa6b16e3bbe230b6e492eb9f",
         "type": "github"
       },
       "original": {
