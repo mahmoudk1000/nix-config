@@ -144,7 +144,6 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.list = true
-vim.g.did_load_filetypes = 1
 vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
 
@@ -278,7 +277,9 @@ require('glow').setup({
 require("filetype").setup({
   overrides = {
     extensions = {
-      sh = "sh"
+      sh = "sh",
+      tfvars = "terraform",
+	  tfstate = "json",
     },
     shebang = {
       dash = "sh"
