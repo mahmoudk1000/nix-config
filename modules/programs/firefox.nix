@@ -100,7 +100,14 @@
                     "browser.urlbar.suggest.topsites" = false;
                     "browser.tabs.tabmanager.enabled" = false;
 
+                    # Privacy
                     "browser.contentblocking.category" = "strict";
+                    "network.trr.confirmation_telemetry_enabled" = false;
+
+                    # Custom DNS
+                    "network.trr.mode" = 2;
+                    "network.trr.custom_uri" = "https://dns.nextdns.io/b28d16";
+                    "network.trr.uri" = "https://dns.nextdns.io/b28d16";
                 };
                 extraConfig = ''
                     user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
