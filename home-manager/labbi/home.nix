@@ -62,8 +62,7 @@
             xorg.xmodmap
 
             # work
-            terraform
-            terraform-inventory
+            opentofu
             ansible
             kubernetes-helm
             kubernetes
