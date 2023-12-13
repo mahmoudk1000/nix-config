@@ -183,7 +183,7 @@
                         padding: 0px 0px 0px 0px  !important;
                     }
                     .tabbrowser-tab {
-                        height: 25px !important;
+                        height: 35px !important;
                         z-index: 1000 !important;
                         padding: none !important;
                         padding-inline: 0px !important;
