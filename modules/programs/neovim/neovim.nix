@@ -23,9 +23,17 @@
             nodePackages_latest.dockerfile-language-server-nodejs
             nodePackages_latest.typescript-language-server
             nodePackages_latest.bash-language-server
-            nodePackages_latest.yaml-language-server
+            python310Packages.jedi
+            python310Packages.pylint
+            python310Packages.pynvim
+            python310Packages.pyls-isort
+            python310Packages.pycodestyle
+            python310Packages.python-lsp-black
+            python310Packages.python-lsp-server
+            python310Packages.jedi-language-server
             docker-compose-language-service
             ansible-language-server
+            yaml-language-server
             java-language-server
             lua-language-server
             terraform-lsp
@@ -125,6 +133,7 @@
             luasnip
             lspkind-nvim
             neoscroll-nvim
+            tmux-nvim
             popup-nvim
             telescope-fzf-native-nvim
             telescope-nvim

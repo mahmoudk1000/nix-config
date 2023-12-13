@@ -87,6 +87,7 @@ require('lazy').setup({
     'martinda/Jenkinsfile-vim-syntax',
     'natebosch/vim-lsc',
     'stephpy/vim-yaml',
+    'aserowy/tmux.nvim',
     'pearofducks/ansible-vim',
     'hashivim/vim-terraform',
     {
@@ -213,6 +214,7 @@ require('gitsigns').setup()
 require('neoscroll').setup()
 require("cmp_git").setup()
 require('fidget').setup()
+require("tmux").setup()
 
 -- Telescope
 require('telescope').setup({
