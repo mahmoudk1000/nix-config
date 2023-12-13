@@ -3,28 +3,42 @@
 {
     programs.firefox = {
         enable = true;
-        package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-            extraPolicies = {
-                CaptivePortal = false;
-                DisableFirefoxStudies = true;
-                DisablePocket = true;
-                DisableTelemetry = true;
-                DisableFirefoxAccounts = false;
-                NoDefaultBookmarks = true;
-                OfferToSaveLogins = false;
-                OfferToSaveLoginsDefault = false;
-                PasswordManagerEnabled = false;
-                FirefoxHome = {
-                    Search = true;
-                    Pocket = false;
-                    Snippets = false;
-                    TopSites = false;
-                    Highlights = false;
-                };
-                UserMessaging = {
-                    ExtensionRecommendations = false;
-                    SkipOnboarding = true;
-                };
+        package = pkgs.firefox;
+        policies = {
+            AppAutoUpdate = false;
+            CaptivePortal = false;
+            DisableFirefoxStudies = true;
+            DisablePocket = true;
+            DisableTelemetry = true;
+            DisableFirefoxAccounts = false;
+            NoDefaultBookmarks = true;
+            OfferToSaveLogins = false;
+            OfferToSaveLoginsDefault = false;
+            PasswordManagerEnabled = false;
+            FirefoxHome = {
+                Search = true;
+                Pocket = false;
+                Snippets = false;
+                TopSites = false;
+                Highlights = false;
+            };
+            Cookies = {
+                Default = true;
+                AcceptThirdParty = "always";
+                ExpireAtSessionEnd = false;
+                RejectTracker = true;
+            };
+            UserMessaging = {
+                ExtensionRecommendations = false;
+                SkipOnboarding = true;
+                WhatsNew = false;
+                FeatureRecomendations = false;
+                UrlbarInterventions = false;
+                MoreFromMozilla = false;
+            };
+            DNSOverHTTPS = {
+                Enabled = true;
+                ProviderURL = "https://dns.nextdns.io/b28d16";
             };
         };
         profiles = {
