@@ -131,6 +131,15 @@
                 '';
                 userChrome = ''
                     @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+                    @media (prefers-color-scheme: dark) {
+                        :host(:is(.anonymous-content-host, notification-message)), :root {
+                            --in-content-page-color: ${theme.base01} !important;
+                            --in-content-box-background: ${theme.base09} !important;
+                            --in-content-primary-button-background: ${theme.base09} !important;
+                            --in-content-primary-button-background-hover: ${theme.base06} !important;
+                            --in-content-primary-button-background-active: ${theme.base06} !important;
+                        }
+                    }
                     * {
                         font-family: "Iosevka" !important;
                         font-size: 12px !important;
@@ -168,9 +177,13 @@
                         background-color: ${theme.base02} !important;
                         border-radius: 0px !important;
                         margin-block: 0px !important;
+                        border-bottom: 2px solid ${theme.base09};
                     }
                     .tabbrowser-tab:hover .tab-background {
                         background-color: ${theme.base09} !important;
+                    }
+                    .tabbrowser-tab[selected="true"] .tab-background {
+                        background-color: ${theme.base00} !important;
                     }
                     .tabbrowser-tab[fadein] {
                         max-width: 100vw !important;
@@ -342,6 +355,18 @@
                         content: "Search With:";
                         padding-inline: var(--urlbarView-item-inline-padding) 18px;
                         opacity: 0.6;
+                    }
+                    .checkbox-check[checked] {
+                        color: ${theme.base09} !important;
+                    }
+                    .browserContainer > findbar {
+                        background-color: ${theme.base09} !important;
+                    }
+                    menupopup, panel {
+                        &::part(content)
+                            background: ${theme.base00} !important;
+                            border: 1px solid ${theme.base09} !important;
+                        }
                     }
                 '';
                 userContent = ''
