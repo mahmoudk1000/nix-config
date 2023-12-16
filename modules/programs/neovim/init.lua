@@ -65,11 +65,17 @@ require('lazy').setup({
     'akinsho/bufferline.nvim',
     {
       'L3MON4D3/LuaSnip',
+      event = "InsertEnter",
+      version = "v2.*",
       dependencies = {
         'saadparwaiz1/cmp_luasnip',
-        'rafamadriz/friendly-snippets'
-      },
-      version = "v2.*",
+        {
+          'rafamadriz/friendly-snippets',
+          config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+          end
+        }
+      }
     },
     'nvim-lualine/lualine.nvim',
     {
