@@ -81,7 +81,6 @@
                     decentraleyes
                     duckduckgo-privacy-essentials
                     libredirect
-                    ghostery
                     privacy-badger
                     languagetool
                     tab-session-manager
