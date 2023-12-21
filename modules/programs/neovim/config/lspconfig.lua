@@ -7,6 +7,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local servers = {
   'clangd',
   'cssls',
+  'bashls',
   'html',
   'jsonls',
   'marksman',
@@ -25,7 +26,8 @@ local servers = {
   'taplo',
   'terraformls',
   'tflint',
-  'jedi_language_server'
+  'jedi_language_server',
+  'autotools-language-server'
 }
 
 -- LSP settings.
@@ -90,11 +92,6 @@ end
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
-
-lspconfig.bashls.setup({
-  cmd = { "bash-language-server", "start" },
-  filetypes = { "sh", "zsh" }
-})
 
 lspconfig.lua_ls.setup({
   on_attach = on_attach,

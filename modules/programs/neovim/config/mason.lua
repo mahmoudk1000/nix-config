@@ -1,5 +1,3 @@
-local mason = require("mason")
-
 local servers = {
     'bashls',
     'clangd',
@@ -24,10 +22,11 @@ local servers = {
     'taplo',
     'terraformls',
     'tflint',
-    'jedi_language_server'
+    'jedi_language_server',
+    'autotools-language-server'
 }
 
-mason.setup ({
+require("mason").setup ({
     ui = {
         border = "none",
         icons = {

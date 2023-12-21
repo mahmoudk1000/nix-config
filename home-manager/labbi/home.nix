@@ -69,6 +69,7 @@
             minikube
             kubectl
             docker-compose
+            gnumake
 
         ] ++ (import ../../modules/scripts { inherit pkgs; });
     };
