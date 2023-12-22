@@ -12,6 +12,7 @@
         ./bspwm.nix
         ./firefox.nix
         ./git.nix
+        ./gnu.nix
         ./herbstluftwm.nix
         ./newsboat.nix
         ./rofi.nix

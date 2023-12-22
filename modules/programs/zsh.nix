@@ -81,9 +81,9 @@
 
         ".." = "cd ..";
         "..." = "cd ../..";
-        l = "ls --color=auto";
-        ll = "ls -lh --color=auto";
-        la = "ls -alh --color=auto";
+        l = "eza";
+        # ll = "ls -lh --color=auto";
+        # la = "ls -alh --color=auto";
 
         v = "nvim";
         sv = "sudo nvim";
