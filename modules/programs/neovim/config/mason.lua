@@ -23,7 +23,7 @@ local servers = {
     'terraformls',
     'tflint',
     'jedi_language_server',
-    'autotools-language-server'
+    'autotools_ls'
 }
 
 require("mason").setup ({
