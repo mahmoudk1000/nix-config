@@ -1,36 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 let
-    tree-sitter-languages = pkgs.python3.pkgs.buildPythonPackage rec {
-        pname = "tree-sitter-languages";
-        version = "1.8.0";
-        format = "wheel";
-        src = pkgs.fetchurl {
-          url = "https://files.pythonhosted.org/packages/7a/07/7ee99ec9222cf5f1505bfb34c95c8acddd49debad6848d9ff555e2b56817/tree_sitter_languages-1.8.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl";
-          hash = "sha256-ltva/50xfRk0UbxbVmCYcXCWOB1nZ0+eZfuPDr6YyEc=";
-        };
-        propagatedBuildInputs = with pkgs.python311Packages; [
-            tree-sitter
-        ];
-    };
-
-    autotools-language-server = pkgs.python3.pkgs.buildPythonPackage rec {
-        pname = "autotools-language-server";
-        version = "0.0.13";
-        format = "pyproject";
-        src = pkgs.fetchPypi {
-            inherit pname version;
-            hash = "sha256-xYHGmDeVyXrDzVqmpqaAKylaVB+hj+grZBF+sHAvFQg=";
-        };
-        propagatedBuildInputs = with pkgs; [
-            tree-sitter-languages
-        ];
-        nativeBuildInputs = with pkgs.python311Packages; [
-            setuptools
-            setuptools-generate
-            setuptools-scm
-        ];
-    };
+    autotools-language-server = import ./autotools-ls.nix { pkgs = pkgs; };
 in
 {
     programs.neovim = {
