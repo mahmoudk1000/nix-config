@@ -2,9 +2,10 @@
 
 {
   imports =
-    [   # Include the results of the hardware scan.
+    [
         ./hardware-configuration.nix
         ../../modules/services/battery.nix
+        ./modules/sound.nix
     ];
 
     # Boot
@@ -134,27 +135,6 @@
         ];
     };
 
-    # Sound.
-    security.rtkit.enable = true;
-    services.pipewire = {
-        enable = true;
-        alsa = {
-            enable = true;
-            support32Bit = true;
-        };
-        audio.enable = true;
-        jack.enable = true;
-        pulse.enable = true;
-        wireplumber.enable = true;
-    };
-    sound.enable = true;
-    hardware.pulseaudio.enable = false;
-
-    systemd.user.services.pipewire.environment.LADSPA_PATH = lib.makeSearchPathOutput "lib" "lib/ladspa" (with pkgs; [
-        rnnoise-plugin
-        lsp-plugins
-    ]);
-
     # User Account.
     users.users.mahmoud = {
         description = "Mahmoud Asran";
@@ -199,6 +179,7 @@
 
     # Security.
     security = {
+        rtkit.enable = true;
         polkit = {
             enable = true;
             extraConfig = ''
