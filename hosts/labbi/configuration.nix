@@ -45,6 +45,11 @@
         enable = true;
         package = pkgs.bluez;
         powerOnBoot = false;
+        settings = {
+            General = {
+                Enable = "Source,Sink,Media,Socket";
+            };
+        };
     };
 
     # Programs

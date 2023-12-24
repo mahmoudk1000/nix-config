@@ -17,4 +17,3 @@
         ./unclutter.nix
     ];
 }
-
