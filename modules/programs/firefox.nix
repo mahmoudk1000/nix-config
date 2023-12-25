@@ -297,6 +297,9 @@
                         background-color: ${theme.base00} !important;
                         padding-left: 5px !important;
                     }
+                    #urlbar-input, #urlbar-scheme, .searchbar-textbox {
+                        text-indent: 4px !important;
+                    }
                     #urlbar-results {
                         background-color: ${theme.base00} !important;
                         border-radius: 5px !important;
