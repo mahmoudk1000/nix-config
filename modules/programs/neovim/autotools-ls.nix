@@ -1,7 +1,9 @@
 { pkgs, ... }:
 
+with pkgs;
+
 let
-    tree-sitter-lsp = pkgs.python3.pkgs.buildPythonPackage rec {
+    tree-sitter-lsp = python3.pkgs.buildPythonPackage rec {
         pname = "tree-sitter-lsp";
         version = "0.0.10";
         format = "pyproject";
@@ -9,46 +11,79 @@ let
             inherit pname version;
             hash = "sha256-88/rVY/yTcOEexZU6W9/l+LjLEo+QXl/thGRrp2CDGU=";
         };
-        propagatedBuildInputs = with pkgs.python311Packages; [
+
+        propagatedBuildInputs = with pkgs.python3Packages; [
             colorama
             jinja2
             jsonschema
             pygls
             tree-sitter
         ];
-        nativeBuildInputs = with pkgs.python311Packages; [
+
+        nativeBuildInputs = with pkgs.python3Packages; [
             setuptools
             setuptools-generate
             setuptools-scm
         ];
     };
 
-    tree-sitter-languages = pkgs.python3.pkgs.buildPythonPackage rec {
+    makeLS = fetchGit {
+        name = "vender_make";
+        url = "https://github.com/alemuller/tree-sitter-make.git";
+        rev = "a4b9187417d6be349ee5fd4b6e77b4172c6827dd";
+    };
+
+    tree-sitter-languages = python3.pkgs.buildPythonPackage rec {
         pname = "tree-sitter-languages";
         version = "1.8.0";
-        format = "wheel";
-        src = pkgs.fetchurl {
-            url = "https://files.pythonhosted.org/packages/7a/07/7ee99ec9222cf5f1505bfb34c95c8acddd49debad6848d9ff555e2b56817/tree_sitter_languages-1.8.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl";
-            hash = "sha256-ltva/50xfRk0UbxbVmCYcXCWOB1nZ0+eZfuPDr6YyEc=";
+        src = pkgs.fetchFromGitHub {
+          owner = "grantjenks";
+          repo = "py-${pname}";
+          rev = "83c509f8dd80a04b3bf37e11bd2ab0e8c4df0876";
+          hash = "sha256-UXYlHAXQkxZfZ4xT3VChVXevglxTnwDrMqD8A44zxLU=";
         };
-        propagatedBuildInputs = with pkgs.python311Packages; [
+
+        buildInputs = with pkgs.python3Packages; [
             tree-sitter
-            tree-sitter-lsp
+            cython
         ];
+
+        buildPhase = ''
+            runHook preBuild
+
+            ${python3.pythonOnBuildForHost.interpreter} - <<EOF
+            from tree_sitter import Language
+
+            Language.build_library(
+                "tree_sitter_languages/languages.so",
+                [
+                    "${makeLS}"
+                ]
+            )
+            EOF
+
+            ${python3.pythonOnBuildForHost.interpreter} setup.py bdist_wheel
+
+            runHook postBuild
+        '';
     };
-in 
-pkgs.python3.pkgs.buildPythonPackage rec {
+in
+python3.pkgs.buildPythonPackage rec {
     pname = "autotools-language-server";
     version = "0.0.13";
     format = "pyproject";
+
     src = pkgs.fetchPypi {
         inherit pname version;
         hash = "sha256-xYHGmDeVyXrDzVqmpqaAKylaVB+hj+grZBF+sHAvFQg=";
     };
+
     propagatedBuildInputs = with pkgs; [
         tree-sitter-languages
+        tree-sitter-lsp
     ];
-    nativeBuildInputs = with pkgs.python311Packages; [
+
+    nativeBuildInputs = with pkgs.python3Packages; [
         setuptools
         setuptools-generate
         setuptools-scm
