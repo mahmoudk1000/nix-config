@@ -102,7 +102,7 @@
         enable = true;
         layout = "us,ara" ;
         xkbVariant = "qwerty";
-        xkbOptions = "grp:alt_shift_toggle";
+        xkbOptions = "grp:ctrl_shift_toggle";
         displayManager.startx.enable = true;
         updateDbusEnvironment = true;
         libinput = {
