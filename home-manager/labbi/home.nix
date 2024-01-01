@@ -70,6 +70,7 @@
             kubectl
             docker-compose
             gnumake
+            kustomize
 
         ] ++ (import ../../modules/scripts { inherit pkgs; });
     };
