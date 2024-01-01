@@ -175,8 +175,8 @@ vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = t
 -- Duplicate Line
 vim.keymap.set("n", "<A-Down>", "yyP", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-Up>", "yyp", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-K>", "yyP", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-J>", "yyp", { noremap = true, silent = true })
+vim.keymap.set("i", "<A-K>", "yyP", { noremap = true, silent = true })
+vim.keymap.set("i", "<A-J>", "yyp", { noremap = true, silent = true })
 
 -- Default Text Editors
 vim.keymap.set('n', '<c-s>', ':w<CR>', {})
