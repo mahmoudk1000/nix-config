@@ -28,6 +28,7 @@ in
             shellcheck
             marksman
             yamllint
+            tectonic
             rnix-lsp
             yamlfmt
             ripgrep
@@ -153,6 +154,7 @@ in
             jedi-vim
             vim-shellcheck
             Jenkinsfile-vim-syntax
+            vimtex
 
         ];
     };
