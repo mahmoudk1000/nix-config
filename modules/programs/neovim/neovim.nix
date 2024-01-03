@@ -2,6 +2,7 @@
 
 let
     autotools-language-server = import ./autotools-ls.nix { pkgs = pkgs; };
+    groovy-language-server = import ./groovyls.nix { pkgs = pkgs; };
 in
 {
     programs.neovim = {
@@ -16,6 +17,7 @@ in
             docker-compose-language-service
             autotools-language-server
             ansible-language-server
+            groovy-language-server
             yaml-language-server
             java-language-server
             lua-language-server
