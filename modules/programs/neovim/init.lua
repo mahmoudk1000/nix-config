@@ -96,6 +96,17 @@ require('lazy').setup({
         vim.g.vimtex_syntax_enabled = 1
         vim.g.vimtex_quickfix_enabled = 1
         vim.g.vimtex_quickfix_mode = 0
+        vim.g.vimtex_compiler_method = 'tectonic'
+        vim.g.vimtex_compiler_tectonic = {
+          executable = "tectonic",
+          callback = 1,
+          continuous = 1,
+          options = {
+            "--synctex",
+            "--keep-logs",
+            "--keep-intermediates"
+          }
+        }
       end
     },
     'tpope/vim-sleuth',
@@ -105,6 +116,25 @@ require('lazy').setup({
     'martinda/Jenkinsfile-vim-syntax',
     'natebosch/vim-lsc',
     'stephpy/vim-yaml',
+    {
+      "Zeioth/compiler.nvim",
+      cmd = {"CompilerOpen", "CompilerToggleResults", "CompilerRedo"},
+      dependencies = { "stevearc/overseer.nvim" },
+      opts = {},
+    },
+    {
+      "stevearc/overseer.nvim",
+      commit = "400e762648b70397d0d315e5acaf0ff3597f2d8b",
+      cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+      opts = {
+        task_list = {
+          direction = "bottom",
+          min_height = 25,
+          max_height = 25,
+          default_detail = 1
+        },
+      },
+    },
     'aserowy/tmux.nvim',
     'pearofducks/ansible-vim',
     'hashivim/vim-terraform',

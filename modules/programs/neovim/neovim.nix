@@ -3,6 +3,17 @@
 let
     autotools-language-server = import ./autotools-ls.nix { pkgs = pkgs; };
     groovy-language-server = import ./groovyls.nix { pkgs = pkgs; };
+
+    compiler-nvim = pkgs.vimUtils.buildVimPlugin rec {
+        pname = "compiler-nvim";
+        version = "v3.2.4";
+        src = pkgs.fetchFromGitHub {
+          owner = "Zeioth";
+          repo = "compiler.nvim";
+          rev = "5615e4b15b5301144ce507ace6f594409a4d22c5";
+          hash = "sha256-6VkQCTpE/nTSQ2NxjJYDtkx5jB54MOxJS5HpT6G6x/E=";
+        };
+    };
 in
 {
     programs.neovim = {
@@ -157,6 +168,8 @@ in
             vim-shellcheck
             Jenkinsfile-vim-syntax
             vimtex
+            compiler-nvim
+            overseer-nvim
 
         ];
     };
