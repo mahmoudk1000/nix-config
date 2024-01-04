@@ -7,7 +7,7 @@ let
     cfg = config.services.batteryNotifier;
 
     script = pkgs.writeScriptBin "bat" ''
-        #!/usr/bin/env bash
+        #!${pkgs.stdenv.shell}
         export battery_capacity=$(${pkgs.coreutils}/bin/cat /sys/class/power_supply/${cfg.device}/capacity)
         export battery_status=$(${pkgs.coreutils}/bin/cat /sys/class/power_supply/${cfg.device}/status)
 
@@ -61,12 +61,12 @@ in
                 Description = "Timer of Battery Level Checker";
             };
             Timer = {
-                OnBootSec = "2m";
-                OnUnitInactiveSec = "2m";
+                OnBootSec = "3m";
+                OnUnitInactiveSec = "3m";
                 Unit = "lowBatt.service";
             };
             Install = {
-                wantedBy = [ "timers.target" ];
+                WantedBy = [ "timers.target" ];
             };
         };
         systemd.user.services.lowBatt = {
@@ -74,8 +74,8 @@ in
                 Description = "Battery Level Notifier & Acter";
             };
             Service = {
-                Type = "exec";
-                Restart = "on-failure";
+                Type = "simple";
+                Environment = "PATH=/run/wrappers/bin";
                 PassEnvironment = "DISPLAY";
                 ExecStart = "${script}/bin/bat";
             };

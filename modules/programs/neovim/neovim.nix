@@ -43,6 +43,7 @@ in
             yamllint
             tectonic
             rnix-lsp
+            pplatex
             yamlfmt
             ripgrep
             helm-ls
@@ -144,7 +145,6 @@ in
             impatient-nvim
             luasnip
             lspkind-nvim
-            neoscroll-nvim
             tmux-nvim
             popup-nvim
             telescope-fzf-native-nvim

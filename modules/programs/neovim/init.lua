@@ -25,7 +25,6 @@ require('lazy').setup({
     'windwp/nvim-autopairs',
     'akinsho/toggleterm.nvim',
     'tpope/vim-fugitive',
-    'karb94/neoscroll.nvim',
     'tpope/vim-rhubarb',
     'onsails/lspkind.nvim',
     'goolord/alpha-nvim',
@@ -90,23 +89,16 @@ require('lazy').setup({
       'lervag/vimtex',
       ft = { "tex", "latex" },
       init = function()
-        vim.g.tex_flavor = "latex"
+        vim.cmd [[
+          filetype plugin indent on
+          syntax enable
+        ]]
         vim.g.vimtex_view_method = "zathura"
         vim.g.latex_view_general_viewer = 'zathura'
         vim.g.vimtex_syntax_enabled = 1
         vim.g.vimtex_quickfix_enabled = 1
         vim.g.vimtex_quickfix_mode = 0
         vim.g.vimtex_compiler_method = 'tectonic'
-        vim.g.vimtex_compiler_tectonic = {
-          executable = "tectonic",
-          callback = 1,
-          continuous = 1,
-          options = {
-            "--synctex",
-            "--keep-logs",
-            "--keep-intermediates"
-          }
-        }
       end
     },
     'tpope/vim-sleuth',
@@ -120,7 +112,7 @@ require('lazy').setup({
       "Zeioth/compiler.nvim",
       cmd = {"CompilerOpen", "CompilerToggleResults", "CompilerRedo"},
       dependencies = { "stevearc/overseer.nvim" },
-      opts = {},
+      opts = {}
     },
     {
       "stevearc/overseer.nvim",
@@ -132,8 +124,8 @@ require('lazy').setup({
           min_height = 25,
           max_height = 25,
           default_detail = 1
-        },
-      },
+        }
+      }
     },
     'aserowy/tmux.nvim',
     'pearofducks/ansible-vim',
@@ -184,7 +176,7 @@ vim.o.undofile = true                        -- Save undo history
 vim.o.ignorecase = true                      -- Case insensitive searching UNLESS /C or capital in search
 vim.o.smartcase = true
 vim.o.updatetime = 250                       -- Decrease update time
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 vim.o.autoindent = true
 vim.o.clipboard = "unnamedplus"              -- use system clipboard by default
 vim.o.completeopt = 'menuone,noselect'       -- Set completeopt to have a better completion experience
@@ -200,7 +192,7 @@ vim.o.termguicolors = true                   -- Set colorscheme
 vim.cmd [[colorscheme dunkelsee]]
 
 -- Keymaps
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({ "n", "v" }, '<Space>', "<Nop>", { silent = true })
 
 -- Move text up and down (visual mode)
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
@@ -217,61 +209,60 @@ vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = t
 -- Duplicate Line
 vim.keymap.set("n", "<A-Down>", "yyP", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-Up>", "yyp", { noremap = true, silent = true })
-vim.keymap.set("i", "<A-C-k>", "yyP", { noremap = true, silent = true })
-vim.keymap.set("i", "<A-C-j>", "yyp", { noremap = true, silent = true })
+vim.keymap.set("i", "<A-C-d>", "<Esc>:t.<CR>gi", { noremap = true, silent = true })
 
 -- Default Text Editors
-vim.keymap.set('n', '<c-s>', ':w<CR>', {})
-vim.keymap.set('n', 'Q', '<c-v>', {})
-vim.keymap.set('n', 'fq', ':q!<CR>', {})
-vim.keymap.set('n', 'qq', ':q<CR>', {})
-vim.keymap.set('i', '<C-b>', '<ESC>^i', {})
-vim.keymap.set('i', '<C-e>', '<End>', {})
+vim.keymap.set("n", "<C-a>", ":ggVG<CR>", {})
+vim.keymap.set("n", "<C-s>", ":w<CR>", {})
+vim.keymap.set("n", "Q", "<c-v>", {})
+vim.keymap.set("n", "fq", ":q!<CR>", {})
+vim.keymap.set("n", "qq", ":q<CR>", {})
+vim.keymap.set("i", "<C-b>", "<ESC>^i", {})
+vim.keymap.set("i", "<C-e>", "<End>", {})
 
 -- UI
-vim.keymap.set('n', '<leader>v', ':vsplit<CR>', {})
-vim.keymap.set('n', '<leader>h', ':split<CR>', {})
-vim.keymap.set('n', '<leader>w', ':set wrap<CR>', {})
+vim.keymap.set("n", "<leader>v", ":vsplit<CR>", {})
+vim.keymap.set("n", "<leader>h", ":split<CR>", {})
+vim.keymap.set("n", "<leader>w", ":set wrap<CR>", {})
 
 -- Indent
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 
 -- Plugins
-vim.keymap.set('n', '<C-n>', ':Neotree toggle reveal<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<A-t>', ':ToggleTerm<CR>', {})
-vim.keymap.set('n', '<A-i>', ':ToggleTerm direction=float<CR>', {})
-vim.keymap.set('n', '<leader>md', ':Glow<CR>', {noremap=true, silent=true})
+vim.keymap.set("n", "<C-n>", ":Neotree toggle reveal<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-t>", ":ToggleTerm<CR>", {})
+vim.keymap.set("n", "<A-i>", ":ToggleTerm direction=float<CR>", {})
+vim.keymap.set("n", "<leader>md", ":Glow<CR>", {noremap=true, silent=true})
 
 -- Telescope
-vim.keymap.set('n', '<leader>/', function()
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+vim.keymap.set("n", "<leader>/", function()
+  require('telescope.builtin').current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
     winblend = 10,
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = 'Search by [G]it [C]omment' })
-vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = 'Search by [G]it [S]tatus' })
-vim.keymap.set('n', '<A-Tab>', require('telescope.builtin').buffers, { desc = 'Show Buffers' })
+vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
+vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
+vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
+vim.keymap.set("n", "<leader>gc", require("telescope.builtin").git_commits, { desc = "Search by [G]it [C]omment" })
+vim.keymap.set("n", "<leader>gs", require("telescope.builtin").git_status, { desc = "Search by [G]it [S]tatus" })
+vim.keymap.set("n", "<A-Tab>", require("telescope.builtin").buffers, { desc = "Show Buffers" })
 
 -- Once the plugins have been loaded, Lua-based plugins need to be required and started up
 -- For plugins with their own configuration file, that file is loaded and is responsible for
 -- starting them. Otherwise, the plugin itself is required and its `setup` method is called.
-require('Comment').setup()
-require('colorizer').setup()
-require('nvim-autopairs').setup()
-require('gitsigns').setup()
-require('neoscroll').setup()
+require("Comment").setup()
+require("colorizer").setup()
+require("nvim-autopairs").setup()
+require("gitsigns").setup()
 require("cmp_git").setup()
-require('fidget').setup()
+require("fidget").setup()
 require("tmux").setup()
 
 -- Telescope
-require('telescope').setup({
+require("telescope").setup({
   defaults = {
     prompt_prefix = "   ",
     selection_caret = "  ",
@@ -302,32 +293,32 @@ require('telescope').setup({
     color_devicons = true,
     mappings = {
       i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-  },
+        ["<C-u>"] = false,
+        ["<C-d>"] = false
+      }
+    }
+  }
 })
 
 -- Github
-require('gitsigns').setup({
+require("gitsigns").setup({
   signs = {
     add = { hl = "GitGutterAdd", text = '🞧', numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
     change = { hl = "GitGutterChange", text = '⏺', numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
     delete = { hl = "GitGutterDelete", text = '🭸', numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
     topdelete = { hl = "GitGutterDeleteChange", text = '🭶', numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
     changedelete = { hl = "GitGutterChange", text = '~', numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    untracked = { hl = "GitGutterAdd", text = '🞧', numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-  },
+    untracked = { hl = "GitGutterAdd", text = '🞧', numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" }
+  }
 })
 
 -- Glow
-require('glow').setup({
-  style = 'dark',
-  border = 'rounded',
+require("glow").setup({
+  style = "dark",
+  border = "rounded",
   pager = false,
   width = 140,
-  height = 120,
+  height = 120
 })
 
 require("filetype").setup({
