@@ -4,7 +4,6 @@
   imports =
     [
         ./hardware-configuration.nix
-        ../../modules/services/battery.nix
         ./modules/sound.nix
     ];
 
@@ -216,7 +215,6 @@
         openssh.enable = true;
         printing.enable = true;
         tumbler.enable = true;
-        batteryNotifier.enable = true;
     };
 
     # TLP. (https://linrunner.de/tlp/settings/)
