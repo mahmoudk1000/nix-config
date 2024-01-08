@@ -71,6 +71,7 @@
             docker-compose
             gnumake
             kustomize
+            terraform
 
         ] ++ (import ../../modules/scripts { inherit pkgs; });
     };
