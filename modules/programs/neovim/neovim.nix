@@ -170,6 +170,7 @@ in
             vimtex
             compiler-nvim
             overseer-nvim
+            cmp-spell
 
         ];
     };

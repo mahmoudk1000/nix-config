@@ -45,8 +45,18 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'luasnip' }
-  }, {
+    { name = 'luasnip' },
+    {
+      name = "spell",
+      option = {
+        keep_all_entries = false,
+        enable_in_context = function()
+          return true
+        end,
+      },
+    },
+  },
+  {
       { name = 'buffer' },
       { name = "path" },
       { name = "git" }
@@ -55,8 +65,9 @@ cmp.setup({
 
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
-    { name = 'git' },
-  }, {
+    { name = 'cmp_git' },
+  },
+  {
     { name = 'buffer' },
   })
 })

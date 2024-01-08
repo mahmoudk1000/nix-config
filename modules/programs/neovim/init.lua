@@ -17,104 +17,116 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- stylua: ignore start
 require('lazy').setup({
-    'stevearc/dressing.nvim',
-    'windwp/nvim-ts-autotag',
-    'norcalli/nvim-colorizer.lua',
-    'windwp/nvim-autopairs',
-    'akinsho/toggleterm.nvim',
-    'tpope/vim-fugitive',
-    'tpope/vim-rhubarb',
-    'onsails/lspkind.nvim',
-    'goolord/alpha-nvim',
-    {
-      'lukas-reineke/indent-blankline.nvim',
-      main = "ibl"
+  -- UI
+  'nvim-lualine/lualine.nvim',
+  'akinsho/toggleterm.nvim',
+  'akinsho/bufferline.nvim',
+  'goolord/alpha-nvim',
+  'stevearc/dressing.nvim',
+  'norcalli/nvim-colorizer.lua',
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    main = "ibl"
+  },
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
     },
-    {
-      'lewis6991/gitsigns.nvim',
-      dependencies = {
-        'nvim-lua/plenary.nvim'
-      },
-    },
-    { 'numToStr/Comment.nvim', opts = {} },
-    {
-      'nvim-treesitter/nvim-treesitter',
-      dependencies = {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-      },
-      config = function()
-        pcall(require('nvim-treesitter.install').update { with_sync = true })
-      end,
-    },
+  },
+
+  -- LSP and Treesitter
+  {
     'neovim/nvim-lspconfig',
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-cmdline',
-    'petertriho/cmp-git',
-    {
-      'hrsh7th/nvim-cmp',
-      dependencies = {
-        'hrsh7th/cmp-nvim-lsp'
-      },
+    dependencies = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      "j-hui/fidget.nvim"
+    }
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/playground',
+      'nvim-treesitter/nvim-treesitter-context'
     },
-    'akinsho/bufferline.nvim',
-    {
-      'L3MON4D3/LuaSnip',
-      event = "InsertEnter",
-      version = "v2.*",
-      dependencies = {
-        'saadparwaiz1/cmp_luasnip',
-        {
-          'rafamadriz/friendly-snippets',
-          config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-          end
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
+    config = function()
+      pcall(require("nvim-treesitter.install").update { with_sync = true })
+    end
+  },
+
+  -- Autocompletion
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'petertriho/cmp-git',
+      'hrsh7th/cmp-nvim-lsp',
+      'f3fora/cmp-spell',
+      {
+        'L3MON4D3/LuaSnip',
+        event = "InsertEnter",
+        version = "v2.*",
+        dependencies = {
+          {
+            'saadparwaiz1/cmp_luasnip',
+            dependencies = {
+              'onsails/lspkind.nvim',
+            }
+          },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require("luasnip.loaders.from_vscode").lazy_load()
+            end
+          }
         }
       }
-    },
-    'nvim-lualine/lualine.nvim',
-    {
-      'nvim-neo-tree/neo-tree.nvim',
-       dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",
-        "MunifTanjim/nui.nvim",
-       },
-    },
-    {
-      'lervag/vimtex',
-      ft = { "tex", "latex" },
-      init = function()
-        vim.cmd [[
-          filetype plugin indent on
-          syntax enable
-        ]]
-        vim.g.vimtex_view_method = "zathura"
-        vim.g.latex_view_general_viewer = 'zathura'
-        vim.g.vimtex_syntax_enabled = 1
-        vim.g.vimtex_quickfix_enabled = 1
-        vim.g.vimtex_quickfix_mode = 0
-        vim.g.vimtex_compiler_method = 'tectonic'
-      end
-    },
-    'tpope/vim-sleuth',
-    'nathom/filetype.nvim',
-    'nvim-treesitter/playground',
-    'folke/which-key.nvim',
-    'martinda/Jenkinsfile-vim-syntax',
-    'natebosch/vim-lsc',
-    'stephpy/vim-yaml',
-    {
-      "Zeioth/compiler.nvim",
-      cmd = {"CompilerOpen", "CompilerToggleResults", "CompilerRedo"},
-      dependencies = { "stevearc/overseer.nvim" },
-      opts = {}
-    },
-    {
+    }
+  },
+
+  -- Git
+  {
+    'lewis6991/gitsigns.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    }
+  },
+  {
+    'tpope/vim-fugitive',
+    dependencies = {
+      'tpope/vim-rhubarb'
+    }
+  },
+
+  -- Side Plugins
+  {
+    'lervag/vimtex',
+    ft = { "tex", "latex" },
+    init = function()
+      vim.cmd [[
+        filetype plugin indent on
+        syntax enable
+      ]]
+      vim.g.vimtex_view_method = "zathura"
+      vim.g.latex_view_general_viewer = 'zathura'
+      vim.g.vimtex_syntax_enabled = 1
+      vim.g.vimtex_quickfix_enabled = 1
+      vim.g.vimtex_quickfix_mode = 0
+      vim.g.vimtex_compiler_method = 'tectonic'
+    end
+  },
+  {
+    "Zeioth/compiler.nvim",
+    cmd = {"CompilerOpen", "CompilerToggleResults", "CompilerRedo"},
+    dependencies = {
       "stevearc/overseer.nvim",
       commit = "400e762648b70397d0d315e5acaf0ff3597f2d8b",
       cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
@@ -127,32 +139,38 @@ require('lazy').setup({
         }
       }
     },
-    'aserowy/tmux.nvim',
-    'pearofducks/ansible-vim',
-    'hashivim/vim-terraform',
-    {
-      "j-hui/fidget.nvim",
-      tag = "legacy",
-      event = "LspAttach",
-    },
-    {
-      'ellisonleao/glow.nvim',
-      config = true,
-      cmd = 'Glow'
-    },
-    {
-      'nvim-telescope/telescope.nvim',
-      dependencies = {
-        'nvim-lua/plenary.nvim'
+  },
+  {
+    'ellisonleao/glow.nvim',
+    config = true,
+    cmd = 'Glow'
+  },
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make',
+        cond = function()
+          return vim.fn.executable 'make' == 1
+        end,
       },
     },
-    {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      run = 'make',
-      cond = function()
-        return vim.fn.executable 'make' == 1
-      end,
-    },
+  },
+
+  -- Others
+  'windwp/nvim-ts-autotag',
+  'windwp/nvim-autopairs',
+  'numToStr/Comment.nvim',
+  'nathom/filetype.nvim',
+  'folke/which-key.nvim',
+  'martinda/Jenkinsfile-vim-syntax',
+  'natebosch/vim-lsc',
+  'stephpy/vim-yaml',
+  'aserowy/tmux.nvim',
+  'pearofducks/ansible-vim',
+  'hashivim/vim-terraform',
 }, {})
 
 -- Highlight on yank
@@ -185,10 +203,13 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.list = true
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
 vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
 
-vim.o.termguicolors = true                   -- Set colorscheme
+-- Color Scheme
+vim.o.termguicolors = true
 vim.cmd [[colorscheme dunkelsee]]
 
 -- Keymaps
@@ -207,14 +228,13 @@ vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = t
 vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
 
 -- Duplicate Line
-vim.keymap.set("n", "<A-Down>", "yyP", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-Up>", "yyp", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-C-Down>", "yyP", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-C-Up>", "yyp", { noremap = true, silent = true })
 vim.keymap.set("i", "<A-C-d>", "<Esc>:t.<CR>gi", { noremap = true, silent = true })
 
 -- Default Text Editors
-vim.keymap.set("n", "<C-a>", ":ggVG<CR>", {})
+vim.keymap.set("n", "<C-a>", "ggVG", {})
 vim.keymap.set("n", "<C-s>", ":w<CR>", {})
-vim.keymap.set("n", "Q", "<c-v>", {})
 vim.keymap.set("n", "fq", ":q!<CR>", {})
 vim.keymap.set("n", "qq", ":q<CR>", {})
 vim.keymap.set("i", "<C-b>", "<ESC>^i", {})
@@ -232,8 +252,8 @@ vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 -- Plugins
 vim.keymap.set("n", "<C-n>", ":Neotree toggle reveal<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-t>", ":ToggleTerm<CR>", {})
-vim.keymap.set("n", "<A-i>", ":ToggleTerm direction=float<CR>", {})
-vim.keymap.set("n", "<leader>md", ":Glow<CR>", {noremap=true, silent=true})
+vim.keymap.set("n", "<A-T>", ":ToggleTerm direction=float<CR>", {})
+vim.keymap.set("n", "<leader>md", ":Glow<CR>", { noremap=true, silent=true })
 
 -- Telescope
 vim.keymap.set("n", "<leader>/", function()
@@ -299,6 +319,7 @@ require("telescope").setup({
     }
   }
 })
+pcall(require('telescope').load_extension, 'fzf')
 
 -- Github
 require("gitsigns").setup({
