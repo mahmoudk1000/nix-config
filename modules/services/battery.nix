@@ -59,10 +59,10 @@ in
         systemd.user.timers.lowBatt = {
             Unit = {
                 Description = "Timer of Battery Level Checker";
+                After = [ "graphical-session.target" ];
             };
             Timer = {
-                OnBootSec = "3m";
-                OnUnitInactiveSec = "3m";
+                OnCalendar = "*-*-* *:0/2:00";
                 Unit = "lowBatt.service";
             };
             Install = {
