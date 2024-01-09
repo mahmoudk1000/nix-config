@@ -91,6 +91,19 @@ require('lazy').setup({
       }
     }
   },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = "Copilot",
+    event = "InsertEnter",
+    dependencies = {
+      'zbirenbaum/copilot-cmp',
+      event = { "InsertEnter", "LspAttach" },
+      fix_pairs = true,
+      config = function ()
+        require("copilot_cmp").setup()
+      end
+    }
+  },
 
   -- Git
   {
@@ -165,6 +178,7 @@ require('lazy').setup({
   'numToStr/Comment.nvim',
   'nathom/filetype.nvim',
   'folke/which-key.nvim',
+  'tpope/vim-sleuth',
   'martinda/Jenkinsfile-vim-syntax',
   'natebosch/vim-lsc',
   'stephpy/vim-yaml',
@@ -196,15 +210,15 @@ vim.o.smartcase = true
 vim.o.updatetime = 250                       -- Decrease update time
 vim.wo.signcolumn = "yes"
 vim.o.autoindent = true
-vim.o.clipboard = "unnamedplus"              -- use system clipboard by default
-vim.o.completeopt = 'menuone,noselect'       -- Set completeopt to have a better completion experience
+vim.o.clipboard = "unnamedplus"
+vim.o.completeopt = "menu,menuone,noselect"
 vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.list = true
 vim.opt.spell = true
-vim.opt.spelllang = { 'en_us' }
+vim.opt.spelllang = "en_us"
 vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
 
@@ -353,4 +367,9 @@ require("filetype").setup({
       dash = "sh"
     }
   }
+})
+
+require("copilot").setup({
+  suggestion = { enabled = false },
+  panel = { enabled = false }
 })

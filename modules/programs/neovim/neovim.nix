@@ -39,6 +39,7 @@ in
             nixpkgs-fmt
             tree-sitter
             shellcheck
+            checkmake
             marksman
             yamllint
             tectonic
@@ -171,6 +172,9 @@ in
             compiler-nvim
             overseer-nvim
             cmp-spell
+            copilot-lua
+            copilot-cmp
+            vim-sleuth
 
         ];
     };
