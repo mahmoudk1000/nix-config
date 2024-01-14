@@ -5,7 +5,8 @@
         ./gtk.nix
         ./xcompose.nix
         ./xft.nix
-        ./xresources.nix
         ./xinitrc.nix
+        ./xmodmap.nix
+        ./xresources.nix
     ];
 }
