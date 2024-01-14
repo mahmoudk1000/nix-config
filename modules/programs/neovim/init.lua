@@ -49,15 +49,12 @@ require('lazy').setup({
   },
   {
     'nvim-treesitter/nvim-treesitter',
+    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'nvim-treesitter/playground',
       'nvim-treesitter/nvim-treesitter-context'
-    },
-    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
-    config = function()
-      pcall(require("nvim-treesitter.install").update { with_sync = true })
-    end
+    }
   },
 
   -- Autocompletion
@@ -187,6 +184,7 @@ require('lazy').setup({
   'hashivim/vim-terraform',
 }, {})
 
+
 -- Highlight on yank
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -198,33 +196,36 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Setting options
-vim.o.cursorline = true                      -- Set highlight cursor
-vim.o.hlsearch = false                       -- Set highlight on search
-vim.wo.number = true                         -- Make line numbers default
-vim.o.mouse = "a"                            -- Enable mouse mode
-vim.o.breakindent = true                     -- Enable break indent
-vim.o.undofile = true                        -- Save undo history
-vim.o.ignorecase = true                      -- Case insensitive searching UNLESS /C or capital in search
-vim.o.smartcase = true
-vim.o.updatetime = 250                       -- Decrease update time
-vim.wo.signcolumn = "yes"
-vim.o.autoindent = true
-vim.o.clipboard = "unnamedplus"
-vim.o.completeopt = "menu,menuone,noselect"
-vim.o.expandtab = true
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.softtabstop = 4
-vim.o.list = true
-vim.opt.spell = true
-vim.opt.spelllang = "en_us"
-vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("eol:↴")
+
+-- Options
+vim.o.termguicolors = true                    -- Enable true color support in the terminal
+vim.o.cursorline = true                       -- Set highlight cursor
+vim.o.hlsearch = false                        -- Disable highlighting on search
+vim.wo.number = true                          -- Show line numbers by default
+vim.o.mouse = "a"                             -- Enable mouse mode
+vim.o.breakindent = true                      -- Enable break indent
+vim.o.undofile = true                         -- Save undo history
+vim.o.ignorecase = true                       -- Enable case-insensitive searching, unless /C or capital in search
+vim.o.smartcase = true                        -- Enable smart case searching
+vim.o.updatetime = 250                        -- Decrease update time
+vim.wo.signcolumn = "yes"                     -- Always show sign column
+vim.o.autoindent = true                       -- Enable auto-indentation
+vim.o.clipboard = "unnamedplus"               -- Use system clipboard
+vim.o.completeopt = "menu,menuone,noselect"   -- Set completion options
+vim.o.expandtab = true                        -- Expand tabs to spaces
+vim.o.tabstop = 4                             -- Number of spaces per tab
+vim.o.shiftwidth = 4                          -- Number of spaces for auto-indent
+vim.o.softtabstop = 4                         -- Number of spaces in Tab key's behavior
+vim.o.list = true                             -- Display list characters
+vim.opt.spell = true                          -- Enable spell checking
+vim.opt.spelllang = "en_us"                   -- Set the spell checking language
+vim.opt.listchars:append("space:⋅")           -- Show a special character for spaces
+vim.opt.listchars:append("eol:↴")             -- Show a special character for end of line
+
 
 -- Color Scheme
-vim.o.termguicolors = true
 vim.cmd [[colorscheme dunkelsee]]
+
 
 -- Keymaps
 vim.keymap.set({ "n", "v" }, '<Space>', "<Nop>", { silent = true })
@@ -284,6 +285,7 @@ vim.keymap.set("n", "<leader>gc", require("telescope.builtin").git_commits, { de
 vim.keymap.set("n", "<leader>gs", require("telescope.builtin").git_status, { desc = "Search by [G]it [S]tatus" })
 vim.keymap.set("n", "<A-Tab>", require("telescope.builtin").buffers, { desc = "Show Buffers" })
 
+
 -- Once the plugins have been loaded, Lua-based plugins need to be required and started up
 -- For plugins with their own configuration file, that file is loaded and is responsible for
 -- starting them. Otherwise, the plugin itself is required and its `setup` method is called.
@@ -294,82 +296,3 @@ require("gitsigns").setup()
 require("cmp_git").setup()
 require("fidget").setup()
 require("tmux").setup()
-
--- Telescope
-require("telescope").setup({
-  defaults = {
-    prompt_prefix = "   ",
-    selection_caret = "  ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "ascending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      horizontal = {
-        prompt_position = "top",
-        preview_width = 0.55,
-        results_width = 0.8,
-      },
-      vertical = {
-        mirror = false,
-      },
-      width = 0.87,
-      height = 0.80,
-      preview_cutoff = 120,
-    },
-    file_sorter = require("telescope.sorters").get_fuzzy_file,
-    file_ignore_patterns = { "node_modules" },
-    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-    path_display = { "truncate" },
-    border = {},
-    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    color_devicons = true,
-    mappings = {
-      i = {
-        ["<C-u>"] = false,
-        ["<C-d>"] = false
-      }
-    }
-  }
-})
-pcall(require('telescope').load_extension, 'fzf')
-
--- Github
-require("gitsigns").setup({
-  signs = {
-    add = { hl = "GitGutterAdd", text = '🞧', numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-    change = { hl = "GitGutterChange", text = '⏺', numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    delete = { hl = "GitGutterDelete", text = '🭸', numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    topdelete = { hl = "GitGutterDeleteChange", text = '🭶', numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-    changedelete = { hl = "GitGutterChange", text = '~', numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    untracked = { hl = "GitGutterAdd", text = '🞧', numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" }
-  }
-})
-
--- Glow
-require("glow").setup({
-  style = "dark",
-  border = "rounded",
-  pager = false,
-  width = 140,
-  height = 120
-})
-
-require("filetype").setup({
-  overrides = {
-    extensions = {
-      sh = "sh",
-      tfvars = "terraform",
-	  tfstate = "json",
-    },
-    shebang = {
-      dash = "sh"
-    }
-  }
-})
-
-require("copilot").setup({
-  suggestion = { enabled = false },
-  panel = { enabled = false }
-})

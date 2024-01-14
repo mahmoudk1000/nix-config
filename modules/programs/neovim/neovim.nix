@@ -14,6 +14,17 @@ let
           hash = "sha256-6VkQCTpE/nTSQ2NxjJYDtkx5jB54MOxJS5HpT6G6x/E=";
         };
     };
+
+    filetype-nvim = pkgs.vimUtils.buildVimPlugin rec {
+        pname = "filetype-nvim";
+        version = "v0.4.0";
+        src = pkgs.fetchFromGitHub {
+          owner = "nathom";
+          repo = "filetype.nvim";
+          rev = "b522628a45a17d58fc0073ffd64f9dc9530a8027";
+          sha256 = "sha256-B+VvgQj8akiKe+MX/dV2/mdaaqF8s2INW3phdPJ5TFA=";
+        };
+    };
 in
 {
     programs.neovim = {
@@ -127,6 +138,31 @@ in
                 type = "lua";
                 config = builtins.readFile ./config/mason.lua;
             }
+            {
+                plugin = glow-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/glow.lua;
+            }
+            {
+                plugin = filetype-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/filetype.lua;
+            }
+            {
+                plugin = gitsigns-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/gitsigns.lua;
+            }
+            {
+                plugin = telescope-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/telescope.lua;
+            }
+            {
+                plugin = copilot-lua;
+                type = "lua";
+                config = builtins.readFile ./config/copilot.lua;
+            }
             auto-pairs
             cmp-buffer
             cmp-cmdline
@@ -142,14 +178,12 @@ in
             nui-nvim
             nvim-web-devicons
             nvim-ts-autotag
-            gitsigns-nvim
             impatient-nvim
             luasnip
             lspkind-nvim
             tmux-nvim
             popup-nvim
             telescope-fzf-native-nvim
-            telescope-nvim
             vim-fugitive
             vim-gitgutter
             vim-nix
@@ -164,7 +198,6 @@ in
             playground
             friendly-snippets
             fidget-nvim
-            glow-nvim
             jedi-vim
             vim-shellcheck
             Jenkinsfile-vim-syntax
@@ -172,7 +205,6 @@ in
             compiler-nvim
             overseer-nvim
             cmp-spell
-            copilot-lua
             copilot-cmp
             vim-sleuth
 
