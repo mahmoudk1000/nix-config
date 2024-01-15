@@ -1,8 +1,8 @@
-commit 4e8ce63148937ab4093a8c76b5e86641f96b621f
+commit 2eef7a335d7027c8cbfa53a900d856ce95887fbe
 Author: Mahmoud Ayman <mahmoudk1000@gmail.com>
 Date:   Sat Jul 1 23:59:43 2023 +0300
 
-    momo-patch
+    Momo Patch
 
 diff --git a/FAQ b/FAQ
 deleted file mode 100644
@@ -287,17 +287,45 @@ index bf28b1e..0000000
 -2012-09-13T07:00:36.081271045+02:00
 -
 diff --git a/LICENSE b/LICENSE
-index 3cbf420..c356c39 100644
+deleted file mode 100644
+index 3cbf420..0000000
 --- a/LICENSE
-+++ b/LICENSE
-@@ -1,6 +1,6 @@
- MIT/X Consortium License
- 
++++ /dev/null
+@@ -1,34 +0,0 @@
+-MIT/X Consortium License
+-
 -© 2014-2022 Hiltjo Posthuma <hiltjo at codemadness dot org>
-+© 2014-2018 Hiltjo Posthuma <hiltjo at codemadness dot org>
- © 2018 Devin J. Pohly <djpohly at gmail dot com>
- © 2014-2017 Quentin Rameau <quinq at fifth dot space>
- © 2009-2012 Aurélien APTEL <aurelien dot aptel at gmail dot com>
+-© 2018 Devin J. Pohly <djpohly at gmail dot com>
+-© 2014-2017 Quentin Rameau <quinq at fifth dot space>
+-© 2009-2012 Aurélien APTEL <aurelien dot aptel at gmail dot com>
+-© 2008-2017 Anselm R Garbe <garbeam at gmail dot com>
+-© 2012-2017 Roberto E. Vargas Caballero <k0ga at shike2 dot com>
+-© 2012-2016 Christoph Lohmann <20h at r-36 dot net>
+-© 2013 Eon S. Jeon <esjeon at hyunmu dot am>
+-© 2013 Alexander Sedov <alex0player at gmail dot com>
+-© 2013 Mark Edgar <medgar123 at gmail dot com>
+-© 2013-2014 Eric Pruitt <eric.pruitt at gmail dot com>
+-© 2013 Michael Forney <mforney at mforney dot org>
+-© 2013-2014 Markus Teich <markus dot teich at stusta dot mhn dot de>
+-© 2014-2015 Laslo Hunhold <dev at frign dot de>
+-
+-Permission is hereby granted, free of charge, to any person obtaining a
+-copy of this software and associated documentation files (the "Software"),
+-to deal in the Software without restriction, including without limitation
+-the rights to use, copy, modify, merge, publish, distribute, sublicense,
+-and/or sell copies of the Software, and to permit persons to whom the
+-Software is furnished to do so, subject to the following conditions:
+-
+-The above copyright notice and this permission notice shall be included in
+-all copies or substantial portions of the Software.
+-
+-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+-DEALINGS IN THE SOFTWARE.
 diff --git a/Makefile b/Makefile
 index 470ac86..d79bd9d 100644
 --- a/Makefile
@@ -399,139 +427,6 @@ index 6a846ed..0000000
 --------
 -Based on Aurélien APTEL <aurelien dot aptel at gmail dot com> bt source code.
 -
-diff --git a/README.md b/README.md
-new file mode 100644
-index 0000000..b590cf4
---- /dev/null
-+++ b/README.md
-@@ -0,0 +1,127 @@
-+# St (Suckless Terminal)
-+
-+## Xresources live-reload demo
-+
-+<img src="https://github.com/siduck/dotfiles/blob/all/rice%20flex/live-reloadXresources.gif"> <br><br>
-+
-+## Dependencies
-+
-+```
-+# Void
-+xbps-install libXft-devel libX11-devel harfbuzz-devel libXext-devel libXrender-devel libXinerama-devel
-+
-+# Debian (and ubuntu probably)
-+apt install build-essential libxft-dev libharfbuzz-dev libgd-dev
-+
-+# Nix
-+nix develop github:siduck/st
-+
-+(most of these are already installed on Arch based distros)
-+
-+# Install font-symbola and libXft-bgra
-+```
-+
-+## Try it out!
-+
-+Before you install st on your system, you might want to try it out first.
-+To do so, simply run (requires [Nix](https://nixos.org/download.html))
-+`nix run github:siduck/st`
-+
-+## Install
-+
-+```
-+git clone https://github.com/siduck/st.git
-+cd st
-+sudo make install
-+xrdb merge pathToXresourcesFile
-+```
-+
-+(note : put the xrdb merge command in your wm's autostart or similar)
-+
-+### Using Nix flakes
-+
-+Add `st.url = "github:siduck/st";` to your inputs and install `inputs.st.packages."${system}".st-snazzy` package
-+
-+## Fonts
-+
-+- Install JetbrainsMono Mono Nerd Font or any nerd font from [here](https://www.nerdfonts.com/font-downloads)
-+
-+## Patches:
-+
-+- Ligatures
-+- sixel (check sixel branch)
-+- scrollback
-+- Clipboard
-+- Alpha(Transparency)
-+- Boxdraw
-+- patch_column ( doesnt cut text while resizing)
-+- font2
-+- right click paste
-+- st desktop entry
-+- newterm
-+- anygeometry
-+- xresources
-+- sync patch ( Better draw timing to reduce flicker/tearing and improve animation smoothness )
-+- live reload ( change colors/fonts on the fly )
-+  and more...
-+  <br>
-+
-+## Xresources live-reload
-+
-+```
-+# make an alias for this command
-+
-+alias rel="xrdb merge pathToXresourcesFile && kill -USR1 $(pidof st)"
-+```
-+
-+## Ram usage comparison with other terminals and speed test
-+
-+<img src="https://raw.githubusercontent.com/siduck/dotfiles/all/rice%20flex/terminal_ramUsage.jpg"> <br><br>
-+<img src="https://raw.githubusercontent.com/siduck/dotfiles/all/rice%20flex/speedTest.png"> <br><br>
-+<img src="https://raw.githubusercontent.com/siduck/dotfiles/all/rice%20flex/speedTest1.png"> <br><br>
-+
-+( note : This benchmark was done on my low-end machine which has a pentium cpu so the speed results might vary )
-+
-+## Default Keybindings<br>
-+
-+<pre>
-+ctrl + shift + c        Copy  <br>
-+ctrl + shift + v        Paste <br>
-+right click on the terminal ( will paste the copied thing )
-+
-+(Zoom)
-+alt  + comma            Zoom in <br>
-+alt  + .                Zoom out <br>
-+alt  + g                Reset Zoom<br>
-+
-+(Transparency)
-+alt  + s                Increase Transparency<br>
-+alt  + a                Decrease Transparency<br>
-+alt  + m                Reset Transparency<br>
-+
-+alt + k                 scroll down
-+alt + j                 scroll up
-+
-+mod + shift + enter    open a new terminal with same cwd ( current working directory )
-+</pre>
-+
-+you can change all of these in config.h
-+<br>
-+
-+## Themes/Fonts used
-+
-+- ls-icons: https://github.com/Yash-Handa/logo-ls <br>
-+- Xresources: onedark (just `xrdb merge xresourcesfile`, do this everytime you make any change to xresources file) from this repo itself.<br>
-+- Font: JetbrainsMono Nerd Font + material design icon fonts
-+
-+## Screenshots:
-+
-+<img src="https://raw.githubusercontent.com/siduck/dotfiles/all/misc/delete_this/bruh.png"> <br><br>
-+<img src="https://raw.githubusercontent.com/siduck/dotfiles/all/misc/delete_this/ithree0-36-43.png"> <br><br>
-+<img src="https://raw.githubusercontent.com/siduck/dotfiles/all/misc/delete_this/two7-00.png"> <br><br>
-+<img src="https://raw.githubusercontent.com/siduck/dotfiles/all/misc/delete_this/u.png"> <br><hr>
-+
-+# Credits
-+
-+- [live-reload](https://github.com/nimaipatel/st)
-+- [patch_column](https://github.com/nimaipatel/st/blob/all/patches/7672445bab01cb4e861651dc540566ac22e25812.diff)
 diff --git a/TODO b/TODO
 deleted file mode 100644
 index 5f74cd5..0000000
@@ -987,7 +882,7 @@ index 0000000..7890500
 +	/* U+2571 - U+2573: unsupported (diagonals) */
 +};
 diff --git a/config.def.h b/config.def.h
-index 91ab8ca..39f7037 100644
+index 91ab8ca..cb8acc8 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -5,21 +5,20 @@
@@ -996,9 +891,9 @@ index 91ab8ca..39f7037 100644
   */
 -static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 -static int borderpx = 2;
-+static char *font = "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true";
-+static char *font2[] = { "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true" };
-+static int borderpx = 0;
++static char *font = "IosevkaTerm Nerd Font:pixelsize=12:antialias=true:autohint=true";
++static char *font2[] = { "Iosevka:pixelsize=12:antialias=true:autohint=true" };
++static int borderpx = 32;
  
  /*
   * What program is execed by st depends of these precedence rules:
@@ -1009,7 +904,8 @@ index 91ab8ca..39f7037 100644
   * 4: value of shell in /etc/passwd
   * 5: value of shell in config.h
   */
- static char *shell = "/bin/sh";
+-static char *shell = "/bin/sh";
++static char *shell = "/run/current-system/sw/bin/zsh";
  char *utmp = NULL;
 -/* scroll program: to enable use a string like "scroll" */
 -char *scroll = NULL;
@@ -1166,7 +1062,7 @@ index 91ab8ca..39f7037 100644
  
  /*
   * Default columns and rows numbers
-@@ -164,43 +188,112 @@ static unsigned int mousebg = 0;
+@@ -164,43 +188,100 @@ static unsigned int mousebg = 0;
  static unsigned int defaultattr = 11;
  
  /*
@@ -1236,8 +1132,8 @@ index 91ab8ca..39f7037 100644
 +  /* button               mask            function        argument */
 +  { Button4,              XK_NO_MOD,      kscrollup,      {.i =  mousescrollincrement} },
 +  { Button5,              XK_NO_MOD,      kscrolldown,    {.i =  mousescrollincrement} },
-+  { Button4,              Mod4Mask,        zoom,           {.f =  +1} },
-+  { Button5,              Mod4Mask,        zoom,           {.f =  -1} },
++  { Button4,              Mod4Mask,       zoom,           {.f =  +1} },
++  { Button5,              Mod4Mask,       zoom,           {.f =  -1} },
 +};
 +
 +static char *openurlcmd[] = { "/bin/sh", "-c", "st-urlhandler", "externalpipe", NULL };
@@ -1267,43 +1163,31 @@ index 91ab8ca..39f7037 100644
 +  { ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 +  { ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 +  { XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-+  { MODKEY,              XK_comma,       zoom,           {.f = +1} },
-+  { MODKEY,              XK_period,        zoom,           {.f = -1} },
-+  { MODKEY,               XK_g,        zoomreset,      {.f =  0} },
-+  { ControlMask | ShiftMask,               XK_C,           clipcopy,       {.i =  0} },
++  { MODKEY,		  XK_comma,       zoom,           {.f = +1} },
++  { MODKEY,		  XK_period,      zoom,           {.f = -1} },
++  { MODKEY,               XK_g,		  zoomreset,      {.f =  0} },
++  { ControlMask | ShiftMask,XK_C,         clipcopy,       {.i =  0} },
 +  { ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
-+  { ControlMask | ShiftMask,               XK_V,           clippaste,      {.i =  0} },
-+  { XK_ANY_MOD,		Button2,	selpaste,	{.i =  0} },
++  { ControlMask | ShiftMask,XK_V,         clippaste,      {.i =  0} },
++  { XK_ANY_MOD,		  Button2,	  selpaste,	  {.i =  0} },
 +  { MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
-+  { ControlMask | ShiftMask,               XK_U,           iso14755,       {.i =  0} },
++  { ControlMask | ShiftMask,XK_U,         iso14755,       {.i =  0} },
 +  { ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 +  { ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 +  { MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
 +  { MODKEY,               XK_Page_Down,   kscrolldown,    {.i = -1} },
-+  { MODKEY,               XK_k,           kscrollup,      {.i =  1} },
-+  { MODKEY,               XK_j,           kscrolldown,    {.i =  1} },
-+  { MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
-+  { MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
-+  { MODKEY,               XK_u,           kscrollup,      {.i = -1} },
-+  { MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
-+  { MODKEY,		XK_s,		changealpha,	{.f = -0.05} },
-+  { MODKEY,		XK_a,		changealpha,	{.f = +0.05} },
-+  { MODKEY,		XK_m,		changealpha,	{.f = +2.00} },
-+  { TERMMOD,              XK_Up,          zoom,           {.f = +1} },
-+  { TERMMOD,              XK_Down,        zoom,           {.f = -1} },
-+  { TERMMOD,              XK_K,           zoom,           {.f = +1} },
-+  { TERMMOD,              XK_J,           zoom,           {.f = -1} },
-+  { TERMMOD,              XK_U,           zoom,           {.f = +2} },
-+  { TERMMOD,              XK_D,           zoom,           {.f = -2} },
-+  { MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd } },
-+  { MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
-+  { MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
-+  { TERMMOD,              XK_Return,      newterm,        {.i =  0} },
-+
++  { MODKEY | ShiftMask,   XK_k,           kscrollup,      {.i =  1} },
++  { MODKEY | ShiftMask,   XK_j,           kscrolldown,    {.i =  1} },
++  { ShiftMask,            XK_Up,          kscrollup,      {.i =  1} },
++  { ShiftMask,            XK_Down,        kscrolldown,    {.i =  1} },
++  { MODKEY | ControlMask, XK_O,           zoom,           {.f = -2} },
++  { MODKEY | ControlMask, XK_I,           zoom,           {.f = +2} },
++  { ControlMask,	  XK_Up,          zoom,           {.f = +1} },
++  { ControlMask,	  XK_Down,        zoom,           {.f = -1} },
  };
  
  /*
-@@ -218,6 +311,10 @@ static Shortcut shortcuts[] = {
+@@ -218,6 +299,10 @@ static Shortcut shortcuts[] = {
   * * 0: no value
   * * > 0: cursor application mode enabled
   * * < 0: cursor application mode disabled
@@ -1314,7 +1198,7 @@ index 91ab8ca..39f7037 100644
   *
   * Be careful with the order of the definitions because st searches in
   * this table sequentially, so any XK_ANY_MOD must be in the last
-@@ -236,221 +333,228 @@ static KeySym mappedkeys[] = { -1 };
+@@ -236,221 +321,228 @@ static KeySym mappedkeys[] = { -1 };
   */
  static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
  
@@ -1753,7 +1637,7 @@ index 91ab8ca..39f7037 100644
  };
  
  /*
-@@ -461,7 +565,7 @@ static Key key[] = {
+@@ -461,7 +553,7 @@ static Key key[] = {
   * If no match is found, regular selection is used.
   */
  static uint selmasks[] = {
@@ -1762,7 +1646,7 @@ index 91ab8ca..39f7037 100644
  };
  
  /*
-@@ -469,6 +573,6 @@ static uint selmasks[] = {
+@@ -469,6 +561,6 @@ static uint selmasks[] = {
   * of single wide characters.
   */
  static char ascii_printable[] =

@@ -101,7 +101,7 @@
         enable = true;
         layout = "us,ara" ;
         xkbVariant = "qwerty";
-        xkbOptions = "caps:ctrl_modifier,grp:alt_shift_toggle";
+        xkbOptions = "caps:ctrl_modifier,grp:alt_space_toggle";
         displayManager.startx.enable = true;
         updateDbusEnvironment = true;
         libinput = {

@@ -267,7 +267,7 @@ vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 -- Plugins
 vim.keymap.set("n", "<C-n>", ":Neotree toggle reveal<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-t>", ":ToggleTerm<CR>", {})
-vim.keymap.set("n", "<A-T>", ":ToggleTerm direction=float<CR>", {})
+vim.keymap.set("n", "<A-f>", ":ToggleTerm direction=float<CR>", {})
 vim.keymap.set("n", "<leader>md", ":Glow<CR>", { noremap=true, silent=true })
 
 -- Telescope
