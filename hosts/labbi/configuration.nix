@@ -198,8 +198,11 @@
             '';
         };
         pam = {
-            enableSSHAgentAuth = true;
-            services.login.gnupg.enable = true;
+            sshAgentAuth.enable = true;
+            services.login = {
+                sshAgentAuth = true;
+                gnupg.enable = true;
+            };
         };
     };
 
