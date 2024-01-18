@@ -28,14 +28,14 @@
     # Settings
     nixpkgs.config = {
         "2bwm".patches = [
-            ../../modules/patches/2bwm/momo-patch.diff
+            ../../../modules/patches/2bwm/momo-patch.diff
         ];
 
         st = {
-            conf = builtins.readFile ../../modules/patches/st/config.h;
+            conf = builtins.readFile ../../../modules/patches/st/config.h;
             extraLibs = with pkgs; [ harfbuzz gd glib ];
             patches = [
-                ../../modules/patches/st/momo-patch.diff
+                ../../../modules/patches/st/momo-patch.diff
             ];
         };
 
