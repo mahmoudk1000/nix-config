@@ -17,7 +17,8 @@
     services.nextdns = {
         enable = true;
         arguments = [
-            "-config" "b28d16"
+            "-config set"
+            "-profile wlan0=b28d16"
             "-report-client-info"
             "-auto-activate"
         ];
