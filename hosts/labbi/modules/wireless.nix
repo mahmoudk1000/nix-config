@@ -15,7 +15,7 @@
 
     # NextDNS
     services.nextdns = {
-        enable = true;
+        enable = false;
         arguments = [
             "-config set"
             "-profile wlan0=b28d16"
