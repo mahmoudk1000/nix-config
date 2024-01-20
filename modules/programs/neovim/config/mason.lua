@@ -1,32 +1,50 @@
 local servers = {
-    'bashls',
+    -- Servers
+    'bash-language-server',
+    'shfmt',
+    'shellcheck',
+    'pylint',
     'clangd',
-    'cssls',
-    'html',
-    'jsonls',
-    'lua_ls',
-    'pylsp',
+    'css-lsp',
+    'html-lsp',
+    'json-lsp',
+    'jsonlint',
+    'lua-language-server',
+    'python-lsp-server',
     'marksman',
-    'sqlls',
-    'tsserver',
-    'yamlls',
-    'ansiblels',
-    'dockerls',
-    'docker_compose_language_service',
-    'groovyls',
-    'helm_ls',
-    'jsonls',
-    -- 'java_language_server',
+    'sqls',
+    'typescript-language-server',
+    'yaml-language-server',
+    'ansible-language-server',
+    'dockerfile-language-server',
+    'docker-compose-language-service',
+    'groovy-language-server',
+    'helm-ls',
+    -- 'java-language-server',
     'texlab',
-    'rnix',
+    'rnix-lsp',
     'taplo',
-    'terraformls',
+    'terraform-ls',
     'tflint',
-    'jedi_language_server',
-    'autotools_ls'
+    'jedi-language-server',
+    'autotools-language-server',
+    'jsonnet-language-server',
+    -- 'gopls',
+
+    -- Linters
+    'markdownlint',
+    'markdown-toc',
+    'isort',
+    'glow',
+    'checkstyle',
+    'checkmake',
+    'black',
+    'ansible-lint',
+    'hadolint',
+    'actionlint'
 }
 
-require("mason").setup ({
+require("mason").setup({
     ui = {
         border = "none",
         icons = {
@@ -37,7 +55,8 @@ require("mason").setup ({
     }
 })
 
-require("mason-lspconfig").setup({
+require("mason-tool-installer").setup({
     ensure_installed = servers,
-    automatic_installation = true
+    auto_update = false,
+    run_on_start = true
 })

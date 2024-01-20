@@ -36,8 +36,10 @@ in
         withNodeJs = true;
         defaultEditor = true;
         extraPackages = with pkgs; [
+            dockerfile-language-server-nodejs
             docker-compose-language-service
             autotools-language-server
+            jsonnet-language-server
             ansible-language-server
             groovy-language-server
             yaml-language-server
@@ -50,11 +52,13 @@ in
             nixpkgs-fmt
             tree-sitter
             shellcheck
+            actionlint
             checkmake
             marksman
             yamllint
             tectonic
             rnix-lsp
+            hadolint
             pplatex
             yamlfmt
             ripgrep
@@ -63,11 +67,12 @@ in
             texlab
             taplo
             shfmt
+            gopls
             glow
+            sqls
             gcc
         ]
         ++ (with nodePackages_latest; [
-            dockerfile-language-server-nodejs
             typescript-language-server
             bash-language-server
         ])
@@ -172,7 +177,7 @@ in
             cmp_luasnip
             comment-nvim
             colorizer
-            mason-lspconfig-nvim
+            mason-tool-installer-nvim
             dressing-nvim
             fzf-vim
             nui-nvim

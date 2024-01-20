@@ -1,75 +1,9 @@
 local lspconfig = require("lspconfig")
 
 -- nvim-cmp supports additional completion capabilities
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require('cmp_nvim_lsp')
+  .update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- Enable the following language servers
-local servers = {
-  'clangd',
-  'cssls',
-  'bashls',
-  'html',
-  'jsonls',
-  'marksman',
-  'sqlls',
-  'tsserver',
-  'yamlls',
-  'ansiblels',
-  'dockerls',
-  'docker_compose_language_service',
-  'helm_ls',
-  'jsonls',
-  -- 'java_language_server',
-  'texlab',
-  'rnix',
-  'taplo',
-  'terraformls',
-  'tflint',
-  'jedi_language_server',
-  'autotools_ls'
-}
-
--- LSP settings.
---  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
-
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-  nmap('gr', require('telescope.builtin').lsp_references)
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-  -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-  -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
-end
-
--- Set up lspconfig.
 capabilities.textDocument.completion.completionItem = {
   documentationFormat = { "markdown", "plaintext" },
   snippetSupport = true,
@@ -79,6 +13,58 @@ capabilities.textDocument.completion.completionItem = {
   deprecatedSupport = true,
   commitCharactersSupport = true
 }
+
+-- Enable the following language servers
+local servers = {
+  'clangd',
+  'cssls',
+  'bashls',
+  'html',
+  'jsonls',
+  'marksman',
+  'sqls',
+  'tsserver',
+  'yamlls',
+  'ansiblels',
+  'dockerls',
+  'docker_compose_language_service',
+  'helm_ls',
+  'jsonls',
+  'texlab',
+  'rnix',
+  'taplo',
+  'terraformls',
+  'tflint',
+  'jedi_language_server',
+  'autotools_ls',
+  'jsonnet_ls',
+  'gopls'
+}
+
+-- LSP settings.
+local on_attach = function(_, bufnr)
+    local function buf_nmap(...)
+      vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
+
+    -- Options
+    vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
+
+    -- Mappings
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    buf_nmap('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    buf_nmap('n', 'gd', vim.lsp.buf.definition, bufopts)
+    buf_nmap('n', 'K', vim.lsp.buf.hover, bufopts)
+    buf_nmap('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    buf_nmap('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+
+    local opts = { noremap = true, silent = true }
+    buf_nmap('n', ']d', vim.diagnostic.goto_next, opts)
+    buf_nmap('n', '<space>d', vim.diagnostic.open_float, opts)
+    buf_nmap('n', '[d', vim.diagnostic.goto_prev, opts)
+    buf_nmap('n', '<space>q', vim.diagnostic.setloclist, opts)
+    buf_nmap('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+end
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({
@@ -98,6 +84,10 @@ lspconfig.groovyls.setup({
   filetypes = { "groovy" },
   cmd = { "groovy-language-server" }
 })
+
+lspconfig.java_language_server.setup {
+  cmd = { "java-language-server" }
+}
 
 lspconfig.lua_ls.setup({
   on_attach = on_attach,
