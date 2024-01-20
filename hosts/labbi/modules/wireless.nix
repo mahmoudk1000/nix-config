@@ -14,14 +14,27 @@
     };
 
     # NextDNS
-    services.nextdns = {
-        enable = false;
-        arguments = [
-            "-config set"
-            "-profile wlan0=b28d16"
-            "-report-client-info"
-            "-auto-activate"
-        ];
+    services = {
+        nextdns = {
+            enable = false;
+            arguments = [
+                "-config set"
+                "-profile wlan0=b28d16"
+                "-report-client-info"
+                "-auto-activate"
+            ];
+        };
+        resolved = {
+            enable = true;
+            extraConfig = ''
+                [Resolve]
+                DNS=45.90.28.0#b28d16.dns.nextdns.io
+                DNS=2a07:a8c0::#b28d16.dns.nextdns.io
+                DNS=45.90.30.0#b28d16.dns.nextdns.io
+                DNS=2a07:a8c1::#b28d16.dns.nextdns.io
+                DNSOverTLS=yes
+            '';
+        };
     };
 
     # Bluetooth
