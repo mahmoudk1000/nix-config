@@ -79,8 +79,8 @@
             CPU_SCALING_GOVERNOR_ON_AC = "performance";
             CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-            START_CHARGE_THRESH_BAT0 = 25;
-            STOP_CHARGE_THRESH_BAT0 = 80;
+            # START_CHARGE_THRESH_BAT0 = 25;
+            # STOP_CHARGE_THRESH_BAT0 = 80;
 
             MAX_LOST_WORK_SECS_ON_AC = 15;
             MAX_LOST_WORK_SECS_ON_BAT = 60;
@@ -91,6 +91,7 @@
             # Radio Device
             WIFI_PWR_ON_BAT = 1;
             RESTORE_DEVICE_STATE_ON_STARTUP = 1;
+            DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
 
             # Disable on Network Connect
             DEVICES_TO_DISABLE_ON_LAN_CONNECT = "wifi wwan";
@@ -98,7 +99,7 @@
 
             # Enable on Network Disconnect
             DEVICES_TO_ENABLE_ON_LAN_DISCONNECT = "wifi wwan";
-            DEVICES_TO_ENABLE_ON_WIFI_DISCONNECT = "";
+            DEVICES_TO_ENABLE_ON_WIFI_DISCONNECT = "wwan";
         };
     };
 
