@@ -65,6 +65,8 @@ in
             helm-ls
             tflint
             texlab
+            tfsec
+            trivy
             taplo
             shfmt
             gopls
@@ -167,6 +169,11 @@ in
                 plugin = copilot-lua;
                 type = "lua";
                 config = builtins.readFile ./config/copilot.lua;
+            }
+            {
+                plugin = null-ls-nvim;
+                type = "lua";
+                config = builtins.readFile ./config/null.lua;
             }
             auto-pairs
             cmp-buffer

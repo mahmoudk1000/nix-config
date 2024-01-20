@@ -56,6 +56,13 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter-context'
     }
   },
+  {
+    'nvimtools/none-ls.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    }
+  },
 
   -- Autocompletion
   {

@@ -1,8 +1,7 @@
 local lspconfig = require("lspconfig")
 
 -- nvim-cmp supports additional completion capabilities
-local capabilities = require('cmp_nvim_lsp')
-  .update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 capabilities.textDocument.completion.completionItem = {
   documentationFormat = { "markdown", "plaintext" },
@@ -43,27 +42,23 @@ local servers = {
 
 -- LSP settings.
 local on_attach = function(_, bufnr)
-    local function buf_nmap(...)
-      vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
+  -- Options.
+  vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
 
-    -- Options
-    vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
+  -- Mappings.
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 
-    -- Mappings
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    buf_nmap('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    buf_nmap('n', 'gd', vim.lsp.buf.definition, bufopts)
-    buf_nmap('n', 'K', vim.lsp.buf.hover, bufopts)
-    buf_nmap('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    buf_nmap('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-
-    local opts = { noremap = true, silent = true }
-    buf_nmap('n', ']d', vim.diagnostic.goto_next, opts)
-    buf_nmap('n', '<space>d', vim.diagnostic.open_float, opts)
-    buf_nmap('n', '[d', vim.diagnostic.goto_prev, opts)
-    buf_nmap('n', '<space>q', vim.diagnostic.setloclist, opts)
-    buf_nmap('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  local opts = { noremap=true, silent=true }
+  vim.keymap.set('n', '<space>d', vim.diagnostic.open_float, opts)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
 end
 
 for _, lsp in ipairs(servers) do
@@ -73,7 +68,7 @@ for _, lsp in ipairs(servers) do
   })
 end
 
--- Make runtime files discoverable to the server
+-- Make runtime files discoverable to the server.
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
