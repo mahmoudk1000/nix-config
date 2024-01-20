@@ -138,11 +138,11 @@ in
                 type = "lua";
                 config = builtins.readFile ./config/whichkey.lua;
             }
-            {
-                plugin = mason-nvim;
-                type = "lua";
-                config = builtins.readFile ./config/mason.lua;
-            }
+            # {
+            #     plugin = mason-nvim;
+            #     type = "lua";
+            #     config = builtins.readFile ./config/mason.lua;
+            # }
             {
                 plugin = glow-nvim;
                 type = "lua";
@@ -177,7 +177,7 @@ in
             cmp_luasnip
             comment-nvim
             colorizer
-            mason-tool-installer-nvim
+            # mason-tool-installer-nvim
             dressing-nvim
             fzf-vim
             nui-nvim
