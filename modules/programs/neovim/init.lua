@@ -58,7 +58,6 @@ require('lazy').setup({
   },
   {
     'nvimtools/none-ls.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       "nvim-lua/plenary.nvim"
     }
@@ -102,7 +101,6 @@ require('lazy').setup({
     dependencies = {
       'zbirenbaum/copilot-cmp',
       event = { "InsertEnter", "LspAttach" },
-      fix_pairs = true,
       config = function ()
         require("copilot_cmp").setup()
       end
@@ -168,7 +166,6 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'make',
         cond = function()
           return vim.fn.executable 'make' == 1
         end,

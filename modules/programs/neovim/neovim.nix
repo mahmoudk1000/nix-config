@@ -45,6 +45,8 @@ in
             yaml-language-server
             java-language-server
             lua-language-server
+            markdownlint-cli
+            chart-testing
             terraform-lsp
             quick-lint-js
             terraform-ls
@@ -52,6 +54,7 @@ in
             nixpkgs-fmt
             tree-sitter
             shellcheck
+            checkstyle
             actionlint
             checkmake
             marksman
@@ -65,10 +68,13 @@ in
             helm-ls
             tflint
             texlab
+            yamale
             tfsec
             trivy
             taplo
             shfmt
+            isort
+            black
             gopls
             glow
             sqls
@@ -77,8 +83,9 @@ in
         ++ (with nodePackages_latest; [
             typescript-language-server
             bash-language-server
+            jsonlint
         ])
-        ++ (with python310Packages; [
+        ++ (with python3Packages; [
             jedi
             pylint
             pynvim
@@ -171,7 +178,7 @@ in
                 config = builtins.readFile ./config/copilot.lua;
             }
             {
-                plugin = null-ls-nvim;
+                plugin = none-ls-nvim;
                 type = "lua";
                 config = builtins.readFile ./config/null.lua;
             }

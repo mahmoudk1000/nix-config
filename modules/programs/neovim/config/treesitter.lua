@@ -1,44 +1,20 @@
--- The default parser_install_dir is managed by nix, which is readonly
--- so we need to use anther path
-local parser_install_dir = "~/.config/nvim-plugins/treesitter/parsers"
-vim.opt.runtimepath:append(parser_install_dir)
-
 require("nvim-treesitter.configs").setup({
-  parser_install_dir = parser_install_dir,
-  ensure_installed = {
-    'c',
-    'lua',
-    'vim',
-    'vimdoc',
-    'query',
-    'typescript',
-    'python',
-    'bash',
-    'javascript',
-    'html',
-    'css',
-    'java',
-    'dockerfile',
-    'json',
-    'markdown',
-    'nix',
-    'yaml',
-    'xml',
-    'terraform',
-    'sql',
-    'groovy',
-    'latex',
-    'make'
-  },
-  auto_install = true,
-  sync_install = true,
-  autotag = { enable = true },
-  indent = { enable = true },
-  incremental_selection = { enable = true },
   highlight = {
     enable = true,
     use_languagetree = true,
     additional_vim_regex_highlighting = false
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "g}",
+      scope_incremental = "grc",
+      node_decremental = "g{",
+    }
+  },
+  indent = {
+    enable = true
   },
   playground = {
     enable = true,
@@ -56,11 +32,11 @@ require("nvim-treesitter.configs").setup({
       update = 'R',
       goto_node = '<cr>',
       show_help = '?'
-    },
-    query_linter = {
-      enable = true,
-      use_virtual_text = true,
-      lint_events = { "BufWrite", "CursorHold" },
     }
+  },
+  query_linter = {
+    enable = true,
+    use_virtual_text = true,
+    lint_events = { "BufWrite", "CursorHold" }
   }
 })

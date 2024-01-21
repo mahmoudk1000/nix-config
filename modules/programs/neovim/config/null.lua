@@ -1,7 +1,8 @@
 local null_ls = require("null-ls")
 
 null_ls.setup({
-    source = {
+    sources = {
+        null_ls.builtins.completion.luasnip,
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.pylint.with({
