@@ -1,8 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs
+, ...
+}:
 
 {
-    services.unclutter = {
-        enable = true;
-        timeout = 2;
-    };
+  services.unclutter = {
+    enable = true;
+    timeout = 2;
+  };
 }

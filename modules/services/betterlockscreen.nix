@@ -1,8 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs
+, ...
+}:
 
 {
-    services.betterlockscreen = {
-        enable = true;
-        inactiveInterval = 300;
-    };
+  services.betterlockscreen = {
+    enable = true;
+    inactiveInterval = 300;
+  };
 }

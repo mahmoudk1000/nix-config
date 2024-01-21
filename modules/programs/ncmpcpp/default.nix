@@ -1,8 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs
+, ...
+}:
 
 {
-    imports = [
-        # ./ncmpcpp-curvy.nix
-        ./ncmpcpp-light.nix
-    ];
+  imports = [
+    # ./ncmpcpp-curvy.nix
+    ./ncmpcpp-light.nix
+  ];
 }

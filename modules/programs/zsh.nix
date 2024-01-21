@@ -1,4 +1,7 @@
-{ config, pkgs, theme, ... }:
+{ config
+, pkgs
+, ...
+}:
 
 {
   programs = {
@@ -17,7 +20,7 @@
       extraConfig = builtins.readFile "${pkgs.fetchurl {
           url = "https://github.com/arcticicestudio/nord-dircolors/raw/addb3b427e008d23affc721450fde86f27566f1d/src/dir_colors";
           sha256 = "sha256-hlezTQqouVKbxgQBxtZU4en0idDiTCRJtFGH6XYFmtc=";
-        }
+        } 
       }";
     };
     zsh = {
@@ -82,8 +85,6 @@
         ".." = "cd ..";
         "..." = "cd ../..";
         l = "eza";
-        # ll = "ls -lh --color=auto";
-        # la = "ls -alh --color=auto";
 
         v = "nvim";
         sv = "sudo nvim";
@@ -170,19 +171,19 @@
 
         # Command Not Found Msg
         command_not_found_handler() {
-            echo -e "nope, \e[31m'$0'\e[0m didn't work."; return 1
+          echo -e "nope, \e[31m'$0'\e[0m didn't work."; return 1
         }
       '';
       profileExtra = ''
         if [ -z "$DISPLAY" ] && [ "$(fgconsole)" -eq 1 ]; then
-            exec startx
+          exec startx
         fi
       '';
       dirHashes = {
-        doc = "$HOME/docs";
-        vid = "$HOME/videos";
-        dwn = "$HOME/download";
-        msk = "$HOME/musik";
+        doc = "${config.home.homeDirectory}/docs";
+        vid = "${config.home.homeDirectory}/videos";
+        dwn = "${config.home.homeDirectory}/download";
+        msk = "${config.home.homeDirectory}/musik";
       };
     };
   };

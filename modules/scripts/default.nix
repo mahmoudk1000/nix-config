@@ -1,10 +1,13 @@
-{ pkgs, ... }:
+{ config
+, pkgs
+, lib
+, ...
+}:
 
 let
-    poww = import ./poww.nix pkgs;
-    blum = import ./blum.nix pkgs;
+  poww = import ./poww.nix pkgs;
+  blum = import ./blum.nix pkgs;
 in
 [
-    blum
-    poww
-]
+  blum
+] ++ (lib.optional config.programs.poww.enable poww)

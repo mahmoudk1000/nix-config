@@ -7,119 +7,119 @@
 let
   obsidian = lib.throwIf (lib.versionOlder "1.5.3" pkgs.obsidian.version) "Obsidian no longer requires EOL Electron" (
     pkgs.obsidian.override {
-      electron = pkgs.electron_25.overrideAttrs (_: {
+    electron = pkgs.electron_25.overrideAttrs (_: {
         preFixup = "patchelf --add-needed ${pkgs.libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
         meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
-      });
+        });
     }
   );
 in
 {
-    imports = [
-        ../../modules/programs
-        ../../modules/services
-        ../../modules/x
-    ];
+  imports = [
+    ../../modules/programs
+    ../../modules/services
+    ../../modules/x
+  ];
 
-    home = {
-        username = "mahmoud";
-        homeDirectory = "/home/mahmoud";
-        stateVersion = "22.05";
-        extraOutputsToInstall = [ "man" ];
-        packages = with pkgs; [
+  home = {
+    username = "mahmoud";
+    homeDirectory = "/home/mahmoud";
+    stateVersion = "22.05";
+    extraOutputsToInstall = [ "man" ];
+    packages = with pkgs; [
 
-            vim
-            unzip
-            curl
-            wget
-            jq
-            playerctl
-            pamixer
-            isync
-            bitwarden-cli
-            pass
-            libnotify
+      vim
+      unzip
+      curl
+      wget
+      jq
+      playerctl
+      pamixer
+      isync
+      bitwarden-cli
+      pass
+      libnotify
 
-            psmisc
-            mpc-cli
-            ncmpcpp
-            xclip
-            pfetch
-            spotdl
-            ventoy-bin
-            yt-dlp
-            
-            ffmpeg
-            arandr
-            imagemagick
-            rtorrent
-            nsxiv
+      psmisc
+      mpc-cli
+      ncmpcpp
+      xclip
+      pfetch
+      spotdl
+      ventoy-bin
+      yt-dlp
 
-            st
-            zoom-us
-            inkscape
-            freetube
-            libreoffice
-            discord
-            anki-bin
-            spotify
-            tdesktop
-            element-desktop
-            foliate
-            obsidian
-            evince
-            mpv
-            krita
-            popcorntime
+      ffmpeg
+      arandr
+      imagemagick
+      rtorrent
+      nsxiv
 
-            libsForQt5.breeze-icons
-            xorg.xmodmap
+      st
+      zoom-us
+      inkscape
+      freetube
+      libreoffice
+      discord
+      anki-bin
+      spotify
+      tdesktop
+      element-desktop
+      foliate
+      obsidian
+      evince
+      mpv
+      krita
+      popcorntime
 
-            # work
-            opentofu
-            ansible
-            kubernetes-helm
-            kubernetes
-            minikube
-            kubectl
-            docker-compose
-            gnumake
-            kustomize
-            terraform
+      libsForQt5.breeze-icons
+      xorg.xmodmap
 
-        ] ++ (import ../../modules/scripts { inherit pkgs; });
+      # work
+      opentofu
+      ansible
+      kubernetes-helm
+      kubernetes
+      minikube
+      kubectl
+      docker-compose
+      gnumake
+      kustomize
+      terraform
+
+      ] ++ (import ../../modules/scripts { inherit config pkgs lib; });
+  };
+
+  xdg = {
+    userDirs = {
+    enable = true;
+    desktop  = "${config.home.homeDirectory}/";
+    documents = "${config.home.homeDirectory}/docs";
+    download = "${config.home.homeDirectory}/download";
+    music = "${config.home.homeDirectory}/musik";
+    pictures = "${config.home.homeDirectory}/pics";
+    videos = "${config.home.homeDirectory}/videos";
     };
+  };
 
-    xdg = {
-        userDirs = {
-            enable = true;
-            desktop  = "\$HOME/";
-            documents = "\$HOME/docs";
-            download = "\$HOME/download";
-            music = "\$HOME/musik";
-            pictures = "\$HOME/pics";
-            videos = "\$HOME/videos";
-        };
+  programs = {
+    home-manager.enable = true;
+    nix-index ={
+      enable = true;
+      enableZshIntegration = true;
     };
+  };
 
-    programs = {
-        home-manager.enable = true;
-        nix-index ={
-            enable = true;
-            enableZshIntegration = true;
-        };
+  xsession = {
+    enable = true;
+    windowManager = {
+      # command = "2bwm";
+      bspwm.enable = false;
+      herbstluftwm.enable = false;
+      awesome.enable = true;
     };
+  };
 
-    xsession = {
-        enable = true;
-        windowManager = {
-            # command = "2bwm";
-            bspwm.enable = false;
-            herbstluftwm.enable = false;
-            awesome.enable = true;
-        };
-    };
-
-    systemd.user.startServices = "sd-switch";
+  systemd.user.startServices = "sd-switch";
 }
 

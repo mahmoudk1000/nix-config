@@ -8,7 +8,7 @@
     base06 = "#6e94b9";
     base07 = "#b18bb1";
     base08 = "#88c0d0";
-    base09 = "#2d3d5b";
+    base09 = "#172030";
     base0A = "#ffbfc4";
     base0B = "#e9f6e0";
     base0C = "#fffff5";
