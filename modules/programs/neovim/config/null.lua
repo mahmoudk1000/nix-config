@@ -17,6 +17,8 @@ null_ls.setup({
         null_ls.builtins.diagnostics.terraform_validate,
         null_ls.builtins.diagnostics.tfsec,
         null_ls.builtins.diagnostics.trivy,
+        null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.formatting.yamlfmt,
         null_ls.builtins.diagnostics.markdownlint,
         null_ls.builtins.formatting.markdown_toc,
         null_ls.builtins.diagnostics.checkstyle.with({
@@ -25,6 +27,12 @@ null_ls.setup({
         null_ls.builtins.diagnostics.checkmake,
         null_ls.builtins.diagnostics.ansiblelint,
         null_ls.builtins.diagnostics.hadolint,
-        null_ls.builtins.diagnostics.actionlint
+        null_ls.builtins.diagnostics.actionlint,
+        null_ls.builtins.code_actions.statix,
+        null_ls.builtins.diagnostics.deadnix,
+        null_ls.builtins.formatting.nixpkgs_fmt,
+        null_ls.builtins.completion.spell,
+        null_ls.builtins.formatting.jsonnetfmt,
+        null_ls.builtins.completion.tags
     }
 })

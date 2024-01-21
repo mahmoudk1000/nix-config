@@ -53,6 +53,7 @@ in
             ansible-lint
             nixpkgs-fmt
             tree-sitter
+            nixpkgs-fmt
             shellcheck
             checkstyle
             actionlint
@@ -66,6 +67,8 @@ in
             yamlfmt
             ripgrep
             helm-ls
+            deadnix
+            statix
             tflint
             texlab
             yamale
