@@ -1,4 +1,5 @@
-{ pkgs
+{ config
+, pkgs
 , ...
 }:
 
@@ -18,7 +19,7 @@
   # Boot
   boot = {
     supportedFilesystems = [ "ntfs" ];
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     loader = {
       systemd-boot = {
         enable = true;
@@ -26,6 +27,11 @@
       };
       efi.canTouchEfiVariables = true;
     };
+    extraModulePackages = with config.boot.kernelPackages; [
+      cpupower
+      perf
+      nvidia_x11
+    ];
   };
 
   # Programs

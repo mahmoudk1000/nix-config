@@ -18,15 +18,12 @@
   # Packages installed in system profile.
   environment.systemPackages = with pkgs; [
     vim
-      wget
-      git
-      man-pages
-      _2bwm
-      brightnessctl
-  ] ++ (with config.boot.kernelPackages; [
-      cpupower
-      perf
-  ]);
+    wget
+    git
+    man-pages
+    _2bwm
+   brightnessctl
+  ];
 
   # Settings
   nixpkgs.config = {
