@@ -29,16 +29,16 @@
         repo_root_style = "bold fg:${theme.base06} bg:${theme.base00}";
       };
       hostname = {
+        disabled = false;
         ssh_only = true;
-        format = "[🌐$hostname](\$style) in ";
         trim_at = "-";
         style = "bold dimmed purple";
-        disabled = false;
+        format = "[🌐$hostname](\$style) in ";
       };
       cmd_duration = {
-        format = "took [\$duration](\$style) ";
-        style = "bold yellow";
         disabled = false;
+        style = "bold yellow";
+        format = "took [\$duration](\$style) ";
       };
       time = {
         disabled = true;
@@ -60,21 +60,21 @@
       };
       git_state = {
         style = "fg:${theme.base05} bg:${theme.base09}";
-        rebase = "rebasing";
-        merge = "merging";
-        revert = "reverting";
-        cherry_pick = " picking";
-        bisect = "bisecting";
-        am = "am'ing";
-        am_or_rebase = "am/rebase";
+        rebase = "REBASING";
+        merge = "MERGING";
+        revert = "REVERTING";
+        cherry_pick = " CHERRY-PICKING";
+        bisect = "BISECTING";
+        am = "AM";
+        am_or_rebase = "AM/REBASE";
         format = "\([[ ](fg:${theme.base09} bg:${theme.base00})$state($progress_current/$progress_total)[ ](fg:${theme.base09} bg:${theme.base00})]($style)\)";
       };
       git_status = {
         style = "fg:${theme.base05} bg:${theme.base09}";
-        stashed = " ⨀ \${count} ";
+        stashed = " ⚑ \${count} ";
         ahead = " ⇈ \${count} ";
         behind = " ⇊ \${count} ";
-        diverged = "  \${ahead_count} \${behind_count} ";
+        diverged = " ⇕ ⇡\${ahead_count} ⇣\${behind_count} ";
         conflicted = " ✘ \${count} ";
         deleted = "  \${count} ";
         renamed = "  \${count} ";

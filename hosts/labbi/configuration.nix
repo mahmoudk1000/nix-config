@@ -5,7 +5,7 @@
 {
   imports =
     [
-    ./hardware-configuration.nix
+      ./hardware-configuration.nix
       ./modules/gpu.nix
       ./modules/locale.nix
       ./modules/nixos.nix
