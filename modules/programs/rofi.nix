@@ -14,7 +14,7 @@ in
 
   programs = {
     poww = {
-      enable = true;
+      enable = false;
     };
     rofi = {
       enable = true;
