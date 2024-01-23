@@ -196,6 +196,8 @@ in
       cmp-path
       cmp-git
       cmp_luasnip
+      cmp-spell
+      cmp-nvim-tags
       comment-nvim
       colorizer
       # mason-tool-installer-nvim
@@ -230,10 +232,9 @@ in
       vimtex
       compiler-nvim
       overseer-nvim
-      cmp-spell
       copilot-cmp
       vim-sleuth
 
-      ];
+    ];
   };
 }

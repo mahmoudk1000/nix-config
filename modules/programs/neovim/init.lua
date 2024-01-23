@@ -73,6 +73,8 @@ require('lazy').setup({
       'petertriho/cmp-git',
       'hrsh7th/cmp-nvim-lsp',
       'f3fora/cmp-spell',
+      'quangnguyen30192/cmp-nvim-tags',
+      'saadparwaiz1/cmp_luasnip',
       {
         'L3MON4D3/LuaSnip',
         event = "InsertEnter",
