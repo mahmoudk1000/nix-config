@@ -44,7 +44,6 @@ in
       docker-compose-language-service
       vscode-langservers-extracted
       autotools-language-server
-      luajitPackages.jsregexp
       jsonnet-language-server
       ansible-language-server
       groovy-language-server
