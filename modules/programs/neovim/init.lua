@@ -73,21 +73,16 @@ require('lazy').setup({
       'hrsh7th/cmp-cmdline',
       'petertriho/cmp-git',
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
       'f3fora/cmp-spell',
       'quangnguyen30192/cmp-nvim-tags',
       'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
       {
         'L3MON4D3/LuaSnip',
         event = "InsertEnter",
         version = "v2.*",
         dependencies = {
-          {
-            'saadparwaiz1/cmp_luasnip',
-            dependencies = {
-              'onsails/lspkind.nvim',
-            }
-          },
+          'saadparwaiz1/cmp_luasnip',
           {
             'rafamadriz/friendly-snippets',
             config = function()
@@ -95,6 +90,19 @@ require('lazy').setup({
             end
           }
         }
+      },
+      {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = {
+          fast_wrap = {},
+          disable_filetype = { "TelescopePrompt", "vim" }
+        },
+        config = function(_, opts)
+          require("nvim-autopairs").setup(opts)
+          local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+          require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+        end,
       }
     }
   },
@@ -187,7 +195,6 @@ require('lazy').setup({
 
   -- Others
   'windwp/nvim-ts-autotag',
-  'windwp/nvim-autopairs',
   'numToStr/Comment.nvim',
   'nathom/filetype.nvim',
   'folke/which-key.nvim',

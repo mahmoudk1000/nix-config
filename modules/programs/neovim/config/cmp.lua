@@ -1,6 +1,35 @@
 local cmp     = require("cmp")
 local luasnip = require("luasnip")
 
+local kind_icons = {
+  Text = "󰉿",
+  Method = "󰆧",
+  Function = "󰊕",
+  Constructor = "",
+  Field = "󰜢",
+  Variable = "󰀫",
+  Class = "󰠱",
+  Interface = "",
+  Module = "",
+  Property = "󰜢",
+  Unit = "󰑭",
+  Value = "󰎠",
+  Enum = "",
+  Keyword = "󰌋",
+  Snippet = "",
+  Color = "󰏘",
+  File = "󰈙",
+  Reference = "󰈇",
+  Folder = "󰉋",
+  EnumMember = "",
+  Constant = "󰏿",
+  Struct = "󰙅",
+  Event = "",
+  Operator = "󰆕",
+  Copilot = "",
+  TypeParameter = "",
+}
+
 local has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -14,8 +43,14 @@ cmp.setup({
     end
   },
   window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    completion = {
+      border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+      winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
+    },
+    documentation = {
+      border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+      winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
+    }
   },
   mapping = cmp.mapping.preset.insert({
     ["<Tab>"] = cmp.mapping(function(fallback)
@@ -61,12 +96,24 @@ cmp.setup({
     ["<C-n>"] = cmp.mapping.select_next_item(),
   }),
   formatting = {
-    format = require("lspkind").cmp_format({
-      mode = "symbol",
-      maxwidth = 50,
-      ellipsis_char = "...",
-      symbol_map = { Copilot = "" }
-    })
+    format = function(entry, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+      -- Source
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        nvim_lsp = "[LSP]",
+        luasnip = "[LuaSnip]",
+        nvim_lua = "[Lua]",
+        latex_symbols = "[LaTeX]",
+        copilot = "[Copilot]",
+        spell = "[Spell]",
+        path = "[Path]",
+        tags = "[Tags]",
+        nvim_lsp_signature_help = "[Signature]"
+      })[entry.source.name]
+      return vim_item
+    end
   },
   sources = cmp.config.sources({
     { name = "nvim_lsp" },

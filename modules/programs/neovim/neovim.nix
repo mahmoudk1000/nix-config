@@ -44,6 +44,7 @@ in
       docker-compose-language-service
       vscode-langservers-extracted
       autotools-language-server
+      luajitPackages.jsregexp
       jsonnet-language-server
       ansible-language-server
       groovy-language-server
@@ -202,7 +203,6 @@ in
       nvim-ts-autotag
       impatient-nvim
       luasnip
-      lspkind-nvim
       tmux-nvim
       telescope-fzf-native-nvim
       vim-fugitive
