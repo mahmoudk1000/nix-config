@@ -75,18 +75,6 @@ in
       libsForQt5.breeze-icons
       xorg.xmodmap
 
-      # work
-      opentofu
-      ansible
-      kubernetes-helm
-      kubernetes
-      minikube
-      kubectl
-      docker-compose
-      gnumake
-      kustomize
-      terraform
-
       ] ++ (import ../../modules/scripts { inherit config pkgs lib; });
   };
 
@@ -103,6 +91,7 @@ in
   };
 
   programs = {
+    devops.enable = true;
     home-manager.enable = true;
     nix-index ={
       enable = true;

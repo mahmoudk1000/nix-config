@@ -12,6 +12,7 @@
     ./awesomewm.nix
     # ./bash.nix
     ./bspwm.nix
+    ./devops.nix
     ./firefox.nix
     ./git.nix
     ./gnu.nix
