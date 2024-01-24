@@ -101,16 +101,16 @@ cmp.setup({
       vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
       -- Source
       vim_item.menu = ({
-        buffer = "[Buffer]",
+        buffer = "[Buf]",
         nvim_lsp = "[LSP]",
-        luasnip = "[LuaSnip]",
+        luasnip = "[Snp]",
         nvim_lua = "[Lua]",
-        latex_symbols = "[LaTeX]",
-        copilot = "[Copilot]",
-        spell = "[Spell]",
-        path = "[Path]",
-        tags = "[Tags]",
-        nvim_lsp_signature_help = "[Signature]"
+        latex_symbols = "[LaT]",
+        copilot = "[Cop]",
+        spell = "[Spl]",
+        path = "[Pth]",
+        tags = "[Tag]",
+        nvim_lsp_signature_help = "[Sig]"
       })[entry.source.name]
       return vim_item
     end
