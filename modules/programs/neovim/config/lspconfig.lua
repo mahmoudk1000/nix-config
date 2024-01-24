@@ -1,7 +1,7 @@
 local lspconfig = require("lspconfig")
 
 -- nvim-cmp supports additional completion capabilities
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 capabilities.textDocument.completion.completionItem = {
   documentationFormat = { "markdown", "plaintext" },
@@ -10,7 +10,8 @@ capabilities.textDocument.completion.completionItem = {
   insertReplaceSupport = true,
   labelDetailsSupport = true,
   deprecatedSupport = true,
-  commitCharactersSupport = true
+  commitCharactersSupport = true,
+  tagSupport = { valueSet = { 1 } }
 }
 
 -- Enable the following language servers
@@ -42,23 +43,26 @@ local servers = {
 
 -- LSP settings.
 local on_attach = function(_, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
   -- Options.
-  vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  buf_set_keymap('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  buf_set_keymap('n', 'gd', vim.lsp.buf.definition, bufopts)
+  buf_set_keymap('n', 'K', vim.lsp.buf.hover, bufopts)
+  buf_set_keymap('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  buf_set_keymap('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 
   local opts = { noremap = true, silent = true }
-  vim.keymap.set('n', '<space>d', vim.diagnostic.open_float, opts)
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-  vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  buf_set_keymap('n', '<space>d', vim.diagnostic.open_float, opts)
+  buf_set_keymap('n', '[d', vim.diagnostic.goto_prev, opts)
+  buf_set_keymap('n', ']d', vim.diagnostic.goto_next, opts)
+  buf_set_keymap('n', '<space>q', vim.diagnostic.setloclist, opts)
+  buf_set_keymap('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
 end
 
 for _, lsp in ipairs(servers) do
@@ -67,11 +71,6 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   })
 end
-
--- Make runtime files discoverable to the server.
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
 
 lspconfig.groovyls.setup({
   on_attach = on_attach,
@@ -91,10 +90,6 @@ lspconfig.lua_ls.setup({
   capabilities = capabilities,
   settings = {
     Lua = {
-      runtime = {
-        version = 'LuaJIT',
-        path = runtime_path,
-      },
       diagnostics = {
         globals = { 'vim' },
       },

@@ -42,6 +42,7 @@ in
     extraPackages = with pkgs; [
       dockerfile-language-server-nodejs
       docker-compose-language-service
+      vscode-langservers-extracted
       autotools-language-server
       jsonnet-language-server
       ansible-language-server
@@ -50,7 +51,6 @@ in
       java-language-server
       lua-language-server
       markdownlint-cli
-      chart-testing
       terraform-lsp
       quick-lint-js
       terraform-ls
@@ -58,6 +58,7 @@ in
       nixpkgs-fmt
       tree-sitter
       nixpkgs-fmt
+      clang-tools
       shellcheck
       checkstyle
       actionlint
@@ -75,7 +76,6 @@ in
       statix
       tflint
       texlab
-      yamale
       tfsec
       trivy
       taplo
@@ -88,7 +88,6 @@ in
       gcc
       ]
       ++ (with nodePackages_latest; [
-        typescript-language-server
         bash-language-server
         jsonlint
       ])
@@ -154,11 +153,6 @@ in
         type = "lua";
         config = builtins.readFile ./config/whichkey.lua;
       }
-      # {
-      #     plugin = mason-nvim;
-      #     type = "lua";
-      #     config = builtins.readFile ./config/mason.lua;
-      # }
       {
         plugin = glow-nvim;
         type = "lua";
@@ -198,9 +192,9 @@ in
       cmp_luasnip
       cmp-spell
       cmp-nvim-tags
+      cmp-nvim-lsp-signature-help
       comment-nvim
       colorizer
-      # mason-tool-installer-nvim
       dressing-nvim
       fzf-vim
       nui-nvim
@@ -210,30 +204,28 @@ in
       luasnip
       lspkind-nvim
       tmux-nvim
-      popup-nvim
       telescope-fzf-native-nvim
       vim-fugitive
       vim-gitgutter
       vim-nix
       vim-rhubarb
       vim-sleuth
-      vim-surround
+      nvim-surround
       vim-unimpaired
       vim-terraform
       vim-yaml
       ansible-vim
-      vimwiki
       playground
       friendly-snippets
       fidget-nvim
       jedi-vim
       vim-shellcheck
       Jenkinsfile-vim-syntax
+      vim-jsonnet
       vimtex
       compiler-nvim
       overseer-nvim
       copilot-cmp
-      vim-sleuth
 
     ];
   };

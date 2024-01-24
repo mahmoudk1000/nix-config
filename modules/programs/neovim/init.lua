@@ -66,6 +66,7 @@ require('lazy').setup({
   -- Autocompletion
   {
     'hrsh7th/nvim-cmp',
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
@@ -75,6 +76,7 @@ require('lazy').setup({
       'f3fora/cmp-spell',
       'quangnguyen30192/cmp-nvim-tags',
       'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
       {
         'L3MON4D3/LuaSnip',
         event = "InsertEnter",
@@ -107,6 +109,14 @@ require('lazy').setup({
         require("copilot_cmp").setup()
       end
     }
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup()
+    end
   },
 
   -- Git
@@ -188,6 +198,7 @@ require('lazy').setup({
   'aserowy/tmux.nvim',
   'pearofducks/ansible-vim',
   'hashivim/vim-terraform',
+  'google/vim-jsonnet',
 }, {})
 
 
@@ -217,14 +228,14 @@ vim.o.updatetime = 250                        -- Decrease update time
 vim.wo.signcolumn = "yes"                     -- Always show sign column
 vim.o.autoindent = true                       -- Enable auto-indentation
 vim.o.clipboard = "unnamedplus"               -- Use system clipboard
-vim.o.completeopt = "menu,menuone,noselect"   -- Set completion options
 vim.o.expandtab = true                        -- Expand tabs to spaces
 vim.o.tabstop = 4                             -- Number of spaces per tab
 vim.o.shiftwidth = 4                          -- Number of spaces for auto-indent
 vim.o.softtabstop = 4                         -- Number of spaces in Tab key's behavior
 vim.o.list = true                             -- Display list characters
+vim.opt.completeopt = { "menu", "menuone", "noselect" } -- Completion options
 vim.opt.spell = true                          -- Enable spell checking
-vim.opt.spelllang = "en_us"                   -- Set the spell checking language
+vim.opt.spelllang = { "en_us" }               -- Set the spell checking language
 vim.opt.listchars:append("space:⋅")           -- Show a special character for spaces
 vim.opt.listchars:append("eol:↴")             -- Show a special character for end of line
 
