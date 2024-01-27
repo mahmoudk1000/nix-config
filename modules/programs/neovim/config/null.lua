@@ -6,7 +6,7 @@ null_ls.setup({
         null_ls.builtins.code_actions.statix,
 
         -- Completion
-        null_ls.builtins.completion.luasnip,
+        -- null_ls.builtins.completion.luasnip,
         null_ls.builtins.completion.tags,
         null_ls.builtins.completion.spell,
 

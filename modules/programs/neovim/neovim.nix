@@ -1,6 +1,5 @@
 { config
 , pkgs
-, inputs
 , ...
 }:
 
@@ -31,6 +30,7 @@ let
   };
 in
 {
+  home.file.".config/nvim/colors/bluesee.vim".source = ./bluesee.vim;
   programs.neovim = {
     enable = true;
     extraLuaConfig = builtins.readFile ./init.lua;
@@ -126,7 +126,7 @@ in
       {
         plugin = nvim-lspconfig;
         type = "lua";
-        config = builtins.readFile ./config/lspconfig.lua;
+        config = builtins.readFile ./config/lsp.lua;
       }
       {
         plugin = lualine-nvim;
@@ -183,6 +183,11 @@ in
         type = "lua";
         config = builtins.readFile ./config/null.lua;
       }
+      {
+        plugin = fidget-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/fidget.lua;
+      }
       auto-pairs
       cmp-buffer
       cmp-cmdline
@@ -216,7 +221,6 @@ in
       ansible-vim
       playground
       friendly-snippets
-      fidget-nvim
       jedi-vim
       vim-shellcheck
       Jenkinsfile-vim-syntax

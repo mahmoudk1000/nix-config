@@ -42,8 +42,6 @@ require('lazy').setup({
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- 'williamboman/mason.nvim',
-      -- 'WhoIsSethDaniel/mason-tool-installer.nvim',
       'j-hui/fidget.nvim'
     }
   },
@@ -83,26 +81,23 @@ require('lazy').setup({
         version = "v2.*",
         dependencies = {
           'saadparwaiz1/cmp_luasnip',
-          {
-            'rafamadriz/friendly-snippets',
-            config = function()
-              require("luasnip.loaders.from_vscode").lazy_load()
-            end
-          }
-        }
+          'rafamadriz/friendly-snippets'
+        },
+        config = function()
+          require('luasnip').config.set_config({
+            history = true,
+            updateevents = 'TextChanged,TextChangedI',
+            enable_autosnippets = true
+          })
+          require("luasnip/loaders/from_vscode").lazy_load()
+        end
       },
       {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
-        opts = {
-          fast_wrap = {},
-          disable_filetype = { "TelescopePrompt", "vim" }
-        },
-        config = function(_, opts)
-          require("nvim-autopairs").setup(opts)
-          local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-          require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-        end,
+        config = function()
+          require("nvim-autopairs").setup()
+        end
       }
     }
   },
@@ -223,7 +218,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Options
 vim.o.termguicolors = true                    -- Enable true color support in the terminal
-vim.o.cursorline = true                       -- Set highlight cursor
+-- vim.o.cursorline = true                       -- Set highlight cursor
 vim.o.hlsearch = false                        -- Disable highlighting on search
 vim.wo.number = true                          -- Show line numbers by default
 vim.o.mouse = "a"                             -- Enable mouse mode
@@ -248,7 +243,7 @@ vim.opt.listchars:append("eol:↴")             -- Show a special character for 
 
 
 -- Color Scheme
-vim.cmd [[colorscheme dunkelsee]]
+vim.cmd [[colorscheme bluesee]]
 
 
 -- Keymaps
@@ -315,8 +310,6 @@ vim.keymap.set("n", "<A-Tab>", require("telescope.builtin").buffers, { desc = "S
 -- starting them. Otherwise, the plugin itself is required and its `setup` method is called.
 require("Comment").setup()
 require("colorizer").setup()
-require("nvim-autopairs").setup()
 require("gitsigns").setup()
 require("cmp_git").setup()
-require("fidget").setup()
 require("tmux").setup()

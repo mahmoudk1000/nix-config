@@ -1,22 +1,17 @@
 require("neo-tree").setup({
+  sources = {
+    "filesystem"
+  },
   close_if_last_window = true,
   popup_border_style = "rounded",
   enable_git_status = true,
   git_status_async = true,
   enable_diagnostics = false,
   source_selector = {
-    winbar = true,
-    separator_active = " ",
+    winbar = false,
     statusline = false,
     sources = {
-      {
-        source = "filesystem",
-        display_name = " 󰉓  Files ",
-      },
-      {
-        source = "git_status",
-        display_name = " 󰊢 Git ",
-      }
+      { source = "filesystem" }
     }
   },
   default_component_configs = {
@@ -121,19 +116,6 @@ require("neo-tree").setup({
     hijack_netrw_behavior = "open_current",
     use_libuv_file_watcher = true
   },
-  buffers = {
-    follow_current_file = {
-      enabled = true
-    },
-    show_unloaded = true,
-    window = {
-      mappings = {
-        ["bd"] = "buffer_delete",
-        ["<bs>"] = "navigate_up",
-        ["."] = "set_root"
-      }
-    }
-  },
   git_status = {
     window = {
       position = "float",
@@ -147,15 +129,5 @@ require("neo-tree").setup({
         ["gg"] = "git_commit_and_push"
       }
     }
-  },
-  event_handlers = {
-    {
-      event = "vim_buffer_enter",
-      handler = function(_)
-        if vim.bo.filetype == "neo-tree" then
-          vim.wo.signcolumn = "auto"
-        end
-      end,
-    },
   }
 })

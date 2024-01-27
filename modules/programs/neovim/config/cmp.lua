@@ -1,5 +1,6 @@
-local cmp     = require("cmp")
-local luasnip = require("luasnip")
+local cmp           = require("cmp")
+local luasnip       = require("luasnip")
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 local kind_icons = {
   Text = "󰉿",
@@ -26,7 +27,7 @@ local kind_icons = {
   Struct = "󰙅",
   Event = "",
   Operator = "󰆕",
-  Copilot = "",
+  Copilot = "",
   TypeParameter = "",
 }
 
@@ -44,12 +45,12 @@ cmp.setup({
   },
   window = {
     completion = {
-      border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
-      winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
+      border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
+      winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None"
     },
     documentation = {
-      border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
-      winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
+      border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
+      winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None"
     }
   },
   mapping = cmp.mapping.preset.insert({
@@ -106,9 +107,9 @@ cmp.setup({
         luasnip = "[Snp]",
         nvim_lua = "[Lua]",
         latex_symbols = "[LaT]",
-        copilot = "[Cop]",
+        copilot = "[Git]",
         spell = "[Spl]",
-        path = "[Pth]",
+        path = "[Dir]",
         tags = "[Tag]",
         nvim_lsp_signature_help = "[Sig]"
       })[entry.source.name]
@@ -141,13 +142,13 @@ cmp.setup({
       }
     },
     { name = "buffer" },
-    { name = "cmp_git" }
+    { name = "git" }
   })
 })
 
 cmp.setup.filetype("gitcommit", {
   sources = cmp.config.sources({
-    { name = "cmp_git" },
+    { name = "git" },
   }, {
     { name = "buffer" },
   })
@@ -157,7 +158,11 @@ cmp.setup.filetype("gitcommit", {
 cmp.setup.cmdline("/", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = "buffer" }
+    {
+      name = 'buffer',
+      max_item_count = 10,
+      keyword_length = 1,
+    }
   }
 })
 
@@ -182,3 +187,8 @@ cmp.setup.cmdline('?', {
     }
   }
 })
+
+cmp.event:on(
+  "confirm_done",
+  cmp_autopairs.on_confirm_done()
+)

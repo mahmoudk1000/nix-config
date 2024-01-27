@@ -2,16 +2,16 @@ require("bufferline").setup({
     options = {
         offsets = {
             {
-                filetype = "NvimTree",
-                text = "File Explorer",
-                padding = 1,
+                filetype = "neo-tree",
+                text = "󰉓  Files Explorer",
                 text_align = "center"
             }
         },
+	separator_style = "sloped",
         buffer_close_icon = "✘",
         modified_icon = "",
         close_icon = "✘",
-        show_close_icon = false,
+        show_close_icon = true,
         left_trunc_marker = "",
         right_trunc_marker = "",
         max_name_length = 20,
@@ -20,17 +20,12 @@ require("bufferline").setup({
         show_tab_indicators = true,
         enforce_regular_tabs = false,
         show_buffer_close_icons = true,
-        separator_style = "thin",
         themable = true,
         color_icons = true,
-        -- top right buttons in bufferline
-        custom_areas = {
-            right = function()
-                return {
-                    { text = "%@Toggle_theme@" .. vim.g.toggle_theme_icon .. "%X" },
-                    { text = "%@Quit_vim@ %X" },
-                }
-            end
-        }
+        -- diagnostics = 'nvim_lsp',
+        -- diagnostics_indicator = function(count, level)
+        --     local icon = level:match("error") and "" or ""
+        --     return " " .. icon .. " " .. count
+        -- end
     }
 })
