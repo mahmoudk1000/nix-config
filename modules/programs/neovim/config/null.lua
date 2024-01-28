@@ -3,7 +3,9 @@ local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
         -- Code Actions
-        null_ls.builtins.code_actions.statix,
+        null_ls.builtins.code_actions.shellcheck,
+        null_ls.builtins.code_actions.gitrebase,
+        null_ls.builtins.code_actions.gitsigns,
 
         -- Completion
         -- null_ls.builtins.completion.luasnip,
@@ -39,7 +41,7 @@ null_ls.setup({
         null_ls.builtins.formatting.taplo,
         null_ls.builtins.formatting.yamlfmt,
         -- null_ls.builtins.formatting.markdown_toc,
-        null_ls.builtins.formatting.nixpkgs_fmt,
+        null_ls.builtins.formatting.nixfmt,
         null_ls.builtins.formatting.jsonnetfmt,
     }
 })

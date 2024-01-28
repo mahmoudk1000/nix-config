@@ -111,6 +111,7 @@ cmp.setup({
         spell = "[Spl]",
         path = "[Dir]",
         tags = "[Tag]",
+        cmdline = "[Cmd]",
         nvim_lsp_signature_help = "[Sig]"
       })[entry.source.name]
       return vim_item

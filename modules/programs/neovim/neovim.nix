@@ -51,13 +51,9 @@ in
       java-language-server
       lua-language-server
       markdownlint-cli
-      terraform-lsp
       quick-lint-js
       terraform-ls
       ansible-lint
-      nixpkgs-fmt
-      tree-sitter
-      nixpkgs-fmt
       clang-tools
       shellcheck
       checkstyle
@@ -73,7 +69,7 @@ in
       ripgrep
       helm-ls
       deadnix
-      statix
+      nixfmt
       tflint
       texlab
       tfsec

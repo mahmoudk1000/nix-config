@@ -217,29 +217,29 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 
 -- Options
-vim.o.termguicolors = true                    -- Enable true color support in the terminal
--- vim.o.cursorline = true                       -- Set highlight cursor
-vim.o.hlsearch = false                        -- Disable highlighting on search
-vim.wo.number = true                          -- Show line numbers by default
-vim.o.mouse = "a"                             -- Enable mouse mode
-vim.o.breakindent = true                      -- Enable break indent
-vim.o.undofile = true                         -- Save undo history
-vim.o.ignorecase = true                       -- Enable case-insensitive searching, unless /C or capital in search
-vim.o.smartcase = true                        -- Enable smart case searching
-vim.o.updatetime = 250                        -- Decrease update time
-vim.wo.signcolumn = "yes"                     -- Always show sign column
-vim.o.autoindent = true                       -- Enable auto-indentation
-vim.o.clipboard = "unnamedplus"               -- Use system clipboard
-vim.o.expandtab = true                        -- Expand tabs to spaces
-vim.o.tabstop = 4                             -- Number of spaces per tab
-vim.o.shiftwidth = 4                          -- Number of spaces for auto-indent
-vim.o.softtabstop = 4                         -- Number of spaces in Tab key's behavior
-vim.o.list = true                             -- Display list characters
+vim.o.termguicolors = true                              -- Enable true color support in the terminal
+vim.o.cursorline = false                                -- Set highlight cursor
+vim.o.hlsearch = false                                  -- Disable highlighting on search
+vim.wo.number = true                                    -- Show line numbers by default
+vim.o.mouse = "a"                                       -- Enable mouse mode
+vim.o.breakindent = true                                -- Enable break indent
+vim.o.undofile = true                                    -- Save undo history
+vim.o.ignorecase = true                                 -- Enable case-insensitive searching, unless /C or capital in search
+vim.o.smartcase = true                                  -- Enable smart case searching
+vim.o.updatetime = 250                                  -- Decrease update time
+vim.wo.signcolumn = "yes"                               -- Always show sign column
+vim.o.autoindent = true                                 -- Enable auto-indentation
+vim.o.clipboard = "unnamedplus"                         -- Use system clipboard
+vim.o.expandtab = true                                  -- Expand tabs to spaces
+vim.o.tabstop = 4                                       -- Number of spaces per tab
+vim.o.shiftwidth = 4                                    -- Number of spaces for auto-indent
+vim.o.softtabstop = 4                                   -- Number of spaces in Tab key's behavior
+vim.o.list = true                                       -- Display list characters
 vim.opt.completeopt = { "menu", "menuone", "noselect" } -- Completion options
-vim.opt.spell = true                          -- Enable spell checking
-vim.opt.spelllang = { "en_us" }               -- Set the spell checking language
-vim.opt.listchars:append("space:⋅")           -- Show a special character for spaces
-vim.opt.listchars:append("eol:↴")             -- Show a special character for end of line
+vim.opt.spell = true                                    -- Enable spell checking
+vim.opt.spelllang = { "en_us" }                         -- Set the spell checking language
+vim.opt.listchars:append("space:⋅")                     -- Show a special character for spaces
+vim.opt.listchars:append("eol:↴")                       -- Show a special character for end of line
 
 
 -- Color Scheme

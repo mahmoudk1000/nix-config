@@ -1,12 +1,13 @@
 require("neo-tree").setup({
-  sources = {
-    "filesystem"
-  },
   close_if_last_window = true,
   popup_border_style = "rounded",
   enable_git_status = true,
   git_status_async = true,
   enable_diagnostics = false,
+  hide_root_node = true,
+  sources = {
+    "filesystem"
+  },
   source_selector = {
     winbar = false,
     statusline = false,
@@ -32,6 +33,7 @@ require("neo-tree").setup({
       folder_open = "",
       folder_empty = "",
       default = "",
+      highlight = "NeoTreeFileIcon"
     },
     name = {
       trailing_slash = false,
@@ -83,8 +85,13 @@ require("neo-tree").setup({
       ["q"] = "close_window",
     },
   },
-  nesting_rules = {},
   filesystem = {
+    hijack_netrw_behavior = "open_current",
+    use_libuv_file_watcher = true,
+    follow_current_file = {
+      enabled = true,
+      leave_dirs_open = true
+    },
     filtered_items = {
       visible = false,
       hide_dotfiles = false,
@@ -95,26 +102,21 @@ require("neo-tree").setup({
         "__pycache__",
         "node_modules",
       },
-      hide_by_pattern = {       -- uses glob style patterns
+      hide_by_pattern = {
         "*.meta",
         "*/src/*/tsconfig.json",
       },
-      always_show = {       -- remains visible even if other settings would normally hide it
+      always_show = {
         ".gitignored",
       },
-      never_show = {       -- remains hidden even if visible is toggled to true, this overrides always_show
+      never_show = {
         ".DS_Store",
         "thumbs.db"
       },
-      never_show_by_pattern = {       -- uses glob style patterns
+      never_show_by_pattern = {
         ".null-ls_*",
       },
-    },
-    follow_current_file = {
-      enabled = true
-    },
-    hijack_netrw_behavior = "open_current",
-    use_libuv_file_watcher = true
+    }
   },
   git_status = {
     window = {
