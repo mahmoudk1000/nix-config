@@ -29,7 +29,7 @@
   } @ inputs: 
   let
     overlays = with inputs; [
-      (final: prev:
+      (final: _:
         let inherit (final) system; in
       { awesome = with nixpkgs-f2k.packages.${system}; awesome-git; })
       nur.overlay
