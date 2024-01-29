@@ -195,7 +195,7 @@ in
       cmp-nvim-tags
       cmp-nvim-lsp-signature-help
       comment-nvim
-      colorizer
+      nvim-colorizer-lua
       dressing-nvim
       fzf-vim
       nui-nvim

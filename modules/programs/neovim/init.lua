@@ -24,7 +24,7 @@ require('lazy').setup({
   'akinsho/bufferline.nvim',
   'goolord/alpha-nvim',
   'stevearc/dressing.nvim',
-  'norcalli/nvim-colorizer.lua',
+  'NvChad/nvim-colorizer.lua',
   {
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl"
@@ -284,15 +284,18 @@ vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 
 -- Plugins
-vim.keymap.set("n", "<C-n>", ":Neotree toggle reveal<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>f", ":Neotree focus<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-t>", ":ToggleTerm<CR>", {})
 vim.keymap.set("n", "<A-f>", ":ToggleTerm direction=float<CR>", {})
 vim.keymap.set("n", "<leader>md", ":Glow<CR>", { noremap=true, silent=true })
+vim.keymap.set("n", "<A-Right>", ":BufferLineCycleNext<CR>", { noremap=true, silent=true })
+vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<CR>", { noremap=true, silent=true })
 
 -- Telescope
 vim.keymap.set("n", "<leader>/", function()
   require('telescope.builtin').current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
-    winblend = 10,
+    winblend = 30,
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })

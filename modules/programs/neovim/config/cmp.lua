@@ -74,7 +74,7 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s", }),
-    ["<C-e>"] = cmp.mapping({
+    ["<A-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
@@ -89,7 +89,6 @@ cmp.setup({
       s = cmp.mapping.confirm({ select = true }),
       c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
     }),
-    ["<C-y>"] = cmp.config.disable,
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
