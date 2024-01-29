@@ -375,3 +375,11 @@ call s:Color('BufferLineBufferVisible', {'fg': s:white, 'bg': s:light_black})
 call s:Color('BufferLineDuplicate', {'fg': s:white, 'bg': s:black})
 call s:Color('BufferLineDuplicateVisible', {'fg': s:white, 'bg': s:light_black})
 call s:Color('BufferLineDuplicateSelected', {'fg': s:white, 'bg': s:background})
+
+"" Lualine
+call s:Color('LuaLineNormalA', {'fg': s:background, 'bg': s:blue, 'gui': 'bold'})
+call s:Color('LuaLineNormalB', {'fg': s:foreground, 'bg': s:black})
+call s:Color('LuaLineNormalC', {'fg': s:foreground, 'bg': s:background})
+call s:Color('LuaLineInsertA', {'fg': s:background, 'bg': s:green, 'gui': 'bold'})
+call s:Color('LuaLineVisualA', {'fg': s:background, 'bg': s:purple, 'gui': 'bold'})
+call s:Color('LuaLineReplaceA', {'fg': s:background, 'bg': s:yellow, 'gui': 'bold'})
