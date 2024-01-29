@@ -11,9 +11,9 @@ let g:colors_name="bluesee"
 
 let s:background      = { "gui": "#11171D" }
 let s:foreground      = { "gui": "#ECEFF4" }
-let s:darker          = { "gui": "#0C1115" }
-let s:black           = { "gui": "#1a232c" }
-let s:light_black     = { "gui": "#222e3a" }
+let s:darker          = { "gui": "#0F151A" }
+let s:black           = { "gui": "#1A232C" }
+let s:light_black     = { "gui": "#222E3A" }
 let s:red             = { "gui": "#F6BAB5" }
 let s:light_red       = { "gui": "#FFC4BF" }
 let s:green           = { "gui": "#D0f1D5" }
@@ -26,8 +26,8 @@ let s:purple          = { "gui": "#D7C8F3" }
 let s:light_purple    = { "gui": "#E1D2Fd" }
 let s:cyan            = { "gui": "#A0D6DA" }
 let s:light_cyan      = { "gui": "#AAE0E4" }
-let s:white           = { "gui": "#d8dee9" }
-let s:light_white     = { "gui": "#e5e9f0" }
+let s:white           = { "gui": "#D8dEE9" }
+let s:light_white     = { "gui": "#E5E9F0" }
 
 function! s:Color(group, style)
   execute "hi!" a:group
@@ -364,8 +364,14 @@ call s:Color('NeoTreeExpander', {'fg': s:light_black})
 call s:Color('NeoTreeFileIcon', {'fg': s:blue})
 
 "" Bufferline
-call s:Color('BufferLineFill', {'bg': s:black})
+call s:Color('BufferLineFill', {'bg': s:darker})
 call s:Color('BufferLineSeparator', {'fg': s:light_black})
 call s:Color('BufferLineIndicatorSelected', {'fg': s:blue})
-call s:Color('BufferLineCloseButton', {'fg': s:white})
+call s:Color('BufferLineCloseButton', {'fg': s:white, 'bg': s:black})
+call s:Color('BufferLineCloseButtonVisible', {'fg': s:white, 'bg': s:light_black})
 call s:Color('BufferLineCloseButtonSelected', {'fg': s:red})
+call s:Color('BufferLineBackground', {'fg': s:white, 'bg': s:black})
+call s:Color('BufferLineBufferVisible', {'fg': s:white, 'bg': s:light_black})
+call s:Color('BufferLineDuplicate', {'fg': s:white, 'bg': s:black})
+call s:Color('BufferLineDuplicateVisible', {'fg': s:white, 'bg': s:light_black})
+call s:Color('BufferLineDuplicateSelected', {'fg': s:white, 'bg': s:background})
