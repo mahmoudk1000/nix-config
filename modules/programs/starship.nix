@@ -49,7 +49,7 @@
       };
       git_branch = {
         disabled = false;
-        symbol = "  ";
+        symbol = "󰊢  ";
         style = "fg:${theme.base04} bg:${theme.base09}";
         format = "[[ ](fg:${theme.base09} bg:${theme.base00})$symbol$branch[ ](bg:${theme.base00} fg:${theme.base09})]($style)";
       };
@@ -61,9 +61,9 @@
       git_state = {
         style = "fg:${theme.base05} bg:${theme.base09}";
         rebase = "REBASING";
-        merge = "MERGING";
+        merge = " MERGING";
         revert = "REVERTING";
-        cherry_pick = " CHERRY-PICKING";
+        cherry_pick = " CHERRY-PICKING";
         bisect = "BISECTING";
         am = "AM";
         am_or_rebase = "AM/REBASE";
