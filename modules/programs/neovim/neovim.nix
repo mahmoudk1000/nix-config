@@ -39,6 +39,9 @@ in
     withPython3 = true;
     withNodeJs = true;
     defaultEditor = true;
+    extraLuaPackages = luaPkgs: with luaPkgs; [
+      jsregexp
+    ];
     extraPackages = with pkgs; [
       dockerfile-language-server-nodejs
       docker-compose-language-service
