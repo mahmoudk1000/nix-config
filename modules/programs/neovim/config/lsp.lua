@@ -2,7 +2,6 @@ local lspconfig = require("lspconfig")
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Enable the following language servers
 local servers = {
@@ -28,7 +27,8 @@ local servers = {
   'jedi_language_server',
   'autotools_ls',
   'jsonnet_ls',
-  'gopls'
+  'gopls',
+  'ruff_lsp'
 }
 
 -- LSP settings.

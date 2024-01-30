@@ -200,7 +200,6 @@ require('lazy').setup({
   'aserowy/tmux.nvim',
   'pearofducks/ansible-vim',
   'hashivim/vim-terraform',
-  'google/vim-jsonnet',
 }, {})
 
 
@@ -235,7 +234,6 @@ vim.o.tabstop = 4                                       -- Number of spaces per 
 vim.o.shiftwidth = 4                                    -- Number of spaces for auto-indent
 vim.o.softtabstop = 4                                   -- Number of spaces in Tab key's behavior
 vim.o.list = true                                       -- Display list characters
-vim.opt.completeopt = { "menu", "menuone", "noselect" } -- Completion options
 vim.opt.spell = true                                    -- Enable spell checking
 vim.opt.spelllang = { "en_us" }                         -- Set the spell checking language
 vim.opt.listchars:append("space:⋅")                     -- Show a special character for spaces

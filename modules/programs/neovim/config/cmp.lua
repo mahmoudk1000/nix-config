@@ -43,6 +43,9 @@ cmp.setup({
       luasnip.lsp_expand(args.body)
     end
   },
+  completion = {
+    completeopt = "menu,menuone,noinsert"
+  },
   window = {
     completion = {
       border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
@@ -55,12 +58,10 @@ cmp.setup({
   },
   mapping = cmp.mapping.preset.insert({
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
+      if cmp.visible() and has_words_before() then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jumpable()
-      elseif has_words_before() then
-        cmp.complete()
       else
         fallback()
       end
@@ -154,7 +155,6 @@ cmp.setup.filetype("gitcommit", {
   })
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline("/", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
@@ -166,7 +166,6 @@ cmp.setup.cmdline("/", {
   }
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
