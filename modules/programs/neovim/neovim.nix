@@ -50,20 +50,20 @@ in
       yaml-language-server
       java-language-server
       lua-language-server
-      markdownlint-cli
       quick-lint-js
       terraform-ls
       ansible-lint
       clang-tools
-      shellcheck
       checkstyle
       actionlint
       checkmake
+      codespell
       marksman
       yamllint
       tectonic
       rnix-lsp
       hadolint
+      ruff-lsp
       pplatex
       yamlfmt
       ripgrep
@@ -76,24 +76,22 @@ in
       trivy
       taplo
       shfmt
-      isort
-      black
+      ruff
       gopls
       glow
       sqls
+      mdl
       gcc
+      fd
       ]
       ++ (with nodePackages_latest; [
         bash-language-server
-        jsonlint
       ])
       ++ (with python3Packages; [
         jedi
         pylint
         pynvim
-        pyls-isort
-        pycodestyle
-        python-lsp-black
+        python-lsp-ruff
         python-lsp-server
         jedi-language-server
     ]);
@@ -218,9 +216,7 @@ in
       playground
       friendly-snippets
       jedi-vim
-      vim-shellcheck
       Jenkinsfile-vim-syntax
-      vim-jsonnet
       vimtex
       compiler-nvim
       overseer-nvim
