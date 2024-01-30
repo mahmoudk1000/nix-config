@@ -375,6 +375,8 @@ call s:Color('BufferLineBufferVisible', {'fg': s:white, 'bg': s:light_black})
 call s:Color('BufferLineDuplicate', {'fg': s:white, 'bg': s:black})
 call s:Color('BufferLineDuplicateVisible', {'fg': s:white, 'bg': s:light_black})
 call s:Color('BufferLineDuplicateSelected', {'fg': s:white, 'bg': s:background})
+call s:Color('BufferLineTabSeparator', {'fg': s:black, 'bg': s:background})
+call s:Color('BufferLineTabSeparatorSelected', {'fg': s:blue, 'bg': s:background})
 
 "" Lualine
 call s:Color('LuaLineNormalA', {'fg': s:background, 'bg': s:blue, 'gui': 'bold'})
