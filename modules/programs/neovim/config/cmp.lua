@@ -153,7 +153,7 @@ cmp.setup.filetype("gitcommit", {
   })
 })
 
-cmp.setup.cmdline("/", {
+cmp.setup.cmdline({"/", "?"}, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
     {
@@ -172,17 +172,6 @@ cmp.setup.cmdline(":", {
   }, {
     { name = "cmdline_history" }
   })
-})
-
-cmp.setup.cmdline('?', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    {
-      name = 'buffer',
-      max_item_count = 10,
-      keyword_length = 1,
-    }
-  }
 })
 
 cmp.event:on(
