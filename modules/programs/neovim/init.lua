@@ -1,219 +1,15 @@
 -- Set <space> as the leader key
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
--- Install lazy
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  }
-end
-
-vim.opt.rtp:prepend(lazypath)
-
-require('lazy').setup({
-  -- UI
-  'nvim-lualine/lualine.nvim',
-  'akinsho/toggleterm.nvim',
-  'akinsho/bufferline.nvim',
-  'goolord/alpha-nvim',
-  'stevearc/dressing.nvim',
-  'NvChad/nvim-colorizer.lua',
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    main = "ibl"
-  },
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    },
-  },
-
-  -- LSP and Treesitter
-  {
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      'j-hui/fidget.nvim'
-    }
-  },
-  {
-    'nvim-treesitter/nvim-treesitter',
-    event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'nvim-treesitter/playground',
-      'nvim-treesitter/nvim-treesitter-context'
-    }
-  },
-  {
-    'nvimtools/none-ls.nvim',
-    dependencies = {
-      "nvim-lua/plenary.nvim"
-    }
-  },
-
-  -- Autocompletion
-  {
-    'hrsh7th/nvim-cmp',
-    event = { "InsertEnter", "CmdlineEnter" },
-    dependencies = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'petertriho/cmp-git',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
-      'f3fora/cmp-spell',
-      'quangnguyen30192/cmp-nvim-tags',
-      'saadparwaiz1/cmp_luasnip',
-      {
-        'L3MON4D3/LuaSnip',
-        event = "InsertEnter",
-        version = "v2.*",
-        dependencies = {
-          'saadparwaiz1/cmp_luasnip',
-          'rafamadriz/friendly-snippets'
-        },
-        config = function()
-          require('luasnip').config.set_config({
-            history = true,
-            updateevents = 'TextChanged,TextChangedI',
-            enable_autosnippets = true
-          })
-          require("luasnip/loaders/from_vscode").lazy_load()
-        end
-      },
-      {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        config = function()
-          require("nvim-autopairs").setup()
-        end
-      }
-    }
-  },
-  {
-    'zbirenbaum/copilot.lua',
-    cmd = "Copilot",
-    event = "InsertEnter",
-    dependencies = {
-      'zbirenbaum/copilot-cmp',
-      event = { "InsertEnter", "LspAttach" },
-      config = function ()
-        require("copilot_cmp").setup()
-      end
-    }
-  },
-  {
-    "kylechui/nvim-surround",
-    version = "*",
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup()
-    end
-  },
-
-  -- Git
-  {
-    'lewis6991/gitsigns.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim'
-    }
-  },
-  {
-    'tpope/vim-fugitive',
-    dependencies = {
-      'tpope/vim-rhubarb'
-    }
-  },
-
-  -- Side Plugins
-  {
-    'lervag/vimtex',
-    ft = { "tex", "latex" },
-    init = function()
-      vim.cmd [[
-        filetype plugin indent on
-        syntax enable
-      ]]
-      vim.g.vimtex_view_method = "zathura"
-      vim.g.latex_view_general_viewer = 'zathura'
-      vim.g.vimtex_syntax_enabled = 1
-      vim.g.vimtex_quickfix_enabled = 1
-      vim.g.vimtex_quickfix_mode = 0
-      vim.g.vimtex_compiler_method = 'tectonic'
-    end
-  },
-  {
-    "Zeioth/compiler.nvim",
-    cmd = {"CompilerOpen", "CompilerToggleResults", "CompilerRedo"},
-    dependencies = {
-      "stevearc/overseer.nvim",
-      commit = "400e762648b70397d0d315e5acaf0ff3597f2d8b",
-      cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
-      opts = {
-        task_list = {
-          direction = "bottom",
-          min_height = 25,
-          max_height = 25,
-          default_detail = 1
-        }
-      }
-    },
-  },
-  {
-    'ellisonleao/glow.nvim',
-    config = true,
-    cmd = 'Glow'
-  },
-  {
-    'nvim-telescope/telescope.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-    },
-  },
-
-  -- Others
-  'windwp/nvim-ts-autotag',
-  'numToStr/Comment.nvim',
-  'nathom/filetype.nvim',
-  'folke/which-key.nvim',
-  'tpope/vim-sleuth',
-  'martinda/Jenkinsfile-vim-syntax',
-  'natebosch/vim-lsc',
-  'stephpy/vim-yaml',
-  'aserowy/tmux.nvim',
-  'pearofducks/ansible-vim',
-  'hashivim/vim-terraform',
-}, {})
-
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Highlight on yank
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  callback = function() vim.highlight.on_yank() end,
   group = highlight_group,
   pattern = '*',
 })
-
 
 -- Options
 vim.o.termguicolors = true                              -- Enable true color support in the terminal
@@ -235,14 +31,14 @@ vim.o.shiftwidth = 4                                    -- Number of spaces for 
 vim.o.softtabstop = 4                                   -- Number of spaces in Tab key's behavior
 vim.o.list = true                                       -- Display list characters
 vim.opt.spell = true                                    -- Enable spell checking
+vim.opt.smartindent = true                              -- Enable smart indentation
+vim.opt.backspace = { "indent", "eol", "start" }        -- Allow backspacing over everything in insert mode
 vim.opt.spelllang = { "en_us" }                         -- Set the spell checking language
 vim.opt.listchars:append("space:⋅")                     -- Show a special character for spaces
 vim.opt.listchars:append("eol:↴")                       -- Show a special character for end of line
 
-
 -- Color Scheme
 vim.cmd [[colorscheme bluesee]]
-
 
 -- Keymaps
 vim.keymap.set({ "n", "v" }, '<Space>', "<Nop>", { silent = true })
@@ -314,3 +110,6 @@ require("colorizer").setup()
 require("gitsigns").setup()
 require("cmp_git").setup()
 require("tmux").setup()
+require("nvim-autopairs").setup()
+require("copilot_cmp").setup()
+require("nvim-surround").setup()

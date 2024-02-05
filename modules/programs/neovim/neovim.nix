@@ -4,30 +4,9 @@
 }:
 
 let
-  autotools-language-server = import ./autotools-ls.nix { pkgs = pkgs; };
-  groovy-language-server = import ./groovyls.nix { pkgs = pkgs; };
-
-  compiler-nvim = pkgs.vimUtils.buildVimPlugin rec {
-    pname = "compiler-nvim";
-    version = "v3.2.4";
-    src = pkgs.fetchFromGitHub {
-      owner = "Zeioth";
-      repo = "compiler.nvim";
-      rev = "5615e4b15b5301144ce507ace6f594409a4d22c5";
-      hash = "sha256-6VkQCTpE/nTSQ2NxjJYDtkx5jB54MOxJS5HpT6G6x/E=";
-    };
-  };
-
-  filetype-nvim = pkgs.vimUtils.buildVimPlugin rec {
-    pname = "filetype-nvim";
-    version = "v0.4.0";
-    src = pkgs.fetchFromGitHub {
-      owner = "nathom";
-      repo = "filetype.nvim";
-      rev = "b522628a45a17d58fc0073ffd64f9dc9530a8027";
-      sha256 = "sha256-B+VvgQj8akiKe+MX/dV2/mdaaqF8s2INW3phdPJ5TFA=";
-    };
-  };
+  autotools-language-server = import ./autotools-ls.nix { inherit pkgs; };
+  groovy-language-server = import ./groovyls.nix { inherit pkgs; };
+  customVimPlugins = import ./vim-plugins.nix { inherit pkgs; };
 in
 {
   home.file.".config/nvim/colors/bluesee.vim".source = ./bluesee.vim;
@@ -98,7 +77,7 @@ in
         python-lsp-server
         jedi-language-server
     ]);
-    plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs.vimPlugins; with customVimPlugins; [
 
       {
         plugin = nvim-treesitter.withAllGrammars;
@@ -185,6 +164,16 @@ in
         type = "lua";
         config = builtins.readFile ./config/fidget.lua;
       }
+      {
+        plugin = luasnip;
+        type = "lua";
+        config = builtins.readFile ./config/luasnip.lua;
+      }
+      {
+        plugin = vimtex;
+        type = "lua";
+        config = builtins.readFile ./config/vimtex.lua;
+      }
       auto-pairs
       cmp-buffer
       cmp-cmdline
@@ -203,7 +192,6 @@ in
       nvim-web-devicons
       nvim-ts-autotag
       impatient-nvim
-      luasnip
       tmux-nvim
       telescope-fzf-native-nvim
       vim-fugitive
@@ -220,10 +208,11 @@ in
       friendly-snippets
       jedi-vim
       Jenkinsfile-vim-syntax
-      vimtex
       compiler-nvim
       overseer-nvim
       copilot-cmp
+      vim-lsc
+      nvim-autopairs
 
     ];
   };
