@@ -16,13 +16,14 @@ require("toggleterm").setup({
   persist_mode = false,
   close_on_exit = true,
   shell = vim.o.shell,
-  direction = 'horizontal',
-  float_opts = {
-    border = 'single',
-    winblend = 3,
-    highlights = {
-      border = "Normal",
-      background = "Normal",
-    },
+  direction = "horizontal",
+  highlights = {
+    Normal = { link = "Normal" },
+    WinSeparator = { link = "WinSeparator" },
+    NormalFloat = { link = "NormalFloat"  },
+    FloatBorder = { link = "FloatBorder" }
   },
+  float_opts = {
+    border = "single"
+  }
 })

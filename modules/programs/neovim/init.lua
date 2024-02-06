@@ -89,7 +89,7 @@ vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<CR>", { noremap=true, sile
 -- Telescope
 vim.keymap.set("n", "<leader>/", function()
   require('telescope.builtin').current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
-    winblend = 30,
+    winblend = 10,
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })

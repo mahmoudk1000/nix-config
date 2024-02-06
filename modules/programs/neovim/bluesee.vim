@@ -90,8 +90,8 @@ call s:Color('String', {'fg': s:green})
 
 " Editor Highlighting
 call s:Color('Normal', {'fg': s:foreground})
-call s:Color('NormalFloat', {'fg': s:white})
-call s:Color('FloatBorder', {'fg': s:white})
+call s:Color('NormalFloat', {'fg': s:foreground, 'bg': s:background})
+call s:Color('FloatBorder', {'fg': s:blue, 'bg': s:background})
 call s:Color('SignColumn', {'fg': s:white})
 call s:Color('ColorColumn', {'bg': s:black})
 call s:Color('Conceal', {'fg': s:black})
@@ -385,3 +385,11 @@ call s:Color('LuaLineNormalC', {'fg': s:foreground, 'bg': s:background})
 call s:Color('LuaLineInsertA', {'fg': s:background, 'bg': s:green, 'gui': 'bold'})
 call s:Color('LuaLineVisualA', {'fg': s:background, 'bg': s:purple, 'gui': 'bold'})
 call s:Color('LuaLineReplaceA', {'fg': s:background, 'bg': s:yellow, 'gui': 'bold'})
+
+"" Telescope
+call s:Color('TelescopeNormal', {'fg': s:foreground, 'bg': s:background})
+call s:Color('TelescopeMatching', {'fg': s:purple})
+call s:Color('TelescopeBorder', {'fg': s:blue, 'bg': s:background})
+call s:Color('TelescopePromptBorder', {'fg': s:blue, 'bg': s:background})
+call s:Color('TelescopePreviewBorder', {'fg': s:blue, 'bg': s:background})
+call s:Color('TelescopeResultsBorder', {'fg': s:blue, 'bg': s:background})
