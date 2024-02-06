@@ -67,10 +67,10 @@
     openssh.enable = true;
     printing.enable = true;
     tumbler.enable = true;
+    thermald.enable = true;
   };
 
   # TLP. (https://linrunner.de/tlp/settings/)
-  services.thermald.enable = true;
   services.tlp = {
     enable = true;
     settings = {
@@ -95,12 +95,12 @@
       # STOP_CHARGE_THRESH_BAT0 = 80;
 
       # Radio Device
-      DEVICES_TO_ENABLE_ON_STARTUP = "wifi";
-      DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
+      # DEVICES_TO_ENABLE_ON_STARTUP = "wifi";
+      # DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
 
       # Network Connect
-      DEVICES_TO_DISABLE_ON_LAN_CONNECT = "wifi";
-      DEVICES_TO_ENABLE_ON_LAN_DISCONNECT = "wifi";
+      # DEVICES_TO_DISABLE_ON_LAN_CONNECT = "wifi";
+      # DEVICES_TO_ENABLE_ON_LAN_DISCONNECT = "wifi";
     };
   };
 
