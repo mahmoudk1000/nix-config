@@ -42,7 +42,6 @@ in
       codespell
       marksman
       yamllint
-      tectonic
       rnix-lsp
       hadolint
       ruff-lsp

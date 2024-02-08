@@ -2,8 +2,10 @@
 , ...
 }:
 
+with pkgs.vimUtils;
+
 {
-  compiler-nvim = pkgs.vimUtils.buildVimPlugin rec {
+  compiler-nvim = buildVimPlugin rec {
     pname = "compiler-nvim";
     version = "v3.2.4";
     src = pkgs.fetchFromGitHub {
@@ -14,7 +16,7 @@
     };
   };
 
-  filetype-nvim = pkgs.vimUtils.buildVimPlugin rec {
+  filetype-nvim = buildVimPlugin rec {
     pname = "filetype-nvim";
     version = "v0.4.0";
     src = pkgs.fetchFromGitHub {
@@ -25,7 +27,7 @@
     };
   };
 
-  nvim-autopairs = pkgs.vimUtils.buildVimPlugin rec {
+  nvim-autopairs = buildVimPlugin rec {
     pname = "nvim-autopairs";
     version = "096d0ba";
     src = pkgs.fetchFromGitHub {
