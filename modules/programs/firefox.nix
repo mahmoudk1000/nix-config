@@ -185,6 +185,9 @@
             background-color: #11171D !important;
             border-radius: 10px !important;
           }
+          #urlbar-input, #urlbar-scheme, .searchbar-textbox {
+            color: ${theme.base09} !important;
+          }
           #nav-bar {
             background-color: ${theme.base02} !important;
             -moz-appearance: none !important;
@@ -298,10 +301,10 @@
           }
           #urlbar-input {
             background-color: ${theme.base00} !important;
-            padding-left: 5px !important;
           }
-          #urlbar-input, #urlbar-scheme, .searchbar-textbox {
+          .urlbar-input-box {
             text-indent: 4px !important;
+            padding-left: 4px !important;
           }
           #urlbar-results {
             background-color: ${theme.base00} !important;

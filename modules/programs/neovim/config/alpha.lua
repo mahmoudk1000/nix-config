@@ -1,6 +1,6 @@
 local dashboard = require("alpha.themes.dashboard")
 
-local headerPadding = vim.fn.max { 2, vim.fn.floor(vim.fn.winheight(0) * 0.3) }
+local headerPadding = vim.fn.max { 2, vim.fn.floor(vim.fn.winheight(0) * 0.33) }
 
 dashboard.section.header = {
     type = "text",
@@ -54,7 +54,6 @@ require("alpha").setup({
         dashboard.section.footer
     },
     opts = {
-        spacing = 1,
         margin = 3
     }
 })
