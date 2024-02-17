@@ -1,4 +1,5 @@
-{ pkgs
+{ config
+, pkgs
 , ...
 }:
 
@@ -30,10 +31,10 @@
       enable = true;
       extraConfig = ''
         [Resolve]
-        DNS=45.90.28.0#b28d16.dns.nextdns.io
-        DNS=2a07:a8c0::#b28d16.dns.nextdns.io
-        DNS=45.90.30.0#b28d16.dns.nextdns.io
-        DNS=2a07:a8c1::#b28d16.dns.nextdns.io
+        DNS=45.90.28.0#${config.networking.hostName}-b28d16.dns.nextdns.io
+        DNS=2a07:a8c0::#${config.networking.hostName}-b28d16.dns.nextdns.io
+        DNS=45.90.30.0#${config.networking.hostName}-b28d16.dns.nextdns.io
+        DNS=2a07:a8c1::#${config.networking.hostName}-b28d16.dns.nextdns.io
         DNSOverTLS=yes
       '';
     };
