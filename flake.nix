@@ -29,13 +29,9 @@
   } @ inputs: 
   let
     overlays = with inputs; [
-      (final: _:
-        let inherit (final) system; in
-      { awesome = with nixpkgs-f2k.packages.${system}; awesome-git; })
       nur.overlay
       neovim-nightly.overlay
       nixpkgs-f2k.overlays.window-managers
-      nixpkgs-f2k.overlays.stdenvs
     ];
   in
   {
