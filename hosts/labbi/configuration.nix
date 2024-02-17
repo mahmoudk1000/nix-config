@@ -48,6 +48,7 @@
       enable = true;
       package = pkgs.jdk;
     };
+    command-not-found.enable = false;
   };
 
   documentation = {
