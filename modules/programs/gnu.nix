@@ -9,7 +9,7 @@
       enableAliases = true;
       git = true;
       icons = true;
-      extraOptions = [ "--group-directories-first" ];
+      extraOptions = [ "--header" "--group-directories-first" "--octal-permissions" ];
     };
     bat = {
       enable = true;
