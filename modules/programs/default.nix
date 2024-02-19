@@ -15,6 +15,7 @@
     ./herbstluftwm.nix
     ./newsboat.nix
     ./rofi.nix
+    ./spotify.nix
     ./starship.nix
     ./texlive.nix
     ./thunar.nix

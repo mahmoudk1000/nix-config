@@ -62,7 +62,6 @@ in
       libreoffice
       discord
       anki-bin
-      spotify
       tdesktop
       element-desktop
       foliate

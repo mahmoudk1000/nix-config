@@ -16,6 +16,7 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
   };
 
   outputs = 
@@ -25,6 +26,7 @@
   , nur
   , neovim-nightly
   , nixpkgs-f2k
+  , spicetify-nix
   , ... 
   } @ inputs: 
   let
@@ -39,20 +41,24 @@
       labbi = nixpkgs.lib.nixosSystem {
         modules = [
           ({ config = { nix.registry.nixpkgs.flake = nixpkgs; }; })
+          nur.nixosModules.nur
+          home-manager.nixosModules.home-manager
           {
             imports = [ ./hosts/labbi/configuration.nix ];
             _module.args.self = self;
           }
-          nur.nixosModules.nur
-          home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.mahmoud = {
-              imports = [ ./home-manager/labbi/home.nix ];
-              _module.args.self = self;
-              _module.args.inputs = inputs;
-              _module.args.theme = import ./modules/themes;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.mahmoud = {
+                imports = [
+                  ./home-manager/labbi/home.nix
+                  spicetify-nix.homeManagerModule
+                ];
+                _module.args.theme = import ./modules/themes;
+              };
+              extraSpecialArgs = { inherit self inputs; };
             };
             nixpkgs.overlays = overlays;
           }
