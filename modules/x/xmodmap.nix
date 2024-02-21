@@ -1,8 +1,3 @@
-{ config
-, pkgs
-, ...
-}:
-
 {
   home.file.".Xmodmap".text = ''
     ! Keycode 94 is the key between Left-Shift and Z, which is < and >

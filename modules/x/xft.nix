@@ -1,8 +1,3 @@
-{ config
-, pkgs
-, ...
-}:
-
 {
   xresources.properties = {
     "Xft.autohint" = 0;

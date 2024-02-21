@@ -1,5 +1,4 @@
-{ pkgs
-, theme
+{ theme
 , ...
 }:
 

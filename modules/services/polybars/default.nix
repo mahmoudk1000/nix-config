@@ -1,7 +1,3 @@
-{ pkgs
-, ...
-}:
-
 {
   imports = [
     # ./polybar-colors.nix

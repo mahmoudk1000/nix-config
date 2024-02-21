@@ -1,7 +1,3 @@
-{ pkgs
-, ...
-}:
-
 {
   programs = {
     fzf = {

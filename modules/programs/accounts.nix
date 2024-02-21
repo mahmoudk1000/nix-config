@@ -1,6 +1,6 @@
 { pkgs
-  , theme
-    , ... 
+, theme
+, ...
 }:
 
 {

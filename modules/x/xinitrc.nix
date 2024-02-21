@@ -1,7 +1,3 @@
-{ config
-, ...
-}:
-
 {
   home.file.".xinitrc".text = ''
     if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
