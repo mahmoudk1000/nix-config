@@ -1,4 +1,4 @@
-{ config
+{ inputs
 , pkgs
 , ...
 }:
@@ -12,12 +12,12 @@
       keep-derivations = false;
       experimental-features = [
         "nix-command"
-          "flakes"
+        "flakes"
       ];
       auto-optimise-store = true;
       trusted-users = [
         "root"
-          "mahmoud"
+        "mahmoud"
       ];
     };
     gc = {
@@ -25,6 +25,7 @@
       dates = "weekly";
       options = "--delete-older-than 14d";
     };
+    registry.nixpkgs.flake = inputs.nixpkgs;
   };
 
   # NixOS

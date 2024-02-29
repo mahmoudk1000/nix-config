@@ -39,13 +39,12 @@
   {
     nixosConfigurations = {
       labbi = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit self inputs; };
         modules = [
-          ({ config = { nix.registry.nixpkgs.flake = nixpkgs; }; })
           nur.nixosModules.nur
           home-manager.nixosModules.home-manager
           {
             imports = [ ./hosts/labbi/configuration.nix ];
-            _module.args.self = self;
           }
           {
             home-manager = {
