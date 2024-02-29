@@ -5,27 +5,27 @@
 with pkgs;
 
 let
-  tree-sitter-lsp = python3.pkgs.buildPythonPackage rec {
-    pname = "tree-sitter-lsp";
-    version = "0.0.10";
+  lsp-tree-sitter = python3.pkgs.buildPythonPackage rec {
+    pname = "lsp-tree-sitter";
+    version = "0.0.14";
     format = "pyproject";
     src = pkgs.fetchPypi {
       inherit pname version;
-      hash = "sha256-88/rVY/yTcOEexZU6W9/l+LjLEo+QXl/thGRrp2CDGU=";
+      hash = "sha256-2ut/eo2uLrB1oQ7M8iH5hhm9xoEajeVqmrkYTePCe4g=";
     };
 
     propagatedBuildInputs = with pkgs.python3Packages; [
       colorama
-        jinja2
-        jsonschema
-        pygls
-        tree-sitter
+      jinja2
+      jsonschema
+      pygls
+      tree-sitter
     ];
 
     nativeBuildInputs = with pkgs.python3Packages; [
       setuptools
-        setuptools-generate
-        setuptools-scm
+      setuptools-generate
+      setuptools-scm
     ];
   };
 
@@ -37,12 +37,12 @@ let
 
   tree-sitter-languages = python3.pkgs.buildPythonPackage rec {
     pname = "tree-sitter-languages";
-    version = "1.8.0";
+    version = "1.10.2";
     src = pkgs.fetchFromGitHub {
       owner = "grantjenks";
       repo = "py-${pname}";
-      rev = "83c509f8dd80a04b3bf37e11bd2ab0e8c4df0876";
-      hash = "sha256-UXYlHAXQkxZfZ4xT3VChVXevglxTnwDrMqD8A44zxLU=";
+      rev = "42f4baffec92848be4937b0cc52b2872201fe322";
+      hash = "sha256-AuPK15xtLiQx6N2OATVJFecsL8k3pOagrWu1GascbwM=";
     };
 
     buildInputs = with pkgs.python3Packages; [
@@ -58,31 +58,31 @@ let
 
       Language.build_library(
         "tree_sitter_languages/languages.so",
-        [
-          "${makeLS}"
-        ]
-      )
+          [
+            "${makeLS}"
+          ]
+        )
       EOF
 
       ${python3.pythonOnBuildForHost.interpreter} setup.py bdist_wheel
 
       runHook postBuild
-      '';
+    '';
   };
 in
 python3.pkgs.buildPythonPackage rec {
   pname = "autotools-language-server";
-  version = "0.0.13";
+  version = "0.0.15";
   format = "pyproject";
 
   src = pkgs.fetchPypi {
     inherit pname version;
-    hash = "sha256-xYHGmDeVyXrDzVqmpqaAKylaVB+hj+grZBF+sHAvFQg=";
+    hash = "sha256-sNznwFdw4UuJejofBi2FPF7wB3TQH5buqAvQRpPp5tA=";
   };
 
   propagatedBuildInputs = with pkgs; [
     tree-sitter-languages
-    tree-sitter-lsp
+    lsp-tree-sitter
   ];
 
   nativeBuildInputs = with pkgs.python3Packages; [
