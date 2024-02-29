@@ -1,19 +1,8 @@
 { config
 , pkgs
-, lib
 , ...
 }:
 
-let
-  obsidian = lib.throwIf (lib.versionOlder "1.5.3" pkgs.obsidian.version) "Obsidian no longer requires EOL Electron" (
-    pkgs.obsidian.override {
-    electron = pkgs.electron_25.overrideAttrs (_: {
-        preFixup = "patchelf --add-needed ${pkgs.libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
-        meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
-        });
-    }
-  );
-in
 {
   imports = [
     ../../modules/programs
@@ -74,18 +63,18 @@ in
       libsForQt5.breeze-icons
       xorg.xmodmap
 
-      ] ++ (import ../../modules/scripts { inherit config pkgs lib; });
+    ] ++ (import ../../modules/scripts { inherit config pkgs lib; });
   };
 
   xdg = {
     userDirs = {
-    enable = true;
-    desktop  = "${config.home.homeDirectory}/";
-    documents = "${config.home.homeDirectory}/docs";
-    download = "${config.home.homeDirectory}/download";
-    music = "${config.home.homeDirectory}/musik";
-    pictures = "${config.home.homeDirectory}/pics";
-    videos = "${config.home.homeDirectory}/videos";
+      enable = true;
+      desktop  = "${config.home.homeDirectory}/";
+      documents = "${config.home.homeDirectory}/docs";
+      download = "${config.home.homeDirectory}/download";
+      music = "${config.home.homeDirectory}/musik";
+      pictures = "${config.home.homeDirectory}/pics";
+      videos = "${config.home.homeDirectory}/videos";
     };
   };
 
@@ -110,4 +99,3 @@ in
 
   systemd.user.startServices = "sd-switch";
 }
-
