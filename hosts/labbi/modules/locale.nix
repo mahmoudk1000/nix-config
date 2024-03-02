@@ -1,8 +1,3 @@
-{ config
-, pkgs
-, ...
-}:
-
 {
   # Set your time zone.
   time.timeZone = "Africa/Cairo";
@@ -23,9 +18,11 @@
   # X11 Windowing System.
   services.xserver = {
     enable = true;
-    layout = "us,ara" ;
-    xkbVariant = "qwerty";
-    xkbOptions = "caps:ctrl_modifier,grp:alt_space_toggle";
+    xkb = {
+      layout = "us,ara" ;
+      variant = "qwerty";
+      options = "caps:ctrl_modifier,grp:alt_space_toggle";
+    };
     displayManager.startx.enable = true;
     updateDbusEnvironment = true;
     libinput = {

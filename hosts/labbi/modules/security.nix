@@ -1,10 +1,4 @@
-{ config
-, pkgs
-, ...
-}:
-
 {
-  # Security.
   security = {
     rtkit.enable = true;
     polkit = {

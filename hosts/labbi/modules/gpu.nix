@@ -1,10 +1,8 @@
-{ config
-, pkgs
+{ pkgs
 , ...
 }:
 
 {
-  # GPU
   services.xserver.videoDrivers = [ "intel" "nvidia" ];
 
   hardware = {

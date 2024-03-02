@@ -37,27 +37,26 @@ in
 
     "pipewire/pipewire-pulse.d/99-lowlatency.conf".source = json.generate "99-lowlatency.conf" {
       context.modules = [
-      {
-        name = "libpipewire-module-rtkit";
-        args = {
-          nice.level = -15;
-          rt.prio = 88;
-          rt.time.soft = 200000;
-          rt.time.hard = 200000;
-        };
-        flags = [ "ifexists" "nofail" ];
-      }
-      {
-        name = "libpipewire-module-protocol-pulse";
-        args = {
-          pulse.min.req = qr;
-          pulse.min.quantum = qr;
-          pulse.min.frag = qr;
-          server.address = [ "unix:native" ];
-        };
-      }
+        {
+          name = "libpipewire-module-rtkit";
+          args = {
+            nice.level = -15;
+            rt.prio = 88;
+            rt.time.soft = 200000;
+            rt.time.hard = 200000;
+          };
+          flags = [ "ifexists" "nofail" ];
+        }
+        {
+          name = "libpipewire-module-protocol-pulse";
+          args = {
+            pulse.min.req = qr;
+            pulse.min.quantum = qr;
+            pulse.min.frag = qr;
+            server.address = [ "unix:native" ];
+          };
+        }
       ];
-
       stream.properties = {
         node.latency = qr;
         resample.quality = 1;
