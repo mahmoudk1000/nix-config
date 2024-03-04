@@ -322,6 +322,13 @@
               --selected-background: ${theme.base06} !important;
               --selected-foreground: ${theme.base00} !important;
             }
+            #attachmentBar {
+              background-color: ${theme.base02} !important;
+            }
+            .calendar-notification-bar {
+              background-color: ${theme.base07} !important;
+              color: ${theme.base00} !important;
+            }
             .notificationbox-stack,
             :host([type="info"]) .icon,
             .list-header-bar:not([hidden]),
