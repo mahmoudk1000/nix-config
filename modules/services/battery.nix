@@ -32,25 +32,25 @@ in
         default = false;
         description = ''
           Whether to enable battery notifier.
-          '';
+        '';
       };
       device = lib.mkOption {
         default = "BAT0";
         description = ''
           Device to monitor.
-          '';
+        '';
       };
       notifyCapacity = lib.mkOption {
         default = 15;
         description = ''
           Battery level at which a notification shall be sent.
-          '';
+        '';
       };
       suspendCapacity = lib.mkOption {
         default = 5;
         description = ''
           Battery level at which a suspend unless connected shall be sent.
-          '';
+        '';
       };
     };
   };
@@ -71,7 +71,7 @@ in
     };
     systemd.user.services.lowBatt = {
       Unit = {
-        Description = "Battery Level Notifier & Acter";
+        Description = "Battery Level Notifier & Actor";
       };
       Service = {
         Type = "simple";
