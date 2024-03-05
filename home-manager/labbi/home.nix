@@ -29,7 +29,6 @@
       pass
       libnotify
 
-      psmisc
       mpc-cli
       ncmpcpp
       xclip
