@@ -100,6 +100,8 @@
           # https://wiki.archlinux.org/title/firefox#Hardware_video_acceleration
           "media.ffmpeg.vaapi.enabled" = true;
           "media.ffvpx.enabled" = false;
+          "reader.parse-on-load.enabled" = false;
+          "media.webspeech.synth.enabled" = false;
 
           # Enable multi-pip
           "media.videocontrols.picture-in-picture.allow-multiple" = true;
