@@ -30,6 +30,8 @@ in
       kustomize
       terraform
       chart-testing
+      tfsec
+      trivy
     ];
   };
 }

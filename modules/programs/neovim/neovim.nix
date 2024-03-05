@@ -53,8 +53,6 @@ in
       nixfmt
       tflint
       texlab
-      tfsec
-      trivy
       taplo
       shfmt
       ruff
