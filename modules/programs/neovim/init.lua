@@ -38,7 +38,7 @@ vim.opt.listchars:append("space:⋅")                     -- Show a special char
 vim.opt.listchars:append("eol:↴")                       -- Show a special character for end of line
 
 -- Color Scheme
-vim.cmd [[colorscheme bluesee]]
+vim.cmd [[colorscheme neuewelt]]
 
 -- Keymaps
 vim.keymap.set({ "n", "v" }, '<Space>', "<Nop>", { silent = true })

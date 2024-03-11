@@ -9,7 +9,6 @@
       dbus-update-activation-environment DISPLAY XAUTHORITY
     fi
     [ -r ~/.Xmodmap ] && xmodmap ~/.Xmodmap
-    xsetroot -cursor_name left_ptr
     xrdb -load $HOME/.Xresources
     xset r rate 150 50
 

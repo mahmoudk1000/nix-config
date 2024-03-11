@@ -1,6 +1,6 @@
 {
     base00 = "#11171D";
-    base01 = "#E7EFF5";
+    base01 = "#F1F2F3";
     base02 = "#1A232C";
     base03 = "#F6BAB5";
     base04 = "#D0f1D5";

@@ -41,7 +41,6 @@
           x = 0;
           y = 1;
         };
-        draw_bold_text_with_bright_colors = true;
       };
       scrolling = {
         history = 1000;

@@ -9,7 +9,10 @@ let
   customVimPlugins = import ./vim-plugins.nix { inherit pkgs; };
 in
 {
-  home.file.".config/nvim/colors/bluesee.vim".source = ./bluesee.vim;
+  imports = [
+    ./neuewelt.nix
+  ];
+
   programs.neovim = {
     enable = true;
     extraLuaConfig = builtins.readFile ./init.lua;
