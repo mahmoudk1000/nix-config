@@ -32,6 +32,8 @@ in
       chart-testing
       tfsec
       trivy
+      azures-cli
+      awscli2
     ];
   };
 }
