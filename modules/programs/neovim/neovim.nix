@@ -45,7 +45,6 @@ in
       codespell
       marksman
       yamllint
-      rnix-lsp
       hadolint
       ruff-lsp
       pplatex
@@ -56,10 +55,12 @@ in
       nixfmt
       tflint
       texlab
+      biber
       taplo
-      shfmt
-      ruff
       gopls
+      shfmt
+      nixd
+      ruff
       glow
       sqls
       mdl

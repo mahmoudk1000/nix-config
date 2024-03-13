@@ -20,7 +20,7 @@ local servers = {
   'helm_ls',
   'jsonls',
   'texlab',
-  'rnix',
+  'nixd',
   'taplo',
   'terraformls',
   'tflint',

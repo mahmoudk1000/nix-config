@@ -32,8 +32,8 @@
     let s:light_purple    = { "gui": "${theme.base0E}" }
     let s:cyan            = { "gui": "${theme.base08}" }
     let s:light_cyan      = { "gui": "${theme.base0F}" }
-    let s:white           = { "gui": "#D8dEE9" }
-    let s:light_white     = { "gui": "#E5E9F0" }
+    let s:white           = { "gui": "${theme.base01}" }
+    let s:light_white     = { "gui": "#F2F3F4" }
 
     function! s:Color(group, style)
     execute "hi!" a:group

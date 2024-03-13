@@ -15,6 +15,7 @@ require("toggleterm").setup({
   persist_size = true,
   persist_mode = false,
   close_on_exit = true,
+  auto_scroll = true,
   shell = vim.o.shell,
   direction = "horizontal",
   highlights = {
@@ -24,6 +25,7 @@ require("toggleterm").setup({
     FloatBorder = { link = "FloatBorder" }
   },
   float_opts = {
-    border = "single"
+    border = "single",
+    zindex = 10
   }
 })
