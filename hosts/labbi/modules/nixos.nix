@@ -10,14 +10,14 @@
     settings = {
       keep-outputs = false;
       keep-derivations = false;
+      auto-optimise-store = true;
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-      auto-optimise-store = true;
       trusted-users = [
         "root"
-        "mahmoud"
+        "@wheel"
       ];
     };
     gc = {
