@@ -1,0 +1,53 @@
+diff --git a/scss/gtk-3.0/_colors.scss b/scss/gtk-3.0/_colors.scss
+index 662bd49..368a827 100644
+--- a/scss/gtk-3.0/_colors.scss
++++ b/scss/gtk-3.0/_colors.scss
+@@ -1,8 +1,8 @@
+-$surface-strongest: #11171d;
+-$surface-strong: #1a242d;
+-$surface-moderate: #24313d;
+-$surface-weak: #2f353b;
+-$surface-weakest: #393f45;
++$surface-strongest: @bg0@;
++$surface-strong: @bg1@;
++$surface-moderate: @bg2@;
++$surface-weak: @bg3@;
++$surface-weakest: @bg4@;
+ 
+ $white-strongest: #E7EFF5;
+ $white-strong: rgba(255, 255, 255, 0.87);
+@@ -16,20 +16,20 @@ $black-moderate: #202529;
+ $black-weak: #2a2f33;
+ $black-weakest: #34393d;
+ 
+-$red-normal: #F6BAB5;
+-$red-light: #FFC4BF;
+-$orange-normal: #FCBF8D;
+-$orange-light: #FDD9BB;
+-$yellow-normal: #FFF1AC;
+-$yellow-light: #FFFBB6;
+-$green-normal: #D0f1D5;
+-$green-light: #DAFBDF;
+-$cyan-normal: #A0D6DA;
+-$cyan-light: #AAE0E4;
+-$blue-normal: #90A8BE;
+-$blue-light: #9AB2C8;
+-$purple-normal: #D7C8F3;
+-$purple-light: #E1D2Fd;
++$red-normal: @red@;
++$red-light: @red_light@;
++$orange-normal: @orange@;
++$orange-light: @orange_light@;
++$yellow-normal: @yellow@;
++$yellow-light: @yellow_light@;
++$green-normal: @green@;
++$green-light: @green_light@;
++$blue-normal: @blue@;
++$blue-light: @blue_light@;
++$purple-normal: @purple@;
++$purple-light: @purple_light@;
++$cyan-normal: @cyan@;
++$cyan-light: @cyan_light@;
+ $pink-normal: #E5BFCA;
+ $pink-light: #EFD9DF;
+ 

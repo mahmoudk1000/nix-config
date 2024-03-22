@@ -1,6 +1,11 @@
 { pkgs
+, theme
 , ...
 }:
+
+let
+  pfocus = import ./pfocus.nix { inherit pkgs theme; };
+in 
 
 {
   fonts.fontconfig.enable = true;
@@ -34,6 +39,7 @@
 
     theme = {
       name = "phocus";
+      package = pfocus;
     };
   };
 
