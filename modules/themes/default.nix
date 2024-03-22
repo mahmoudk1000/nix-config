@@ -11,6 +11,7 @@ let
     mongo = import ./mongo.nix;
     mountain = import ./mountain.nix;
     night = import ./night.nix;
+    poimandres = import ./poimandres.nix;
     rnvy = import ./rnvy.nix;
     rouge = import ./rouge.nix;
     seaul = import ./seaul.nix;
