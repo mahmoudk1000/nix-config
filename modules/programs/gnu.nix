@@ -6,9 +6,9 @@
   programs = {
     eza = {
       enable = true;
-      enableAliases = true;
       git = true;
       icons = true;
+      enableZshIntegration = true;
       extraOptions = [ "--header" "--group-directories-first" "--octal-permissions" ];
     };
     bat = {
