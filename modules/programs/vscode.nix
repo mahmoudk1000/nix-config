@@ -42,7 +42,6 @@
       ms-ceintl.vscode-language-pack-de
       jnoortheen.nix-ide
       bbenoist.nix
-      ms-python.vscode-pylance
       hashicorp.terraform
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
@@ -232,7 +231,7 @@
       "gitlens.currentLine.enabled" = false;
 
       # Python
-      "python.languageServer" = "Pylance";
+      "python.languageServer" = "Jedi";
       "python.analysis.autoImportCompletions" = true;
       "python.analysis.typeCheckingMode" = "basic";
       "python.linting.enabled" = true;
@@ -244,7 +243,7 @@
       ## Nix
       "nix.enableLanguageServer" = true;
       "nixEnvSelector.nixFile" = "\${workspaceRoot}/shell.nix";
-      "nix.serverPath" = "${pkgs.rnix-lsp}/bin/rnix-lsp";
+      "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
       "[nix]" = {
         "editor.tabSize" = 4;
         "formatterPath" = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
