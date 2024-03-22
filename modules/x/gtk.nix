@@ -4,7 +4,7 @@
 }:
 
 let
-  pfocus = import ./pfocus.nix { inherit pkgs theme; };
+  phocus = import ./phocus.nix { inherit pkgs theme; };
 in 
 
 {
@@ -39,7 +39,7 @@ in
 
     theme = {
       name = "phocus";
-      package = pfocus;
+      package = phocus;
     };
   };
 
