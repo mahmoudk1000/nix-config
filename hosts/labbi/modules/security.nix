@@ -1,3 +1,7 @@
+{ lib
+, ...
+}:
+
 {
   security = {
     rtkit.enable = true;
@@ -15,7 +19,11 @@
       '';
     };
     pam = {
-      sshAgentAuth.enable = true;
+      sshAgentAuth = {
+        enable = true;
+        # Check: https://github.com/NixOS/nixpkgs/issues/31611
+        authorizedKeysFiles = lib.mkForce [ "/etc/ssh/authorized_keys.d/%u" ];
+      };
       services.login = {
         sshAgentAuth = true;
         gnupg.enable = true;
