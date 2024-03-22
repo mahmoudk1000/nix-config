@@ -25,7 +25,10 @@
     };
     zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion = {
+        enable = true;
+        highlight = "fg=8,bg=default";
+      };
       enableCompletion = true;
       enableVteIntegration = true;
       autocd = true;
@@ -34,8 +37,13 @@
       dotDir = ".config/zsh";
       syntaxHighlighting = {
         enable = true;
+        highlighters = [ "main" "brackets" "cursor" ];
+        patterns = {
+          "rm -rf *" = "fg=red,bg=default,bold";
+        };
         styles = {
-          ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "bg=default,fg=8";
+          alias = "fg=purple";
+          globbing = "fg=yellow";
         };
       };
       historySubstringSearch = {
@@ -75,7 +83,6 @@
         ZSH_AUTOSUGGEST_USE_ASYNC = true;
         ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE = 40;
         ZSH_AUTOSUGGEST_STRATEGY = [ "history" "completion" ];
-        ZSH_HIGHLIGHT_HIGHLIGHTERS = [ "main" "brackets" "cursor" ];
       };
       shellAliases = {
         reload = "exec zsh";
