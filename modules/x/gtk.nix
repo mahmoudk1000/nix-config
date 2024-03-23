@@ -20,7 +20,7 @@ in
       size = 10;
     };
 
-    gtk3.extraConfig = {
+    gtk3 = {
       bookmarks = let
         home = "file://${config.home.homeDirectory}/";
       in [
@@ -32,10 +32,12 @@ in
         "${home}labbi/resources"
         "${home}.config dotfiles"
       ];
-      gtk-application-prefer-dark-theme = true;
-      gtk-decoration-layout = "appmenu:none";
-      gtk-enable-event-sounds = false;
-      gtk-enable-input-feedback-sounds = false;
+      extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+        gtk-decoration-layout = "appmenu:none";
+        gtk-enable-event-sounds = false;
+        gtk-enable-input-feedback-sounds = false;
+      };
     };
 
     gtk4.extraConfig = {
