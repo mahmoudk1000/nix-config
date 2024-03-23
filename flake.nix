@@ -46,6 +46,7 @@
           nur.nixosModules.nur
           home-manager.nixosModules.home-manager
           {
+            networking.hostName = "labbi";
             imports = [ ./hosts/labbi/configuration.nix ];
           }
           {

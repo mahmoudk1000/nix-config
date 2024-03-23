@@ -6,7 +6,6 @@
 {
   # Networking
   networking  = {
-    hostName = "labbi";
     wireless = {
       iwd.enable = true;
       interfaces = [ "wlan0" ];
