@@ -24,10 +24,13 @@ in
       bookmarks = let
         home = "file://${config.home.homeDirectory}/";
       in [
-        "${home}nextcloud"
-        "${home}labbi"
+        "${home}download"
+        "${home}docs"
         "${home}notes"
         "${home}books"
+        "${home}movies"
+        "${home}labbi"
+        "${home}nextcloud"
         "${home}labbi/projects"
         "${home}labbi/resources"
         "${home}.config dotfiles"
