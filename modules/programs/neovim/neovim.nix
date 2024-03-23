@@ -71,12 +71,8 @@ in
         bash-language-server
       ])
       ++ (with python3Packages; [
-        jedi
-        pylint
-        pynvim
         python-lsp-ruff
-        python-lsp-server
-        jedi-language-server
+        pynvim
     ]);
     plugins = with pkgs.vimPlugins; with customVimPlugins; [
 
@@ -207,7 +203,6 @@ in
       ansible-vim
       playground
       friendly-snippets
-      jedi-vim
       Jenkinsfile-vim-syntax
       compiler-nvim
       overseer-nvim

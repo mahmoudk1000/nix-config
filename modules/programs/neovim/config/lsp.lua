@@ -24,11 +24,11 @@ local servers = {
   'taplo',
   'terraformls',
   'tflint',
-  'jedi_language_server',
   'autotools_ls',
   'jsonnet_ls',
   'gopls',
-  'ruff_lsp'
+  'ruff_lsp',
+  'ruff'
 }
 
 -- LSP settings.
@@ -85,35 +85,6 @@ lspconfig.lua_ls.setup({
       },
       workspace = { library = vim.api.nvim_get_runtime_file('', true) },
       telemetry = { enable = false, }
-    }
-  }
-})
-
-lspconfig.pylsp.setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    pylsp = {
-      plugins = {
-        black = {
-          enabled = true
-        },
-        pylint = {
-          enabled = true,
-          executable = "pylint"
-        },
-        isort = {
-          enabled = true
-        },
-        jedi_completion = {
-          enabled = true
-        },
-        pycodestyle = {
-          enabled = true,
-          ignore = {'W391'},
-          maxLineLength = 100
-        }
-      }
     }
   }
 })
