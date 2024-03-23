@@ -17,7 +17,6 @@ null_ls.setup({
                 diagnostic.code = diagnostic.message_id
             end
         }),
-        null_ls.builtins.diagnostics.ruff,
         null_ls.builtins.diagnostics.terraform_validate,
         null_ls.builtins.diagnostics.tfsec,
         null_ls.builtins.diagnostics.trivy,
@@ -37,7 +36,6 @@ null_ls.setup({
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.yamlfmt,
         null_ls.builtins.formatting.nixfmt,
-        null_ls.builtins.formatting.ruff,
         null_ls.builtins.formatting.codespell,
     }
 })

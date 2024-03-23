@@ -71,8 +71,13 @@ in
         bash-language-server
       ])
       ++ (with python3Packages; [
+        jedi-language-server
+        python-lsp-server
         python-lsp-ruff
+        pylint
+        flake8
         pynvim
+        isort
     ]);
     plugins = with pkgs.vimPlugins; with customVimPlugins; [
 

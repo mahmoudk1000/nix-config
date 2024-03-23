@@ -3,7 +3,8 @@ require("filetype").setup({
     extensions = {
       sh = "sh",
       tfvars = "terraform",
-	  tfstate = "json",
+      tfstate = "json",
+      latex = "tex"
     },
     shebang = {
       dash = "sh"

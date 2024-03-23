@@ -17,6 +17,7 @@ local servers = {
   'ansiblels',
   'dockerls',
   'docker_compose_language_service',
+  'java_language_server',
   'helm_ls',
   'jsonls',
   'texlab',
@@ -27,8 +28,7 @@ local servers = {
   'autotools_ls',
   'jsonnet_ls',
   'gopls',
-  'ruff_lsp',
-  'ruff'
+  'ruff_lsp'
 }
 
 -- LSP settings.
@@ -81,10 +81,29 @@ lspconfig.lua_ls.setup({
   settings = {
     Lua = {
       diagnostics = {
-        globals = { 'vim' },
+        globals = { 'vim' }
       },
       workspace = { library = vim.api.nvim_get_runtime_file('', true) },
       telemetry = { enable = false, }
+    }
+  }
+})
+
+lspconfig.pylsp.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    pylsp = {
+      plugins = {
+        flake8 = { enabled = true },
+        pylint = { enabled = false },
+        ruffle = { enabled = true },
+        isort = { enabled = true },
+        jedi_completion = {
+          enabled = true,
+          fuzzy = true
+        },
+      }
     }
   }
 })
