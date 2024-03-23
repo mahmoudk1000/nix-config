@@ -38,8 +38,10 @@
   in
   {
     nixosConfigurations = {
-      labbi = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit self inputs; };
+      labbi = let
+        user = "mahmoud";
+      in  nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit self inputs user; };
         modules = [
           nur.nixosModules.nur
           home-manager.nixosModules.home-manager
@@ -57,7 +59,7 @@
                 ];
                 _module.args.theme = import ./modules/themes;
               };
-              extraSpecialArgs = { inherit self inputs; };
+              extraSpecialArgs = { inherit self inputs user; };
             };
             nixpkgs.overlays = overlays;
           }

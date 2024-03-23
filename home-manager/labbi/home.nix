@@ -1,5 +1,6 @@
 { config
 , pkgs
+, user
 , ...
 }:
 
@@ -11,8 +12,8 @@
   ];
 
   home = {
-    username = "mahmoud";
-    homeDirectory = "/home/mahmoud";
+    username = "${user}";
+    homeDirectory = "/home/${user}";
     stateVersion = "22.05";
     extraOutputsToInstall = [ "man" ];
     packages = with pkgs; [
