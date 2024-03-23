@@ -1,4 +1,5 @@
-{ pkgs
+{ config
+, pkgs
 , theme
 , ...
 }:
@@ -20,15 +21,26 @@ in
     };
 
     gtk3.extraConfig = {
+      bookmarks = let
+        home = "file://${config.home.homeDirectory}/";
+      in [
+        "${home}nextcloud"
+        "${home}labbi"
+        "${home}notes"
+        "${home}books"
+        "${home}labbi/projects"
+        "${home}labbi/resources"
+        "${home}.config dotfiles"
+      ];
       gtk-application-prefer-dark-theme = true;
-      gtk-decoration-layout = "menu:";
+      gtk-decoration-layout = "appmenu:none";
       gtk-enable-event-sounds = false;
       gtk-enable-input-feedback-sounds = false;
     };
 
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
-      gtk-decoration-layout = "menu:";
+      gtk-decoration-layout = "appmenu:none";
       gtk-enable-event-sounds = false;
       gtk-enable-input-feedback-sounds = false;
     };
@@ -53,7 +65,7 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "gnome";
+    platformTheme = "gtk";
     style = {
       name = "breeze";
       package = pkgs.libsForQt5.breeze-qt5;
