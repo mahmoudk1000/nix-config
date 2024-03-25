@@ -42,6 +42,7 @@
       ms-ceintl.vscode-language-pack-de
       jnoortheen.nix-ide
       bbenoist.nix
+      ms-python.vscode-pylance
       hashicorp.terraform
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
@@ -231,7 +232,7 @@
       "gitlens.currentLine.enabled" = false;
 
       # Python
-      "python.languageServer" = "Jedi";
+      "python.languageServer" = "Pylance";
       "python.analysis.autoImportCompletions" = true;
       "python.analysis.typeCheckingMode" = "basic";
       "python.linting.enabled" = true;
