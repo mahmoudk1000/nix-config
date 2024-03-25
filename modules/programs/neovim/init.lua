@@ -61,17 +61,18 @@ vim.keymap.set("n", "<A-C-Up>", "yyp", { noremap = true, silent = true })
 vim.keymap.set("i", "<A-C-d>", "<Esc>:t.<CR>gi", { noremap = true, silent = true })
 
 -- Default Text Editors
-vim.keymap.set("n", "<C-a>", "ggVG", {})
-vim.keymap.set("n", "<C-s>", ":w<CR>", {})
-vim.keymap.set("n", "fq", ":q!<CR>", {})
-vim.keymap.set("n", "qq", ":q<CR>", {})
-vim.keymap.set("i", "<C-b>", "<ESC>^i", {})
-vim.keymap.set("i", "<C-e>", "<End>", {})
+vim.keymap.set("n", "<C-a>", "ggVG", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-s>", ":w<CR>", { noremap = true })
+vim.keymap.set("n", "fq", ":q!<CR>", { noremap = true })
+vim.keymap.set("n", "qq", ":q<CR>", { noremap = true })
+vim.keymap.set('i', "<A-d>", "<C-o>dd", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-b>", "<ESC>^i", { noremap = true })
+vim.keymap.set("i", "<C-e>", "<End>", { noremap = true })
 
 -- UI
-vim.keymap.set("n", "<leader>v", ":vsplit<CR>", {})
-vim.keymap.set("n", "<leader>h", ":split<CR>", {})
-vim.keymap.set("n", "<leader>w", ":set wrap<CR>", {})
+vim.keymap.set("n", "<leader>v", ":vsplit<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>h", ":split<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>w", ":set wrap<CR>", { noremap = true, silent = true })
 
 -- Indent
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
