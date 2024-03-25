@@ -97,6 +97,7 @@
     " Editor Highlighting
     call s:Color('Normal', {'fg': s:foreground})
     call s:Color('NormalFloat', {'fg': s:foreground, 'bg': s:black})
+    call s:Color('Border', {'fg': s:black, 'bg': s:background})
     call s:Color('FloatBorder', {'fg': s:blue, 'bg': s:black})
     call s:Color('SignColumn', {'fg': s:white})
     call s:Color('ColorColumn', {'bg': s:black})
