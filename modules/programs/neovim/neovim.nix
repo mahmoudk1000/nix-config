@@ -16,14 +16,11 @@ in
   programs.neovim = {
     enable = true;
     extraLuaConfig = builtins.readFile ./init.lua;
-    package = pkgs.neovim-nightly;
+    package = pkgs.neovim-unwrapped;
     vimAlias = true;
     withPython3 = true;
     withNodeJs = true;
     defaultEditor = true;
-    extraLuaPackages = luaPkgs: with luaPkgs; [
-      jsregexp
-    ];
     extraPackages = with pkgs; [
       dockerfile-language-server-nodejs
       docker-compose-language-service
@@ -60,7 +57,6 @@ in
       gopls
       shfmt
       nixd
-      ruff
       glow
       sqls
       mdl
@@ -73,11 +69,9 @@ in
       ++ (with python3Packages; [
         jedi-language-server
         python-lsp-server
-        python-lsp-ruff
         pylint
         flake8
         pynvim
-        isort
     ]);
     plugins = with pkgs.vimPlugins; with customVimPlugins; [
 
