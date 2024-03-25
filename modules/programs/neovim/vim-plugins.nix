@@ -12,7 +12,7 @@ with pkgs.vimUtils;
       owner = "Zeioth";
       repo = "compiler.nvim";
       rev = "9831cf1737df604d4335267e146202585775f859";
-      hash = "sha256-6VkQCTpE/nTSQ2NxjJYDtkx5jB54MOxJS5HpT6G6x/E=";
+      hash = "sha256-xgUnsSmK+c9HLhwmts2Rn9qcf0DMXaTeRdj7w6iPGFw=";
     };
   };
 
