@@ -96,8 +96,7 @@ lspconfig.pylsp.setup({
     pylsp = {
       plugins = {
         flake8 = { enabled = true },
-        pylint = { enabled = false },
-        ruffle = { enabled = true },
+        pylint = { enabled = true },
         isort = { enabled = true },
         jedi_completion = {
           enabled = true,
