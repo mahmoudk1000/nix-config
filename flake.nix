@@ -12,10 +12,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     spicetify-nix.url = "github:the-argus/spicetify-nix";
   };
 
@@ -24,7 +20,6 @@
   , nixpkgs
   , home-manager
   , nur
-  , neovim-nightly
   , nixpkgs-f2k
   , spicetify-nix
   , ... 
@@ -32,7 +27,6 @@
   let
     overlays = with inputs; [
       nur.overlay
-      neovim-nightly.overlay
       nixpkgs-f2k.overlays.window-managers
     ];
   in
@@ -40,7 +34,7 @@
     nixosConfigurations = {
       labbi = let
         user = "mahmoud";
-      in  nixpkgs.lib.nixosSystem {
+      in nixpkgs.lib.nixosSystem {
         specialArgs = { inherit self inputs user; };
         modules = [
           nur.nixosModules.nur
