@@ -20,8 +20,8 @@ require("toggleterm").setup({
   direction = "horizontal",
   highlights = {
     Normal = { link = "Normal" },
+    NormalFloat = { link = "Normal"  },
     WinSeparator = { link = "WinSeparator" },
-    NormalFloat = { link = "NormalFloat"  },
     FloatBorder = { link = "FloatBorder" }
   },
   float_opts = {
