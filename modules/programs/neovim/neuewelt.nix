@@ -5,7 +5,7 @@
 {
   home.file.".config/nvim/colors/neuewelt.vim".text = ''
     " Just another colorscheme for Vim
-    hi clear
+    hi! clear
 
     set background=dark
 
@@ -96,8 +96,8 @@
 
     " Editor Highlighting
     call s:Color('Normal', {'fg': s:foreground})
+    call s:Color('Border', {'fg': s:black})
     call s:Color('NormalFloat', {'fg': s:foreground, 'bg': s:black})
-    call s:Color('Border', {'fg': s:black, 'bg': s:background})
     call s:Color('FloatBorder', {'fg': s:blue, 'bg': s:black})
     call s:Color('SignColumn', {'fg': s:white})
     call s:Color('ColorColumn', {'bg': s:black})
@@ -184,83 +184,82 @@
 
     " Plugin Highlighting
     "" Treesitter
-    hi link TSConstructor Constant
-    hi link TSConstant Constant
-    hi link TSFloat Float
-    hi link TSNumber Number
-
-    hi link TSAttribute Special
-    hi link TSVariable Identifier
-    hi link TSVariableBuiltin Identifier
-    hi link TSBoolean Boolean
-    hi link TSConstBuiltin Constant
-    hi link TSConstMacro Constant
-    hi link TSError Error
-    hi link TSException Exception
-    hi link TSFuncMacro Function
-    hi link TSInclude Include
-    hi link TSLabel Label
-    hi link TSOperator Operator
-    hi link TSParameter Identifier
-    hi link TSParameterReference Identifier
-    hi link TSPunctDelimiter Delimiter
-    hi link TSPunctBracket Delimiter
-    hi link TSPunctSpecial Delimiter
-    hi link TSSymbol Special
-    hi link TSType Type
-    hi link TSTypeBuiltin Type
-    hi link TSTag Special
-    hi link TSTagDelimiter Special
-    hi link TSText String
-    hi link TSTextReference Special
-    hi link TSEmphasis Special
-    hi link TSUnderline Underlined
-    hi link TSTitle Title
-    hi link TSLiteral String
-    hi link TSURI Underlined
-    hi link TSAnnotation PreProc
-    hi link TSComment Comment
-    hi link TSConditional Keyword
-    hi link TSFunction Function
-    hi link TSMethod Function
-    hi link TSFuncBuiltin Function
-    hi link TSNamespace Identifier
-    hi link TSField Identifier
-    hi link TSProperty Identifier
-    hi link TSKeyword Keyword
-    hi link TSKeywordFunction Keyword
-    hi link TSKeywordReturn Keyword
-    hi link TSKeywordOperator Keyword
-    hi link TSRepeat Keyword
-    hi link TSString String
-    hi link TSStringRegex String
-    hi link TSStringEscape SpecialChar
-    hi link TSCharacter Character
+    hi! link TSConstructor Constant
+    hi! link TSConstant Constant
+    hi! link TSFloat Float
+    hi! link TSNumber Number
+    hi! link TSAttribute Special
+    hi! link TSVariable Identifier
+    hi! link TSVariableBuiltin Identifier
+    hi! link TSBoolean Boolean
+    hi! link TSConstBuiltin Constant
+    hi! link TSConstMacro Constant
+    hi! link TSError Error
+    hi! link TSException Exception
+    hi! link TSFuncMacro Function
+    hi! link TSInclude Include
+    hi! link TSLabel Label
+    hi! link TSOperator Operator
+    hi! link TSParameter Identifier
+    hi! link TSParameterReference Identifier
+    hi! link TSPunctDelimiter Delimiter
+    hi! link TSPunctBracket Delimiter
+    hi! link TSPunctSpecial Delimiter
+    hi! link TSSymbol Special
+    hi! link TSType Type
+    hi! link TSTypeBuiltin Type
+    hi! link TSTag Special
+    hi! link TSTagDelimiter Special
+    hi! link TSText String
+    hi! link TSTextReference Special
+    hi! link TSEmphasis Special
+    hi! link TSUnderline Underlined
+    hi! link TSTitle Title
+    hi! link TSLiteral String
+    hi! link TSURI Underlined
+    hi! link TSAnnotation PreProc
+    hi! link TSComment Comment
+    hi! link TSConditional Keyword
+    hi! link TSFunction Function
+    hi! link TSMethod Function
+    hi! link TSFuncBuiltin Function
+    hi! link TSNamespace Identifier
+    hi! link TSField Identifier
+    hi! link TSProperty Identifier
+    hi! link TSKeyword Keyword
+    hi! link TSKeywordFunction Keyword
+    hi! link TSKeywordReturn Keyword
+    hi! link TSKeywordOperator Keyword
+    hi! link TSRepeat Keyword
+    hi! link TSString String
+    hi! link TSStringRegex String
+    hi! link TSStringEscape SpecialChar
+    hi! link TSCharacter Character
 
     "' Diagnostic
-    hi link DiagnosticError ErrorMsg
-    hi link DiagnosticSignError ErrorMsg
-    hi link DiagnosticFloatingError ErrorMsg
-    hi link DiagnosticVirtualTextError ErrorMsg
-    hi link DiagnosticUnderlineError ErrorMsg
+    hi! link DiagnosticError ErrorMsg
+    hi! link DiagnosticSignError ErrorMsg
+    hi! link DiagnosticFloatingError ErrorMsg
+    hi! link DiagnosticVirtualTextError ErrorMsg
+    hi! link DiagnosticUnderlineError ErrorMsg
 
-    hi link DiagnosticWarn WarningMsg
-    hi link DiagnosticSignWarn WarningMsg
-    hi link DiagnosticFloatingWarn WarningMsg
-    hi link DiagnosticVirtualTextWarn WarningMsg
-    hi link DiagnosticUnderlineWarn WarningMsg
+    hi! link DiagnosticWarn WarningMsg
+    hi! link DiagnosticSignWarn WarningMsg
+    hi! link DiagnosticFloatingWarn WarningMsg
+    hi! link DiagnosticVirtualTextWarn WarningMsg
+    hi! link DiagnosticUnderlineWarn WarningMsg
 
-    hi link DiagnosticInfo InfoMsg
-    hi link DiagnosticSignInfo InfoMsg
-    hi link DiagnosticFloatingInfo InfoMsg
-    hi link DiagnosticVirtualTextInfo InfoMsg
-    hi link DiagnosticUnderlineInfo InfoMsg
+    hi! link DiagnosticInfo InfoMsg
+    hi! link DiagnosticSignInfo InfoMsg
+    hi! link DiagnosticFloatingInfo InfoMsg
+    hi! link DiagnosticVirtualTextInfo InfoMsg
+    hi! link DiagnosticUnderlineInfo InfoMsg
 
-    hi link DiagnosticHint HintMsg
-    hi link DiagnosticSignHint HintMsg
-    hi link DiagnosticFloatingHint HintMsg
-    hi link DiagnosticVirtualTextHint HintMsg
-    hi link DiagnosticUnderlineHint HintMsg
+    hi! link DiagnosticHint HintMsg
+    hi! link DiagnosticSignHint HintMsg
+    hi! link DiagnosticFloatingHint HintMsg
+    hi! link DiagnosticVirtualTextHint HintMsg
+    hi! link DiagnosticUnderlineHint HintMsg
 
     "" LSP
     call s:Color('LspTroubleNormal', {'fg': s:light_purple})
@@ -271,29 +270,29 @@
     call s:Color('LspReferenceRead', {'fg': s:white, 'gui': 'bold'})
     call s:Color('LspReferenceWrite', {'fg': s:white, 'gui': 'bold'})
 
-    hi link LspDiagnosticsDefaultError Error
-    hi link LspDiagnosticsSignError DiagnosticSignError
-    hi link LspDiagnosticsFloatingError DiagnosticFloatingError
-    hi link LspDiagnosticsVirtualTextError DiagnosticVirtualTextError
-    hi link LspDiagnosticsUnderlineError DiagnosticUnderlineError
+    hi! link LspDiagnosticsDefaultError Error
+    hi! link LspDiagnosticsSignError DiagnosticSignError
+    hi! link LspDiagnosticsFloatingError DiagnosticFloatingError
+    hi! link LspDiagnosticsVirtualTextError DiagnosticVirtualTextError
+    hi! link LspDiagnosticsUnderlineError DiagnosticUnderlineError
 
-    hi link LspDiagnosticsDefaultWarning DiagnosticWarn
-    hi link LspDiagnosticsSignWarning DiagnosticSignWarn
-    hi link LspDiagnosticsFloatingWarning DiagnosticFloatingWarn
-    hi link LspDiagnosticsVirtualTextWarning DiagnosticVirtualTextWarn
-    hi link LspDiagnosticsUnderlineWarning DiagnosticUnderlineWarn
+    hi! link LspDiagnosticsDefaultWarning DiagnosticWarn
+    hi! link LspDiagnosticsSignWarning DiagnosticSignWarn
+    hi! link LspDiagnosticsFloatingWarning DiagnosticFloatingWarn
+    hi! link LspDiagnosticsVirtualTextWarning DiagnosticVirtualTextWarn
+    hi! link LspDiagnosticsUnderlineWarning DiagnosticUnderlineWarn
 
-    hi link LspDiagnosticsDefaultInformation DiagnosticInfo
-    hi link LspDiagnosticsSignInformation DiagnosticSignInfo
-    hi link LspDiagnosticsFloatingInformation DiagnosticFloatingInfo
-    hi link LspDiagnosticsVirtualTextInformation DiagnosticVirtualTextInfo
-    hi link LspDiagnosticsUnderlineInformation DiagnosticUnderlineInfo
+    hi! link LspDiagnosticsDefaultInformation DiagnosticInfo
+    hi! link LspDiagnosticsSignInformation DiagnosticSignInfo
+    hi! link LspDiagnosticsFloatingInformation DiagnosticFloatingInfo
+    hi! link LspDiagnosticsVirtualTextInformation DiagnosticVirtualTextInfo
+    hi! link LspDiagnosticsUnderlineInformation DiagnosticUnderlineInfo
 
-    hi link LspDiagnosticsDefaultHint DiagnosticHint
-    hi link LspDiagnosticsSignHint DiagnosticSignHint
-    hi link LspDiagnosticsFloatingHint DiagnosticFloatingHint
-    hi link LspDiagnosticsVirtualTextHint DiagnosticVirtualTextHint
-    hi link LspDiagnosticsUnderlineHint DiagnosticUnderlineHint
+    hi! link LspDiagnosticsDefaultHint DiagnosticHint
+    hi! link LspDiagnosticsSignHint DiagnosticSignHint
+    hi! link LspDiagnosticsFloatingHint DiagnosticFloatingHint
+    hi! link LspDiagnosticsVirtualTextHint DiagnosticVirtualTextHint
+    hi! link LspDiagnosticsUnderlineHint DiagnosticUnderlineHint
 
     "" Diff
     call s:Color('diffAdded', {'fg': s:green})
@@ -339,8 +338,8 @@
     call s:Color('WhichKeyFloat', {'bg': s:black})
 
     "" Cmp
-    call s:Color('CmpPmenu', {'fg': s:foreground, 'bg': s:background})
-    call s:Color('CmpPmenuBorder', {'fg': s:light_black})
+    hi! link CmpPmenu Normal
+    hi! link CmpPmenuBorder Border
     call s:Color('CmpItemKind', {'fg': s:blue})
     call s:Color('CmpItemAbbrMatch', {'fg': s:white, 'gui': 'bold'})
     call s:Color('CmpItemAbbrMatchFuzzy', {'fg': s:light_white, 'gui': 'bold'})
@@ -394,11 +393,11 @@
     call s:Color('LuaLineReplaceA', {'fg': s:background, 'bg': s:yellow, 'gui': 'bold'})
 
     "" Telescope
-    call s:Color('TelescopeNormal', {'fg': s:foreground, 'bg': s:background})
+    hi! link TelescopeNormal NormalFloat
     call s:Color('TelescopeMatching', {'fg': s:purple})
-    call s:Color('TelescopeBorder', {'fg': s:blue, 'bg': s:background})
-    call s:Color('TelescopePromptBorder', {'fg': s:blue, 'bg': s:background})
-    call s:Color('TelescopePreviewBorder', {'fg': s:blue, 'bg': s:background})
-    call s:Color('TelescopeResultsBorder', {'fg': s:blue, 'bg': s:background})
+    hi! link TelescopeBorder FloatBorder
+    hi! link TelescopePromptBorder FloatBorder
+    hi! link TelescopePreviewBorder FloatBorder
+    hi! link TelescopeResultsBorder FloatBorder
   '';
 }

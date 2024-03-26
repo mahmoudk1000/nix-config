@@ -83,15 +83,14 @@ vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", { noremap = true, silent = t
 vim.keymap.set("n", "<leader>f", ":Neotree focus<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-t>", ":ToggleTerm<CR>", {})
 vim.keymap.set("n", "<A-f>", ":ToggleTerm direction=float<CR>", {})
-vim.keymap.set("n", "<leader>md", ":Glow<CR>", { noremap=true, silent=true })
-vim.keymap.set("n", "<A-Right>", ":BufferLineCycleNext<CR>", { noremap=true, silent=true })
-vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<CR>", { noremap=true, silent=true })
+vim.keymap.set("n", "<leader>md", ":Glow<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-Right>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 
 -- Telescope
 vim.keymap.set("n", "<leader>/", function()
   require('telescope.builtin').current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
-    winblend = 10,
-    previewer = false,
+    previewer = false
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
