@@ -15,15 +15,15 @@
     spicetify-nix.url = "github:the-argus/spicetify-nix";
   };
 
-  outputs = 
-  { self 
+  outputs =
+  { self
   , nixpkgs
   , home-manager
   , nur
   , nixpkgs-f2k
   , spicetify-nix
-  , ... 
-  } @ inputs: 
+  , ...
+  } @ inputs:
   let
     overlays = with inputs; [
       nur.overlay
