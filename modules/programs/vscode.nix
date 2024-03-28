@@ -7,15 +7,14 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium-fhs;
+    enableUpdateCheck = false;
     extensions = with pkgs.vscode-extensions; [
       vadimcn.vscode-lldb
       antfu.icons-carbon
       github.github-vscode-theme
       github.vscode-pull-request-github
       usernamehw.errorlens
-      eamodio.gitlens
       foxundermoon.shell-format
-      jnoortheen.nix-ide
       arrterian.nix-env-selector
       tamasfe.even-better-toml
       kamikillerto.vscode-colorize
@@ -31,8 +30,6 @@
       pkief.material-icon-theme
       davidanson.vscode-markdownlint
       yzhang.markdown-all-in-one
-      eamodio.gitlens
-      redhat.vscode-yaml
       vscjava.vscode-maven
       vscjava.vscode-java-dependency
       vscjava.vscode-java-test
@@ -40,28 +37,21 @@
       shardulm94.trailing-spaces
       streetsidesoftware.code-spell-checker
       ms-ceintl.vscode-language-pack-de
-      jnoortheen.nix-ide
       bbenoist.nix
       ms-python.vscode-pylance
       hashicorp.terraform
+      jnoortheen.nix-ide
+      vscodevim.vim
+      equinusocio.vsc-material-theme-icons
+      visualstudioexptteam.vscodeintellicode
+      github.copilot
+      github.copilot-chat
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "fluent-icons";
         publisher = "miguelsolorio";
         version = "0.0.18";
         sha256 = "sha256-sE0A441QPwokBoLoCqtImDHmlAXd66fj8zsJR7Ci+Qs=t";
-      }
-      {
-        name = "vsc-material-theme-icons";
-        publisher = "Equinusocio";
-        version = "2.4.0";
-        sha256 = "sha256-2M/Pvfaxeouc6h5FwmXxky4aQX+Nqqj0CQhJq83SOD8=";
-      }
-      {
-        name = "vscodeintellicode";
-        publisher = "VisualStudioExptTeam";
-        version = "1.2.29";
-        sha256 = "sha256-Wl++d7mCOjgL7vmVVAKPQQgWRSFlqL4ry7v0wob1OyU=";
       }
     ];
     keybindings = [
@@ -165,113 +155,179 @@
       }
     ];
     userSettings =  {
-      # Editor
-      "editor.fontSize" = 12;
-      "editor.fontFamily" = "'Iosevka', 'IosevkaTerm Nerd Font'";
-      "editor.fontLigatures" = true;
-      "editor.acceptSuggestionOnEnter" = "off";
-      "editor.autoClosingBrackets" = "always";
-      "editor.cursorBlinking" = "smooth";
-      "editor.cursorSmoothCaretAnimation" = true;
-      "editor.formatOnPaste" = true;
-      "editor.formatOnSave" = true;
-      "editor.formatOnType" = true;
-      "editor.renderFinalNewline" = false;
-      "editor.rulers" = [ 80 ];
-      "editor.tabSize" = 4;
-      "editor.smoothScrolling" = true;
-      "editor.stickyTabStops" = true;
-      "editor.wordWrap" = "on";
-      "editor.bracketPairColorization.enabled" = true;
-      "editor.guides.bracketPairs" = "active";
+      editor = {
+        fontSize = 12;
+        fontFamily = [ "Iosevka" "IosevkaTerm Nerd Font" ];
+        fontLigatures = true;
+        acceptSuggestionOnEnter = "off";
+        autoClosingBrackets = "always";
+        cursorBlinking = "smooth";
+        cursorSmoothCaretAnimation = true;
+        formatOnPaste = true;
+        formatOnSave = true;
+        formatOnType = true;
+        renderFinalNewline = false;
+        rulers = [ 80 ];
+        tabSize = 4;
+        smoothScrolling = true;
+        stickyTabStops = true;
+        wordWrap = "on";
+        bracketPairColorization = {
+          enabled = true;
+        };
+        guides = {
+          bracketPairs = "active";
+        };
+      };
 
       # Window
-      "window.zoomLevel" = -0.5;
-      "window.menuBarVisibility" = "toggle";
-      "window.titleBarStyle" = "native";
-      "extensions.autoUpdate" = false;
+      window = {
+        zoomLevel = -0.5;
+        menuBarVisibility = "toggle";
+        titleBarStyle = "native";
+      };
 
       # Workbench
-      "workbench.colorTheme" = "Mont";
-      "workbench.iconTheme" = "eq-material-theme-icons-light";
-      "workbench.productIconTheme" = "fluent-icons";
-      "workbench.editor.showTabs" = true;
+      workbench = {
+        colorTheme = "Mont";
+        iconTheme = "eq-material-theme-icons-light";
+        productIconTheme = "fluent-icons";
+        editor = {
+          showTabs = true;
+        };
+      };
 
       # Terminal
-      "terminal.integrated.fontFamily" = "IosevkaTerm Nerd Font";
-      "terminal.integrated.fontSize" = 12;
-      "terminal.integrated.allowChords" = false;
-      "terminal.integrated.gpuAcceleration" = "on";
-      "terminal.integrated.cursorStyle" = "line";
-      "terminal.integrated.cursorBlinking" = true;
+      terminal = {
+        integrated = {
+          fontFamily = "IosevkaTerm Nerd Font";
+          fontSize = 12;
+          allowChords = false;
+          gpuAcceleration = "on";
+          cursorStyle = "line";
+          cursorBlinking = true;
+        };
+      };
 
       # Files
-      "files.autoSave" = "onFocusChange";
-      "files.trimTrailingWhitespace" = true;
-      "files.trimFinalNewlines" = true;
-      "files.exclude" = {
-        "**/.classpath" = true;
-        "**/.project" = true;
-        "**/.settings" = true;
-        "**/.factorypath" = true;
+      files = {
+        autoSave = "onFocusChange";
+        trimTrailingWhitespace = true;
+        trimFinalNewlines = true;
+        exclude = {
+          "**/.classpath" = true;
+          "**/.project" = true;
+          "**/.settings" = true;
+          "**/.factorypath" = true;
+        };
       };
 
       # Telemetry
-      "telemetry.enableCrashReporter" = false;
-      "telemetry.enableTelemetry" = false;
-      "redhat.telemetry.enabled" = false;
-      "githubPullRequests.telemetry.enabled" = false;
-      "telemetry.telemetryLevel" = "off";
+      telemetry = {
+        enableCrashReporter = false;
+        enableTelemetry = false;
+        telemetryLevel = "off";
+      };
+      redhat = {
+        telemetry = {
+          enabled = false;
+        };
+      };
+      githubPullRequests = {
+        telemetry = {
+          enabled = false;
+        };
+      };
 
       # Updates
-      "update.mode" = "none";
+      update = {
+        mode = "none";
+      };
+      extensions = {
+        autoUpdate = false;
+        ignoreRecommendations = true;
+      };
 
       # Git
-      "git.autofetch" = true;
-      "gitlens.codeLens.enabled" = false;
-      "gitlens.currentLine.enabled" = false;
+      git = {
+        autofetch = true;
+      };
 
       # Python
-      "python.languageServer" = "Pylance";
-      "python.analysis.autoImportCompletions" = true;
-      "python.analysis.typeCheckingMode" = "basic";
-      "python.linting.enabled" = true;
-      "python.linting.pylintEnabled" = true;
-      "python.linting.pylintPath" = "${pkgs.python3Packages.pylint}/bin/pylint";
-      "python.formatting.autopep8Path" = "${pkgs.python3Packages.autopep8}/bin/autopep8";
+      python = {
+        languageServer = "Pylance";
+        analysis = {
+          autoImportCompletions = true;
+          typeCheckingMode = "basic";
+        };
+        linting = {
+          enabled = true;
+          pylintEnabled = true;
+          pylintPath = "${pkgs.python3Packages.pylint}/bin/pylint";
+        };
+      };
+
+      # vim
+      vim = {
+        useSystemClipboard = true;
+      };
 
       # Languages
       ## Nix
-      "nix.enableLanguageServer" = true;
-      "nixEnvSelector.nixFile" = "\${workspaceRoot}/shell.nix";
-      "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
-      "[nix]" = {
-        "editor.tabSize" = 4;
-        "formatterPath" = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-        "editor.defaultFormatter" = "jnoortheen.nix-ide";
+      nix = {
+        enableLanguageServer = true;
+        nixEnvSelector = {
+          nixFile = "\${workspaceRoot}/shell.nix";
+        };
+        serverPath = "${pkgs.nixd}/bin/nixd";
+        serverSettings = {
+          nixd = {
+            eval = {};
+            formatting = {
+              command = [ "nixpkgs-fmt" ];
+            };
+            options = {
+              enable = true;
+              target = {
+                args = [];
+                installable = "<flakeref>#nixosConfigurations.<name>.options";
+              };
+            };
+          };
+        };
       };
       ## java
-      "[java]" = {
-        "editor.defaultFormatter" = "redhat.java";
-        "java.format.settings.profile" = "GoogleStyle";
+      groovyLint.java.executable = "groovy-language-server";
+      java = {
+        configuration.runtimes = [
+          {
+            name = "JavaSE-17";
+            path = "${pkgs.jdk}/lib/openjdk";
+            default = true;
+          }
+        ];
+        jdt.ls.java.home = "${pkgs.jdk}/lib/openjdk";
+        format.settings.profile = "GoogleStyle";
       };
       ## Docker
-      "[dockerfile]" = {
-        "editor.defaultFormatter" = "ms-azuretools.vscode-docker";
+      dockerfile = {
+        editor.defaultFormatter = "ms-azuretools.vscode-docker";
       };
       ## Web
       "[html][javascript][javascriptreact][json][typescript][typescriptreact][scss]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        editor.defaultFormatter = "esbenp.prettier-vscode";
       };
       ## Bash
-      "[shellscript]" = {
-        "editor.tabSize" = 2;
-        "editor.insertSpaces" = false;
-        "shellformat.path" = "${pkgs.shfmt}/bin/shfmt";
+      shellscript = {
+        editor = {
+          tabSize = 4;
+          insertSpaces = false;
+        };
+        shellformat.path = "${pkgs.shfmt}/bin/shfmt";
       };
       ## C, CPP
       "[cpp][c]" = {
-        "editor.defaultFormatter" = "xaver.clang-format";
+        editor.defaultFormatter = "xaver.clang-format";
       };
     };
   };

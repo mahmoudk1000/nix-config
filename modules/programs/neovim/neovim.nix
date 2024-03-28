@@ -70,7 +70,6 @@ in
         jedi-language-server
         python-lsp-server
         pylint
-        flake8
         pynvim
     ]);
     plugins = with pkgs.vimPlugins; with customVimPlugins; [
