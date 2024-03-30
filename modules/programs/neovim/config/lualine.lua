@@ -32,8 +32,8 @@ require("lualine").setup({
     },
   },
   extensions = {
-    'neo-tree',
-    'fugitive',
-    'toggleterm'
+    "neo-tree",
+    "fugitive",
+    "toggleterm"
   }
 })

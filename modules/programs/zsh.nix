@@ -88,6 +88,7 @@
         reload = "exec zsh";
         open = "xdg-open";
         free = "free -h";
+        c = "clear";
 
         ".." = "cd ..";
         "..." = "cd ../..";
