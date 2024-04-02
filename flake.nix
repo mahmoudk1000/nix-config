@@ -15,51 +15,42 @@
     spicetify-nix.url = "github:the-argus/spicetify-nix";
   };
 
-  outputs =
-  { self
-  , nixpkgs
-  , home-manager
-  , nur
-  , nixpkgs-f2k
-  , spicetify-nix
-  , ...
-  } @ inputs:
-  let
-    overlays = with inputs; [
-      nur.overlay
-      nixpkgs-f2k.overlays.window-managers
-    ];
-  in
-  {
-    nixosConfigurations = {
-      labbi = let
-        user = "mahmoud";
-      in nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit self inputs user; };
-        modules = [
-          nur.nixosModules.nur
-          home-manager.nixosModules.home-manager
-          {
-            networking.hostName = "labbi";
-            imports = [ ./hosts/labbi/configuration.nix ];
-          }
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.mahmoud = {
-                imports = [
-                  ./home-manager/labbi/home.nix
-                  spicetify-nix.homeManagerModule
-                ];
-                _module.args.theme = import ./modules/themes;
+  outputs = { self, nixpkgs, home-manager, nur, nixpkgs-f2k, spicetify-nix, ...
+    }@inputs:
+    let
+      overlays = with inputs; [
+        nur.overlay
+        nixpkgs-f2k.overlays.window-managers
+      ];
+    in {
+      nixosConfigurations = {
+        labbi = let user = "mahmoud";
+        in nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit self inputs user; };
+          modules = [
+            nur.nixosModules.nur
+            home-manager.nixosModules.home-manager
+            {
+              networking.hostName = "labbi";
+              imports = [ ./hosts/labbi/configuration.nix ];
+            }
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.mahmoud = {
+                  imports = [
+                    ./home-manager/labbi/home.nix
+                    spicetify-nix.homeManagerModule
+                  ];
+                  _module.args.theme = import ./modules/themes;
+                };
+                extraSpecialArgs = { inherit self inputs user; };
               };
-              extraSpecialArgs = { inherit self inputs user; };
-            };
-            nixpkgs.overlays = overlays;
-          }
-        ];
+              nixpkgs.overlays = overlays;
+            }
+          ];
+        };
       };
     };
-  };
 }

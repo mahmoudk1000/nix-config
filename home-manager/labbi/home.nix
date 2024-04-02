@@ -1,75 +1,68 @@
-{ config
-, pkgs
-, user
-, ...
-}:
+{ config, pkgs, user, ... }:
 
 {
-  imports = [
-    ../../modules/programs
-    ../../modules/services
-    ../../modules/x
-  ];
+  imports = [ ../../modules/programs ../../modules/services ../../modules/x ];
 
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
     stateVersion = "22.05";
     extraOutputsToInstall = [ "man" ];
-    packages = with pkgs; [
+    packages = with pkgs;
+      [
 
-      vim
-      unzip
-      curl
-      wget
-      jq
-      playerctl
-      pamixer
-      isync
-      bitwarden-cli
-      pass
-      libnotify
+        vim
+        unzip
+        curl
+        wget
+        jq
+        playerctl
+        pamixer
+        isync
+        bitwarden-cli
+        pass
+        libnotify
 
-      mpc-cli
-      ncmpcpp
-      xclip
-      pfetch
-      spotdl
-      ventoy-bin
-      yt-dlp
+        mpc-cli
+        ncmpcpp
+        xclip
+        pfetch
+        spotdl
+        ventoy-bin
+        yt-dlp
 
-      ffmpeg
-      arandr
-      imagemagick
-      rtorrent
-      nsxiv
+        ffmpeg
+        arandr
+        imagemagick
+        rtorrent
+        nsxiv
 
-      st
-      zoom-us
-      inkscape
-      freetube
-      libreoffice
-      discord
-      anki-bin
-      tdesktop
-      element-desktop
-      foliate
-      obsidian
-      evince
-      mpv
-      krita
-      popcorntime
+        st
+        zoom-us
+        inkscape
+        freetube
+        libreoffice
+        discord
+        anki-bin
+        tdesktop
+        element-desktop
+        foliate
+        obsidian
+        evince
+        mpv
+        krita
+        popcorntime
 
-      libsForQt5.breeze-icons
-      xorg.xmodmap
+        libsForQt5.breeze-icons
+        xorg.xmodmap
 
-    ] ++ (import ../../modules/scripts { inherit config pkgs lib; });
+      ] ++ (import ../../modules/scripts { inherit config pkgs lib; });
   };
 
   xdg = {
     userDirs = {
       enable = true;
-      desktop  = "${config.home.homeDirectory}/";
+      desktop = "${config.home.homeDirectory}/";
       documents = "${config.home.homeDirectory}/docs";
       download = "${config.home.homeDirectory}/download";
       music = "${config.home.homeDirectory}/musik";
@@ -81,7 +74,7 @@
   programs = {
     devops.enable = true;
     home-manager.enable = true;
-    nix-index ={
+    nix-index = {
       enable = true;
       enableZshIntegration = true;
     };

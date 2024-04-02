@@ -1,6 +1,4 @@
-{ theme
-, ...
-}:
+{ theme, ... }:
 
 {
   home.file.".config/nvim/colors/neuewelt.vim".text = ''
