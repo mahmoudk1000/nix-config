@@ -79,15 +79,26 @@ vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 
 -- Plugins
+--- Neotree
 vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>f", ":Neotree focus<CR>", { noremap = true, silent = true })
+
+--- ToggleTerm
 vim.keymap.set("n", "<A-t>", ":ToggleTerm<CR>", {})
 vim.keymap.set("n", "<A-f>", ":ToggleTerm direction=float<CR>", {})
+
+--- Glow
 vim.keymap.set("n", "<leader>md", ":Glow<CR>", { noremap = true, silent = true })
+
+--- Bufferline
 vim.keymap.set("n", "<A-Right>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 
--- Telescope
+--- Conform
+vim.keymap.set("n", "<leader>f", function()
+  require('conform').format()
+end, { desc = "Format Buffer" })
+
+--- Telescope
 vim.keymap.set("n", "<leader>/", function()
   require('telescope.builtin').current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
     previewer = false
@@ -105,11 +116,12 @@ vim.keymap.set("n", "<A-Tab>", require("telescope.builtin").buffers, { desc = "S
 -- Once the plugins have been loaded, Lua-based plugins need to be required and started up
 -- For plugins with their own configuration file, that file is loaded and is responsible for
 -- starting them. Otherwise, the plugin itself is required and its `setup` method is called.
-require("Comment").setup()
-require("colorizer").setup()
-require("gitsigns").setup()
-require("cmp_git").setup()
-require("tmux").setup()
-require("nvim-autopairs").setup()
-require("copilot_cmp").setup()
-require("nvim-surround").setup()
+require("Comment").setup({})
+require("colorizer").setup({})
+require("gitsigns").setup({})
+require("cmp_git").setup({})
+require("tmux").setup({})
+require("nvim-autopairs").setup({})
+require("copilot_cmp").setup({})
+require("nvim-surround").setup({})
+require("fzf-lua").setup({})

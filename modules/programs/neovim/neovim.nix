@@ -32,12 +32,12 @@ in
       yaml-language-server
       java-language-server
       lua-language-server
+      markdownlint-cli
       quick-lint-js
       terraform-ls
       ansible-lint
       clang-tools
-      checkstyle
-      actionlint
+      shellcheck
       checkmake
       codespell
       marksman
@@ -50,16 +50,17 @@ in
       helm-ls
       deadnix
       nixfmt
+      stylua
       tflint
       texlab
       biber
       taplo
       gopls
       shfmt
+      ruff
       nixd
       glow
       sqls
-      mdl
       gcc
       fd
       ]
@@ -68,7 +69,6 @@ in
       ])
       ++ (with python3Packages; [
         jedi-language-server
-        python-lsp-server
         pylint
         pynvim
     ]);
@@ -150,11 +150,6 @@ in
         config = builtins.readFile ./config/copilot.lua;
       }
       {
-        plugin = none-ls-nvim;
-        type = "lua";
-        config = builtins.readFile ./config/null.lua;
-      }
-      {
         plugin = fidget-nvim;
         type = "lua";
         config = builtins.readFile ./config/fidget.lua;
@@ -169,6 +164,16 @@ in
         type = "lua";
         config = builtins.readFile ./config/vimtex.lua;
       }
+      {
+        plugin = nvim-lint;
+        type = "lua";
+        config = builtins.readFile ./config/lint.lua;
+      }
+      {
+        plugin = conform-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/conform.lua;
+      }
       auto-pairs
       cmp-buffer
       cmp-cmdline
@@ -182,7 +187,7 @@ in
       comment-nvim
       nvim-colorizer-lua
       dressing-nvim
-      fzf-vim
+      fzf-lua
       nui-nvim
       nvim-web-devicons
       nvim-ts-autotag
