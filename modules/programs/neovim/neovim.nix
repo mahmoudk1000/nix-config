@@ -28,18 +28,14 @@ in {
         java-language-server
         lua-language-server
         markdownlint-cli
-        quick-lint-js
         terraform-ls
         ansible-lint
-        clang-tools
         shellcheck
         checkmake
         codespell
         marksman
         yamllint
         hadolint
-        ruff-lsp
-        pplatex
         yamlfmt
         ripgrep
         helm-ls
@@ -49,17 +45,14 @@ in {
         tflint
         texlab
         biber
-        taplo
-        gopls
         shfmt
         ruff
         nixd
         glow
-        sqls
         gcc
         fd
       ] ++ (with nodePackages_latest; [ bash-language-server ])
-      ++ (with python3Packages; [ jedi-language-server pylint pynvim ]);
+      ++ (with python3Packages; [ jedi-language-server pynvim ]);
     plugins = with pkgs.vimPlugins;
       with customVimPlugins; [
 
@@ -163,15 +156,13 @@ in {
           type = "lua";
           config = builtins.readFile ./config/conform.lua;
         }
-        auto-pairs
         cmp-buffer
         cmp-cmdline
         cmp-nvim-lsp
         cmp-path
         cmp-git
         cmp_luasnip
-        cmp-spell
-        cmp-nvim-tags
+        copilot-cmp
         cmp-nvim-lsp-signature-help
         comment-nvim
         nvim-colorizer-lua
@@ -179,27 +170,17 @@ in {
         fzf-lua
         nui-nvim
         nvim-web-devicons
-        nvim-ts-autotag
-        impatient-nvim
         tmux-nvim
-        telescope-fzf-native-nvim
-        vim-fugitive
         vim-gitgutter
         vim-nix
-        vim-rhubarb
         vim-sleuth
-        nvim-surround
-        vim-unimpaired
         vim-terraform
         vim-yaml
         ansible-vim
         playground
         friendly-snippets
-        Jenkinsfile-vim-syntax
         compiler-nvim
         overseer-nvim
-        copilot-cmp
-        vim-lsc
         nvim-autopairs
 
       ];

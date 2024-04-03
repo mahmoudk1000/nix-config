@@ -1,5 +1,4 @@
 require("lint").linters.deadnix = {
-	name = "deadnix",
 	cmd = "deadnix",
 	stdin = false,
 	append_fname = true,
@@ -8,17 +7,16 @@ require("lint").linters.deadnix = {
 	ignore_exitcode = false,
 	env = nil,
 	parser = function(output, _)
-		local items = {}
+		local diagnostics = {}
 
 		if output == "" then
-			return items
+			return diagnostics
 		end
 
 		local decoded = vim.json.decode(output) or {}
 
 		for _, diag in ipairs(decoded.results) do
-			table.insert(items, {
-				source = "deadnix",
+			table.insert(diagnostics, {
 				lnum = diag.line - 1,
 				col = diag.column - 1,
 				end_lnum = diag.line - 1,
@@ -27,7 +25,8 @@ require("lint").linters.deadnix = {
 				severity = vim.diagnostic.severity.WARN,
 			})
 		end
-		return items
+
+		return diagnostics
 	end,
 }
 

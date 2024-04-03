@@ -8,7 +8,6 @@ require("conform").setup({
 		nix = { "nixfmt" },
 		sh = { "shfmt" },
 		zsh = { "shfmt" },
-		toml = { "taplo" },
 		terraform = { "terraform_fmt", "tofu_fmt" },
 		tf = { "terraform_fmt", "tofu_fmt" },
 		yaml = { "yamlfmt" },

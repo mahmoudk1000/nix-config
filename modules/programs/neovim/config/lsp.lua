@@ -5,37 +5,27 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Enable the following language servers
 local servers = {
-	"clangd",
 	"cssls",
 	"bashls",
 	"html",
 	"jsonls",
 	"marksman",
-	"sqls",
-	"tsserver",
 	"yamlls",
 	"ansiblels",
 	"dockerls",
 	"docker_compose_language_service",
-	"java_language_server",
 	"helm_ls",
-	"jsonls",
 	"texlab",
 	"nixd",
-	"taplo",
 	"terraformls",
 	"tflint",
 	"autotools_ls",
 	"jsonnet_ls",
-	"gopls",
-	"ruff_lsp",
+	"jedi_language_server",
 }
 
 -- LSP settings.
 local on_attach = function(_, bufnr)
-	local function buf_set_keymap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end

@@ -1,6 +1,5 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 local kind_icons = {
 	Text = "󰉿",
@@ -106,9 +105,7 @@ cmp.setup({
 				nvim_lua = "[Lua]",
 				latex_symbols = "[LaT]",
 				copilot = "[Git]",
-				spell = "[Spl]",
 				path = "[Dir]",
-				tags = "[Tag]",
 				cmdline = "[Cmd]",
 				nvim_lsp_signature_help = "[Sig]",
 			})[entry.source.name]
@@ -122,24 +119,6 @@ cmp.setup({
 		{ name = "copilot" },
 		{ name = "path" },
 	}, {
-		{
-			name = "spell",
-			option = {
-				keep_all_entries = false,
-				enable_in_context = function()
-					return true
-				end,
-			},
-		},
-		{
-			name = "tags",
-			option = {
-				complete_defer = 100,
-				max_item_count = 10,
-				exact_match = false,
-				current_buffer_only = false,
-			},
-		},
 		{ name = "buffer" },
 	}),
 })
@@ -177,4 +156,4 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
