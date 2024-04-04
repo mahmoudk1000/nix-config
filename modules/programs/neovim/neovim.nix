@@ -40,7 +40,8 @@ in {
         ripgrep
         helm-ls
         deadnix
-        nixfmt
+        # nixfmt
+        nixfmt-rfc-style
         stylua
         tflint
         texlab
