@@ -1,14 +1,24 @@
-{ config, pkgs, user, ... }:
+{
+  config,
+  pkgs,
+  user,
+  ...
+}:
 
 {
-  imports = [ ../../modules/programs ../../modules/services ../../modules/x ];
+  imports = [
+    ../../modules/programs
+    ../../modules/services
+    ../../modules/x
+  ];
 
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
     stateVersion = "22.05";
     extraOutputsToInstall = [ "man" ];
-    packages = with pkgs;
+    packages =
+      with pkgs;
       [
 
         vim
@@ -55,8 +65,8 @@
 
         libsForQt5.breeze-icons
         xorg.xmodmap
-
-      ] ++ (import ../../modules/scripts { inherit config pkgs lib; });
+      ]
+      ++ (import ../../modules/scripts { inherit config pkgs lib; });
   };
 
   xdg = {
