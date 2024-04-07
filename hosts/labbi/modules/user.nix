@@ -1,8 +1,4 @@
-{ config
-, pkgs
-, user
-, ...
-}:
+{ config, pkgs, user, ... }:
 
 {
   # User Account.
@@ -12,7 +8,8 @@
     home = "/home/${user}";
     shell = pkgs.zsh;
     extraGroups = [ "wheel" "video" "audio" "users" "tty" "input" "docker" ];
-    hashedPassword = "$6$RC/pIIRmYnXN6vWB$pkDeNbr/SewvTKH4oK5ZzXXdnx8/Az8Wxp0Bg1imM44ECcjmj/eLjSAm0yx6dbozZY0RAN5QXWr/vdQBo35Lq/";
+    hashedPassword =
+      "$6$RC/pIIRmYnXN6vWB$pkDeNbr/SewvTKH4oK5ZzXXdnx8/Az8Wxp0Bg1imM44ECcjmj/eLjSAm0yx6dbozZY0RAN5QXWr/vdQBo35Lq/";
   };
   environment.pathsToLink = [ "/share/zsh" ];
 
@@ -23,22 +20,12 @@
     git
     man-pages
     _2bwm
-   brightnessctl
+    brightnessctl
   ];
 
   # Settings
   nixpkgs.config = {
-    "2bwm".patches = [
-      ../../../modules/patches/2bwm/momo-patch.diff
-    ];
-
-    st = {
-      conf = builtins.readFile ../../../modules/patches/st/config.h;
-      extraLibs = with pkgs; [ harfbuzz gd glib ];
-      patches = [
-        ../../../modules/patches/st/momo-patch.diff
-      ];
-    };
+    "2bwm".patches = [ ../../../modules/patches/2bwm/momo-patch.diff ];
 
     allowUnfree = true;
     input-fonts.acceptLicense = true;
