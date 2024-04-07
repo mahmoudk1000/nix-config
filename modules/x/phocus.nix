@@ -1,7 +1,4 @@
-{ pkgs
-, theme
-, ...
-}:
+{ pkgs, theme, ... }:
 
 pkgs.stdenvNoCC.mkDerivation rec {
   name = "phocus";
@@ -36,10 +33,13 @@ pkgs.stdenvNoCC.mkDerivation rec {
       --replace "@purple@" "${base07}" \
       --replace "@purple_light@" "${base0E}" \
       --replace "@cyan@" "${base08}" \
-      --replace "@cyan_light@" "${base0F}" \
+      --replace "@cyan_light@" "${base0F}"
   '';
 
   nativeBuildInputs = with pkgs; [ nodePackages.sass ];
 
-  installFlags = [ "DESTDIR=$(out)" "PREFIX=" ];
+  installFlags = [
+    "DESTDIR=$(out)"
+    "PREFIX="
+  ];
 }

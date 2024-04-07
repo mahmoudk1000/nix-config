@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 
 pkgs.stdenv.mkDerivation rec {
   pname = "groovy-language-server";
@@ -11,7 +9,10 @@ pkgs.stdenv.mkDerivation rec {
   dontUnpack = true;
   dontBuild = true;
 
-  nativeBuildInputs = with pkgs; [ makeWrapper jre ];
+  nativeBuildInputs = with pkgs; [
+    makeWrapper
+    jre
+  ];
 
   installPhase = ''
     runHook preInstall
