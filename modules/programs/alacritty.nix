@@ -1,6 +1,4 @@
-{ theme
-, ...
-}:
+{ theme, ... }:
 
 {
   programs.alacritty = {
@@ -11,12 +9,12 @@
       };
       window = {
         padding = {
-          x = 50;
-          y = 25;
+          x = 40;
+          y = 30;
         };
         dimensions = {
           columns = 80;
-          lines = 20;
+          lines = 24;
         };
       };
       font = {
