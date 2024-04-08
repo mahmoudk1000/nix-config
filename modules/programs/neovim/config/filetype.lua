@@ -9,6 +9,7 @@ require("filetype").setup({
 			latex = "tex",
 			bib = "tex",
 			html = "html",
+			h = "c",
 		},
 		literal = {
 			Jenkinsfile = "groovy",
