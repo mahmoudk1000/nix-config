@@ -21,7 +21,7 @@ require("lualine").setup({
 	},
 	sections = {
 		lualine_a = {
-			{ "mode", icons_enabled = true, icon = " ", separator = { left = "▒▓█" }, right_padding = 2 },
+			{ "mode", icons_enabled = true, icon = "", separator = { left = "▒▓█" }, right_padding = 2 },
 		},
 		lualine_b = { { "filename", file_status = false, path = 1 }, { "branch", icon = "󰘬" } },
 		lualine_c = { "diff" },
