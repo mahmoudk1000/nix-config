@@ -1,6 +1,4 @@
-{ theme
-, ...
-}:
+{ theme, ... }:
 
 {
   programs.starship = {
@@ -76,7 +74,7 @@
         behind = " 󰜮 \${count} ";
         diverged = " ⇕ ⇡\${ahead_count} ⇣\${behind_count} ";
         conflicted = "  \${count} ";
-        deleted = "  \${count} ";
+        deleted = " ✖ \${count} ";
         renamed = "  \${count} ";
         modified = " 󰙏 \${count} ";
         staged = " 󰸞 \${count} ";
