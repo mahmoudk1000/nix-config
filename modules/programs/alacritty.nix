@@ -1,4 +1,4 @@
-{ theme, ... }:
+{ pkgs, theme, ... }:
 
 {
   programs.alacritty = {
@@ -16,23 +16,24 @@
           columns = 80;
           lines = 24;
         };
+        decorations = "None";
       };
       font = {
         size = 9;
         normal = {
-          family = "IosevkaTerm Nerd Font Mono";
+          family = "IosevkaTerm Nerd Font";
           style = "Regular";
         };
         bold = {
-          family = "IosevkaTerm Nerd Font Mono";
+          family = "IosevkaTerm Nerd Font";
           style = "Bold";
         };
         italic = {
-          family = "IosevkaTerm Nerd Font Mono";
+          family = "IosevkaTerm Nerd Font";
           style = "Italic";
         };
         bold_italic = {
-          family = "IosevkaTerm Nerd Font Mono";
+          family = "IosevkaTerm Nerd Font";
           style = "Bold Italic";
         };
         offset = {
@@ -40,13 +41,22 @@
           y = 1;
         };
       };
-      cussor = {
-        style = "underline";
-        blink_interval = 500;
+      cursor = {
+        style = {
+          shape = "Underline";
+          blinking = "Off";
+        };
+        blink_interval = 250;
       };
       scrolling = {
         history = 10000;
         multiplier = 3;
+      };
+      selection = {
+        save_to_clipboard = true;
+      };
+      shell = {
+        program = "${pkgs.zsh}/bin/zsh";
       };
       colors = {
         primary = {
