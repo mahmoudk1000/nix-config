@@ -9,8 +9,8 @@
       };
       window = {
         padding = {
-          x = 40;
-          y = 30;
+          x = 30;
+          y = 20;
         };
         dimensions = {
           columns = 80;
@@ -20,19 +20,19 @@
       font = {
         size = 9;
         normal = {
-          family = "IosevkaTerm Nerd Font";
+          family = "IosevkaTerm Nerd Font Mono";
           style = "Regular";
         };
         bold = {
-          family = "IosevkaTerm Nerd Font";
+          family = "IosevkaTerm Nerd Font Mono";
           style = "Bold";
         };
         italic = {
-          family = "IosevkaTerm Nerd Font";
+          family = "IosevkaTerm Nerd Font Mono";
           style = "Italic";
         };
         bold_italic = {
-          family = "IosevkaTerm Nerd Font";
+          family = "IosevkaTerm Nerd Font Mono";
           style = "Bold Italic";
         };
         offset = {
@@ -40,8 +40,13 @@
           y = 1;
         };
       };
+      cussor = {
+        style = "underline";
+        blink_interval = 500;
+      };
       scrolling = {
-        history = 1000;
+        history = 10000;
+        multiplier = 3;
       };
       colors = {
         primary = {
