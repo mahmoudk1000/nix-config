@@ -1,18 +1,16 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 
 with pkgs.vimUtils;
 
 {
   compiler-nvim = buildVimPlugin rec {
     pname = "compiler-nvim";
-    version = "v3.2.4";
+    version = "v3.3.2";
     src = pkgs.fetchFromGitHub {
       owner = "Zeioth";
       repo = "compiler.nvim";
-      rev = "9831cf1737df604d4335267e146202585775f859";
-      hash = "sha256-xgUnsSmK+c9HLhwmts2Rn9qcf0DMXaTeRdj7w6iPGFw=";
+      rev = "a0fc34e3aa6c8109863441fc674cf04de6241bd0";
+      hash = "sha256-KIIQ1rtL9A1tZpjNNKUb5yACXGS97uaLAzCd9AogAqk=";
     };
   };
 
@@ -24,17 +22,6 @@ with pkgs.vimUtils;
       repo = "filetype.nvim";
       rev = "b522628a45a17d58fc0073ffd64f9dc9530a8027";
       sha256 = "sha256-B+VvgQj8akiKe+MX/dV2/mdaaqF8s2INW3phdPJ5TFA=";
-    };
-  };
-
-  nvim-autopairs = buildVimPlugin rec {
-    pname = "nvim-autopairs";
-    version = "096d0ba";
-    src = pkgs.fetchFromGitHub {
-      owner = "windwp";
-      repo = pname;
-      rev = "dbfc1c34bed415906395db8303c71039b3a3ffb4";
-      sha256 = "sha256-4sZoZfg6ORbEwbvjIRnaDrKtVnoHpx7cAOcxn1Er6pg=";
     };
   };
 }
