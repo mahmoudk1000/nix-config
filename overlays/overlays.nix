@@ -1,10 +1,8 @@
-self: super:
-
-{
+final: prev: {
   st =
-    with super;
+    with prev;
     st.overrideAttrs (oldAttrs: rec {
-      src = self.fetchFromGitHub {
+      src = final.fetchFromGitHub {
         owner = "bakkeby";
         repo = "st-flexipatch";
         rev = "dd8675943d2e6e1eff15d3ac3aac6e5e5643582b";
@@ -15,10 +13,11 @@ self: super:
 
       buildInputs =
         oldAttrs.buildInputs
-        ++ (with super; [
+        ++ (with prev; [
           harfbuzz
           gd
           glib
+          imlib2
           xorg.libXcursor
         ]);
 
@@ -33,7 +32,9 @@ self: super:
             --replace "#LIGATURES_H = hb.h" "LIGATURES_H = hb.h" \
             --replace "#LIGATURES_INC = `$(PKG_CONFIG) --cflags harfbuzz`" "LIGATURES_INC = `$(PKG_CONFIG) --cflags harfbuzz`" \
             --replace "#LIGATURES_LIBS = `$(PKG_CONFIG) --libs harfbuzz`" "LIGATURES_LIBS = `$(PKG_CONFIG) --libs harfbuzz`" \
-            --replace "#NETWMICON_LIBS = `$(PKG_CONFIG) --libs gdlib`" "NETWMICON_LIBS = `$(PKG_CONFIG) --libs gdlib`"
+            --replace "#NETWMICON_LIBS = `$(PKG_CONFIG) --libs gdlib`" "NETWMICON_LIBS = `$(PKG_CONFIG) --libs gdlib`" \
+            --replace "#SIXEL_C = sixel.c sixel_hls.c" "SIXEL_C = sixel.c sixel_hls.c" \
+            --replace "#SIXEL_LIBS = `$(PKG_CONFIG) --libs imlib2`" "SIXEL_LIBS = `$(PKG_CONFIG) --libs imlib2`"
 
           substituteInPlace patches.def.h \
             --replace "#define BLINKING_CURSOR_PATCH 0" "#define BLINKING_CURSOR_PATCH 1"  \
@@ -51,6 +52,7 @@ self: super:
             --replace "#define NETWMICON_PATCH 0" "#define NETWMICON_PATCH 1"  \
             --replace "#define NO_WINDOW_DECORATIONS_PATCH 0" "#define NO_WINDOW_DECORATIONS_PATCH 1"  \
             --replace "#define REFLOW_PATCH 0" "#define REFLOW_PATCH 1"  \
+            --replace "#define SIXEL_PATCH 0" "#define SIXEL_PATCH 1" \
             --replace "#define NETWMICON_FF_PATCH 0" "#define NETWMICON_FF_PATCH 1"  \
             --replace "#define SCROLLBACK_PATCH 0" "#define SCROLLBACK_PATCH 1"  \
             --replace "#define SCROLLBACK_MOUSE_PATCH 0" "#define SCROLLBACK_MOUSE_PATCH 1"  \

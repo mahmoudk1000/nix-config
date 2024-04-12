@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "IosevkaTerm Nerd Font Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "IosevkaTerm Nerd Font:pixelsize=12:antialias=true:autohint=true";
 
 #if FONT2_PATCH
 static char *font2[] = { "Iosevka:pixelsize=12:antialias=true:autohint=true" };
@@ -244,7 +244,7 @@ unsigned int highlightbg = 160;
  * 7: Blinking st cursor
  * 8: Steady st cursor
  */
-static unsigned int cursorstyle = 5;
+static unsigned int cursorstyle = 3;
 static Rune stcursor = 0x2603; /* snowman (U+2603) */
 #else
 /*
@@ -254,7 +254,7 @@ static Rune stcursor = 0x2603; /* snowman (U+2603) */
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 6;
+static unsigned int cursorshape = 4;
 #endif // BLINKING_CURSOR_PATCH
 
 /*
