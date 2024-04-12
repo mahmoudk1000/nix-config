@@ -16,6 +16,7 @@
           columns = 80;
           lines = 24;
         };
+        dynamic_padding = true;
         decorations = "None";
       };
       font = {
@@ -53,6 +54,7 @@
         multiplier = 3;
       };
       selection = {
+        semantic_escape_chars = ",│`|:\"' ()[]{}<>";
         save_to_clipboard = true;
       };
       shell = {
