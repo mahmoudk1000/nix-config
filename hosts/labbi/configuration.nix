@@ -1,20 +1,16 @@
-{ config
-, pkgs
-, ...
-}:
+{ config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./modules/gpu.nix
-      ./modules/locale.nix
-      ./modules/nixos.nix
-      ./modules/security.nix
-      ./modules/sound.nix
-      ./modules/user.nix
-      ./modules/wireless.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./modules/gpu.nix
+    ./modules/locale.nix
+    ./modules/nixos.nix
+    ./modules/security.nix
+    ./modules/sound.nix
+    ./modules/user.nix
+    ./modules/wireless.nix
+  ];
 
   # Boot
   boot = {

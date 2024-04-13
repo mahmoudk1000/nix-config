@@ -67,6 +67,8 @@
         xorg.xmodmap
       ]
       ++ (import ../../modules/scripts { inherit config pkgs lib; });
+
+    sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
   };
 
   xdg = {
