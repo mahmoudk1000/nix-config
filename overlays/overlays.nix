@@ -1,15 +1,17 @@
-final: prev: {
+_final: prev: {
   st =
     with prev;
     st.overrideAttrs (oldAttrs: rec {
-      src = final.fetchFromGitHub {
+      version = "0.9.1";
+
+      src = prev.fetchFromGitHub {
         owner = "bakkeby";
         repo = "st-flexipatch";
         rev = "dd8675943d2e6e1eff15d3ac3aac6e5e5643582b";
         sha256 = "sha256-gtT+ShmkD/AEip3JtN5QLQHttgEh11VtaEk8gYhQVDw=";
       };
 
-      configFile = writeText "config.def.h" (builtins.readFile ./config.h);
+      configFile = prev.writeText "config.def.h" (builtins.readFile ./config.h);
 
       buildInputs =
         oldAttrs.buildInputs
@@ -22,7 +24,7 @@ final: prev: {
         ]);
 
       postPatch =
-        oldAttrs.postPatch
+        oldAttrs.postPatch or ""
         + ''
           cp ${configFile} config.def.h
 
@@ -42,12 +44,13 @@ final: prev: {
             --replace "#define BOLD_IS_NOT_BRIGHT_PATCH 0" "#define BOLD_IS_NOT_BRIGHT_PATCH 1"  \
             --replace "#define BOXDRAW_PATCH 0" "#define BOXDRAW_PATCH 1"  \
             --replace "#define CLIPBOARD_PATCH 0" "#define CLIPBOARD_PATCH 1"  \
+            --replace "#define UNDERCURL_PATCH 0" "#define UNDERCURL_PATCH 1" \
             --replace "#define COLUMNS_PATCH 0" "#define COLUMNS_PATCH 1"  \
+            --replace "#define VERTCENTER_PATCH 0" "#define VERTCENTER_PATCH 1" \
             --replace "#define CSI_22_23_PATCH 0" "#define CSI_22_23_PATCH 1"  \
             --replace "#define DYNAMIC_CURSOR_COLOR_PATCH 0" "#define DYNAMIC_CURSOR_COLOR_PATCH 1"  \
             --replace "#define FONT2_PATCH 0" "#define FONT2_PATCH 1"  \
             --replace "#define HIDECURSOR_PATCH 0" "#define HIDECURSOR_PATCH 1"  \
-            --replace "#define ISO14755_PATCH 0" "#define ISO14755_PATCH 1"  \
             --replace "#define LIGATURES_PATCH 0" "#define LIGATURES_PATCH 1"  \
             --replace "#define NETWMICON_PATCH 0" "#define NETWMICON_PATCH 1"  \
             --replace "#define NO_WINDOW_DECORATIONS_PATCH 0" "#define NO_WINDOW_DECORATIONS_PATCH 1"  \

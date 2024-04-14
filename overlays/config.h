@@ -5,10 +5,10 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "IosevkaTerm Nerd Font:pixelsize=12:antialias=true:autohint=true";
+static char *font = "IosevkaTerm Nerd Font:size=12:pixelsize=12:antialias=true:autohint=true";
 
 #if FONT2_PATCH
-static char *font2[] = { "Iosevka:pixelsize=12:antialias=true:autohint=true" };
+static char *font2[] = { "DejaVu Sans:size=12:pixelsize=12:antialias=true:autohint=true" };
 #endif // FONT2_PATCH
 
 #if BACKGROUND_IMAGE_PATCH
@@ -24,9 +24,9 @@ static const int pseudotransparency = 0;
 #if RELATIVEBORDER_PATCH
 /* borderperc: percentage of cell width to use as a border
  *             0 = no border, 100 = border width is same as cell width */
-int borderperc = 0;
+int borderperc = 20;
 #else
-static int borderpx = 30;
+static int borderpx = 25;
 #endif // RELATIVEBORDER_PATCH
 
 #if OPENURLONCLICK_PATCH
