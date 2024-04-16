@@ -127,11 +127,11 @@ int hidecursor = 1;
  *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
  * 0: disable (render all U25XX glyphs normally from the font).
  */
-const int boxdraw = 0;
-const int boxdraw_bold = 0;
+const int boxdraw = 1;
+const int boxdraw_bold = 1;
 
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
-const int boxdraw_braille = 0;
+const int boxdraw_braille = 1;
 #endif // BOXDRAW_PATCH
 
 /*
@@ -218,8 +218,8 @@ unsigned int defaultfg = 259;
 unsigned int defaultcs = 256;
 unsigned int defaultrcs = 257;
 #if SELECTION_COLORS_PATCH
-unsigned int selectionfg = 258;
-unsigned int selectionbg = 259;
+unsigned int selectionfg = 7;
+unsigned int selectionbg = 257;
 /* If 0 use selectionfg as foreground in order to have a uniform foreground-color */
 /* Else if 1 keep original foreground-color of each cell => more colors :) */
 static int ignoreselfg = 1;
