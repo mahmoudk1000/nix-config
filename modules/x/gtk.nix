@@ -1,12 +1,13 @@
-{ config
-, pkgs
-, theme
-, ...
+{
+  config,
+  pkgs,
+  theme,
+  ...
 }:
 
 let
   phocus = import ./phocus.nix { inherit pkgs theme; };
-in 
+in
 
 {
   fonts.fontconfig.enable = true;
@@ -21,20 +22,22 @@ in
     };
 
     gtk3 = {
-      bookmarks = let
-        home = "file://${config.home.homeDirectory}/";
-      in [
-        "${home}download"
-        "${home}docs"
-        "${home}notes"
-        "${home}books"
-        "${home}movies"
-        "${home}labbi"
-        "${home}nextcloud"
-        "${home}labbi/projects"
-        "${home}labbi/resources"
-        "${home}.config dotfiles"
-      ];
+      bookmarks =
+        let
+          home = "file://${config.home.homeDirectory}/";
+        in
+        [
+          "${home}download"
+          "${home}docs"
+          "${home}notes"
+          "${home}books"
+          "${home}movies"
+          "${home}labbi"
+          "${home}nextcloud"
+          "${home}labbi/projects"
+          "${home}labbi/resources"
+          "${home}.config dotfiles"
+        ];
       extraConfig = {
         gtk-application-prefer-dark-theme = true;
         gtk-decoration-layout = "appmenu:none";
@@ -70,7 +73,7 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme = "gtk3";
     style = {
       name = "breeze";
       package = pkgs.libsForQt5.breeze-qt5;
