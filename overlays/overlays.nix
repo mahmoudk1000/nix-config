@@ -63,7 +63,6 @@ _final: prev: {
             --replace "#define SYNC_PATCH 0" "#define SYNC_PATCH 1"  \
             --replace "#define THEMED_CURSOR_PATCH 0"  "#define THEMED_CURSOR_PATCH 1"  \
             --replace "#define WIDE_GLYPHS_PATCH 0" "#define WIDE_GLYPHS_PATCH 1"  \
-            --replace "#define WIDE_GLYPH_SPACING_PATCH 0" "#define WIDE_GLYPH_SPACING_PATCH 1"  \
             --replace "#define XRESOURCES_PATCH 0" "#define XRESOURCES_PATCH 1"
         '';
     });
