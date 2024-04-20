@@ -10,7 +10,7 @@ require("lualine").setup({
 		always_divide_middle = true,
 		globalstatus = true,
 		component_separators = "|",
-		section_separators = { right = "▒▓█", left = "█▓▒" },
+		section_separators = { right = "▒▓", left = "▓▒" },
 		disabled_filetypes = {
 			statusline = { "neo-tree" },
 		},
@@ -21,14 +21,14 @@ require("lualine").setup({
 	},
 	sections = {
 		lualine_a = {
-			{ "mode", icons_enabled = true, icon = "", separator = { left = "▒▓█" }, right_padding = 2 },
+			{ "mode", icons_enabled = true, icon = "", separator = { left = "▒▓" }, right_padding = 2 },
 		},
 		lualine_b = { { "filename", file_status = false, path = 1 }, { "branch", icon = "󰘬" } },
 		lualine_c = { "diff" },
 		lualine_x = { { "diagnostics", sources = { "nvim_diagnostic" } } },
 		lualine_y = { "%p%%/%L" },
 		lualine_z = {
-			{ "location", separator = { right = "█▓▒" }, left_padding = 2 },
+			{ "location", separator = { right = "▓▒" }, left_padding = 2 },
 		},
 	},
 	extensions = {
