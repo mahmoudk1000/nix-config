@@ -34,7 +34,6 @@
         libnotify
 
         mpc-cli
-        ncmpcpp
         xclip
         pfetch
         spotdl
@@ -52,7 +51,7 @@
         inkscape
         freetube
         libreoffice
-        discord
+        vesktop
         anki-bin
         tdesktop
         element-desktop
