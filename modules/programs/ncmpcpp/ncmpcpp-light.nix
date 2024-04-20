@@ -1,29 +1,32 @@
-{ config
-, ...
-}:
+{ config, pkgs, ... }:
 
 {
   programs.ncmpcpp = {
     enable = true;
+    package = pkgs.ncmpcpp.override {
+      visualizerSupport = true;
+      clockSupport = true;
+      taglibSupport = true;
+    };
     mpdMusicDir = "${config.home.homeDirectory}/musik";
     settings = {
+      ncmpcpp_directory = "${config.home.homeDirectory}/.config/ncmpcpp";
+      ignore_leading_the = true;
       external_editor = "nvim";
-      message_delay_time  = 1;
+      message_delay_time = 1;
       playlist_disable_highlight_delay = 2;
       autocenter_mode = "yes";
       centered_cursor = "yes";
-      ignore_leading_the = "yes";
       allow_for_physical_item_deletion = "no";
       lines_scrolled = "1";
       follow_now_playing_lyrics = "yes";
       lyrics_fetchers = "musixmatch";
-      lyrics_directory = ".config/ncmpcpp/lyrics";
 
       visualizer_data_source = "/tmp/mpd.fifo";
       visualizer_output_name = "mpd_visualizer";
       visualizer_type = "ellipse";
       visualizer_look = "●● ";
-      visualizer_color = "3, 7, 5";
+      visualizer_color = "blue, green";
 
       colors_enabled = "yes";
       playlist_display_mode = "classic";
@@ -34,6 +37,7 @@
       statusbar_visibility = "yes";
       header_visibility = "no";
       titles_visibility = "no";
+
       progressbar_look = "━━━";
       progressbar_color = "black";
       progressbar_elapsed_color = "blue";
@@ -46,7 +50,7 @@
       current_item_suffix = "$/b$5";
 
       now_playing_prefix = ''"$b$5‣ "'';
-      now_playing_suffix = "$/b$5";   
+      now_playing_suffix = "$/b$5";
       song_library_format = "{{%a - %t} (%b)}|{%f}";
 
       main_window_color = "blue";
@@ -56,6 +60,6 @@
 
       color1 = "white";
       color2 = "blue";
-    };       
+    };
   };
 }
