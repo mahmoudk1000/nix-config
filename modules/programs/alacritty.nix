@@ -1,4 +1,9 @@
-{ pkgs, theme, ... }:
+{
+  config,
+  pkgs,
+  theme,
+  ...
+}:
 
 {
   programs.alacritty = {
@@ -39,9 +44,36 @@
         };
         offset = {
           x = 0;
-          y = 1;
+          y = 4;
         };
+        glyph_offset = {
+          x = 0;
+          y = config.programs.alacritty.settings.font.offset.y / 2;
+        };
+        builtin_box_drawing = true;
       };
+      keyboard.bindings = [
+        {
+          key = "K";
+          mods = "Alt|Shift";
+          action = "ScrollLineUp";
+        }
+        {
+          key = "J";
+          mods = "Alt|Shift";
+          action = "ScrollLineDown";
+        }
+        {
+          key = "k";
+          mods = "Alt|Control";
+          action = "IncreaseFontSize";
+        }
+        {
+          key = "j";
+          mods = "Alt|Control";
+          action = "DecreaseFontSize";
+        }
+      ];
       cursor = {
         style = {
           shape = "Underline";
