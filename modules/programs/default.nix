@@ -21,6 +21,7 @@
     ./thunar.nix
     ./tmux.nix
     ./urxvt.nix
+    ./vencord.nix
     ./vscode.nix
     ./wezterm.nix
     ./zathura.nix
