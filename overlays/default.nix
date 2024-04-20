@@ -48,6 +48,7 @@ _final: prev: {
             --replace "#define COLUMNS_PATCH 0" "#define COLUMNS_PATCH 1"  \
             --replace "#define VERTCENTER_PATCH 0" "#define VERTCENTER_PATCH 1" \
             --replace "#define CSI_22_23_PATCH 0" "#define CSI_22_23_PATCH 1"  \
+            --replace "#define DELKEY_PATCH 0" "#define DELKEY_PATCH 1" \
             --replace "#define DYNAMIC_CURSOR_COLOR_PATCH 0" "#define DYNAMIC_CURSOR_COLOR_PATCH 1"  \
             --replace "#define FONT2_PATCH 0" "#define FONT2_PATCH 1"  \
             --replace "#define HIDECURSOR_PATCH 0" "#define HIDECURSOR_PATCH 1"  \

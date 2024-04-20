@@ -27,7 +27,7 @@
     }@inputs:
     let
       overlays = with inputs; [
-        (import ./overlays/overlays.nix)
+        (import ./overlays)
         nur.overlay
         nixpkgs-f2k.overlays.window-managers
       ];
