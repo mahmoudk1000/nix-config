@@ -73,7 +73,7 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "gtk3";
+    platformTheme.name = "gtk3";
     style = {
       name = "breeze";
       package = pkgs.libsForQt5.breeze-qt5;
