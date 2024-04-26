@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 
 let
@@ -12,7 +13,7 @@ in
     programs.devops = {
       enable = lib.mkOption {
         default = false;
-        description = "Enable devops tools";
+        description = "Enable DevOps tools";
       };
     };
   };
@@ -22,8 +23,8 @@ in
       opentofu
       ansible
       kubernetes-helm
-      kubernetes
-      minikube
+      # kubernetes
+      # minikube
       kubectl
       docker-compose
       gnumake
