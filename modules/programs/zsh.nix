@@ -103,6 +103,7 @@
         gl = "git clone";
         gs = "git status --short";
         gaa = "git add --all";
+        gco = "git checkout";
         gcp = "git cherry-pick";
         gcm = "git commit --verbose -m ";
         gca = "git commit --amend";
