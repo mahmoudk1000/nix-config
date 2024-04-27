@@ -1,7 +1,4 @@
-{ config
-, pkgs
-, ...
-}:
+{ config, pkgs, ... }:
 
 {
   programs = {
@@ -35,17 +32,6 @@
       completionInit = "autoload -U compinit && compinit";
       defaultKeymap = "viins";
       dotDir = ".config/zsh";
-      syntaxHighlighting = {
-        enable = true;
-        highlighters = [ "main" "brackets" "cursor" ];
-        patterns = {
-          "rm -rf *" = "fg=red,bg=default,bold";
-        };
-        styles = {
-          alias = "fg=purple";
-          globbing = "fg=yellow";
-        };
-      };
       historySubstringSearch = {
         enable = true;
         searchUpKey = [ "^[[A" "^[OA" ];
@@ -62,6 +48,11 @@
         ignorePatterns = [ "ls *" "rm *" "kill *" "exit *" "pkill *" ];
       };
       plugins = [
+        {
+          name = "fast-syntax-highlighting";
+          src = pkgs.zsh-fast-syntax-highlighting;
+          file = "share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh";
+        }
         {
           name = "zsh-nix-shell";
           src = pkgs.zsh-nix-shell;
@@ -80,12 +71,11 @@
       ];
       localVariables = {
         KEYTIMEOUT = "1";
-        ZSH_AUTOSUGGEST_USE_ASYNC = true;
+        ZSH_AUTOSUGGEST_USE_ASYNC = "true";
         ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE = 40;
         ZSH_AUTOSUGGEST_STRATEGY = [ "history" "completion" ];
       };
       shellAliases = {
-        reload = "exec zsh";
         open = "xdg-open";
         free = "free -h";
         c = "clear";
@@ -95,7 +85,6 @@
         l = "eza";
 
         v = "nvim";
-        sv = "sudo nvim";
 
         g = "git";
         ga = "git add";
@@ -115,10 +104,6 @@
 
         cleanup = "sudo nix-collect-garbage --delete-older-than 3d";
         bloat = "nix path-info -Sh /run/current-system";
-      };
-      sessionVariables = {
-        "EDITOR" = "nvim";
-        "BROWSER" = "firefox";
       };
       initExtra = ''
         autoload -Uz promptinit; promptinit
@@ -142,7 +127,6 @@
 
         # Completion
         zstyle ':completion:*' menu select
-
         zstyle ':completion:*:matches' group yes
         zstyle ':completion:*:descriptions' format '%B%F{yellow}=> %d%f'
         zstyle ':completion:*:messages' format '%B%F{purple}» %d%f'
@@ -154,7 +138,6 @@
         zstyle ':completion:*' group-name '''
         zstyle ':completion:*' use-cache on
         zstyle ':completion:*' cache-path ~/.zsh_cache
-
         zstyle ':completion:*:approximate:*' max-errors 1 numeric
         zstyle ':completion:*:functions' ignored-patterns '_*'
         zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=01=31"
@@ -174,9 +157,14 @@
         zle -N history-substring-search-down
 
         # Custom History-Substring-Search Setting
-        typeset -g HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+        typeset -g HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
         typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=default,fg=blue,bold"
         typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=default,fg=red,bold,underline"
+
+        # Custom Syntax-Highlighting Setting
+        FAST_HIGHLIGHT_STYLES[alias]='fg=purple'
+        FAST_HIGHLIGHT_STYLES[comment]='fg=black,bold'
+        FAST_HIGHLIGHT_STYLES[globbing]='fg=yellow'
 
         # Command Not Found Msg
         command_not_found_handler() {

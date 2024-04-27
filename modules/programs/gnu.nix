@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 
 {
   programs = {
@@ -9,7 +7,11 @@
       git = true;
       icons = true;
       enableZshIntegration = true;
-      extraOptions = [ "--header" "--group-directories-first" "--octal-permissions" ];
+      extraOptions = [
+        "--header"
+        "--group-directories-first"
+        "--octal-permissions"
+      ];
     };
     bat = {
       enable = true;
