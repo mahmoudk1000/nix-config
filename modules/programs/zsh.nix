@@ -165,6 +165,7 @@
         FAST_HIGHLIGHT_STYLES[alias]='fg=purple'
         FAST_HIGHLIGHT_STYLES[comment]='fg=black,bold'
         FAST_HIGHLIGHT_STYLES[globbing]='fg=yellow'
+        FAST_HIGHLIGHT_STYLES[path-to-dir]='fg=default'
 
         # Command Not Found Msg
         command_not_found_handler() {
