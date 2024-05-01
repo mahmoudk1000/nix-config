@@ -17,12 +17,11 @@
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     loader = {
-      systemd-boot = {
-        enable = true;
-      };
+      systemd-boot = { enable = true; };
       efi.canTouchEfiVariables = true;
     };
     extraModulePackages = with config.boot.kernelPackages; [
+      acpi_call
       cpupower
       perf
       nvidia_x11
