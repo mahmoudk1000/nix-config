@@ -35,4 +35,14 @@
   "network.trr.mode" = 2;
   "network.trr.custom_uri" = "https://dns.nextdns.io/b28d16";
   "network.trr.uri" = "https://dns.nextdns.io/b28d16";
+
+  # DOM
+  "dom.battery.enabled" = false;
+  "dom.ipc.plugins.flash.subprocess.crashreporter.enabled" = false;
+  "dom.push.enabled" = false;
+  "dom.security.https_only_mode_ever_enabled" = true;
+  "dom.security.https_only_mode" = true;
+  "dom.webaudio.enabled" = false;
+  "dom.webnotifications.enabled" = false;
+  "dom.webnotifications.serviceworker.enabled" = false;
 }
