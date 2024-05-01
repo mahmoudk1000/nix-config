@@ -1,11 +1,8 @@
-{ config
-, pkgs
-, ...
-}:
+{ config, pkgs, ... }:
 
 {
   # Networking
-  networking  = {
+  networking = {
     wireless = {
       iwd.enable = true;
       interfaces = [ "wlan0" ];
@@ -21,9 +18,9 @@
       enable = false;
       arguments = [
         "-config set"
-          "-profile wlan0=b28d16"
-          "-report-client-info"
-          "-auto-activate"
+        "-profile wlan0=b28d16"
+        "-report-client-info"
+        "-auto-activate"
       ];
     };
     resolved = {
@@ -44,10 +41,6 @@
     enable = true;
     package = pkgs.bluez;
     powerOnBoot = false;
-    settings = {
-      General = {
-        Enable = "Source,Sink,Media,Socket";
-      };
-    };
+    settings = { General = { Enable = "Source,Sink,Media,Socket"; }; };
   };
 }

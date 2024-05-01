@@ -19,7 +19,7 @@
   services.xserver = {
     enable = true;
     xkb = {
-      layout = "us,ara" ;
+      layout = "us,ara";
       variant = "qwerty";
       options = "caps:ctrl_modifier,grp:alt_space_toggle";
     };

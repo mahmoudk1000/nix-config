@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 
 {
   services.xserver.videoDrivers = [ "intel" "nvidia" ];
