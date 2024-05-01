@@ -1,3 +1,5 @@
+{ pkgs, theme, ... }:
+
 {
   programs = {
     mbsync = { enable = true; };
@@ -16,15 +18,21 @@
     };
     thunderbird = {
       enable = true;
+      package = pkgs.thunderbird.override {
+        extraPolicies = {
+          DisableTelemetry = true;
+          DisableThunderbirdStudies = true;
+        };
+      };
       profiles = {
         personal = {
           isDefault = true;
           withExternalGnupg = true;
-          userChrome = import ./userChrome.nix;
-          userContent = import ./userContent.nix;
+          settings = import ./settings.nix;
+          userChrome = import ./userChrome.nix { inherit theme; };
+          userContent = import ./userContent.nix { inherit theme; };
         };
       };
-      settings = import ./settings.nix;
     };
   };
 }
