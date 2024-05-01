@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
 {
   programs.firefox = {
@@ -101,8 +101,8 @@
           user_pref("media.rdd-vpx.enabled", true);
         '';
         settings = import ./settings.nix;
-        userChrome = import ./userChrome.nix;
-        userContent = import ./userContent.nix;
+        userChrome = import ./userChrome.nix { inherit theme; };
+        userContent = import ./userContent.nix { inherit theme; };
       };
     };
   };
