@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let cfg = config.services.pipewire.lowLatency;
 in {
@@ -82,31 +82,35 @@ in {
       };
     };
 
-    services.pipewire.wireplumber.configPackages =
-      lib.mkIf (config.services.pipewire.enable) [
-        (pkgs.writeTextDir
-          "share/wireplumber/main.lua.d/99-alsa-lowlatency.lua" ''
-            alsa_monitor.rules = {
-              {
-                matches = {{{ "node.name", "matches", "alsa_output.*" }}};
-                apply_properties = {
-                  ["audio.format"] = "S32LE",
-                  ["audio.rate"] = ${toString (cfg.rate * 2)},
-                  ["api.alsa.period-size"] = 2,
-                  -- ["api.alsa.disable-batch"] = true,
-                },
-              },
-            }
-          '')
-        (pkgs.writeTextDir
-          "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
-            bluez_monitor.properties = {
-              ["bluez5.enable-sbc-xq"] = true,
-              ["bluez5.enable-msbc"] = true,
-              ["bluez5.enable-hw-volume"] = true,
-              ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-            }
-          '')
-      ];
+    services.pipewire.wireplumber.extraConfig =
+      lib.mkIf (config.services.pipewire.enable) {
+        main."92-low-latency" = {
+          "monitor.alsa.rules" = [{
+            matches = [{ "device.name" = "~alsa_card.*"; }];
+            actions = {
+              update-props = {
+                "audio.format" = "S32LE";
+                "audio.rate" = "${toString (cfg.rate * 2)}";
+                "api.alsa.period-size" = 2;
+                "api.alsa.disable-batch" = false;
+              };
+            };
+          }];
+        };
+        bluetooth."10-bluez" = {
+          "monitor.bluez.rules" = [{
+            matches = [{ "device.name" = "~bluez_card.*"; }];
+            actions = {
+              update-props = {
+                "bluez5.roles" = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]";
+                "bluez5.a2dp.ldac.quality" = "hq";
+                "bluez5.enable-msbc" = true;
+                "bluez5.enable-sbc-xq" = true;
+                "bluez5.enable-hw-volume" = true;
+              };
+            };
+          }];
+        };
+      };
   };
 }
