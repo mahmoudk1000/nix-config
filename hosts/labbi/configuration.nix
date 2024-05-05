@@ -31,7 +31,6 @@
   # Programs
   programs = {
     adb.enable = true;
-    htop.enable = true;
     zsh.enable = true;
     xfconf.enable = true;
     dconf.enable = true;
