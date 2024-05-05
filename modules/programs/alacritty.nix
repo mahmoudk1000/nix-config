@@ -44,7 +44,7 @@
         };
         offset = {
           x = 0;
-          y = 4;
+          y = 2;
         };
         glyph_offset = {
           x = 0;
