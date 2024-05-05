@@ -3,7 +3,7 @@
 {
   # Nix
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     settings = {
       keep-outputs = false;
       keep-derivations = false;
