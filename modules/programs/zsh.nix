@@ -186,7 +186,6 @@
         dwn = "${config.home.homeDirectory}/download";
         msk = "${config.home.homeDirectory}/musik";
         dot = "${config.home.homeDirectory}/.config";
-        };
       };
     };
   };
