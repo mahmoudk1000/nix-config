@@ -105,6 +105,10 @@
         cleanup = "sudo nix-collect-garbage --delete-older-than 3d";
         bloat = "nix path-info -Sh /run/current-system";
       };
+      shellGlobalAliases = {
+        "-h" = "-h 2>&1 | bat --language=help --style=plain";
+        "--help" = "--help 2>&1 | bat --language=help --style=plain";
+      };
       initExtra = ''
         autoload -Uz promptinit; promptinit
         eval "$(starship init zsh)"
@@ -181,6 +185,8 @@
         vid = "${config.home.homeDirectory}/videos";
         dwn = "${config.home.homeDirectory}/download";
         msk = "${config.home.homeDirectory}/musik";
+        dot = "${config.home.homeDirectory}/.config";
+        };
       };
     };
   };
