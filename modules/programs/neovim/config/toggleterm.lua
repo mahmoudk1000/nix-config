@@ -7,7 +7,7 @@ require("toggleterm").setup({
 		end
 	end,
 	hide_numbers = true,
-	open_mapping = "<C-,>",
+	open_mapping = "<C-/>",
 	shade_filetypes = {},
 	shade_terminals = true,
 	shading_factor = "1",
