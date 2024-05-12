@@ -1,4 +1,9 @@
-{ config, pkgs, user, ... }:
+{
+  config,
+  pkgs,
+  user,
+  ...
+}:
 
 {
   # User Account.
@@ -7,9 +12,16 @@
     isNormalUser = true;
     home = "/home/${user}";
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "video" "audio" "users" "tty" "input" "docker" ];
-    hashedPassword =
-      "$6$RC/pIIRmYnXN6vWB$pkDeNbr/SewvTKH4oK5ZzXXdnx8/Az8Wxp0Bg1imM44ECcjmj/eLjSAm0yx6dbozZY0RAN5QXWr/vdQBo35Lq/";
+    extraGroups = [
+      "wheel"
+      "video"
+      "audio"
+      "users"
+      "tty"
+      "input"
+      "docker"
+    ];
+    hashedPassword = "$6$RC/pIIRmYnXN6vWB$pkDeNbr/SewvTKH4oK5ZzXXdnx8/Az8Wxp0Bg1imM44ECcjmj/eLjSAm0yx6dbozZY0RAN5QXWr/vdQBo35Lq/";
   };
   environment.pathsToLink = [ "/share/zsh" ];
 
@@ -50,6 +62,7 @@
       fira-code
       siji
       unifont
+      cozette
     ];
     fontDir.enable = true;
     fontconfig = {
