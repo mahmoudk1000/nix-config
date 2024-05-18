@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   autotools-language-server = import ./autotools-ls.nix { inherit pkgs; };
   groovy-language-server = import ./groovyls.nix { inherit pkgs; };
   customVimPlugins = import ./vim-plugins.nix { inherit pkgs; };
-in {
+in
+{
   imports = [ ./neuewelt.nix ];
 
   programs.neovim = {
@@ -15,7 +16,8 @@ in {
     withPython3 = true;
     withNodeJs = true;
     defaultEditor = true;
-    extraPackages = with pkgs;
+    extraPackages =
+      with pkgs;
       [
         dockerfile-language-server-nodejs
         docker-compose-language-service
@@ -52,10 +54,16 @@ in {
         glow
         gcc
         fd
-      ] ++ (with nodePackages_latest; [ bash-language-server ])
-      ++ (with python3Packages; [ jedi-language-server pynvim ]);
-    plugins = with pkgs.vimPlugins;
-      with customVimPlugins; [
+      ]
+      ++ (with nodePackages_latest; [ bash-language-server ])
+      ++ (with python3Packages; [
+        jedi-language-server
+        pynvim
+      ]);
+    plugins =
+      with pkgs.vimPlugins;
+      with customVimPlugins;
+      [
 
         {
           plugin = nvim-treesitter.withAllGrammars;
@@ -183,7 +191,6 @@ in {
         compiler-nvim
         overseer-nvim
         nvim-autopairs
-
       ];
   };
 }

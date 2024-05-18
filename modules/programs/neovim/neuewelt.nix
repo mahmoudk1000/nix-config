@@ -1,5 +1,7 @@
 { theme, ... }:
 
+with theme;
+
 {
   home.file.".config/nvim/colors/neuewelt.vim".text = ''
     " Just another colorscheme for Vim
@@ -13,24 +15,24 @@
 
     let g:colors_name="neuewelt"
 
-    let s:background      = { "gui": "${theme.base00}" }
-    let s:foreground      = { "gui": "${theme.base01}" }
+    let s:background      = { "gui": "${base00}" }
+    let s:foreground      = { "gui": "${base01}" }
     let s:darker          = { "gui": "#0F151A" }
-    let s:black           = { "gui": "${theme.base02}" }
-    let s:light_black     = { "gui": "${theme.base09}" }
-    let s:red             = { "gui": "${theme.base03}" }
-    let s:light_red       = { "gui": "${theme.base0A}" }
-    let s:green           = { "gui": "${theme.base04}" }
-    let s:light_green     = { "gui": "${theme.base0B}" }
-    let s:yellow          = { "gui": "${theme.base05}" }
-    let s:light_yellow    = { "gui": "${theme.base0C}" }
-    let s:blue            = { "gui": "${theme.base06}" }
-    let s:light_blue      = { "gui": "${theme.base0D}" }
-    let s:purple          = { "gui": "${theme.base07}" }
-    let s:light_purple    = { "gui": "${theme.base0E}" }
-    let s:cyan            = { "gui": "${theme.base08}" }
-    let s:light_cyan      = { "gui": "${theme.base0F}" }
-    let s:white           = { "gui": "${theme.base01}" }
+    let s:black           = { "gui": "${base02}" }
+    let s:light_black     = { "gui": "${base09}" }
+    let s:red             = { "gui": "${base03}" }
+    let s:light_red       = { "gui": "${base0A}" }
+    let s:green           = { "gui": "${base04}" }
+    let s:light_green     = { "gui": "${base0B}" }
+    let s:yellow          = { "gui": "${base05}" }
+    let s:light_yellow    = { "gui": "${base0C}" }
+    let s:blue            = { "gui": "${base06}" }
+    let s:light_blue      = { "gui": "${base0D}" }
+    let s:purple          = { "gui": "${base07}" }
+    let s:light_purple    = { "gui": "${base0E}" }
+    let s:cyan            = { "gui": "${base08}" }
+    let s:light_cyan      = { "gui": "${base0F}" }
+    let s:white           = { "gui": "${base01}" }
     let s:light_white     = { "gui": "#F2F3F4" }
 
     function! s:Color(group, style)

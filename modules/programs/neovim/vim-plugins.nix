@@ -3,7 +3,7 @@
 with pkgs.vimUtils;
 
 {
-  compiler-nvim = buildVimPlugin rec {
+  compiler-nvim = buildVimPlugin {
     pname = "compiler-nvim";
     version = "v3.3.2";
     src = pkgs.fetchFromGitHub {
@@ -14,7 +14,7 @@ with pkgs.vimUtils;
     };
   };
 
-  filetype-nvim = buildVimPlugin rec {
+  filetype-nvim = buildVimPlugin {
     pname = "filetype-nvim";
     version = "v0.4.0";
     src = pkgs.fetchFromGitHub {
