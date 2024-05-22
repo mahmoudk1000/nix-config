@@ -173,7 +173,6 @@ in
         cmp_luasnip
         copilot-cmp
         cmp-nvim-lsp-signature-help
-        comment-nvim
         nvim-colorizer-lua
         dressing-nvim
         fzf-lua

@@ -119,7 +119,6 @@ vim.keymap.set("n", "<A-Tab>", require("telescope.builtin").buffers, { desc = "S
 -- Once the plugins have been loaded, Lua-based plugins need to be required and started up
 -- For plugins with their own configuration file, that file is loaded and is responsible for
 -- starting them. Otherwise, the plugin itself is required and its `setup` method is called.
-require("Comment").setup({})
 require("colorizer").setup({})
 require("gitsigns").setup({})
 require("cmp_git").setup({})
