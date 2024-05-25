@@ -9,6 +9,7 @@ let
   jotai = import ./jotai.nix;
   kalt = import ./kalt.nix;
   late = import ./late.nix;
+  melle = import ./melle.nix;
   mongo = import ./mongo.nix;
   mountain = import ./mountain.nix;
   night = import ./night.nix;
@@ -21,4 +22,4 @@ let
   uwu = import ./uwu.nix;
   yuto = import ./yuro.nix;
 in
-blaulicht
+melle
