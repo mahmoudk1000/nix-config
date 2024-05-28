@@ -46,7 +46,7 @@
         rtorrent
         nsxiv
 
-        st
+        st-flexipatch
         zoom-us
         inkscape
         freetube
