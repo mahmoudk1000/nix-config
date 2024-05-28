@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   programs = {
@@ -105,8 +105,7 @@
         cleanup = "sudo nix-collect-garbage --delete-older-than 3d";
         bloat = "nix path-info -Sh /run/current-system";
       };
-      shellGlobalAliases = {
-        "-h" = "-h 2>&1 | bat --language=help --style=plain";
+      shellGlobalAliases = lib.mkIf config.programs.bat.enable {
         "--help" = "--help 2>&1 | bat --language=help --style=plain";
       };
       initExtra = ''
