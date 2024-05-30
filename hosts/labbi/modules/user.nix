@@ -23,6 +23,7 @@
     ];
     hashedPassword = "$6$RC/pIIRmYnXN6vWB$pkDeNbr/SewvTKH4oK5ZzXXdnx8/Az8Wxp0Bg1imM44ECcjmj/eLjSAm0yx6dbozZY0RAN5QXWr/vdQBo35Lq/";
   };
+
   environment.pathsToLink = [ "/share/zsh" ];
 
   # Packages installed in system profile.
@@ -33,6 +34,7 @@
     man-pages
     _2bwm
     brightnessctl
+    gptfdisk
   ];
 
   # Settings
@@ -45,6 +47,12 @@
 
   # Fonts
   fonts = {
+    fontDir.enable = true;
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      hinting.enable = false;
+    };
     packages = with pkgs; [
       iosevka
       nerdfonts
@@ -64,12 +72,6 @@
       unifont
       cozette
     ];
-    fontDir.enable = true;
-    fontconfig = {
-      enable = true;
-      antialias = true;
-      hinting.enable = false;
-    };
   };
 
   users.motd = with config; ''
