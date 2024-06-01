@@ -1,10 +1,7 @@
-{  pkgs
-, theme
-, ...
-}:
+{ pkgs, theme, ... }:
 
 let
-  blum-stat = pkgs.writeScriptBin "blum-stat" ''   
+  blum-stat = pkgs.writeScriptBin "blum-stat" ''
     if ${pkgs.bluez}/bin/bluetoothctl show | ${pkgs.gnugrep}/bin/grep -q "Powered: yes"; then
       ${pkgs.coreutils}/bin/echo "On"
     else
@@ -24,7 +21,7 @@ in
       pulseSupport = true;
       iwSupport = true;
     };
-    config =  {
+    config = {
       "section/base" = {
         monitor = "eDP-1";
         bottom = true;
@@ -59,13 +56,13 @@ in
         label-active-foreground = theme.base07;
         label-occupied = "⭘";
         label-occupied-padding = 1;
-        label-occupied-foreground = theme.base09;
+        label-occupied-foreground = theme.base0A;
         label-urgent = "⭘";
         label-urgent-padding = 1;
         label-urgent-foreground = theme.base03;
         label-empty = "󰝥";
         label-empty-padding = 1;
-        label-empty-foreground = theme.base09;
+        label-empty-foreground = theme.base0A;
       };
       "module/battery" = {
         type = "internal/battery";
@@ -91,7 +88,7 @@ in
         type = "internal/pulseaudio";
         format-volume = "󱄠 <label-volume>%";
         format-volume-foreground = theme.base05;
-        label-volume =  "%percentage%";
+        label-volume = "%percentage%";
         label-muted = "󱄡 Mute";
         label-muted-foreground = theme.base05;
       };
@@ -114,7 +111,7 @@ in
       "module/sep" = {
         type = "custom/text";
         content = "|";
-        content-foreground = theme.base09;
+        content-foreground = theme.base0A;
       };
     };
   };

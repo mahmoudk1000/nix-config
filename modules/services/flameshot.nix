@@ -1,7 +1,4 @@
-{ config
-, theme
-, ...
-}:
+{ config, theme, ... }:
 
 {
   services.flameshot = {

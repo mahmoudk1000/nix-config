@@ -1,6 +1,4 @@
-{ theme
-, ...
-}:
+{ theme, ... }:
 
 {
   programs.wezterm = {
@@ -12,15 +10,27 @@
         cursor_border = "${theme.base02}";
         cursor_fg = "${theme.base02}";
         foreground = "${theme.base01}";
-        selection_bg = "${theme.base09}";
+        selection_bg = "${theme.base0A}";
         selection_fg = "${theme.base01}";
         ansi = [
-          "${theme.base02}" "${theme.base03}" "${theme.base04}" "${theme.base05}"
-            "${theme.base06}" "${theme.base07}" "${theme.base08}" "${theme.base01}"
+          "${theme.base02}"
+          "${theme.base03}"
+          "${theme.base04}"
+          "${theme.base05}"
+          "${theme.base06}"
+          "${theme.base07}"
+          "${theme.base08}"
+          "${theme.base01}"
         ];
         brights = [
-          "${theme.base0A}" "${theme.base0B}" "${theme.base0C}" "${theme.base0C}"
-            "${theme.base0D}" "${theme.base0E}" "${theme.base0F}" "${theme.base01}"
+          "${theme.base0A}"
+          "${theme.base0B}"
+          "${theme.base0C}"
+          "${theme.base0C}"
+          "${theme.base0D}"
+          "${theme.base0E}"
+          "${theme.base0F}"
+          "${theme.base01}"
         ];
       };
     };

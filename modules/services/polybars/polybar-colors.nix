@@ -1,19 +1,16 @@
-{ pkgs
-, theme
-, ...
-}:
+{ pkgs, theme, ... }:
 
 {
   services.polybar = {
     enable = true;
     script = ''
-        # WM does this job
+      # WM does this job
     '';
     package = pkgs.polybar.override {
       alsaSupport = true;
       pulseSupport = true;
     };
-    config =  {
+    config = {
       "bar/main" = {
         font-0 = "Iosevka:style=Semibold:size=9;3";
         font-1 = "NotoMono Nerd Font:size=10;3";
@@ -31,10 +28,10 @@
         fixed-center = true;
         wm-restack = "generic";
         modules-left = "ewmh";
-        modules-center= "time";
+        modules-center = "time";
         modules-right = "pulseaudio backlight bluetooth battery";
         background = theme.base00;
-        border-color = theme.base09;
+        border-color = theme.base0A;
         foreground = theme.base01;
       };
       "module/ewmh" = {
@@ -47,16 +44,16 @@
         label-active-underline = theme.base07;
         label-occupied = "⭕";
         label-occupied-padding = 1;
-        label-occupied-foreground = theme.base09;
-        label-occupied-underline = theme.base09;
+        label-occupied-foreground = theme.base0A;
+        label-occupied-underline = theme.base0A;
         label-urgent = "⭕";
         label-urgent-padding = 1;
         label-urgent-foreground = theme.base03;
         label-urgent-underline = theme.base03;
         label-empty = "⬤";
         label-empty-padding = 1;
-        label-empty-foreground = theme.base09;
-        label-empty-underline = theme.base09;
+        label-empty-foreground = theme.base0A;
+        label-empty-underline = theme.base0A;
       };
       "module/battery" = {
         type = "internal/battery";
@@ -88,7 +85,7 @@
       };
       "module/pulseaudio" = {
         type = "internal/pulseaudio";
-        label-volume =  "%percentage%";
+        label-volume = "%percentage%";
         format-volume = "  <label-volume>";
         format-volume-padding = 2;
         format-volume-foreground = theme.base05;

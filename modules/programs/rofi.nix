@@ -1,16 +1,10 @@
-{ config
-, theme
-, lib
-, ...
-}:
+{ config, theme, ... }:
 
 let
   inherit (config.lib.formats.rasi) mkLiteral;
 in
 {
-  imports = [
-    ./poww.nix
-  ];
+  imports = [ ./poww.nix ];
 
   programs = {
     poww = {
@@ -53,7 +47,12 @@ in
           padding = mkLiteral "13px 13px 13px 0px";
         };
         inputbar = {
-          children = map mkLiteral [ "prompt" "textbox-prompt-divider" "entry" "listview" ];
+          children = map mkLiteral [
+            "prompt"
+            "textbox-prompt-divider"
+            "entry"
+            "listview"
+          ];
           spacing = mkLiteral "0";
         };
         listview = {

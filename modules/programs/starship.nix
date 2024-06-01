@@ -48,16 +48,16 @@
       git_branch = {
         disabled = false;
         symbol = "󰊢  ";
-        style = "fg:${theme.base04} bg:${theme.base09}";
-        format = "[[ ](fg:${theme.base09} bg:${theme.base00})$symbol$branch[ ](bg:${theme.base00} fg:${theme.base09})]($style)";
+        style = "fg:${theme.base04} bg:${theme.base0A}";
+        format = "[[ ](fg:${theme.base0A} bg:${theme.base00})$symbol$branch[ ](bg:${theme.base00} fg:${theme.base0A})]($style)";
       };
       git_commit = {
-        style = "fg:${theme.base07} bg:${theme.base09}";
+        style = "fg:${theme.base07} bg:${theme.base0A}";
         commit_hash_length = 4;
-        format = "[[ ](fg:${theme.base09} bg:${theme.base00})#$hash[ ](fg:${theme.base09} bg:${theme.base00})]($style)";
+        format = "[[ ](fg:${theme.base0A} bg:${theme.base00})#$hash[ ](fg:${theme.base0A} bg:${theme.base00})]($style)";
       };
       git_state = {
-        style = "fg:${theme.base05} bg:${theme.base09}";
+        style = "fg:${theme.base05} bg:${theme.base0A}";
         rebase = "REBASING";
         merge = " MERGING";
         revert = "REVERTING";
@@ -65,10 +65,10 @@
         bisect = "BISECTING";
         am = "AM";
         am_or_rebase = "AM/REBASE";
-        format = "\([[ ](fg:${theme.base09} bg:${theme.base00})$state($progress_current/$progress_total)[ ](fg:${theme.base09} bg:${theme.base00})]($style)\)";
+        format = "\([[ ](fg:${theme.base0A} bg:${theme.base00})$state($progress_current/$progress_total)[ ](fg:${theme.base0A} bg:${theme.base00})]($style)\)";
       };
       git_status = {
-        style = "fg:${theme.base05} bg:${theme.base09}";
+        style = "fg:${theme.base05} bg:${theme.base0A}";
         stashed = " ⚑ \${count} ";
         ahead = " 󰜷 \${count} ";
         behind = " 󰜮 \${count} ";
@@ -79,7 +79,7 @@
         modified = " 󰙏 \${count} ";
         staged = " 󰸞 \${count} ";
         untracked = "  \${count} ";
-        format = "([[ ](fg:${theme.base09} bg:${theme.base00})$stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[ ](fg:${theme.base09} bg:${theme.base00})]($style))";
+        format = "([[ ](fg:${theme.base0A} bg:${theme.base00})$stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[ ](fg:${theme.base0A} bg:${theme.base00})]($style))";
       };
       nix_shell = {
         disabled = false;

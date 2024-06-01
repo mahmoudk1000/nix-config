@@ -46,7 +46,7 @@ with theme;
       text-align: center !important;
     }
     .search-wrapper input {
-      background-color: ${base09} !important;
+      background-color: ${base0A} !important;
       border-radius: 0px !important;
       background-image: none !important;
       background-size: none !important;

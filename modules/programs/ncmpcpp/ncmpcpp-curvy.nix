@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}:
+{ config, ... }:
 
 {
   programs.ncmpcpp = {
@@ -21,14 +19,14 @@
 
       # Misc
       playlist_display_mode = "classic";
-      titles_visibility="no";
+      titles_visibility = "no";
       browser_display_mode = "columns";
       incremental_seeking = "yes";
       autocenter_mode = "yes";
       header_visibility = "no";
       statusbar_visibility = "yes";
       cyclic_scrolling = "yes";
-      display_bitrate= "yes";
+      display_bitrate = "yes";
       ignore_leading_the = "yes";
       enable_window_title = "yes";
       progressbar_look = ''"─╼ "'';
@@ -39,7 +37,7 @@
       external_editor = "nvim";
 
       # Interface
-      startup_screen ="playlist";
+      startup_screen = "playlist";
       user_interface = "classic";
       alternative_header_first_line_format = "{$b$6%a$9} $1««$9 {$6%t$9}";
       alternative_header_second_line_format = "{$5%b$9} $1»»$9 {$5(%y)$9}";

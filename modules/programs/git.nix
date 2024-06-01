@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, theme
-, lib
-, ...
+{
+  config,
+  pkgs,
+  theme,
+  lib,
+  ...
 }:
 
 {
@@ -20,9 +21,7 @@
       signByDefault = true;
       key = "A23D3563FD90EA8F";
     };
-    ignores = [
-      ".envrc"
-    ];
+    ignores = [ ".envrc" ];
     delta = {
       enable = true;
       options = {
@@ -36,7 +35,7 @@
           whitespace-error-style = "22 reverse";
           minus-style = "${theme.base03}";
           minus-emph-style = "${theme.base03} bold";
-          plus-style = "${theme.base0B}";
+          plus-style = "${theme.base0C}";
           plus-emph-style = "${theme.base06} bold";
           file-style = "7 italic";
           hunk-header-style = "7";
@@ -52,8 +51,11 @@
     };
   };
 
-  home.packages = lib.mkIf (config.programs.git.enable) (with pkgs; [
-    git-crypt
-    lazygit
-  ]);
+  home.packages = lib.mkIf (config.programs.git.enable) (
+    with pkgs;
+    [
+      git-crypt
+      lazygit
+    ]
+  );
 }

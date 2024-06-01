@@ -1,7 +1,4 @@
-{ pkgs
-, theme
-, ...
-}:
+{ pkgs, theme, ... }:
 
 {
   programs.tmux = {
@@ -74,7 +71,7 @@
       set-window-option -g allow-rename off
 
       set -g pane-border-style fg=${theme.base02}
-      set -g pane-active-border-style fg=${theme.base09}
+      set -g pane-active-border-style fg=${theme.base0A}
 
       set-option -g status-justify absolute-centre
       set-option -g status-position bottom
@@ -92,6 +89,6 @@
       # Status Left
       set -g status-left-length 70
       set -g status-left "#[bg=default,fg=red]▒▓█#[fg=white,bg=brightblack] #(mpc current | sed 's/-/~/')#[fg=brightblack,bg=default]█▓▒"
-      '';
+    '';
   };
 }

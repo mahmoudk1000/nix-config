@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 
 {
   programs.newsboat = {
@@ -9,12 +7,12 @@
     browser = "${pkgs.firefox}/bin/firefox";
     reloadTime = 180;
     urls = [
-      { url = "https://www.daad.de/feeds/de/daad-aktuell.xml";  }
-      { url = "https://www.deutschlandfunk.de/kulturportal-100.rss";  }
-      { url = "https://www.goethe.de/ins/eg/de/rss/mag.rss";  }
-      { url = "https://www.goethe.de/ins/eg/de/rss/kai/ver.rss";  }
+      { url = "https://www.daad.de/feeds/de/daad-aktuell.xml"; }
+      { url = "https://www.deutschlandfunk.de/kulturportal-100.rss"; }
+      { url = "https://www.goethe.de/ins/eg/de/rss/mag.rss"; }
+      { url = "https://www.goethe.de/ins/eg/de/rss/kai/ver.rss"; }
       { url = "https://www.goethe.de/ins/eg/de/rss/alx/ver.rss"; }
-      { url = "https://www.tutomena.com//rss.xml";  }
+      { url = "https://www.tutomena.com//rss.xml"; }
       { url = "https://blog.abdelhadi.org/rss.xml"; }
       { url = "https://hausaba.com/feed/"; }
       { url = "https://mhsabbagh.com/feed/"; }
@@ -68,14 +66,14 @@
       unbind-key j
       unbind-key k
       unbind-key l
-      
+
       # vim style movement
       bind-key h quit
       bind-key j down
       bind-key k up
       bind-key l open
       # home/end
-      
+
       unbind-key g
       bind-key g home
       unbind-key G

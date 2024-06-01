@@ -1,6 +1,6 @@
 { pkgs, theme, ... }:
 
-pkgs.stdenvNoCC.mkDerivation rec {
+pkgs.stdenvNoCC.mkDerivation {
   name = "phocus";
   version = "96cde99";
 
@@ -17,23 +17,23 @@ pkgs.stdenvNoCC.mkDerivation rec {
     substituteInPlace scss/gtk-3.0/_colors.scss \
       --replace "@bg0@" "${base00}" \
       --replace "@bg1@" "${base02}" \
-      --replace "@bg2@" "${base09}" \
+      --replace "@bg2@" "${base0A}" \
       --replace "@bg3@" "${base02}" \
-      --replace "@bg4@" "${base09}" \
+      --replace "@bg4@" "${base0A}" \
       --replace "@red@" "${base03}" \
-      --replace "@red_light@" "${base0A}" \
+      --replace "@red_light@" "${base0B}" \
       --replace "@orange@" "#FCBF8D" \
       --replace "@orange_light@" "#FDD9BB" \
       --replace "@yellow@" "${base05}" \
-      --replace "@yellow_light@" "${base0C}" \
+      --replace "@yellow_light@" "${base0D}" \
       --replace "@green@" "${base04}" \
-      --replace "@green_light@" "${base0B}" \
+      --replace "@green_light@" "${base0C}" \
       --replace "@blue@" "${base06}" \
-      --replace "@blue_light@" "${base0D}" \
+      --replace "@blue_light@" "${base0E}" \
       --replace "@purple@" "${base07}" \
-      --replace "@purple_light@" "${base0E}" \
+      --replace "@purple_light@" "${base0F}" \
       --replace "@cyan@" "${base08}" \
-      --replace "@cyan_light@" "${base0F}"
+      --replace "@cyan_light@" "${base0G}"
   '';
 
   nativeBuildInputs = with pkgs; [ nodePackages.sass ];

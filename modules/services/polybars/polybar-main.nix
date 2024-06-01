@@ -1,19 +1,16 @@
-{ pkgs
-, theme
-, ...
-}:
+{ pkgs, theme, ... }:
 
 {
   services.polybar = {
     enable = false;
     script = ''
-        # WM does this job
+      # WM does this job
     '';
     package = pkgs.polybar.override {
       alsaSupport = true;
       pulseSupport = true;
     };
-    config =  {
+    config = {
       "bar/main" = {
         font-0 = "Iosevka:style=Heavy Extended Oblique::size=9;4";
         monitor = "eDP-1";
@@ -27,7 +24,7 @@
         fixed-center = true;
         wm-restack = "generic";
         modules-left = "ewmh";
-        modules-center= "time";
+        modules-center = "time";
         modules-right = "bluetooth pulseaudio backlight battery";
         background = theme.base00;
         foreground = theme.base01;
@@ -46,7 +43,7 @@
         label-active-foreground = theme.base07;
         label-occupied = "%icon%";
         label-occupied-padding = 2;
-        label-occupied-foreground = theme.base09;
+        label-occupied-foreground = theme.base0A;
         label-empty = "%icon%";
         label-empty-padding = 2;
         label-empty-foreground = theme.base02;
@@ -76,7 +73,7 @@
       };
       "module/pulseaudio" = {
         type = "internal/pulseaudio";
-        label-volume =  "%percentage%";
+        label-volume = "%percentage%";
         format-volume = "VOL: <label-volume>%";
         format-volume-foreground = theme.base05;
         label-muted = " Muted";

@@ -1,7 +1,8 @@
-{ inputs
-, pkgs
-, theme
-, ...
+{
+  inputs,
+  pkgs,
+  theme,
+  ...
 }:
 
 let
@@ -28,19 +29,19 @@ in
     ];
     colorScheme = "custom";
     customColorScheme = {
-      accent             = hexColorToRGB theme.base02;
-      accent-active      = hexColorToRGB theme.base06;
-      accent-inactive    = hexColorToRGB theme.base02;
-      banner             = hexColorToRGB theme.base06;
-      border-active      = hexColorToRGB theme.base06;
-      border-inactive    = hexColorToRGB theme.base02;
-      header             = hexColorToRGB theme.base02;
-      highlight          = hexColorToRGB theme.base02;
-      main               = hexColorToRGB theme.base00;
-      notification       = hexColorToRGB theme.base09;
+      accent = hexColorToRGB theme.base02;
+      accent-active = hexColorToRGB theme.base06;
+      accent-inactive = hexColorToRGB theme.base02;
+      banner = hexColorToRGB theme.base06;
+      border-active = hexColorToRGB theme.base06;
+      border-inactive = hexColorToRGB theme.base02;
+      header = hexColorToRGB theme.base02;
+      highlight = hexColorToRGB theme.base02;
+      main = hexColorToRGB theme.base00;
+      notification = hexColorToRGB theme.base0A;
       notification-error = hexColorToRGB theme.base03;
-      subtext            = hexColorToRGB theme.base01;
-      text               = hexColorToRGB theme.base01;
+      subtext = hexColorToRGB theme.base01;
+      text = hexColorToRGB theme.base01;
     };
   };
 
@@ -52,7 +53,12 @@ in
       exec = "spotify";
       terminal = false;
       genericName = "Music Player";
-      categories = [ "Audio" "Music" "Player" "AudioVideo" ];
+      categories = [
+        "Audio"
+        "Music"
+        "Player"
+        "AudioVideo"
+      ];
     };
   };
 }

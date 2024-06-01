@@ -1,13 +1,11 @@
-{ theme
-, ...
-}:
+{ theme, ... }:
 
 {
   programs = {
     zathura = {
       enable = true;
       options = {
-        font =  "Iosevka 10";
+        font = "Iosevka 10";
         notification-error-bg = theme.base03;
         notification-error-fg = theme.base01;
         notification-warning-bg = theme.base05;
@@ -15,9 +13,9 @@
         notification-bg = theme.base00;
         notification-fg = theme.base02;
         completion-bg = theme.base00;
-        completion-fg = theme.base09;
+        completion-fg = theme.base0A;
         completion-group-bg = theme.base00;
-        completion-group-fg = theme.base09;
+        completion-group-fg = theme.base0A;
         completion-highlight-bg = theme.base02;
         completion-highlight-fg = theme.base01;
         index-bg = theme.base00;
@@ -47,7 +45,7 @@
       mappings = {
         "<Right>" = "navigate next";
         "D" = "toggle_page_mode";
-        "<C-Tab>" =  "toggle_statusbar";
+        "<C-Tab>" = "toggle_statusbar";
       };
     };
   };

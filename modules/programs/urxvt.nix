@@ -1,7 +1,4 @@
-{ pkgs
-, theme
-, ...
-}:
+{ pkgs, theme, ... }:
 
 {
   programs.urxvt = {

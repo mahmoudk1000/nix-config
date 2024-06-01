@@ -1,14 +1,15 @@
-{ config
-, lib
-, theme
-, ...
+{
+  config,
+  lib,
+  theme,
+  ...
 }:
 
 {
   xresources.properties = lib.mkIf (config.xsession.windowManager.command == "2bwm") {
     "twobwm.border_width" = 10;
     "twobwm.outer_border" = 6;
-    "twobwm.focus_color" = theme.base09;
+    "twobwm.focus_color" = theme.base0A;
     "twobwm.unfocus_color" = theme.base02;
     "twobwm.fixed_color" = theme.base06;
     "twobwm.unkill_color" = theme.base03;

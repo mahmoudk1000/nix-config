@@ -3,7 +3,8 @@
     ./accounts
     ./firefox
     ./ncmpcpp
-    ./neovim/neovim.nix
+    ./neovim
+    ./vscode
     ./2bwm.nix
     ./alacritty.nix
     ./awesomewm.nix
@@ -22,7 +23,6 @@
     ./tmux.nix
     ./urxvt.nix
     ./vencord.nix
-    ./vscode.nix
     ./wezterm.nix
     ./zathura.nix
     ./zsh.nix

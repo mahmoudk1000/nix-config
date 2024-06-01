@@ -1,11 +1,15 @@
-{ theme
-, ...
-}:
+{ theme, ... }:
 
 {
   xsession = {
     windowManager.herbstluftwm = {
-      tags = [ "2" "3" "4" "5" "6" ];
+      tags = [
+        "2"
+        "3"
+        "4"
+        "5"
+        "6"
+      ];
       settings = {
         window_gap = 10;
         window_border_width = 10;
@@ -13,10 +17,10 @@
         smart_frame_surroundings = 0;
         always_show_frame = "on";
         frame_padding = 0;
-        frame_border_normal_color = theme.base09;
+        frame_border_normal_color = theme.base0A;
         frame_border_active_color = theme.base02;
         frame_bg_normal_color = theme.base02;
-        frame_bg_active_color = theme.base09;
+        frame_bg_active_color = theme.base0A;
         frame_border_width = 0;
         frame_bg_transparent = "on";
         frame_transparent_width = 0;
@@ -135,7 +139,7 @@
 
         herbstclient attr theme.active.inner_width 4
         herbstclient attr theme.active.outer_width 6
-        herbstclient attr theme.active.inner_color '${theme.base09}'
+        herbstclient attr theme.active.inner_color '${theme.base0A}'
         herbstclient attr theme.active.outer_color '${theme.base00}'
 
         herbstclient attr theme.normal.inner_width 4

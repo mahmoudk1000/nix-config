@@ -41,7 +41,7 @@ with theme;
     	/* color of accented buttons when hovered */
     	--accent-4: ${base08};
     	/* color of accented buttons when clicked */
-    	--accent-5: ${base09};
+    	--accent-5: ${base0A};
 
     	/* color of mentions and messages that mention you */
     	--mention: hsla(190, 80%, 52%, 0.1);
@@ -51,18 +51,18 @@ with theme;
     	/* color of bright text on colored buttons */
     	--text-1: ${base01};
     	/* color of headings and important text */
-    	--text-2: ${base05};
+    	--text-2: ${base09};
     	/* color of normal text */
     	--text-3: ${base01};
     	/* color of icon buttons and channels */
-    	--text-4: ${base06};
+    	--text-4: ${base0H};
     	/* color of muted channels/chats and timestamps */
-    	--text-5: ${base09};
+    	--text-5: ${base0H};
 
     	/* color of dark buttons when clicked */
     	--bg-1: ${base02};
     	/* color of dark buttons */
-    	--bg-2: ${base09};
+    	--bg-2: ${base0A};
     	/* color of spacing around panels and secondary elements */
     	--bg-3: ${base00};
     	/* main background color */

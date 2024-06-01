@@ -1,15 +1,16 @@
-{ config
-, pkgs
-, theme
-, lib
-, ...
+{
+  config,
+  pkgs,
+  theme,
+  lib,
+  ...
 }:
 
 let
   borders = pkgs.writeScriptBin "borders" ''
     outer="${theme.base00}" # outer
     innr1="${theme.base02}" # focused
-    innr2="${theme.base09}" # normal
+    innr2="${theme.base0A}" # normal
 
     trap 'bspc config border_width 0; kill -9 -$$' INT TERM
 
@@ -44,11 +45,21 @@ in
         alwaysResetDesktops = true;
         startupPrograms = [
           "xset r rate 200 30"
-            "xsetroot -cursor_name left_ptr"
-            "$HOME/.config/conky/Moo/start.sh"
+          "xsetroot -cursor_name left_ptr"
+          "$HOME/.config/conky/Moo/start.sh"
         ];
         monitors = {
-          eDP1 = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
+          eDP1 = [
+            "1"
+            "2"
+            "3"
+            "4"
+            "5"
+            "6"
+            "7"
+            "8"
+            "9"
+          ];
         };
         rules = {
           "feh" = {
@@ -86,7 +97,7 @@ in
         settings = {
           window_gap = 10;
           border_width = 10;
-          split_ratio = 0.50;
+          split_ratio = 0.5;
           top_padding = 0;
           right_padding = 0;
           bottom_padding = 60;
@@ -101,7 +112,7 @@ in
           pointer_action2 = "resize_side";
           pointer_action3 = "resize_corner";
           normal_border_color = theme.base00;
-          active_border_color = theme.base09;
+          active_border_color = theme.base0A;
           focused_border_color = theme.base02;
         };
         extraConfig = ''
@@ -116,7 +127,5 @@ in
     };
   };
 
-  home.packages = lib.mkIf (config.xsession.windowManager.bspwm.enable) (with pkgs; [
-    wmutils-opt
-  ]);
+  home.packages = lib.mkIf (config.xsession.windowManager.bspwm.enable) (with pkgs; [ wmutils-opt ]);
 }

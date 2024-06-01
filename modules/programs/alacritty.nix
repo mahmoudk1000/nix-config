@@ -98,12 +98,12 @@
           foreground = "${theme.base01}";
         };
         cursor = {
-          text = "${theme.base09}";
+          text = "${theme.base0A}";
           cursor = "${theme.base01}";
         };
         selection = {
           text = "${theme.base01}";
-          background = "${theme.base09}";
+          background = "${theme.base0A}";
         };
         normal = {
           black = "${theme.base02}";
@@ -113,17 +113,17 @@
           blue = "${theme.base06}";
           magenta = "${theme.base07}";
           cyan = "${theme.base08}";
-          white = "${theme.base01}";
+          white = "${theme.base09}";
         };
         bright = {
-          black = "${theme.base09}";
-          red = "${theme.base0A}";
-          green = "${theme.base0B}";
-          yellow = "${theme.base0C}";
-          blue = "${theme.base0D}";
-          magenta = "${theme.base0E}";
-          cyan = "${theme.base0F}";
-          white = "${theme.base01}";
+          black = "${theme.base0A}";
+          red = "${theme.base0B}";
+          green = "${theme.base0C}";
+          yellow = "${theme.base0D}";
+          blue = "${theme.base0E}";
+          magenta = "${theme.base0F}";
+          cyan = "${theme.base0G}";
+          white = "${theme.base0H}";
         };
       };
     };

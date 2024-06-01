@@ -53,7 +53,7 @@ with theme;
   }
   #folderTree:focus-within li.selected > .container, #folderTree li.drop-target > .container,
   .minimonth-week {
-    background-color: ${base09} !important;
+    background-color: ${base0A} !important;
     color: ${base01} !important;
   }
   .minimonth-day[selected="true"][today="true"] {
@@ -73,7 +73,7 @@ with theme;
   #agenda-toolbar,
   .agenda-date-header,
   tr[is="thread-card"][data-properties~="unread"]:not(.selected, :hover) {
-    background-color: ${base09} !important;
+    background-color: ${base0A} !important;
   }
   .minimonth-day[selected="true"],
   .calendar-month-day-box-current-month[selected="true"], .calendar-month-day-box-day-off[selected="true"], .calendar-month-day-box-other-month[selected="true"]{
@@ -99,12 +99,12 @@ with theme;
   .notification-button-container, .notification-message {
     color: ${base00} !important;
   }
+  li.selected > .container, [is="tree-view-table-body"]:focus > .selected, [is="tree-view-table-body"]:focus-within > .selected, [is="tree-view-table-body"] > .selected:focus-within, .unread > .container > .unread-count, .new-messages > .container > .unread-count, li.selected > .container, button.calview-toggle-item[role="tab"][aria-selected="true"], button.calview-toggle-item[role="tab"][aria-selected="true"] {
+    color: ${base06} !important;
+    background-color: ${base0A} !important;
+  }
   .unread > .container > .unread-count,
-  .new-messages > .container > .unread-count,
-  li.selected > .container,
-  [is="tree-view-table-body"]:focus > .selected, [is="tree-view-table-body"]:focus-within > .selected, [is="tree-view-table-body"] > .selected:focus-within,
-  .unread > .container > .unread-count, .new-messages > .container > .unread-count, li.selected > .container, button.calview-toggle-item[role="tab"][aria-selected="true"],
-  button.calview-toggle-item[role="tab"][aria-selected="true"] {
+  .new-messages > .container > .unread-count {
     color: ${base00} !important;
     background-color: ${base06} !important;
   }

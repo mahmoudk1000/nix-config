@@ -1,19 +1,16 @@
-{ pkgs
-, theme
-, ...
-}:
+{ pkgs, theme, ... }:
 
 {
   services.polybar = {
     enable = true;
     script = ''
-        # Bspwm does this job
+      # Bspwm does this job
     '';
     package = pkgs.polybar.override {
       alsaSupport = true;
       pulseSupport = true;
     };
-    config =  {
+    config = {
       "bar/ein" = {
         monitor = "eDP-1";
         bottom = true;
@@ -80,13 +77,13 @@
         label-focused-foreground = theme.base07;
         label-occupied = "⭕";
         label-occupied-padding = 1;
-        label-occupied-foreground = theme.base09;
+        label-occupied-foreground = theme.base0A;
         label-urgent = "⭕";
         label-urgent-padding = 1;
         label-urgent-foreground = theme.base03;
         label-empty = "⬤";
         label-empty-padding = 1;
-        label-empty-foreground = theme.base09;
+        label-empty-foreground = theme.base0A;
       };
       "module/battery" = {
         type = "internal/battery";
@@ -112,7 +109,7 @@
         type = "internal/pulseaudio";
         format-volume = "󰕾 <label-volume>";
         format-volume-foreground = theme.base05;
-        label-volume =  "%percentage%";
+        label-volume = "%percentage%";
         label-muted = "Muted";
         label-muted-foreground = theme.base05;
       };

@@ -17,23 +17,22 @@ with theme;
 
     let s:background      = { "gui": "${base00}" }
     let s:foreground      = { "gui": "${base01}" }
-    let s:darker          = { "gui": "#0F151A" }
     let s:black           = { "gui": "${base02}" }
-    let s:light_black     = { "gui": "${base09}" }
+    let s:light_black     = { "gui": "${base0A}" }
     let s:red             = { "gui": "${base03}" }
-    let s:light_red       = { "gui": "${base0A}" }
+    let s:light_red       = { "gui": "${base0B}" }
     let s:green           = { "gui": "${base04}" }
-    let s:light_green     = { "gui": "${base0B}" }
+    let s:light_green     = { "gui": "${base0C}" }
     let s:yellow          = { "gui": "${base05}" }
-    let s:light_yellow    = { "gui": "${base0C}" }
+    let s:light_yellow    = { "gui": "${base0D}" }
     let s:blue            = { "gui": "${base06}" }
-    let s:light_blue      = { "gui": "${base0D}" }
+    let s:light_blue      = { "gui": "${base0E}" }
     let s:purple          = { "gui": "${base07}" }
-    let s:light_purple    = { "gui": "${base0E}" }
+    let s:light_purple    = { "gui": "${base0F}" }
     let s:cyan            = { "gui": "${base08}" }
-    let s:light_cyan      = { "gui": "${base0F}" }
-    let s:white           = { "gui": "${base01}" }
-    let s:light_white     = { "gui": "#F2F3F4" }
+    let s:light_cyan      = { "gui": "${base0G}" }
+    let s:white           = { "gui": "${base09}" }
+    let s:light_white     = { "gui": "${base0H}" }
 
     function! s:Color(group, style)
     execute "hi!" a:group
@@ -54,7 +53,7 @@ with theme;
     call s:Color('Float', {'fg': s:purple})
     call s:Color('Statement', {'fg': s:blue})
     call s:Color('Label', {'fg': s:blue})
-    call s:Color('Operator', {'fg': s:blue})
+    call s:Color('Operator', {'fg': s:light_purple})
     call s:Color('Exception', {'fg': s:blue})
     call s:Color('PreProc', {'fg': s:foreground})
     call s:Color('Include', {'fg': s:blue})
@@ -62,7 +61,7 @@ with theme;
     call s:Color('Macro', {'fg': s:blue})
     call s:Color('Typedef', {'fg': s:blue})
     call s:Color('PreCondit', {'fg': s:yellow})
-    call s:Color('Special', {'fg': s:white})
+    call s:Color('Special', {'fg': s:cyan})
     call s:Color('SpecialChar', {'fg': s:yellow})
     call s:Color('Tag', {'fg': s:white})
     call s:Color('Delimiter', {'fg': s:light_white})
@@ -72,7 +71,7 @@ with theme;
     call s:Color('Ignore', {'fg': s:black})
     call s:Color('Error', {'fg': s:red, 'gui': 'bold'})
     call s:Color('Todo', {'fg': s:yellow, 'gui': 'bold,italic'})
-    call s:Color('Conceal', {'bg': s:darker})
+    call s:Color('Conceal', {'bg': s:black})
 
     call s:Color('htmlLink', {'fg': s:green, 'gui': 'underline'})
     call s:Color('htmlH1', {'fg': s:cyan, 'gui': 'bold'})
@@ -88,11 +87,15 @@ with theme;
     call s:Color('markdownH3Delimiter', {'fg': s:green})
     call s:Color('Comment', {'fg': s:light_black, 'gui': 'italic'})
     call s:Color('Conditional', {'fg': s:light_white, 'gui': 'italic'})
-    call s:Color('Function', {'fg': s:blue})
+    call s:Color('Function', {'fg': s:light_blue})
     call s:Color('Identifier', {'fg': s:white})
-    call s:Color('Keyword', {'fg': s:blue})
     call s:Color('Repeat', {'fg': s:blue, 'gui': 'italic'})
     call s:Color('String', {'fg': s:green})
+    call s:Color('Keyword', {'fg': s:light_white})
+    hi! link @keyword Keyword
+    hi! link @keyword.function Function
+    hi! link @keyword.return Special
+    hi! link @keyword.operator Operator
 
     " Editor Highlighting
     call s:Color('Normal', {'fg': s:foreground})
@@ -120,7 +123,7 @@ with theme;
     call s:Color('MoreMsg', {'fg': s:white})
     call s:Color('NonText', {'fg': s:black})
     call s:Color('Pmenu', {'fg': s:white, 'bg': s:black})
-    call s:Color('PmenuSel', {'fg': s:darker, 'bg': s:blue})
+    call s:Color('PmenuSel', {'fg': s:black, 'bg': s:blue})
     call s:Color('PmenuSbar', {'fg': s:white, 'bg': s:black})
     call s:Color('PmenuThumb', {'bg': s:white})
     call s:Color('Question', {'fg': s:green})
@@ -140,11 +143,11 @@ with theme;
     call s:Color('TablineSel', {'fg': s:black, 'bg': s:blue})
     call s:Color('Tabline', {'fg': s:white, 'bg': s:black})
     call s:Color('Title', {'fg': s:green, 'gui': 'bold'})
-    call s:Color('Visual', {'bg': s:darker})
-    call s:Color('VisualNOS', {'bg': s:darker})
+    call s:Color('Visual', {'bg': s:black})
+    call s:Color('VisualNOS', {'bg': s:black})
     call s:Color('WildMenu', {'fg': s:cyan, 'gui': 'bold'})
-    call s:Color('CursorColumn', {'bg': s:darker})
-    call s:Color('CursorLine', {'bg': s:darker})
+    call s:Color('CursorColumn', {'bg': s:black})
+    call s:Color('CursorLine', {'bg': s:black})
     call s:Color('ToolbarLine', {'fg': s:white, 'bg': s:black})
     call s:Color('ToolbarButton', {'fg': s:white, 'gui': 'bold'})
     call s:Color('NormalMode', {'fg': s:white, 'gui': 'reverse'})
@@ -227,9 +230,9 @@ with theme;
     hi! link TSField Identifier
     hi! link TSProperty Identifier
     hi! link TSKeyword Keyword
-    hi! link TSKeywordFunction Keyword
-    hi! link TSKeywordReturn Keyword
-    hi! link TSKeywordOperator Keyword
+    hi! link TSKeywordFunction @keyword.function
+    hi! link TSKeywordReturn @keyword.return
+    hi! link TSKeywordOperator @keyword.operator
     hi! link TSRepeat Keyword
     hi! link TSString String
     hi! link TSStringRegex String
@@ -370,7 +373,7 @@ with theme;
     call s:Color('NeoTreeFileIcon', {'fg': s:blue})
 
     "" Bufferline
-    call s:Color('BufferLineFill', {'bg': s:darker})
+    call s:Color('BufferLineFill', {'bg': s:black})
     call s:Color('BufferLineSeparator', {'fg': s:light_black})
     call s:Color('BufferLineIndicatorSelected', {'fg': s:blue})
     call s:Color('BufferLineCloseButton', {'fg': s:white, 'bg': s:black})

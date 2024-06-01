@@ -1,6 +1,4 @@
-{ theme
-, ...
-}:
+{ theme, ... }:
 
 {
   services.dunst = {
@@ -23,8 +21,8 @@
 
         frame_width = 6;
         separator_height = 3;
-        frame_color = theme.base09;
-        separator_color = theme.base09;
+        frame_color = theme.base0A;
+        separator_color = theme.base0A;
 
         alignment = "left";
         word_wrap = "yes";

@@ -4,11 +4,20 @@
     backend = "glx";
     fade = true;
     fadeDelta = 10;
-    fadeSteps = [ (0.04) (0.04) ];
-    fadeExclude = [ "width=1920 && height=1080" "width=1440 && height=900" ];
+    fadeSteps = [
+      (4.0e-2)
+      (4.0e-2)
+    ];
+    fadeExclude = [
+      "width=1920 && height=1080"
+      "width=1440 && height=900"
+    ];
     shadow = true;
     shadowOpacity = 0.25;
-    shadowOffsets = [ (-10) (-10) ];
+    shadowOffsets = [
+      (-10)
+      (-10)
+    ];
     shadowExclude = [
       "_GTK_FRAME_EXTENTS@:c"
       "_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"

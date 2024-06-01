@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, theme
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  theme,
+  ...
 }:
 
 let
@@ -33,11 +34,11 @@ let
       -- Text settings --
       use_xft = true,
       font = 'Iosevkat:size=9',
-  
+
       -- Color Settings --
-      default_color = '${theme.base09}',
+      default_color = '${theme.base0A}',
       color1 = '${theme.base01}',
-    
+
       -- Window Settings --
       background = false,
       border_width = 0,
@@ -76,9 +77,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      conky
-    ];
+    home.packages = with pkgs; [ conky ];
 
     systemd.user.services.conky = {
       Unit = {
@@ -89,7 +88,7 @@ in
         Type = "forking";
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c '${pkgs.conky}/bin/conky --daemonize -c ${conky-config}'
-          '';
+        '';
         OOMPolicy = "kill";
       };
     };
@@ -98,7 +97,9 @@ in
         OnActiveSec = "10s";
         AccuracySec = "1s";
       };
-      Install = { WantedBy = [ "graphical-session.target" ]; };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
     };
   };
 }

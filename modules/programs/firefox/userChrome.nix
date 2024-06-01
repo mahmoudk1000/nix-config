@@ -41,10 +41,10 @@ with theme;
     background-color: ${base02} !important;
     border-radius: 0px !important;
     margin-block: 0px !important;
-    border-bottom: 2px solid ${base09};
+    border-bottom: 2px solid ${base0A};
   }
   .tabbrowser-tab:hover .tab-background {
-    background-color: ${base09} !important;
+    background-color: ${base0A} !important;
   }
   .tabbrowser-tab[selected="true"] .tab-background {
     background-color: ${base00} !important;
@@ -53,11 +53,11 @@ with theme;
     max-width: 100vw !important;
   }
   #urlbar {
-    background-color: #11171D !important;
+    background-color: ${base00} !important;
     border-radius: 10px !important;
   }
   #urlbar-input, #urlbar-scheme, .searchbar-textbox {
-    color: ${base09} !important;
+    color: ${base0A} !important;
   }
   #nav-bar {
     background-color: ${base02} !important;
@@ -200,7 +200,7 @@ with theme;
   #urlbar ::-moz-selection,
   .searchbar-textbox ::-moz-selection {
     background-color: ${base01} !important;
-    color: ${base09} !important;
+    color: ${base0A} !important;
   }
   #tabbrowser-tabpanels {
     background-color: ${base01} !important;
@@ -227,9 +227,9 @@ with theme;
     opacity: 0.6;
   }
   .checkbox-check[checked] {
-    color: ${base09} !important;
+    color: ${base0A} !important;
   }
   .browserContainer > findbar {
-    background-color: ${base09} !important;
+    background-color: ${base0A} !important;
   }
 ''

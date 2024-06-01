@@ -1,7 +1,8 @@
-{ config
-, lib
-, theme
-, ...
+{
+  config,
+  lib,
+  theme,
+  ...
 }:
 
 let
@@ -9,7 +10,7 @@ let
 in
 {
   options = {
-      programs.poww = {
+    programs.poww = {
       enable = lib.mkOption {
         default = false;
         description = "Weather to enable rofi power menu";
