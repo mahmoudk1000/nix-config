@@ -1,19 +1,27 @@
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+
+{
   services.picom = {
     enable = true;
+    package = pkgs.picom-pijulius;
     backend = "glx";
+    vSync = true;
+
     fade = true;
     fadeDelta = 10;
     fadeSteps = [
       (4.0e-2)
       (4.0e-2)
     ];
-    fadeExclude = [
-      "width=1920 && height=1080"
-      "width=1440 && height=900"
-    ];
+    fadeExclude = [ "width=1920 && height=1080" ];
+
     shadow = true;
-    shadowOpacity = 0.25;
+    shadowOpacity = 0.3;
     shadowOffsets = [
       (-10)
       (-10)
@@ -31,19 +39,49 @@
       "name = 'cpt_frame_xcb_window'"
       "name *= 'rect-overlay'"
     ];
-    settings = {
-      shadow-radius = 10;
-      glx-no-stencil = true;
-      glx-no-rebind-pixmap = true;
-      unredir-if-possible = true;
-      xrender-sync-fence = true;
-    };
+
+    settings = lib.mkMerge [
+      {
+        daemon = false;
+        dbus = false;
+        detect-rounded-corners = true;
+        detect-client-opacity = false;
+        mark-wmwim-focused = true;
+        unredir-if-possible = true;
+        glx-no-stencil = true;
+        glx-no-rebind-pixmap = true;
+        use-damage = true;
+        resize-damage = 1;
+        glx-use-copysubbuffer-mesa = false;
+      }
+      (lib.mkIf (config.services.picom.shadow) { shadow-radius = 20; })
+      (lib.mkIf (config.services.picom.package == pkgs.picom-pijulius) {
+        animations = true;
+        animation-stiffness = 100;
+        animation-window-mass = 0.3;
+        animation-dampening = 10;
+        animation-clamping = false;
+
+        animation-for-open-window = "zoom";
+        animation-for-unmap-window = "zoom";
+
+        animation-for-menu-window = "zoom";
+        animation-for-transient-window = "none";
+
+        animation-for-workspace-switch-in = "none";
+        animation-for-workspace-switch-out = "none";
+      })
+    ];
+
     wintypes = {
       tooltip = {
         fade = true;
         shadow = false;
         opacity = 1;
         focus = true;
+      };
+      popup_menu = {
+        full-shadow = true;
       };
       fullscreen = {
         fade = true;
@@ -54,14 +92,8 @@
       notification = {
         full-shadow = true;
       };
-      dnd = {
-        shadow = false;
-      };
-      popup_menu = {
-        shadow = false;
-      };
       dropdown_menu = {
-        shadow = false;
+        full-shadow = false;
       };
     };
   };
