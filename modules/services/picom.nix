@@ -8,7 +8,7 @@
 {
   services.picom = {
     enable = true;
-    package = pkgs.picom-pijulius;
+    # package = pkgs.picom-pijulius;
     backend = "glx";
     vSync = true;
 
@@ -46,13 +46,12 @@
         dbus = false;
         detect-rounded-corners = true;
         detect-client-opacity = false;
-        mark-wmwim-focused = true;
         unredir-if-possible = true;
         glx-no-stencil = true;
         glx-no-rebind-pixmap = true;
         use-damage = true;
         resize-damage = 1;
-        glx-use-copysubbuffer-mesa = false;
+        mark-wmwim-focused = true;
       }
       (lib.mkIf (config.services.picom.shadow) { shadow-radius = 20; })
       (lib.mkIf (config.services.picom.package == pkgs.picom-pijulius) {
