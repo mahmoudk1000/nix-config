@@ -21,10 +21,10 @@
     fadeExclude = [ "width=1920 && height=1080" ];
 
     shadow = true;
-    shadowOpacity = 0.3;
+    shadowOpacity = 0.25;
     shadowOffsets = [
-      (-10)
-      (-10)
+      (-20)
+      (-20)
     ];
     shadowExclude = [
       "_GTK_FRAME_EXTENTS@:c"
