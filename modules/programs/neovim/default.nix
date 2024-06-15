@@ -165,6 +165,8 @@ in
           type = "lua";
           config = builtins.readFile ./config/conform.lua;
         }
+        nvim-treesitter-textobjects
+        nvim-treesitter-refactor
         cmp-buffer
         cmp-cmdline
         cmp-nvim-lsp
