@@ -28,6 +28,9 @@
   "browser.tabs.tabmanager.enabled" = false;
 
   # Privacy
+  "privacy.resistFingerprinting" = true;
+  "privacy.trackingprotection.fingerprinting.enabled" = true;
+  "privacy.trackingprotection.cryptomining.enabled" = true;
   "browser.contentblocking.category" = "strict";
   "network.trr.confirmation_telemetry_enabled" = false;
 
