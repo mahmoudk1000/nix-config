@@ -18,14 +18,14 @@ in
       playlistIcons
       shuffle
       history
-      fullAppDisplay
+      fullAppDisplayMod
       hidePodcasts
       seekSong
       adblock
     ];
     enabledCustomApps = with spicePkgs.apps; [
-      new-releases
-      lyrics-plus
+      newReleases
+      lyricsPlus
     ];
     colorScheme = "custom";
     customColorScheme = {
