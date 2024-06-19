@@ -20,7 +20,7 @@
       allow_for_physical_item_deletion = "no";
       lines_scrolled = "1";
       follow_now_playing_lyrics = "yes";
-      lyrics_fetcher = "lyricswiki, lyricscom, lyricsplugin";
+      lyrics_fetchers = "lyricswiki, lyricscom, lyricsplugin";
 
       visualizer_data_source = "/tmp/mpd.fifo";
       visualizer_output_name = "mpd_visualizer";
