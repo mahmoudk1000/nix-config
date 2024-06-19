@@ -12,7 +12,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -56,7 +59,7 @@
                   users.mahmoud = {
                     imports = [
                       ./home-manager/labbi/home.nix
-                      spicetify-nix.homeManagerModule
+                      spicetify-nix.homeManagerModules.default
                     ];
                     _module.args.theme = import ./modules/themes;
                   };
