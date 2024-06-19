@@ -29,6 +29,7 @@ dashboard.section.buttons = {
 	},
 	opts = {
 		spacing = 1,
+		-- hl_shortcut = "Special",
 		position = "center",
 	},
 }
