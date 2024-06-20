@@ -1,16 +1,6 @@
-{ config, pkgs, ... }:
-
 {
   programs.ncmpcpp = {
-    enable = true;
-    package = pkgs.ncmpcpp.override {
-      visualizerSupport = true;
-      clockSupport = true;
-      taglibSupport = true;
-    };
-    mpdMusicDir = "${config.home.homeDirectory}/musik";
     settings = {
-      ncmpcpp_directory = "${config.home.homeDirectory}/.config/ncmpcpp";
       ignore_leading_the = true;
       external_editor = "nvim";
       message_delay_time = 1;
@@ -19,8 +9,6 @@
       centered_cursor = "yes";
       allow_for_physical_item_deletion = "no";
       lines_scrolled = "1";
-      follow_now_playing_lyrics = "yes";
-      lyrics_fetchers = "lyricswiki, lyricscom, lyricsplugin";
 
       visualizer_data_source = "/tmp/mpd.fifo";
       visualizer_output_name = "mpd_visualizer";

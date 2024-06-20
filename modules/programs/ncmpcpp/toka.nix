@@ -1,9 +1,5 @@
-{ config, ... }:
-
 {
   programs.ncmpcpp = {
-    enable = true;
-    mpdMusicDir = "${config.home.homeDirectory}/musik";
     settings = {
       # Delays
       playlist_disable_highlight_delay = "1";
