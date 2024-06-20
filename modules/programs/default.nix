@@ -8,12 +8,13 @@
     ./2bwm.nix
     ./alacritty.nix
     ./awesomewm.nix
-    # ./bash.nix
+    ./bash.nix
     ./bspwm.nix
     ./devops.nix
     ./git.nix
     ./gnu.nix
     ./herbstluftwm.nix
+    ./mpv.nix
     ./newsboat.nix
     ./rofi.nix
     ./spotify.nix

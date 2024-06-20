@@ -58,7 +58,6 @@
         foliate
         obsidian
         evince
-        mpv
         krita
         popcorntime
 
