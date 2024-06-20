@@ -1,5 +1,7 @@
+{ config, lib, ... }:
+
 {
-  programs = {
+  programs = lib.mkIf (!config.programs.zsh.enable) {
     fzf = {
       enable = true;
       enableBashIntegration = true;
@@ -15,7 +17,11 @@
       historyFileSize = 2000;
       historySize = 1000;
       historyControl = [ "erasedups" ];
-      historyIgnore = [ "ls" "exit" "kill" ];
+      historyIgnore = [
+        "ls"
+        "exit"
+        "kill"
+      ];
       shellOptions = [
         "histappend"
         "autocd"
