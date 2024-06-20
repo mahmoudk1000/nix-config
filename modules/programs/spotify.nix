@@ -18,7 +18,7 @@
       enabledExtensions = with spicePkgs.extensions; [
         shuffle
         history
-        fullAppDisplayMod
+        fullAppDisplay
         hidePodcasts
         seekSong
         adblock
