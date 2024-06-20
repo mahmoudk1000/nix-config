@@ -29,23 +29,23 @@
         ncsVisualizer
       ];
       colorScheme = "custom";
-      customColorScheme = with stripHexPrefix theme; {
-        text = base01;
-        subtext = base09;
-        sidebar-text = base01;
-        main = base00;
-        sidebar = base06;
-        player = base00;
-        card = base00;
-        shadow = base02;
-        selected-row = base0A;
-        button = base06;
-        button-active = base06;
-        button-disabled = base02;
-        tab-active = base0A;
-        notification = base0A;
-        notification-error = base03;
-        misc = base01;
+      customColorScheme = {
+        text = stripHexPrefix theme.base01;
+        subtext = stripHexPrefix theme.base09;
+        sidebarText = stripHexPrefix theme.base01;
+        main = stripHexPrefix theme.base00;
+        sidebar = stripHexPrefix theme.base06;
+        player = stripHexPrefix theme.base00;
+        card = stripHexPrefix theme.base00;
+        shadow = stripHexPrefix theme.base02;
+        selectedRow = stripHexPrefix theme.base0A;
+        button = stripHexPrefix theme.base06;
+        buttonActive = stripHexPrefix theme.base06;
+        buttonDisabled = stripHexPrefix theme.base02;
+        tabActive = stripHexPrefix theme.base0A;
+        notification = stripHexPrefix theme.base0A;
+        notificationError = stripHexPrefix theme.base03;
+        misc = stripHexPrefix theme.base01;
       };
     };
 
