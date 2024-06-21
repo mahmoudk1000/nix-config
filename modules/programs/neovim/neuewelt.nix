@@ -44,7 +44,6 @@ with theme;
 
     " Syntax Highlighting
     call s:Color('Type', {'fg': s:blue})
-    call s:Color('StorageClass', {'fg': s:blue})
     call s:Color('Structure', {'fg': s:blue})
     call s:Color('Constant', {'fg': s:white})
     call s:Color('Character', {'fg': s:green})
@@ -73,6 +72,21 @@ with theme;
     call s:Color('Todo', {'fg': s:yellow, 'gui': 'bold,italic'})
     call s:Color('Conceal', {'bg': s:black})
 
+    call s:Color('Comment', {'fg': s:light_black, 'gui': 'italic'})
+    call s:Color('Conditional', {'fg': s:light_white, 'gui': 'italic'})
+    call s:Color('Function', {'fg': s:light_white})
+    call s:Color('Identifier', {'fg': s:white})
+    call s:Color('Repeat', {'fg': s:blue, 'gui': 'italic'})
+    call s:Color('String', {'fg': s:green})
+    call s:Color('Keyword', {'fg': s:white})
+    hi! link @keyword Keyword
+    hi! link @keyword.function Function
+    hi! link @keyword.return Special
+    hi! link @keyword.operator Operator
+    hi! link @keyword.builtin Special
+    hi! link @keyword.macro PreProc
+    hi! link @keyword.method Identifier
+
     call s:Color('htmlLink', {'fg': s:green, 'gui': 'underline'})
     call s:Color('htmlH1', {'fg': s:cyan, 'gui': 'bold'})
     call s:Color('htmlH2', {'fg': s:red, 'gui': 'bold'})
@@ -85,17 +99,6 @@ with theme;
     call s:Color('markdownH1Delimiter', {'fg': s:cyan})
     call s:Color('markdownH2Delimiter', {'fg': s:red})
     call s:Color('markdownH3Delimiter', {'fg': s:green})
-    call s:Color('Comment', {'fg': s:light_black, 'gui': 'italic'})
-    call s:Color('Conditional', {'fg': s:light_white, 'gui': 'italic'})
-    call s:Color('Function', {'fg': s:light_blue})
-    call s:Color('Identifier', {'fg': s:white})
-    call s:Color('Repeat', {'fg': s:blue, 'gui': 'italic'})
-    call s:Color('String', {'fg': s:green})
-    call s:Color('Keyword', {'fg': s:light_white})
-    hi! link @keyword Keyword
-    hi! link @keyword.function Function
-    hi! link @keyword.return Special
-    hi! link @keyword.operator Operator
 
     " Editor Highlighting
     call s:Color('Normal', {'fg': s:foreground})
