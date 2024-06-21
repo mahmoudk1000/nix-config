@@ -25,6 +25,7 @@
     ./urxvt.nix
     ./vencord.nix
     ./wezterm.nix
+    ./yt-dlp.nix
     ./zathura.nix
     ./zsh.nix
   ];

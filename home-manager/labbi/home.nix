@@ -38,7 +38,6 @@
         pfetch
         spotdl
         ventoy-bin
-        yt-dlp
 
         ffmpeg
         arandr
