@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
 {
   programs.mpv = {
@@ -26,12 +26,22 @@
       volume-max = 200;
       force-window = "yes";
       keep-open = "no";
-      osc = "no";
-      osd-bar = "no";
       ao = "pipewire";
       hwdec = "vaapi";
       ytdl-format = "bestvideo+bestaudio";
       cache-default = 4000000;
+
+      slang = "ar,en,de";
+      alang = "ar,en,de";
+
+      osc = "no";
+      osd-font = ''"Iosevka Nerd Font"'';
+      osd-font-size = 24;
+      osd-color = theme.base06;
+      osd-border-size = 2;
+      osd-bar-h = 2;
+      osd-bar-w = 60;
+      term-osd-bar-chars = "[━━ ]";
     };
     bindings = {
       "BS" = "cycle pause";
@@ -41,6 +51,9 @@
 
       "UP" = "add volume 2";
       "DOWN" = "add volume -2";
+
+      "RIGHT" = "seek  5";
+      "LEFT" = "seek -5";
 
       "PGUP" = "add chapter -1";
       "PGDWN" = "add chapter 1";
@@ -53,6 +66,9 @@
 
       "Alt+RIGHT" = "add video-rotate 90";
       "Alt+LEFT" = "add video-rotate -90";
+
+      ">" = "add speed 0.25";
+      "<" = "add speed -0.25";
 
       "h" = "seek -5";
       "j" = "add volume -2";
@@ -69,6 +85,7 @@
 
       "J" = "cycle sub";
       "L" = "ab_loop";
+      "m" = "cycle mute";
 
       "a" = "add audio-delay -0.001";
       "s" = "add audio-delay +0.001";
