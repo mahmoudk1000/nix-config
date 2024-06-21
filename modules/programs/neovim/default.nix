@@ -6,7 +6,7 @@ let
   customVimPlugins = import ./vim-plugins.nix { inherit pkgs; };
 in
 {
-  imports = [ ./neuewelt.nix ];
+  imports = [ ./islet.nix ];
 
   programs.neovim = {
     enable = true;

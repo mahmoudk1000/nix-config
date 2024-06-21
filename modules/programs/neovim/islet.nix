@@ -2,8 +2,11 @@
 
 with theme;
 
+let
+  name = "islet";
+in
 {
-  home.file.".config/nvim/colors/neuewelt.vim".text = ''
+  home.file.".config/nvim/colors/${name}.vim".text = ''
     " Just another colorscheme for Vim
     hi! clear
 
@@ -13,7 +16,7 @@ with theme;
     syntax reset
     endif
 
-    let g:colors_name="neuewelt"
+    let g:colors_name="${name}"
 
     let s:background      = { "gui": "${base00}" }
     let s:foreground      = { "gui": "${base01}" }

@@ -42,7 +42,7 @@ vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
 
 -- Color Scheme
-vim.cmd([[colorscheme neuewelt]])
+vim.cmd([[colorscheme islet]])
 
 -- Keymaps
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
@@ -100,7 +100,7 @@ vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<CR>", { noremap = true, si
 --- Conform
 vim.keymap.set("n", "<leader>f", function()
 	require("conform").format()
-end, { desc = "Format Buffer" })
+end, { desc = "[F]ormat Buffer" })
 
 --- Telescope
 vim.keymap.set("n", "<leader>/", function()
