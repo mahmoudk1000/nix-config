@@ -84,19 +84,22 @@
         shadow = false;
         focus = true;
       };
-      popup_menu = {
-        full-shadow = true;
-      };
       fullscreen = {
         fade = true;
         shadow = false;
         focus = true;
       };
       notification = {
-        full-shadow = true;
+        shadow = true;
       };
       dropdown_menu = {
-        full-shadow = false;
+        shadow = false;
+      };
+      dock = {
+        shadow = false;
+      };
+      dnd = {
+        shadow = false;
       };
     };
   };
