@@ -86,6 +86,7 @@
       "J" = "cycle sub";
       "L" = "ab_loop";
       "m" = "cycle mute";
+      "o" = "show-progress";
 
       "a" = "add audio-delay -0.001";
       "s" = "add audio-delay +0.001";
