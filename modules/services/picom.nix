@@ -52,6 +52,12 @@
         use-damage = true;
         resize-damage = 1;
         mark-wmwim-focused = true;
+
+        corner-radius = 8;
+        rounded-corners-exclude = [
+          "window_type = 'dock'"
+          "window_type = 'desktop'"
+        ];
       }
       (lib.mkIf (config.services.picom.shadow) { shadow-radius = 40; })
       (lib.mkIf (config.services.picom.package == pkgs.picom-pijulius) {
@@ -76,7 +82,6 @@
       tooltip = {
         fade = true;
         shadow = false;
-        opacity = 1;
         focus = true;
       };
       popup_menu = {
@@ -85,7 +90,6 @@
       fullscreen = {
         fade = true;
         shadow = false;
-        opacity = 1;
         focus = true;
       };
       notification = {
