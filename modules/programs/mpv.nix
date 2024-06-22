@@ -37,7 +37,7 @@
       osc = "no";
       osd-font = ''"Iosevka Nerd Font"'';
       osd-font-size = 24;
-      osd-color = theme.base06;
+      osd-color = theme.base01;
       osd-border-size = 2;
       osd-bar-h = 2;
       osd-bar-w = 60;
