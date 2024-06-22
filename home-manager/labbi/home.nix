@@ -28,7 +28,6 @@
         jq
         playerctl
         pamixer
-        isync
         bitwarden-cli
         pass
         libnotify

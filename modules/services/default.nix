@@ -8,6 +8,7 @@
     ./dunst.nix
     ./flameshot.nix
     ./keyring.nix
+    ./mbsync.nix
     ./mpd.nix
     ./nextcloud.nix
     ./picom.nix
