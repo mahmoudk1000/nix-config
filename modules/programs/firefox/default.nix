@@ -26,17 +26,24 @@
       PrimaryPassword = false;
       HardwareAcceleration = true;
       FirefoxHome = {
+        Locked = true;
         Search = true;
         Pocket = false;
         Snippets = false;
         TopSites = false;
         Highlights = false;
+        SponsoredPocket = false;
+        SponsoredTopSites = false;
       };
       Cookies = {
         Default = true;
-        AcceptThirdParty = "always";
-        ExpireAtSessionEnd = false;
+        Behavior = "accept";
+        BehaviorPrivateBrowsing = "reject";
         RejectTracker = true;
+      };
+      SanitizeOnShutdown = {
+        Enabled = false;
+        Locked = true;
       };
       EnableTrackingProtection = {
         Value = true;
@@ -58,55 +65,6 @@
         Locked = true;
         ProviderURL = "https://dns.nextdns.io/b28d16";
       };
-      Extensions.Uninstall = [
-        "1und1@search.mozilla.org"
-        "allegro-pl@search.mozilla.org"
-        "amazon@search.mozilla.org"
-        "amazondotcn@search.mozilla.org"
-        "amazondotcom@search.mozilla.org"
-        "azerdict@search.mozilla.org"
-        "baidu@search.mozilla.org"
-        "bing@search.mozilla.org"
-        "bok-NO@search.mozilla.org"
-        "ceneji@search.mozilla.org"
-        "coccoc@search.mozilla.org"
-        "daum-kr@search.mozilla.org"
-        "ddg@search.mozilla.org"
-        "ebay@search.mozilla.org"
-        "ecosia@search.mozilla.org"
-        "eudict@search.mozilla.org"
-        "faclair-beag@search.mozilla.org"
-        "gmx@search.mozilla.org"
-        "google@search.mozilla.org"
-        "gulesider-NO@search.mozilla.org"
-        "leo_ende_de@search.mozilla.org"
-        "longdo@search.mozilla.org"
-        "mailcom@search.mozilla.org"
-        "mapy-cz@search.mozilla.org"
-        "mercadolibre@search.mozilla.org"
-        "mercadolivre@search.mozilla.org"
-        "naver-kr@search.mozilla.org"
-        "odpiralni@search.mozilla.org"
-        "pazaruvaj@search.mozilla.org"
-        "priberam@search.mozilla.org"
-        "prisjakt-sv-SE@search.mozilla.org"
-        "qwant@search.mozilla.org"
-        "qwantjr@search.mozilla.org"
-        "rakuten@search.mozilla.org"
-        "readmoo@search.mozilla.org"
-        "salidzinilv@search.mozilla.org"
-        "seznam-cz@search.mozilla.org"
-        "twitter@search.mozilla.org"
-        "tyda-sv-SE@search.mozilla.org"
-        "vatera@search.mozilla.org"
-        "webde@search.mozilla.org"
-        "wikipedia@search.mozilla.org"
-        "wiktionary@search.mozilla.org"
-        "wolnelektury-pl@search.mozilla.org"
-        "yahoo-jp-auctions@search.mozilla.org"
-        "yahoo-jp@search.mozilla.org"
-        "yandex@search.mozilla.org"
-      ];
     };
     profiles = {
       mahmoud = {
@@ -180,8 +138,6 @@
         extraConfig = ''
           user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
           user_pref("full-screen-api.ignore-widgets", true);
-          user_pref("media.ffmpeg.vaapi.enabled", true);
-          user_pref("media.rdd-vpx.enabled", true);
         '';
         settings = import ./settings.nix;
         userChrome = import ./userChrome.nix { inherit theme; };

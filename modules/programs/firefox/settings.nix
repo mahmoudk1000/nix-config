@@ -9,6 +9,7 @@
   # https://wiki.archlinux.org/title/firefox#Hardware_video_acceleration
   "media.ffmpeg.vaapi.enabled" = true;
   "media.ffvpx.enabled" = false;
+  "media.rdd-vpx.enabled" = true;
   "reader.parse-on-load.enabled" = false;
   "media.webspeech.synth.enabled" = false;
 
