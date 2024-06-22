@@ -5,6 +5,7 @@ let
   bluewery = import ./bluewery.nix;
   coral = import ./coral.nix;
   crystal = import ./crystal.nix;
+  fujin = import ./fuji.nix;
   iceberg = import ./iceberg.nix;
   jotai = import ./jotai.nix;
   kalt = import ./kalt.nix;
