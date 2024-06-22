@@ -13,18 +13,18 @@
     vSync = true;
 
     fade = true;
-    fadeDelta = 10;
+    fadeDelta = 2;
     fadeSteps = [
-      (4.0e-2)
-      (4.0e-2)
+      (3.0e-2)
+      (3.0e-2)
     ];
     fadeExclude = [ "width=1920 && height=1080" ];
 
     shadow = true;
-    shadowOpacity = 0.25;
+    shadowOpacity = 0.6;
     shadowOffsets = [
-      (-20)
-      (-20)
+      (-40)
+      (-40)
     ];
     shadowExclude = [
       "_GTK_FRAME_EXTENTS@:c"
@@ -53,18 +53,18 @@
         resize-damage = 1;
         mark-wmwim-focused = true;
       }
-      (lib.mkIf (config.services.picom.shadow) { shadow-radius = 20; })
+      (lib.mkIf (config.services.picom.shadow) { shadow-radius = 40; })
       (lib.mkIf (config.services.picom.package == pkgs.picom-pijulius) {
         animations = true;
-        animation-stiffness = 100;
-        animation-window-mass = 0.3;
-        animation-dampening = 10;
-        animation-clamping = false;
+        animation-stiffness = 220;
+        animation-window-mass = 0.4;
+        animation-dampening = 20;
+        animation-clamping = true;
 
         animation-for-open-window = "zoom";
-        animation-for-unmap-window = "zoom";
+        animation-for-unmap-window = "none";
 
-        animation-for-menu-window = "zoom";
+        animation-for-menu-window = "none";
         animation-for-transient-window = "none";
 
         animation-for-workspace-switch-in = "none";
