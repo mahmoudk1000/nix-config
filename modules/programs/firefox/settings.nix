@@ -5,6 +5,7 @@
   # Force using WebRender. Improve performance
   "gfx.webrender.all" = true;
   "gfx.webrender.enabled" = true;
+  "beacon.enabled" = false;
 
   # https://wiki.archlinux.org/title/firefox#Hardware_video_acceleration
   "media.ffmpeg.vaapi.enabled" = true;
@@ -29,7 +30,9 @@
   "browser.tabs.tabmanager.enabled" = false;
 
   # Privacy
-  "privacy.resistFingerprinting" = true;
+  # "privacy.firstparty.isolate" = true;
+  # "privacy.resistFingerprinting" = true;
+  "privacy.trackingprotection.enabled" = true;
   "privacy.trackingprotection.fingerprinting.enabled" = true;
   "privacy.trackingprotection.cryptomining.enabled" = true;
   "browser.contentblocking.category" = "strict";
