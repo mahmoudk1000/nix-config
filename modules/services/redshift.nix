@@ -6,7 +6,7 @@
     longitude = 29.9553;
     temperature = {
       day = 6000;
-      night = 3500;
+      night = 4000;
     };
     settings = {
       redshift = {
