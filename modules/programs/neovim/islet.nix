@@ -78,9 +78,9 @@ in
     call s:Color('Comment', {'fg': s:light_black, 'gui': 'italic'})
     call s:Color('Conditional', {'fg': s:light_white, 'gui': 'italic'})
     call s:Color('Function', {'fg': s:light_white})
-    call s:Color('Identifier', {'fg': s:light_cyan, 'gui': 'bold'})
+    call s:Color('Identifier', {'fg': s:light_blue, 'gui': 'bold'})
     call s:Color('Repeat', {'fg': s:blue, 'gui': 'italic'})
-    call s:Color('String', {'fg': s:green})
+    call s:Color('String', {'fg': s:light_green})
     call s:Color('Keyword', {'fg': s:light_purple, 'gui': 'italic'})
     hi! link @keyword Keyword
     hi! link @keyword.function Function
