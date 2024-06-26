@@ -23,21 +23,18 @@
     shadow = true;
     shadowOpacity = 0.6;
     shadowOffsets = [
-      (-40)
-      (-40)
+      (-12)
+      (-12)
     ];
     shadowExclude = [
       "_GTK_FRAME_EXTENTS@:c"
       "_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
+      "class_g = 'Conky'"
       "window_type = 'dock'"
       "window_type = 'desktop'"
-      "window_type = 'menu'"
-      "class_g = 'Peek'"
+      "class_g = 'firefox' && window_type = 'popup_menu'"
       "class_g = 'firefox' && window_type = 'utility'"
-      "class_g = 'firefox' && argb"
-      "class_g *?= 'zoom'"
-      "name = 'cpt_frame_xcb_window'"
-      "name *= 'rect-overlay'"
+      "class_g *?= 'zoom' && name *?= 'meeting'"
     ];
 
     settings = lib.mkMerge [
@@ -45,13 +42,16 @@
         daemon = false;
         dbus = false;
         detect-rounded-corners = true;
-        detect-client-opacity = false;
+        detect-client-opacity = true;
         unredir-if-possible = true;
         glx-no-stencil = true;
         glx-no-rebind-pixmap = true;
         use-damage = true;
         resize-damage = 1;
         mark-wmwim-focused = true;
+        mark-ovredir-focused = true;
+        detect-transient = true;
+        detect-client-leader = true;
 
         corner-radius = 8;
         rounded-corners-exclude = [
@@ -59,7 +59,7 @@
           "window_type = 'desktop'"
         ];
       }
-      (lib.mkIf (config.services.picom.shadow) { shadow-radius = 40; })
+      (lib.mkIf (config.services.picom.shadow) { shadow-radius = 12; })
       (lib.mkIf (config.services.picom.package == pkgs.picom-pijulius) {
         animations = true;
         animation-stiffness = 220;
@@ -89,9 +89,6 @@
         shadow = false;
         focus = true;
       };
-      notification = {
-        shadow = true;
-      };
       dropdown_menu = {
         shadow = false;
       };
@@ -99,6 +96,9 @@
         shadow = false;
       };
       dnd = {
+        shadow = false;
+      };
+      menu = {
         shadow = false;
       };
     };
