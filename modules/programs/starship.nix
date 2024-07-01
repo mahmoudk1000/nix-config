@@ -5,6 +5,7 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
+      command_timeout = 1000;
       add_newline = true;
       line_break = {
         disabled = false;
