@@ -284,7 +284,7 @@ in
     highlight("@punctuation.delimiter", { link = "Keyword" })
     highlight("@string", { link = "String" })
     highlight("@string.escape", { fg = palette.yellow })
-    highlight("@string.regexp", { link = palette.cyan })
+    highlight("@string.regexp", { fg = palette.cyan })
     highlight("@string.special.url", { link = "Constant" })
     highlight("@tag", { link = "Tag" })
     highlight("@tag.delimiter", { link = "Delimiter" })
