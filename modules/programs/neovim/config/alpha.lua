@@ -14,7 +14,7 @@ dashboard.section.header = {
 		[[ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ]],
 	},
 	opts = {
-		hl = "Type",
+		hl = "Keyword",
 		position = "center",
 	},
 }

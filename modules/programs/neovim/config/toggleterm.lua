@@ -22,7 +22,7 @@ require("toggleterm").setup({
 		Normal = { link = "Normal" },
 		NormalFloat = { link = "Normal" },
 		WinSeparator = { link = "WinSeparator" },
-		FloatBorder = { link = "Border" },
+		FloatBorder = { link = "FloatBorder" },
 	},
 	float_opts = {
 		border = "single",
