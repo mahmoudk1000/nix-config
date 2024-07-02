@@ -6,407 +6,447 @@ let
   name = "islet";
 in
 {
-  home.file.".config/nvim/colors/${name}.vim".text = ''
-    " Just another colorscheme for Vim
-    hi! clear
+  home.file.".config/nvim/colors/${name}.lua".text = ''
+    vim.cmd("hi clear")
+    if vim.fn.exists("syntax_on") then
+        vim.cmd("syntax reset")
+    end
 
-    set background=dark
+    vim.g.colors_name = "${name}"
 
-    if exists('syntax_on')
-    syntax reset
-    endif
+    vim.o.background = "dark"
+    vim.o.termguicolors = true
 
-    let g:colors_name="${name}"
+    local palette = {
+      background = "${base00}",
+      foreground = "${base01}",
+      norm = "#696C6F",
+      subtle= "#C0C0C0",
+      black = "${base02}",
+      red = "${base03}",
+      green = "${base04}",
+      yellow = "${base05}",
+      blue = "${base06}",
+      purple = "${base07}",
+      cyan = "${base08}",
+      white = "${base09}",
+      light_black = "${base0A}",
+      light_red = "${base0B}",
+      light_green = "${base0C}",
+      light_yellow = "${base0D}",
+      light_blue = "${base0E}",
+      light_purple = "${base0F}",
+      light_cyan = "${base0G}",
+      light_white = "${base0H}",
+    }
 
-    let s:background      = { "gui": "${base00}" }
-    let s:foreground      = { "gui": "${base01}" }
-    let s:black           = { "gui": "${base02}" }
-    let s:light_black     = { "gui": "${base0A}" }
-    let s:red             = { "gui": "${base03}" }
-    let s:light_red       = { "gui": "${base0B}" }
-    let s:green           = { "gui": "${base04}" }
-    let s:light_green     = { "gui": "${base0C}" }
-    let s:yellow          = { "gui": "${base05}" }
-    let s:light_yellow    = { "gui": "${base0D}" }
-    let s:blue            = { "gui": "${base06}" }
-    let s:light_blue      = { "gui": "${base0E}" }
-    let s:purple          = { "gui": "${base07}" }
-    let s:light_purple    = { "gui": "${base0F}" }
-    let s:cyan            = { "gui": "${base08}" }
-    let s:light_cyan      = { "gui": "${base0G}" }
-    let s:white           = { "gui": "${base09}" }
-    let s:light_white     = { "gui": "${base0H}" }
+    local function highlight(name, opts)
+        opts.force = true
+        vim.api.nvim_set_hl(0, name, opts)
+    end
 
-    function! s:Color(group, style)
-    execute "hi!" a:group
-    \ "guifg="  (has_key(a:style, "fg")   ? a:style.fg.gui  : "NONE")
-    \ "guibg="  (has_key(a:style, "bg")   ? a:style.bg.gui  : "NONE")
-    \ "guisp="  (has_key(a:style, "sp")   ? a:style.sp.gui  : "NONE")
-    \ "gui="    (has_key(a:style, "gui")  ? a:style.gui     : "NONE")
-    endfunction
+    -- __TEXT__
+    highlight("Normal", { fg = palette.foreground })
+    highlight("Title", { fg = palette.green, bold = true })
 
-    " Syntax Highlighting
-    call s:Color('Type', {'fg': s:blue})
-    call s:Color('Structure', {'fg': s:blue})
-    call s:Color('Constant', {'fg': s:white})
-    call s:Color('Character', {'fg': s:green})
-    call s:Color('Number', {'fg': s:purple})
-    call s:Color('Boolean', {'fg': s:blue})
-    call s:Color('Float', {'fg': s:purple})
-    call s:Color('Statement', {'fg': s:blue})
-    call s:Color('Label', {'fg': s:blue})
-    call s:Color('Operator', {'fg': s:light_purple})
-    call s:Color('Exception', {'fg': s:blue})
-    call s:Color('PreProc', {'fg': s:foreground})
-    call s:Color('Include', {'fg': s:blue})
-    call s:Color('Define', {'fg': s:blue})
-    call s:Color('Macro', {'fg': s:blue})
-    call s:Color('Typedef', {'fg': s:blue})
-    call s:Color('PreCondit', {'fg': s:yellow})
-    call s:Color('Special', {'fg': s:cyan})
-    call s:Color('SpecialChar', {'fg': s:yellow})
-    call s:Color('Tag', {'fg': s:white})
-    call s:Color('Delimiter', {'fg': s:light_white})
-    call s:Color('SpecialComment', {'fg': s:cyan})
-    call s:Color('Debug', {'fg': s:red})
-    call s:Color('Underlined', {'fg': s:green, 'gui': 'underline'})
-    call s:Color('Ignore', {'fg': s:black})
-    call s:Color('Error', {'fg': s:red, 'gui': 'bold'})
-    call s:Color('Todo', {'fg': s:yellow, 'gui': 'bold,italic'})
-    call s:Color('Conceal', {'bg': s:black})
+    -- __Normal__
+    highlight("Cursor", { fg = palette.white, reverse = true })
+    highlight("SpecialKey", { fg = palette.cyan })
+    highlight("Structure", { link = "Type" })
+    highlight("Define", { link = "PreProc" })
+    highlight("Macro", { link = "PreProc" })
+    highlight("Typedef", { link = "Type" })
+    highlight("PreCondit", { link = "PreProc" })
+    highlight("SpecialChar", { link = "Special" })
+    highlight("Tag", { link = "Special" })
+    highlight("Debug", { link = "Special" })
 
-    call s:Color('Comment', {'fg': s:light_black, 'gui': 'italic'})
-    call s:Color('Conditional', {'fg': s:light_white, 'gui': 'italic'})
-    call s:Color('Function', {'fg': s:light_white})
-    call s:Color('Identifier', {'fg': s:light_blue, 'gui': 'bold'})
-    call s:Color('Repeat', {'fg': s:blue, 'gui': 'italic'})
-    call s:Color('String', {'fg': s:light_green})
-    call s:Color('Keyword', {'fg': s:light_purple, 'gui': 'italic'})
-    hi! link @keyword Keyword
-    hi! link @keyword.function Function
-    hi! link @keyword.return Special
-    hi! link @keyword.operator Operator
-    hi! link @keyword.builtin Special
-    hi! link @keyword.macro PreProc
-    hi! link @keyword.method Identifier
+    -- __CURSOR__
+    highlight("LineNr", { fg = palette.light_black })
+    highlight("SignColumn", { fg = palette.white })
+    highlight("CursorLineNr", { fg = palette.white })
+    highlight("CursorLine", { bg = palette.black })
+    highlight("CursorColumn", { bg = palette.black })
+    highlight("highlightColumn", { bg = palette.black })
+    highlight("FoldColumn", { fg = palette.light_cyan })
 
-    call s:Color('htmlLink', {'fg': s:green, 'gui': 'underline'})
-    call s:Color('htmlH1', {'fg': s:cyan, 'gui': 'bold'})
-    call s:Color('htmlH2', {'fg': s:red, 'gui': 'bold'})
-    call s:Color('htmlH3', {'fg': s:green, 'gui': 'bold'})
-    call s:Color('htmlH4', {'fg': s:purple, 'gui': 'bold'})
-    call s:Color('htmlH5', {'fg': s:blue, 'gui': 'bold'})
-    call s:Color('markdownH1', {'fg': s:cyan, 'gui': 'bold'})
-    call s:Color('markdownH2', {'fg': s:red, 'gui': 'bold'})
-    call s:Color('markdownH3', {'fg': s:green, 'gui': 'bold'})
-    call s:Color('markdownH1Delimiter', {'fg': s:cyan})
-    call s:Color('markdownH2Delimiter', {'fg': s:red})
-    call s:Color('markdownH3Delimiter', {'fg': s:green})
+    -- __SEARCH__
+    highlight("Search", { fg = palette.blue, bg = palette.light_black, reverse = true })
+    highlight("CurSearch", { fg = palette.blue, bg = palette.white, reverse = true })
+    highlight("IncSearch", { link = "CurSearch" })
+    highlight("Substitute", { link = "Search" })
 
-    " Editor Highlighting
-    call s:Color('Normal', {'fg': s:foreground})
-    call s:Color('Border', {'fg': s:black})
-    call s:Color('NormalFloat', {'fg': s:foreground, 'bg': s:black})
-    call s:Color('FloatBorder', {'fg': s:blue, 'bg': s:black})
-    call s:Color('SignColumn', {'fg': s:white})
-    call s:Color('ColorColumn', {'bg': s:black})
-    call s:Color('Conceal', {'fg': s:black})
-    call s:Color('Cursor', {'fg': s:white, 'gui': 'reverse'})
-    call s:Color('CursorIM', {'fg': s:white, 'gui': 'reverse'})
-    call s:Color('Directory', {'fg': s:light_cyan})
-    call s:Color('EndOfBuffer', {'fg': s:black})
-    call s:Color('ErrorMsg', {'fg': s:red})
-    call s:Color('WarningMsg', {'fg': s:yellow})
-    call s:Color('InfoMsg', {'fg': s:blue})
-    call s:Color('HintMsg', {'fg': s:purple})
-    call s:Color('Folded', {'fg': s:light_black, 'gui': 'italic'})
-    call s:Color('FoldColumn', {'fg': s:light_cyan})
-    call s:Color('IncSearch', {'fg': s:light_white, 'bg': s:blue})
-    call s:Color('LineNr', {'fg': s:light_black})
-    call s:Color('CursorLineNr', {'fg': s:white})
-    call s:Color('MatchParen', {'fg': s:purple, 'gui': 'bold'})
-    call s:Color('ModeMsg', {'fg': s:white})
-    call s:Color('MoreMsg', {'fg': s:white})
-    call s:Color('NonText', {'fg': s:black})
-    call s:Color('Pmenu', {'fg': s:white, 'bg': s:black})
-    call s:Color('PmenuSel', {'fg': s:black, 'bg': s:blue})
-    call s:Color('PmenuSbar', {'fg': s:white, 'bg': s:black})
-    call s:Color('PmenuThumb', {'bg': s:white})
-    call s:Color('Question', {'fg': s:green})
-    call s:Color('QuickFixLine', {'fg': s:white, 'gui': 'reverse'})
-    call s:Color('qfLineNr', {'fg': s:white, 'gui': 'reverse'})
-    call s:Color('Search', {'fg': s:blue, 'bg': s:light_white, 'gui': 'reverse'})
-    call s:Color('SpecialKey', {'fg': s:blue})
-    call s:Color('SpellBad', {'fg': s:red, 'gui': 'italic,undercurl'})
-    call s:Color('SpellCap', {'fg': s:light_cyan, 'gui': 'italic,undercurl'})
-    call s:Color('SpellLocal', {'fg': s:cyan, 'gui': 'italic,undercurl'})
-    call s:Color('SpellRare', {'fg': s:blue, 'gui': 'italic,undercurl'})
-    call s:Color('StatusLine', {'fg': s:white, 'bg': s:black})
-    call s:Color('StatusLineNC', {'fg': s:white, 'bg': s:black})
-    call s:Color('StatusLineTerm', {'fg': s:white, 'bg': s:black})
-    call s:Color('StatusLineTermNC', {'fg': s:white, 'bg': s:black})
-    call s:Color('TabLineFill', {'fg': s:white})
-    call s:Color('TablineSel', {'fg': s:black, 'bg': s:blue})
-    call s:Color('Tabline', {'fg': s:white, 'bg': s:black})
-    call s:Color('Title', {'fg': s:green, 'gui': 'bold'})
-    call s:Color('Visual', {'bg': s:black})
-    call s:Color('VisualNOS', {'bg': s:black})
-    call s:Color('WildMenu', {'fg': s:cyan, 'gui': 'bold'})
-    call s:Color('CursorColumn', {'bg': s:black})
-    call s:Color('CursorLine', {'bg': s:black})
-    call s:Color('ToolbarLine', {'fg': s:white, 'bg': s:black})
-    call s:Color('ToolbarButton', {'fg': s:white, 'gui': 'bold'})
-    call s:Color('NormalMode', {'fg': s:white, 'gui': 'reverse'})
-    call s:Color('InsertMode', {'fg': s:green, 'gui': 'reverse'})
-    call s:Color('ReplacelMode', {'fg': s:red, 'gui': 'reverse'})
-    call s:Color('VisualMode', {'fg': s:blue, 'gui': 'reverse'})
-    call s:Color('CommandMode', {'fg': s:white, 'gui': 'reverse'})
-    call s:Color('Warnings', {'fg': s:purple})
-    call s:Color('WinSeparator', {'fg': s:light_black})
+    -- __VISUAL__
+    highlight("Visual", { bg = palette.black })
+    highlight("VisualNOS", { link = "Visual" })
+    highlight("Ignore", { fg = palette.background })
 
-    call s:Color('healthError', {'fg': s:red})
-    call s:Color('healthSuccess', {'fg': s:green})
-    call s:Color('healthWarning', {'fg': s:purple})
+    -- __MESSAGE__
+    highlight("Error", { fg = palette.red, bold = true })
+    highlight("ErrorMsg", { link = "Error" })
+    highlight("ModeMsg", { fg = palette.white })
+    highlight("MoreMsg", { fg = palette.white })
+    highlight("MsgArea", { fg = palette.white })
+    highlight("WarningMsg", { fg = palette.yellow })
+    highlight("NvimInternalError", { fg = palette.yellow })
+    highlight("healthError", { fg = palette.red })
+    highlight("healthSuccess", { fg = palette.green })
+    highlight("healthWarning", { fg = palette.purple })
 
-    call s:Color('DiffAdd', {'fg': s:green, 'gui': 'reverse'})
-    call s:Color('DiffChange', {'fg': s:yellow, 'gui': 'reverse'})
-    call s:Color('DiffDelete', {'fg': s:red, 'gui': 'reverse'})
-    call s:Color('DiffText', {'fg': s:purple, 'gui': 'reverse'})
+    -- __StatusLine__
+    highlight("StatusLine", { fg = palette.white, bg = palette.black })
+    highlight("StatusLineNC", { fg = palette.light_white, bg = palette.light_black })
+    highlight("StatusLineTerm", { link = "StatusLine" })
+    highlight("StatusLineTermNC", { link = "StatusLineNC" })
 
-    " Terminal Highlighting
-    let g:terminal_color_0 = s:black
-    let g:terminal_color_1 = s:red
-    let g:terminal_color_2 = s:green
-    let g:terminal_color_3 = s:yellow
-    let g:terminal_color_4 = s:blue
-    let g:terminal_color_5 = s:purple
-    let g:terminal_color_6 = s:cyan
-    let g:terminal_color_7 = s:white
-    let g:terminal_color_8 = s:light_black
-    let g:terminal_color_9 = s:light_red
-    let g:terminal_color_10 = s:light_green
-    let g:terminal_color_11 = s:light_yellow
-    let g:terminal_color_12 = s:light_blue
-    let g:terminal_color_13 = s:light_purple
-    let g:terminal_color_14 = s:light_cyan
-    let g:terminal_color_15 = s:light_white
+    -- __TABLINE__
+    highlight("Tabline", { fg = palette.white, bg = palette.black })
+    highlight("TablineSel", { fg = palette.black, bg = palette.blue })
+    highlight("TabLineFill", { reverse = true })
 
-    " Plugin Highlighting
-    "" Treesitter
-    hi! link TSConstructor Constant
-    hi! link TSConstant Constant
-    hi! link TSFloat Float
-    hi! link TSNumber Number
-    hi! link TSAttribute Special
-    hi! link TSVariable Identifier
-    hi! link TSVariableBuiltin Identifier
-    hi! link TSBoolean Boolean
-    hi! link TSConstBuiltin Constant
-    hi! link TSConstMacro Constant
-    hi! link TSError Error
-    hi! link TSException Exception
-    hi! link TSFuncMacro Function
-    hi! link TSInclude Include
-    hi! link TSLabel Label
-    hi! link TSOperator Operator
-    hi! link TSParameter Identifier
-    hi! link TSParameterReference Identifier
-    hi! link TSPunctDelimiter Delimiter
-    hi! link TSPunctBracket Delimiter
-    hi! link TSPunctSpecial Delimiter
-    hi! link TSSymbol Special
-    hi! link TSType Type
-    hi! link TSTypeBuiltin Type
-    hi! link TSTag Special
-    hi! link TSTagDelimiter Special
-    hi! link TSText String
-    hi! link TSTextReference Special
-    hi! link TSEmphasis Special
-    hi! link TSUnderline Underlined
-    hi! link TSTitle Title
-    hi! link TSLiteral String
-    hi! link TSURI Underlined
-    hi! link TSAnnotation PreProc
-    hi! link TSComment Comment
-    hi! link TSConditional Keyword
-    hi! link TSFunction Function
-    hi! link TSMethod Function
-    hi! link TSFuncBuiltin Function
-    hi! link TSNamespace Identifier
-    hi! link TSField Identifier
-    hi! link TSProperty Identifier
-    hi! link TSKeyword Keyword
-    hi! link TSKeywordFunction @keyword.function
-    hi! link TSKeywordReturn @keyword.return
-    hi! link TSKeywordOperator @keyword.operator
-    hi! link TSRepeat Keyword
-    hi! link TSString String
-    hi! link TSStringRegex String
-    hi! link TSStringEscape SpecialChar
-    hi! link TSCharacter Character
+    -- __FLOAT__
+    highlight("NormalFloat", { fg = palette.foreground, bg = palette.black })
+    highlight("FloatBorder", { fg = palette.light_black, bg = palette.black })
+    highlight("FloatTitle", { fg = palette.foreground })
 
-    "' Diagnostic
-    hi! link DiagnosticError ErrorMsg
-    hi! link DiagnosticSignError ErrorMsg
-    hi! link DiagnosticFloatingError ErrorMsg
-    hi! link DiagnosticVirtualTextError ErrorMsg
-    hi! link DiagnosticUnderlineError ErrorMsg
+    -- __MENU__
+    highlight("Pmenu", { fg = palette.white, bg = palette.black })
+    highlight("PmenuSel", { fg = palette.black, bg = palette.blue })
+    highlight("PmenuSbar", { fg = palette.white, bg = palette.black })
+    highlight("PmenuThumb", { bg = palette.white })
 
-    hi! link DiagnosticWarn WarningMsg
-    hi! link DiagnosticSignWarn WarningMsg
-    hi! link DiagnosticFloatingWarn WarningMsg
-    hi! link DiagnosticVirtualTextWarn WarningMsg
-    hi! link DiagnosticUnderlineWarn WarningMsg
+    -- __OTHER UI__
+    highlight("WinSeparator", { fg = palette.light_black })
+    highlight("EndOfBuffer", { fg = palette.black })
+    highlight("QuickFixLine", { fg = palette.green })
 
-    hi! link DiagnosticInfo InfoMsg
-    hi! link DiagnosticSignInfo InfoMsg
-    hi! link DiagnosticFloatingInfo InfoMsg
-    hi! link DiagnosticVirtualTextInfo InfoMsg
-    hi! link DiagnosticUnderlineInfo InfoMsg
+    -- __SYNTAX__
+    highlight("Function", { fg = palette.light_yellow })
+    highlight("Identifier", { fg = palette.subtle, bold = true })
+    highlight("Type", { fg = palette.green })
+    highlight("Variable", { fg = palette.light_white })
+    highlight("Statement", { fg = palette.subtle })
+    highlight("Include", { fg = palette.light_purple })
+    highlight("Special", { fg = palette.light_green })
+    highlight("Keyword", { fg = palette.light_blue, italic = true })
+    highlight("Conditional", { fg = palette.norm })
+    highlight("Repeat", { link = "Keyword" })
+    highlight("Label", { link = "Keyword" })
+    highlight("Exception", { link = "Keyword" })
+    highlight("PreProc", { link = "Keyword" })
 
-    hi! link DiagnosticHint HintMsg
-    hi! link DiagnosticSignHint HintMsg
-    hi! link DiagnosticFloatingHint HintMsg
-    hi! link DiagnosticVirtualTextHint HintMsg
-    hi! link DiagnosticUnderlineHint HintMsg
+    -- __CONSTANTS__
+    highlight("String", { fg = palette.light_green })
+    highlight("Constant", { fg = palette.light_white })
+    highlight("Directory", { fg = palette.cyan })
+    highlight("Character", { link = "String" })
+    highlight("Number", { fg = palette.purple })
+    highlight("Boolean", { fg = palette.light_cyan })
+    highlight("Float", { fg = palette.purple })
 
-    "" LSP
-    call s:Color('LspTroubleNormal', {'fg': s:light_purple})
-    call s:Color('LspTroubleText', {'fg': s:light_red})
-    call s:Color('LspTroubleCount', {'fg': s:red})
+    -- __PUNCTUATION__
+    highlight("Quote", { fg = palette.light_green })
+    highlight("Operator", { fg = palette.light_purple })
+    highlight("Delimiter", { fg = palette.light_white })
+    highlight("MatchParen", { fg = palette.purple, bold = true })
 
-    call s:Color('LspReferenceText', {'fg': s:white, 'gui': 'bold'})
-    call s:Color('LspReferenceRead', {'fg': s:white, 'gui': 'bold'})
-    call s:Color('LspReferenceWrite', {'fg': s:white, 'gui': 'bold'})
+    -- __NonText__
+    highlight("NonText", { fg = palette.black })
+    highlight("Folded", { link = "NonText" })
+    highlight("qfLineNr", { link = "NonText" })
 
-    hi! link LspDiagnosticsDefaultError Error
-    hi! link LspDiagnosticsSignError DiagnosticSignError
-    hi! link LspDiagnosticsFloatingError DiagnosticFloatingError
-    hi! link LspDiagnosticsVirtualTextError DiagnosticVirtualTextError
-    hi! link LspDiagnosticsUnderlineError DiagnosticUnderlineError
+    -- __COMMENT__
+    highlight("Todo", { fg = palette.yellow, bold = true, italic = true })
+    highlight("Question", { fg = palette.green })
+    highlight("Comment", { fg = palette.light_black, italic = true })
+    highlight("SpecialComment", { fg = palette.cyan })
+    highlight("Conceal", { fg = palette.black })
 
-    hi! link LspDiagnosticsDefaultWarning DiagnosticWarn
-    hi! link LspDiagnosticsSignWarning DiagnosticSignWarn
-    hi! link LspDiagnosticsFloatingWarning DiagnosticFloatingWarn
-    hi! link LspDiagnosticsVirtualTextWarning DiagnosticVirtualTextWarn
-    hi! link LspDiagnosticsUnderlineWarning DiagnosticUnderlineWarn
+    -- __SPELL__
+    highlight("SpellBad", { fg = palette.red, underline = true })
+    highlight("SpellCap", { fg = palette.light_green, underline = true })
+    highlight("SpellRare", { fg = palette.light_red, underline = true })
+    highlight("SpellLocal", { fg = palette.light_green, underline = true })
 
-    hi! link LspDiagnosticsDefaultInformation DiagnosticInfo
-    hi! link LspDiagnosticsSignInformation DiagnosticSignInfo
-    hi! link LspDiagnosticsFloatingInformation DiagnosticFloatingInfo
-    hi! link LspDiagnosticsVirtualTextInformation DiagnosticVirtualTextInfo
-    hi! link LspDiagnosticsUnderlineInformation DiagnosticUnderlineInfo
+    -- __WILD MENU__
+    highlight("WildMenu", { fg = palette.light_black, bold = true, underline = true })
 
-    hi! link LspDiagnosticsDefaultHint DiagnosticHint
-    hi! link LspDiagnosticsSignHint DiagnosticSignHint
-    hi! link LspDiagnosticsFloatingHint DiagnosticFloatingHint
-    hi! link LspDiagnosticsVirtualTextHint DiagnosticVirtualTextHint
-    hi! link LspDiagnosticsUnderlineHint DiagnosticUnderlineHint
+    -- __HTML__
+    highlight("htmlH1", { link = "Normal" })
+    highlight("htmlH2", { link = "Normal" })
+    highlight("htmlH3", { link = "Normal" })
+    highlight("htmlH4", { link = "Normal" })
+    highlight("htmlH5", { link = "Normal" })
+    highlight("htmlH6", { link = "Normal" })
 
-    "" Diff
-    call s:Color('diffAdded', {'fg': s:green})
-    call s:Color('diffRemoved', {'fg': s:red})
-    call s:Color('diffChanged', {'fg': s:purple})
-    call s:Color('diffOldFile', {'fg': s:yellow})
-    call s:Color('diffNewFile', {'fg': s:cyan})
-    call s:Color('diffFile', {'fg': s:light_cyan})
-    call s:Color('diffLine', {'fg': s:light_black})
-    call s:Color('diffIndexLine', {'fg': s:blue})
+    -- __MARKDOWN__
+    highlight("markdownH1", { link = "Statement" })
+    highlight("markdownH2", { link = "Statement" })
+    highlight("markdownH3", { link = "Statement" })
+    highlight("markdownH4", { link = "Statement" })
+    highlight("markdownH5", { link = "Statement" })
+    highlight("markdownH6", { link = "Statement" })
+    highlight("markdownListMarker", { link = "Constant" })
+    highlight("markdownCode", { link = "Constant" })
+    highlight("markdownCodeBlock", { link = "Constant" })
+    highlight("markdownCodeDelimiter", { link = "Constant" })
+    highlight("markdownHeadingDelimiter", { link = "Constant" })
 
-    "" Gitgutter
-    call s:Color('GitGutterAdd', {'fg': s:light_green})
-    call s:Color('GitGutterChange', {'fg': s:light_purple})
-    call s:Color('GitGutterDelete', {'fg': s:light_red})
+    highlight("InfoMsg", { fg = palette.blue })
+    highlight("HintMsg", { fg = palette.purple })
+    highlight("Warnings", { fg = palette.purple })
 
-    "" Gitsigns
-    call s:Color('GitSignsAdd', {'fg': s:light_green})
-    call s:Color('GitSignsAddNr', {'fg': s:light_green})
-    call s:Color('GitSignsAddLn', {'fg': s:light_green})
-    call s:Color('GitSignsChange', {'fg': s:light_purple})
-    call s:Color('GitSignsChangeNr', {'fg': s:light_purple})
-    call s:Color('GitSignsChangeLn', {'fg': s:light_purple})
-    call s:Color('GitSignsDelete', {'fg': s:light_red})
-    call s:Color('GitSignsDeleteNr', {'fg': s:light_red})
-    call s:Color('GitSignsDeleteLn', {'fg': s:light_red})
-    call s:Color('GitSignsCurrentLineBlame', {'fg': s:light_black, 'gui': 'bold'})
+    -- Diff
+    highlight("DiffAdd", { fg = palette.green, reverse = true })
+    highlight("DiffChange", { fg = palette.yellow, reverse = true })
+    highlight("DiffDelete", { fg = palette.red, reverse = true })
+    highlight("DiffText", { fg = palette.purple, reverse = true })
+    highlight("diffAdded", { fg = palette.green })
+    highlight("diffRemoved", { fg = palette.red })
+    highlight("diffChanged", { fg = palette.yellow })
 
-    "" Telescope
-    call s:Color('TelescopePromptBorder', {'fg': s:blue})
-    call s:Color('TelescopeResultsBorder', {'fg': s:blue})
-    call s:Color('TelescopePreviewBorder', {'fg': s:light_green})
-    call s:Color('TelescopeSelectionCaret', {'fg': s:blue})
-    call s:Color('TelescopeSelection', {'fg': s:blue})
-    call s:Color('TelescopeMatching', {'fg': s:blue})
+    -- GitSigns
+    highlight("GitSignsAdd", { fg = palette.green })
+    highlight("GitSignsChange", { fg = palette.yellow })
+    highlight("GitSignsDelete", { fg = palette.red })
 
-    "" Which-key
-    call s:Color('WhichKey', {'fg': s:white, 'gui': 'bold'})
-    call s:Color('WhichKeyGroup', {'fg': s:white})
-    call s:Color('WhichKeyDesc', {'fg': s:light_cyan, 'gui': 'italic'})
-    call s:Color('WhichKeySeperator', {'fg': s:white})
-    call s:Color('WhichKeyFloating', {'bg': s:black})
-    call s:Color('WhichKeyFloat', {'bg': s:black})
+    -- Terminal
+    vim.g.terminal_color_0 = palette.black
+    vim.g.terminal_color_1 = palette.red
+    vim.g.terminal_color_2 = palette.green
+    vim.g.terminal_color_3 = palette.yellow
+    vim.g.terminal_color_4 = palette.blue
+    vim.g.terminal_color_5 = palette.purple
+    vim.g.terminal_color_6 = palette.cyan
+    vim.g.terminal_color_7 = palette.white
+    vim.g.terminal_color_8 = palette.light_black
+    vim.g.terminal_color_9 = palette.light_red
+    vim.g.terminal_color_10 = palette.light_green
+    vim.g.terminal_color_11 = palette.light_yellow
+    vim.g.terminal_color_12 = palette.light_blue
+    vim.g.terminal_color_13 = palette.light_purple
+    vim.g.terminal_color_14 = palette.light_cyan
+    vim.g.terminal_color_15 = palette.light_white
 
-    "" Cmp
-    hi! link CmpPmenu Normal
-    hi! link CmpPmenuBorder Border
-    call s:Color('CmpItemKind', {'fg': s:blue})
-    call s:Color('CmpItemAbbrMatch', {'fg': s:white, 'gui': 'bold'})
-    call s:Color('CmpItemAbbrMatchFuzzy', {'fg': s:light_white, 'gui': 'bold'})
-    call s:Color('CmpItemAbbr', {'fg': s:white})
-    call s:Color('CmpItemMenu', {'fg': s:light_purple})
+    -- __ TREE SITTER __
+    highlight("@keyword", { link = "Keyword" })
+    highlight("@keyword.function", { link = "Function" })
+    highlight("@keyword.return", { link = "Special" })
+    highlight("@keyword.operator", { link = "Operator" })
+    highlight("@keyword.builtin", { link = "Special" })
+    highlight("@keyword.macro", { link = "PreProc" })
+    highlight("@keyword.method", { link = "Identifier" })
+    highlight("@attribute", { link = "Special" })
+    highlight("@type", { link = "Type" })
+    highlight("@type.definition", { link = "Type" })
+    highlight("@property", { link = "Identifier" })
+    highlight("@label", { link = "Label" })
+    highlight("@annotation", { link = "Cursor" })
+    highlight("@attribute", { link = "Constant" })
+    highlight("@boolean", { link = "Constant" })
+    highlight("@character", { link = "Constant" })
+    highlight("@comment", { link = "Comment" })
+    highlight("@constant", { link = "Constant" })
+    highlight("@constant.builtin", { link = "Constant" })
+    highlight("@constant.macro", { link = "PreProc" })
+    highlight("@constructor", { link = "Normal" })
+    highlight("@diff.delta", { link = "DiffChange" })
+    highlight("@diff.minus", { link = "DiffDelete" })
+    highlight("@diff.plus", { link = "DiffAdd" })
+    highlight("@error", { link = "Error" })
+    highlight("@exception", { link = "Error" })
+    highlight("@function", { link = "Function" })
+    highlight("@function.builtin", { link = "Keyword" })
+    highlight("@function.macro", { link = "PreProc" })
+    highlight("@function.method", { link = "Normal" })
+    highlight("@keyword.conditional", { link = "Normal" })
+    highlight("@keyword.import", { link = "Keyword" })
+    highlight("@keyword.repeat", { link = "Normal" })
+    highlight("@label", { link = "Keyword" })
+    highlight("@markup", { link = "Normal" })
+    highlight("@markup.emphasis", { link = "italic" })
+    highlight("@markup.heading", { link = "light_green" })
+    highlight("@markup.link.url", { link = "Constant" })
+    highlight("@markup.link.label", { link = "Constant" })
+    highlight("@markup.list", { link = "Keyword" })
+    highlight("@markup.quote", { link = "Comment" })
+    highlight("@markup.raw", { link = "Keyword" })
+    highlight("@markup.strike", { link = "strikethrough" })
+    highlight("@markup.strong", { link = "bold" })
+    highlight("@markup.underline", { link = "Underlined" })
+    highlight("@module", { link = "Keyword" })
+    highlight("@none", { link = "Keyword" })
+    highlight("@number", { link = "Constant" })
+    highlight("@number.float", { link = "Constant" })
+    highlight("@operator", { link = "Normal" })
+    highlight("@property", { link = "@field" })
+    highlight("@punctuation.bracket", { link = "Keyword" })
+    highlight("@punctuation.delimiter", { link = "Keyword" })
+    highlight("@string", { link = "String" })
+    highlight("@string.escape", { fg = palette.blue })
+    highlight("@string.regexp", { link = palette.yellow })
+    highlight("@string.special.url", { link = "Constant" })
+    highlight("@tag", { link = "Tag" })
+    highlight("@tag.delimiter", { link = "Delimiter" })
+    highlight("@type", { link = "Type" })
+    highlight("@type.builtin", { link = "@type" })
+    highlight("@variable", { link = "Normal" })
+    highlight("@variable.builtin", { link = "Normal" })
+    highlight("@variable.member", { link = "Normal" })
+    highlight("@variable.parameter", { link = "Statement" })
+    highlight("@variable.parameter.reference", { link = "Statement" })
 
-    "" Copilot
-    call s:Color('CopilotLabel', {'fg': s:light_black})
-    call s:Color('CmpItemKindCopilot', {'fg': s:blue})
+    -- __DIAGNOSTICS__
+    highlight("DiagnosticError", { link = "ErrorMsg" })
+    highlight("DiagnosticSignError", { link = "ErrorMsg" })
+    highlight("DiagnosticFloatingError", { link = "ErrorMsg" })
+    highlight("DiagnosticVirtualTextError", { link = "ErrorMsg" })
+    highlight("DiagnosticUnderlineError", { link = "ErrorMsg" })
 
-    "" Indent Blankline
-    call s:Color('IndentBlanklineChar', {'fg': s:light_black})
-    call s:Color('IndentBlanklineContextChar', {'fg': s:light_black})
+    highlight("DiagnosticWarn", { link = "WarningMsg" })
+    highlight("DiagnosticSignWarn", { link = "WarningMsg" })
+    highlight("DiagnosticFloatingWarn", { link = "WarningMsg" })
+    highlight("DiagnosticVirtualTextWarn", { link = "WarningMsg" })
+    highlight("DiagnosticUnderlineWarn", { link = "WarningMsg" })
 
-    "" Neotree
-    call s:Color('NeoTreeNormal', {'fg': s:white})
-    call s:Color('NeoTreeFileName', {'fg': s:foreground})
-    call s:Color('NeoTreeDotfile', {'fg': s:light_black})
-    call s:Color('NeoTreeCursorLine', {'fg': s:foreground})
-    call s:Color('NeoTreeDirectoryName', {'fg': s:light_cyan})
-    call s:Color('NeoTreeDirectoryIcon', {'fg': s:light_cyan})
-    call s:Color('NeoTreeGitModified', {'fg': s:light_blue})
-    call s:Color('NeoTreeGitUntracked', {'fg': s:light_yellow})
-    call s:Color('NeoTreeGitDeleted', {'fg': s:light_red})
-    call s:Color('NeoTreeGitRenamed', {'fg': s:light_purple})
-    call s:Color('NeoTreeIndentMarker', {'fg': s:light_black})
-    call s:Color('NeoTreeExpander', {'fg': s:light_black})
-    call s:Color('NeoTreeFileIcon', {'fg': s:blue})
+    highlight("DiagnosticInfo", { link = "InfoMsg" })
+    highlight("DiagnosticSignInfo", { link = "InfoMsg" })
+    highlight("DiagnosticFloatingInfo", { link = "InfoMsg" })
+    highlight("DiagnosticVirtualTextInfo", { link = "InfoMsg" })
+    highlight("DiagnosticUnderlineInfo", { link = "InfoMsg" })
 
-    "" Bufferline
-    call s:Color('BufferLineFill', {'bg': s:black})
-    call s:Color('BufferLineSeparator', {'fg': s:light_black})
-    call s:Color('BufferLineIndicatorSelected', {'fg': s:blue})
-    call s:Color('BufferLineCloseButton', {'fg': s:white, 'bg': s:black})
-    call s:Color('BufferLineCloseButtonVisible', {'fg': s:white, 'bg': s:light_black})
-    call s:Color('BufferLineCloseButtonSelected', {'fg': s:red})
-    call s:Color('BufferLineBackground', {'fg': s:white, 'bg': s:black})
-    call s:Color('BufferLineBufferVisible', {'fg': s:white, 'bg': s:light_black})
-    call s:Color('BufferLineDuplicate', {'fg': s:white, 'bg': s:black})
-    call s:Color('BufferLineDuplicateVisible', {'fg': s:white, 'bg': s:light_black})
-    call s:Color('BufferLineDuplicateSelected', {'fg': s:white, 'bg': s:background})
-    call s:Color('BufferLineTabSeparator', {'fg': s:black, 'bg': s:background})
-    call s:Color('BufferLineTabSeparatorSelected', {'fg': s:blue, 'bg': s:background})
+    highlight("DiagnosticHint", { link = "HintMsg" })
+    highlight("DiagnosticSignHint", { link = "HintMsg" })
+    highlight("DiagnosticFloatingHint", { link = "HintMsg" })
+    highlight("DiagnosticVirtualTextHint", { link = "HintMsg" })
+    highlight("DiagnosticUnderlineHint", { link = "HintMsg" })
 
-    "" Lualine
-    call s:Color('LuaLineNormalA', {'fg': s:background, 'bg': s:blue, 'gui': 'bold'})
-    call s:Color('LuaLineNormalB', {'fg': s:foreground, 'bg': s:black})
-    call s:Color('LuaLineNormalC', {'fg': s:foreground, 'bg': s:background})
-    call s:Color('LuaLineInsertA', {'fg': s:background, 'bg': s:green, 'gui': 'bold'})
-    call s:Color('LuaLineVisualA', {'fg': s:background, 'bg': s:purple, 'gui': 'bold'})
-    call s:Color('LuaLineReplaceA', {'fg': s:background, 'bg': s:yellow, 'gui': 'bold'})
+    -- __LSP__
+    -- Assuming the `palette.highlight` function is defined elsewhere, and 'palette.light_purple', 'palette.light_red', etc., are defined variables
+    highlight("LspTroubleNormal", { fg = palette.light_purple })
+    highlight("LspTroubleText", { fg = palette.light_red })
+    highlight("LspTroubleCount", { fg = palette.red })
 
-    "" Telescope
-    hi! link TelescopeNormal NormalFloat
-    call s:Color('TelescopeMatching', {'fg': s:purple})
-    hi! link TelescopeBorder FloatBorder
-    hi! link TelescopePromptBorder FloatBorder
-    hi! link TelescopePreviewBorder FloatBorder
-    hi! link TelescopeResultsBorder FloatBorder
+    highlight("LspReferenceText", { fg = palette.white, bold = true })
+    highlight("LspReferenceRead", { fg = palette.white, bold = true })
+    highlight("LspReferenceWrite", { fg = palette.white, bold = true })
+
+    highlight("LspDiagnosticsDefaultError", { link = "Error" })
+    highlight("LspDiagnosticsSignError", { link = "DiagnosticSignError" })
+    highlight("LspDiagnosticsFloatingError", { link = "DiagnosticFloatingError" })
+    highlight("LspDiagnosticsVirtualTextError", { link = "DiagnosticVirtualTextError" })
+    highlight("LspDiagnosticsUnderlineError", { link = "DiagnosticUnderlineError" })
+
+    highlight("LspDiagnosticsDefaultWarning", { link = "DiagnosticWarn" })
+    highlight("LspDiagnosticsSignWarning", { link = "DiagnosticSignWarn" })
+    highlight("LspDiagnosticsFloatingWarning", { link = "DiagnosticFloatingWarn" })
+    highlight("LspDiagnosticsVirtualTextWarning", { link = "DiagnosticVirtualTextWarn" })
+    highlight("LspDiagnosticsUnderlineWarning", { link = "DiagnosticUnderlineWarn" })
+
+    highlight("LspDiagnosticsDefaultInformation", { link = "DiagnosticInfo" })
+    highlight("LspDiagnosticsSignInformation", { link = "DiagnosticSignInfo" })
+    highlight("LspDiagnosticsFloatingInformation", { link = "DiagnosticFloatingInfo" })
+    highlight("LspDiagnosticsVirtualTextInformation", { link = "DiagnosticVirtualTextInfo" })
+    highlight("LspDiagnosticsUnderlineInformation", { link = "DiagnosticUnderlineInfo" })
+
+    highlight("LspDiagnosticsDefaultHint", { link = "DiagnosticHint" })
+    highlight("LspDiagnosticsSignHint", { link = "DiagnosticSignHint" })
+    highlight("LspDiagnosticsFloatingHint", { link = "DiagnosticFloatingHint" })
+    highlight("LspDiagnosticsVirtualTextHint", { link = "DiagnosticVirtualTextHint" })
+    highlight("LspDiagnosticsUnderlineHint", { link = "DiagnosticUnderlineHint" })
+
+    -- __GIT GUTTER__
+    highlight("GitGutterAdd", { fg = palette.light_green })
+    highlight("GitGutterChange", { fg = palette.light_purple })
+    highlight("GitGutterDelete", { fg = palette.light_red })
+
+    -- __GITSIGNS__
+    highlight("GitSignsAdd", { fg = palette.light_green })
+    highlight("GitSignsAddNr", { fg = palette.light_green })
+    highlight("GitSignsAddLn", { fg = palette.light_green })
+    highlight("GitSignsChange", { fg = palette.light_purple })
+    highlight("GitSignsChangeNr", { fg = palette.light_purple })
+    highlight("GitSignsChangeLn", { fg = palette.light_purple })
+    highlight("GitSignsDelete", { fg = palette.light_red })
+    highlight("GitSignsDeleteNr", { fg = palette.light_red })
+    highlight("GitSignsDeleteLn", { fg = palette.light_red })
+    highlight("GitSignsCurrentLineBlame", { fg = palette.light_black, bold = true })
+
+    -- __TELESCOPE__
+    highlight("TelescopePromptBorder", { fg = palette.blue })
+    highlight("TelescopeResultsBorder", { fg = palette.blue })
+    highlight("TelescopePreviewBorder", { fg = palette.light_green })
+    highlight("TelescopeSelectionCaret", { fg = palette.blue })
+    highlight("TelescopeSelection", { fg = palette.blue })
+    highlight("TelescopeMatching", { fg = palette.blue })
+    highlight("TelescopeMatching", { fg = palette.purple })
+    highlight("TelescopeNormal", { link = "NormalFloat" })
+    highlight("TelescopeBorder", { link = "FloatBorder" })
+    highlight("TelescopePromptBorder", { link = "FloatBorder" })
+    highlight("TelescopePreviewBorder", { link = "FloatBorder" })
+    highlight("TelescopeResultsBorder", { link = "FloatBorder" })
+
+    -- __WHICHKEY__
+    highlight("WhichKey", { fg = palette.white, bold = true })
+    highlight("WhichKeyGroup", { fg = palette.white })
+    highlight("WhichKeyDesc", { fg = palette.light_cyan, italic = true })
+    highlight("WhichKeySeperator", { fg = palette.white })
+    highlight("WhichKeyFloating", { bg = palette.black })
+    highlight("WhichKeyFloat", { bg = palette.black })
+
+    -- __CMP__
+    highlight("CmpPmenu", { link = "NormalFloat" })
+    highlight("CmpPmenuBorder", { link = "FloatBorder" })
+    highlight("CmpItemKind", { fg = palette.blue })
+    highlight("CmpItemAbbrMatch", { fg = palette.white, bold = true })
+    highlight("CmpItemAbbrMatchFuzzy", { fg = palette.light_white, bold = true })
+    highlight("CmpItemAbbr", { fg = palette.white })
+    highlight("CmpItemMenu", { fg = palette.light_purple })
+
+    -- __COPILOT__
+    highlight("CopilotLabel", { fg = palette.light_black })
+    highlight("CmpItemKindCopilot", { fg = palette.blue })
+
+    -- __INDENT BLANKLINE__
+    highlight("IndentBlanklineChar", { fg = palette.light_black })
+    highlight("IndentBlanklineContextChar", { fg = palette.light_black })
+
+    -- __NEOTREE__
+    highlight("NeoTreeNormal", { fg = palette.white })
+    highlight("NeoTreeFileName", { fg = palette.foreground })
+    highlight("NeoTreeDotfile", { fg = palette.light_black })
+    highlight("NeoTreeCursorLine", { fg = palette.foreground })
+    highlight("NeoTreeDirectoryName", { fg = palette.light_cyan })
+    highlight("NeoTreeDirectoryIcon", { fg = palette.light_cyan })
+    highlight("NeoTreeGitModified", { fg = palette.light_blue })
+    highlight("NeoTreeGitUntracked", { fg = palette.light_yellow })
+    highlight("NeoTreeGitDeleted", { fg = palette.light_red })
+    highlight("NeoTreeGitRenamed", { fg = palette.light_purple })
+    highlight("NeoTreeIndentMarker", { fg = palette.light_black })
+    highlight("NeoTreeExpander", { fg = palette.light_black })
+    highlight("NeoTreeFileIcon", { fg = palette.blue })
+
+    -- __BUFFERLINE__
+    highlight("BufferLineFill", { bg = palette.black })
+    highlight("BufferLineSeparator", { fg = palette.light_black })
+    highlight("BufferLineIndicatorSelected", { fg = palette.blue })
+    highlight("BufferLineCloseButton", { fg = palette.white, bg = palette.black })
+    highlight("BufferLineCloseButtonVisible", { fg = palette.white, bg = palette.light_black })
+    highlight("BufferLineCloseButtonSelected", { fg = palette.red })
+    highlight("BufferLineBackground", { fg = palette.white, bg = palette.black })
+    highlight("BufferLineBufferVisible", { fg = palette.white, bg = palette.light_black })
+    highlight("BufferLineDuplicate", { fg = palette.white, bg = palette.black })
+    highlight("BufferLineDuplicateVisible", { fg = palette.white, bg = palette.light_black })
+    highlight("BufferLineDuplicateSelected", { fg = palette.white, bg = palette.background })
+    highlight("BufferLineTabSeparator", { fg = palette.black, bg = palette.background })
+    highlight("BufferLineTabSeparatorSelected", { fg = palette.blue, bg = palette.background })
+
+    -- __LUALINE__
+    highlight("LuaLineNormalA", { fg = palette.background, bg = palette.blue, bold = true })
+    highlight("LuaLineNormalB", { fg = palette.foreground, bg = palette.black })
+    highlight("LuaLineNormalC", { fg = palette.foreground })
+    highlight("LuaLineInsertA", { fg = palette.background, bg = palette.green, bold = true })
+    highlight("LuaLineVisualA", { fg = palette.background, bg = palette.purple, bold = true })
+    highlight("LuaLineReplaceA", { fg = palette.background, bg = palette.yellow, bold = true })
   '';
 }
