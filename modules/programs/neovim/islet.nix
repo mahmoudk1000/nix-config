@@ -41,8 +41,8 @@ in
     local palette = {
       background = "${base00}",
       foreground = "${base01}",
-      norm = darkenHex("${base01}", 8),
-      subtle = darkenHex("${base01}", 20),
+      norm = adjustHex("${base01}", 8),
+      subtle = adjustHex("${base01}", 20),
       black = "${base02}",
       red = "${base03}",
       green = "${base04}",
