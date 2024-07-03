@@ -208,7 +208,7 @@ in
     highlight("markdownH5", { link = "Statement" })
     highlight("markdownH6", { link = "Statement" })
     highlight("markdownListMarker", { link = "Constant" })
-    highlight("markdownCode", { link = "Constant" })
+    highlight("markdownCode", { bg = palette.black })
     highlight("markdownCodeBlock", { link = "Constant" })
     highlight("markdownCodeDelimiter", { link = "Constant" })
     highlight("markdownHeadingDelimiter", { link = "Constant" })
@@ -476,5 +476,15 @@ in
     highlight("LuaLineInsertA", { fg = palette.background, bg = palette.green, bold = true })
     highlight("LuaLineVisualA", { fg = palette.background, bg = palette.purple, bold = true })
     highlight("LuaLineReplaceA", { fg = palette.background, bg = palette.yellow, bold = true })
+
+    -- __MARKVIEW__
+    highlight("markview_h1", { link = "markdownH1" })
+    highlight("markview_h2", { link = "markdownH2" })
+    highlight("markview_h3", { link = "markdownH3" })
+    highlight("markview_h4", { link = "markdownH4" })
+    highlight("markview_h5", { link = "markdownH5" })
+    highlight("markview_h6", { link = "markdownH6" })
+    highlight("code_block", { link = "markdownCode" })
+    highlight("inline_code_block", { fg = palette.blue, bg = palette.light_black })
   '';
 }
