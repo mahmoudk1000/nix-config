@@ -7,7 +7,7 @@ require("toggleterm").setup({
 		end
 	end,
 	hide_numbers = true,
-	open_mapping = "<C-/>",
+	open_mapping = "<C-.>",
 	shade_filetypes = {},
 	shade_terminals = true,
 	shading_factor = "1",
@@ -20,7 +20,7 @@ require("toggleterm").setup({
 	direction = "horizontal",
 	highlights = {
 		Normal = { link = "Normal" },
-		NormalFloat = { link = "Normal" },
+		NormalFloat = { link = "NormalFloat" },
 		WinSeparator = { link = "WinSeparator" },
 		FloatBorder = { link = "FloatBorder" },
 	},
