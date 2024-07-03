@@ -72,13 +72,13 @@ in
 
     -- __Normal__
     highlight("Cursor", { fg = palette.white, reverse = true })
-    highlight("SpecialKey", { fg = palette.light_cyan })
+    highlight("SpecialKey", { fg = palette.light_red })
     highlight("Structure", { link = "Type" })
     highlight("Define", { link = "PreProc" })
     highlight("Macro", { link = "PreProc" })
     highlight("Typedef", { link = "Type" })
     highlight("PreCondit", { link = "PreProc" })
-    highlight("SpecialChar", { link = "SpecialKey" })
+    highlight("SpecialChar", { fg = palette.light_cyan })
     highlight("Tag", { link = "Special" })
     highlight("Debug", { link = "Special" })
 
