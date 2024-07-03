@@ -40,6 +40,17 @@
   # Docker
   virtualisation.docker.enable = true;
 
+  # Virtualisation
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    onShutdown = "shutdown";
+    qemu = {
+      package = pkgs.qemu_kvm;
+      swtpm.enable = true;
+    };
+  };
+
   # Zram
   zramSwap = {
     enable = true;
