@@ -34,7 +34,6 @@
 
         mpc-cli
         xclip
-        pfetch
         spotdl
         ventoy-bin
 

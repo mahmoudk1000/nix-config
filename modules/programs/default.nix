@@ -11,6 +11,7 @@
     ./bash.nix
     ./bspwm.nix
     ./devops.nix
+    ./fetch.nix
     ./git.nix
     ./gnu.nix
     ./herbstluftwm.nix
