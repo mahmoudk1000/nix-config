@@ -113,6 +113,29 @@ vim.keymap.set("n", "<leader>gc", require("telescope.builtin").git_commits, { de
 vim.keymap.set("n", "<leader>gs", require("telescope.builtin").git_status, { desc = "Search by [G]it [S]tatus" })
 vim.keymap.set("n", "<A-Tab>", require("telescope.builtin").buffers, { desc = "Show Buffers" })
 
+-- Filetypes
+vim.filetype.add({
+	extensions = {
+		sh = "sh",
+		env = "sh",
+		mdx = "markdown",
+		tfvars = "terraform",
+		tfstate = "json",
+		latex = "tex",
+		bib = "tex",
+		html = "html",
+		h = "c",
+	},
+	filename = {
+		["Jenkinsfile"] = "groovy",
+		["kubeconfig"] = "yaml",
+	},
+	pattern = {
+		["Dockerfile[^/]*"] = "dockerfile",
+		["docker%-compose%.y.?ml"] = "yaml.docker-compose",
+	},
+})
+
 -- Once the plugins have been loaded, Lua-based plugins need to be required and started up
 -- For plugins with their own configuration file, that file is loaded and is responsible for
 -- starting them. Otherwise, the plugin itself is required and its `setup` method is called.

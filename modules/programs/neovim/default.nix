@@ -115,11 +115,6 @@ in
           config = builtins.readFile ./config/whichkey.lua;
         }
         {
-          plugin = filetype-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/filetype.lua;
-        }
-        {
           plugin = gitsigns-nvim;
           type = "lua";
           config = builtins.readFile ./config/gitsigns.lua;
@@ -186,7 +181,7 @@ in
         compiler-nvim
         overseer-nvim
         nvim-autopairs
-        markview.nvim
+        markview-nvim
       ];
   };
 }
