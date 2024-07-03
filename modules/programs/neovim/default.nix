@@ -51,7 +51,6 @@ in
         shfmt
         ruff
         nixd
-        glow
         gcc
         fd
       ]
@@ -114,11 +113,6 @@ in
           plugin = which-key-nvim;
           type = "lua";
           config = builtins.readFile ./config/whichkey.lua;
-        }
-        {
-          plugin = glow-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/glow.lua;
         }
         {
           plugin = filetype-nvim;
@@ -192,6 +186,7 @@ in
         compiler-nvim
         overseer-nvim
         nvim-autopairs
+        markview.nvim
       ];
   };
 }

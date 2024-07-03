@@ -90,9 +90,6 @@ vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", { noremap = true, silent = t
 vim.keymap.set("n", "<A-t>", ":ToggleTerm<CR>", {})
 vim.keymap.set("n", "<A-f>", ":ToggleTerm direction=float<CR>", {})
 
---- Glow
-vim.keymap.set("n", "<leader>md", ":Glow<CR>", { noremap = true, silent = true })
-
 --- Bufferline
 vim.keymap.set("n", "<A-Right>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
@@ -126,3 +123,4 @@ require("tmux").setup({})
 require("nvim-autopairs").setup({})
 require("copilot_cmp").setup({})
 require("fzf-lua").setup({})
+require("markview").setup({})
