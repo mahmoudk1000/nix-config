@@ -17,11 +17,32 @@ in
     vim.o.background = "dark"
     vim.o.termguicolors = true
 
+    local function adjustHex(hex, percent, mode)
+      local m = mode or "darken"
+      hex = hex:gsub("#", "")
+
+      local r = tonumber(hex:sub(1, 2), 16)
+      local g = tonumber(hex:sub(3, 4), 16)
+      local b = tonumber(hex:sub(5, 6), 16)
+
+      local factor = (m == "darken") and (100 - percent) / 100 or (100 + percent) / 100
+
+      r = math.floor(r * factor)
+      g = math.floor(g * factor)
+      b = math.floor(b * factor)
+
+      r = math.max(0, math.min(255, r))
+      g = math.max(0, math.min(255, g))
+      b = math.max(0, math.min(255, b))
+
+      return string.format("#%02X%02X%02X", r, g, b)
+    end
+
     local palette = {
       background = "${base00}",
       foreground = "${base01}",
-      norm = "#696C6F",
-      subtle= "#C0C0C0",
+      norm = darkenHex("${base01}", 8),
+      subtle = darkenHex("${base01}", 20),
       black = "${base02}",
       red = "${base03}",
       green = "${base04}",
@@ -40,24 +61,24 @@ in
       light_white = "${base0H}",
     }
 
-    local function highlight(name, opts)
+    local function highlight(group, opts)
         opts.force = true
-        vim.api.nvim_set_hl(0, name, opts)
+        vim.api.nvim_set_hl(0, group, opts)
     end
 
     -- __TEXT__
-    highlight("Normal", { fg = palette.foreground })
+    highlight("Normal", { fg = palette.norm })
     highlight("Title", { fg = palette.green, bold = true })
 
     -- __Normal__
     highlight("Cursor", { fg = palette.white, reverse = true })
-    highlight("SpecialKey", { fg = palette.cyan })
+    highlight("SpecialKey", { fg = palette.light_cyan })
     highlight("Structure", { link = "Type" })
     highlight("Define", { link = "PreProc" })
     highlight("Macro", { link = "PreProc" })
     highlight("Typedef", { link = "Type" })
     highlight("PreCondit", { link = "PreProc" })
-    highlight("SpecialChar", { link = "Special" })
+    highlight("SpecialChar", { link = "SpecialKey" })
     highlight("Tag", { link = "Special" })
     highlight("Debug", { link = "Special" })
 
@@ -110,7 +131,7 @@ in
     highlight("FloatTitle", { fg = palette.foreground })
 
     -- __MENU__
-    highlight("Pmenu", { fg = palette.white, bg = palette.black })
+    highlight("Pmenu", { link = "NormalFloat" })
     highlight("PmenuSel", { fg = palette.black, bg = palette.blue })
     highlight("PmenuSbar", { fg = palette.white, bg = palette.black })
     highlight("PmenuThumb", { bg = palette.white })
@@ -123,7 +144,7 @@ in
     -- __SYNTAX__
     highlight("Function", { fg = palette.light_yellow })
     highlight("Identifier", { fg = palette.subtle, bold = true })
-    highlight("Type", { fg = palette.green })
+    highlight("Type", { fg = palette.subtle })
     highlight("Variable", { fg = palette.light_white })
     highlight("Statement", { fg = palette.subtle })
     highlight("Include", { fg = palette.light_purple })
@@ -238,14 +259,22 @@ in
     highlight("@keyword.method", { link = "Identifier" })
     highlight("@attribute", { link = "Special" })
     highlight("@type", { link = "Type" })
+    highlight("@type.builtin", { link = "@type" })
     highlight("@type.definition", { link = "Type" })
     highlight("@property", { link = "Identifier" })
     highlight("@label", { link = "Label" })
     highlight("@annotation", { link = "Cursor" })
     highlight("@attribute", { link = "Constant" })
-    highlight("@boolean", { link = "Constant" })
-    highlight("@character", { link = "Constant" })
+    highlight("@boolean", { link = "Boolean" })
+    highlight("@character", { link = "Character" })
     highlight("@comment", { link = "Comment" })
+    highlight("@comment.error", { link = "Error" })
+    highlight("@comment.warning", { link = "Warning" })
+    highlight("@comment.todo", { link = "Todo" })
+    highlight("@comment.highlight", { link = "Special" })
+    highlight("@comment.info", { link = "InfoMsg" })
+    highlight("@comment.note", { link = "Statement" })
+    highlight("@comment.documentation", { link = "Comment" })
     highlight("@constant", { link = "Constant" })
     highlight("@constant.builtin", { link = "Constant" })
     highlight("@constant.macro", { link = "PreProc" })
@@ -262,7 +291,6 @@ in
     highlight("@keyword.conditional", { link = "Normal" })
     highlight("@keyword.import", { link = "Keyword" })
     highlight("@keyword.repeat", { link = "Normal" })
-    highlight("@label", { link = "Keyword" })
     highlight("@markup", { link = "Normal" })
     highlight("@markup.emphasis", { link = "italic" })
     highlight("@markup.heading", { link = "light_green" })
@@ -271,29 +299,29 @@ in
     highlight("@markup.list", { link = "Keyword" })
     highlight("@markup.quote", { link = "Comment" })
     highlight("@markup.raw", { link = "Keyword" })
-    highlight("@markup.strike", { link = "strikethrough" })
-    highlight("@markup.strong", { link = "bold" })
-    highlight("@markup.underline", { link = "Underlined" })
+    highlight("@markup.strikethrough", { strikethrough = true })
+    highlight("@markup.strong", { bold = true })
+    highlight("@markup.underline", { underline = true })
     highlight("@module", { link = "Keyword" })
     highlight("@none", { link = "Keyword" })
-    highlight("@number", { link = "Constant" })
-    highlight("@number.float", { link = "Constant" })
-    highlight("@operator", { link = "Normal" })
+    highlight("@number", { link = "Number" })
+    highlight("@number.float", { link = "Float" })
+    highlight("@operator", { link = "Operator" })
     highlight("@property", { link = "@field" })
     highlight("@punctuation.bracket", { link = "Keyword" })
     highlight("@punctuation.delimiter", { link = "Keyword" })
     highlight("@string", { link = "String" })
     highlight("@string.escape", { fg = palette.yellow })
-    highlight("@string.regexp", { fg = palette.cyan })
+    highlight("@string.regexp", { link = "SpecialChar" })
+    highlight("@string.special.symbol", { link = "Identifier" })
     highlight("@string.special.url", { link = "Constant" })
     highlight("@tag", { link = "Tag" })
     highlight("@tag.delimiter", { link = "Delimiter" })
-    highlight("@type", { link = "Type" })
-    highlight("@type.builtin", { link = "@type" })
+    highlight("@tag.attribute", { link = "@attribute" })
     highlight("@variable", { link = "Normal" })
-    highlight("@variable.builtin", { link = "Normal" })
+    highlight("@variable.builtin", { fg = palette.foreground, bold = true })
     highlight("@variable.member", { link = "Normal" })
-    highlight("@variable.parameter", { link = "Statement" })
+    highlight("@variable.parameter", { fg = palette.subtle, italic = true })
     highlight("@variable.parameter.reference", { link = "Statement" })
 
     -- __DIAGNOSTICS__
@@ -388,9 +416,9 @@ in
 
     -- __WHICHKEY__
     highlight("WhichKey", { fg = palette.white, bold = true })
-    highlight("WhichKeyGroup", { fg = palette.white })
-    highlight("WhichKeyDesc", { fg = palette.light_cyan, italic = true })
-    highlight("WhichKeySeperator", { fg = palette.white })
+    highlight("WhichKeyDesc", { link = "Normal" })
+    highlight("WhichKeyGroup", { fg = palette.blue })
+    highlight("WhichKeySeperator", { fg = palette.light_black })
     highlight("WhichKeyFloating", { bg = palette.black })
     highlight("WhichKeyFloat", { bg = palette.black })
 
@@ -416,8 +444,8 @@ in
     highlight("NeoTreeFileName", { fg = palette.foreground })
     highlight("NeoTreeDotfile", { fg = palette.light_black })
     highlight("NeoTreeCursorLine", { fg = palette.foreground })
-    highlight("NeoTreeDirectoryName", { fg = palette.light_cyan })
-    highlight("NeoTreeDirectoryIcon", { fg = palette.light_cyan })
+    highlight("NeoTreeDirectoryName", { fg = palette.subtle })
+    highlight("NeoTreeDirectoryIcon", { fg = palette.blue })
     highlight("NeoTreeGitModified", { fg = palette.light_blue })
     highlight("NeoTreeGitUntracked", { fg = palette.light_yellow })
     highlight("NeoTreeGitDeleted", { fg = palette.light_red })
