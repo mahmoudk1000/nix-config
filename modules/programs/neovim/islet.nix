@@ -42,7 +42,7 @@ in
       background = "${base00}",
       foreground = "${base01}",
       norm = adjustHex("${base01}", 8),
-      subtle = adjustHex("${base01}", 20),
+      subtle = adjustHex("${base01}", 25),
       black = "${base02}",
       red = "${base03}",
       green = "${base04}",
