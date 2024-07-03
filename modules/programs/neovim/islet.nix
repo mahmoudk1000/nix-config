@@ -218,10 +218,10 @@ in
     highlight("Warnings", { fg = palette.purple })
 
     -- Diff
-    highlight("DiffAdd", { fg = palette.green, reverse = true })
-    highlight("DiffChange", { fg = palette.yellow, reverse = true })
-    highlight("DiffDelete", { fg = palette.red, reverse = true })
-    highlight("DiffText", { fg = palette.purple, reverse = true })
+    highlight("DiffAdd", { fg = palette.green })
+    highlight("DiffChange", { fg = palette.yellow })
+    highlight("DiffDelete", { fg = palette.red })
+    highlight("DiffText", { fg = palette.purple })
     highlight("diffAdded", { fg = palette.green })
     highlight("diffRemoved", { fg = palette.red })
     highlight("diffChanged", { fg = palette.yellow })
