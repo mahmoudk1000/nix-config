@@ -20,7 +20,6 @@
     packages =
       with pkgs;
       [
-
         vim
         unzip
         curl
@@ -44,7 +43,6 @@
         nsxiv
 
         st-flexipatch
-        zoom-us
         inkscape
         freetube
         libreoffice
@@ -57,6 +55,9 @@
         evince
         krita
         popcorntime
+
+        zoom-us
+        teams
 
         libsForQt5.breeze-icons
         xorg.xmodmap
