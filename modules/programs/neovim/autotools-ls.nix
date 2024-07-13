@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
-with pkgs;
-
 let
-  lsp-tree-sitter = python3.pkgs.buildPythonPackage rec {
+  lsp-tree-sitter = pkgs.python3.pkgs.buildPythonPackage rec {
     pname = "lsp-tree-sitter";
     version = "0.0.14";
     format = "pyproject";
@@ -27,13 +25,14 @@ let
     ];
   };
 
-  makeLS = fetchGit {
+  makeLS = pkgs.fetchgit {
     name = "vender_make";
     url = "https://github.com/alemuller/tree-sitter-make.git";
     rev = "a4b9187417d6be349ee5fd4b6e77b4172c6827dd";
+    hash = "sha256-qQqapnKKH5X8rkxbZG5PjnyxvnpyZHpFVi/CLkIn/x0=";
   };
 
-  tree-sitter-languages = python3.pkgs.buildPythonPackage rec {
+  tree-sitter-languages = pkgs.python3.pkgs.buildPythonPackage rec {
     pname = "tree-sitter-languages";
     version = "1.10.2";
     src = pkgs.fetchFromGitHub {
@@ -51,7 +50,7 @@ let
     buildPhase = ''
       runHook preBuild
 
-      ${python3.pythonOnBuildForHost.interpreter} - <<EOF
+      ${pkgs.python3.pythonOnBuildForHost.interpreter} - <<EOF
       from tree_sitter import Language
 
       Language.build_library(
@@ -62,13 +61,13 @@ let
         )
       EOF
 
-      ${python3.pythonOnBuildForHost.interpreter} setup.py bdist_wheel
+      ${pkgs.python3.pythonOnBuildForHost.interpreter} setup.py bdist_wheel
 
       runHook postBuild
     '';
   };
 in
-python3.pkgs.buildPythonPackage rec {
+pkgs.python3.pkgs.buildPythonPackage rec {
   pname = "autotools-language-server";
   version = "0.0.15";
   format = "pyproject";
@@ -78,7 +77,7 @@ python3.pkgs.buildPythonPackage rec {
     hash = "sha256-sNznwFdw4UuJejofBi2FPF7wB3TQH5buqAvQRpPp5tA=";
   };
 
-  propagatedBuildInputs = with pkgs; [
+  propagatedBuildInputs = [
     tree-sitter-languages
     lsp-tree-sitter
   ];
