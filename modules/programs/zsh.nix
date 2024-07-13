@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   programs = {
@@ -15,10 +20,9 @@
       enable = true;
       enableZshIntegration = true;
       extraConfig = builtins.readFile "${pkgs.fetchurl {
-          url = "https://github.com/arcticicestudio/nord-dircolors/raw/addb3b427e008d23affc721450fde86f27566f1d/src/dir_colors";
-          sha256 = "sha256-hlezTQqouVKbxgQBxtZU4en0idDiTCRJtFGH6XYFmtc=";
-        } 
-      }";
+        url = "https://github.com/arcticicestudio/nord-dircolors/raw/addb3b427e008d23affc721450fde86f27566f1d/src/dir_colors";
+        sha256 = "sha256-hlezTQqouVKbxgQBxtZU4en0idDiTCRJtFGH6XYFmtc=";
+      }}";
     };
     zsh = {
       enable = true;
@@ -34,8 +38,14 @@
       dotDir = ".config/zsh";
       historySubstringSearch = {
         enable = true;
-        searchUpKey = [ "^[[A" "^[OA" ];
-        searchDownKey = [ "^[[B" "^[OB" ];
+        searchUpKey = [
+          "^[[A"
+          "^[OA"
+        ];
+        searchDownKey = [
+          "^[[B"
+          "^[OB"
+        ];
       };
       history = {
         path = "$HOME/.zsh_history";
@@ -45,7 +55,13 @@
         ignoreSpace = true;
         ignoreDups = true;
         expireDuplicatesFirst = true;
-        ignorePatterns = [ "ls *" "rm *" "kill *" "exit *" "pkill *" ];
+        ignorePatterns = [
+          "ls *"
+          "rm *"
+          "kill *"
+          "exit *"
+          "pkill *"
+        ];
       };
       plugins = [
         {
@@ -73,7 +89,10 @@
         KEYTIMEOUT = "1";
         ZSH_AUTOSUGGEST_USE_ASYNC = "true";
         ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE = 40;
-        ZSH_AUTOSUGGEST_STRATEGY = [ "history" "completion" ];
+        ZSH_AUTOSUGGEST_STRATEGY = [
+          "history"
+          "completion"
+        ];
       };
       shellAliases = {
         open = "xdg-open";
