@@ -134,6 +134,7 @@
           languagetool
           tab-session-manager
           search-by-image
+          lastpass-password-manager
         ];
         extraConfig = ''
           user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
