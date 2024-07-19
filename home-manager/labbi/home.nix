@@ -55,9 +55,7 @@
         evince
         krita
         popcorntime
-
         zoom-us
-        teams
 
         libsForQt5.breeze-icons
         xorg.xmodmap
