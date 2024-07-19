@@ -9,7 +9,9 @@
     ./alacritty.nix
     ./awesomewm.nix
     ./bash.nix
+    ./bitwarden.nix
     ./bspwm.nix
+    ./chromium.nix
     ./devops.nix
     ./fetch.nix
     ./git.nix
