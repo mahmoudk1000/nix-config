@@ -2,20 +2,31 @@
   programs.fastfetch = {
     enable = true;
     settings = {
+      logo = {
+        padding = {
+          top = 0;
+          right = 5;
+          left = 5;
+        };
+      };
       modules = [
         "title"
         "separator"
         {
           type = "os";
-          format = "{} {}";
+          format = "{3} ({12})";
         }
         "host"
-        "kernel"
+        {
+          type = "kernel";
+          format = "{1} {2}";
+        }
         "uptime"
         "packages"
         {
           type = "shell";
-          format = "{}";
+          key = "$";
+          format = "{1} {4}";
         }
         {
           type = "cpu";
@@ -31,7 +42,11 @@
           format = "{} / {} ({})";
         }
         "break"
-        "colors"
+        {
+          type = "colors";
+          symbol = "circle";
+        }
+        "break"
       ];
     };
   };
