@@ -70,9 +70,7 @@
       roboto
       fira
       fira-code
-      siji
       unifont
-      cozette
     ];
   };
 
