@@ -27,7 +27,7 @@
         jq
         playerctl
         pamixer
-        bitwarden-cli
+        lastpass-cli
         pass
         libnotify
 
