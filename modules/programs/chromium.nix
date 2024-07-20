@@ -3,12 +3,15 @@
 {
   programs.chromium = {
     enable = true;
-    package = pkgs.ungoogled-chromium;
+    # package = pkgs.ungoogled-chromium;
     commandLineArgs = [
       "--enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoDecoder,VaapiVideoEncoder"
       "--disable-features=UseChromeOSDirectVideoDecoder"
     ];
-    dictionaries = [ pkgs.hunspellDictsChromium.en_US ];
+    dictionaries = with pkgs.hunspellDictsChromium; [
+      en_US
+      de_DE
+    ];
     extensions = [
       { id = "nngceckbapebfimnlniiiahkandclblb"; }
       { id = "gcbommkclmclpchllfjekcdonpmejbdp"; }
