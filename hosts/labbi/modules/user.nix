@@ -22,6 +22,7 @@
       "docker"
       "adbusers"
       "libvirtd"
+      "wireshark"
     ];
     hashedPassword = "$6$RC/pIIRmYnXN6vWB$pkDeNbr/SewvTKH4oK5ZzXXdnx8/Az8Wxp0Bg1imM44ECcjmj/eLjSAm0yx6dbozZY0RAN5QXWr/vdQBo35Lq/";
   };
