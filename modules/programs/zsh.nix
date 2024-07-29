@@ -36,6 +36,23 @@
       completionInit = "autoload -U compinit && compinit";
       defaultKeymap = "viins";
       dotDir = ".config/zsh";
+      syntaxHighlighting = {
+        enable = true;
+        highlighters = [
+          "main"
+          "brackets"
+          "cursor"
+          "pattern"
+          "line"
+        ];
+        patterns = {
+          "rm -rf *" = "fg=red,bg=default,bold";
+        };
+        styles = {
+          alias = "fg=purple";
+          globbing = "fg=yellow";
+        };
+      };
       historySubstringSearch = {
         enable = true;
         searchUpKey = [
@@ -64,11 +81,6 @@
         ];
       };
       plugins = [
-        {
-          name = "fast-syntax-highlighting";
-          src = pkgs.zsh-fast-syntax-highlighting;
-          file = "share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh";
-        }
         {
           name = "zsh-nix-shell";
           src = pkgs.zsh-nix-shell;
@@ -183,11 +195,6 @@
         typeset -g HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
         typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=default,fg=blue,bold"
         typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=default,fg=red,bold,underline"
-
-        # Custom Syntax-Highlighting Setting
-        FAST_HIGHLIGHT_STYLES[alias]='fg=purple'
-        FAST_HIGHLIGHT_STYLES[comment]='fg=black,bold'
-        FAST_HIGHLIGHT_STYLES[globbing]='fg=yellow'
 
         # Command Not Found Msg
         command_not_found_handler() {

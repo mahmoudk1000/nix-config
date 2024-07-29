@@ -3,10 +3,11 @@
     enable = true;
     settings = {
       logo = {
+        source = "NixOS";
         padding = {
           top = 0;
-          right = 5;
-          left = 5;
+          right = 2;
+          left = 2;
         };
       };
       modules = [
