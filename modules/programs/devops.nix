@@ -35,6 +35,8 @@ in
       trivy
       azure-cli
       awscli2
+      wireshark
+      powershell
     ];
   };
 }
