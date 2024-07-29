@@ -37,6 +37,7 @@
         visualstudioexptteam.vscodeintellicode
         github.copilot
         github.copilot-chat
+        ms-vscode.powershell
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
