@@ -107,15 +107,15 @@
         ];
       };
       shellAliases = {
-        open = "xdg-open";
-        free = "free -h";
-        c = "clear";
-
-        ".." = "cd ..";
-        "..." = "cd ../..";
+        o = "xdg-open";
         l = "eza";
-
+        c = "clear";
         v = "nvim";
+        m = "ncmpcpp";
+
+        ".." = "cd -- ..";
+        "..." = "cd -- ../..";
+        "...." = "cd -- ../../..";
 
         g = "git";
         ga = "git add";
@@ -131,9 +131,7 @@
         gp = "git push";
         gff = "git diff --minimal";
 
-        mk = "ncmpcpp";
-
-        cleanup = "sudo nix-collect-garbage --delete-older-than 3d";
+        cleanup = "sudo nix-collect-garbage -d";
         bloat = "nix path-info -Sh /run/current-system";
       };
       shellGlobalAliases = lib.mkIf config.programs.bat.enable {
@@ -166,7 +164,7 @@
         zstyle ':completion:*:descriptions' format '%B%F{yellow}=> %d%f'
         zstyle ':completion:*:messages' format '%B%F{purple}» %d%f'
         zstyle ':completion:*:warnings' format '%B%F{red}No matches for:%f %d%b'
-        zstyle ':completion:::::' completer _expand _complete _ignored _approximate
+        zstyle ':completion:::::' completer _complete _approximate
         zstyle ':completion:*:corrections' format '%B%F{green}=~ %d%f'
         zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
         zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -196,10 +194,8 @@
         typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=default,fg=blue,bold"
         typeset -g HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="bg=default,fg=red,bold,underline"
 
-        # Command Not Found Msg
-        command_not_found_handler() {
-          echo -e "nope, \e[31m'$0'\e[0m didn't work."; return 1
-        }
+        # Custom Autosuggestion Setting
+        typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
       '';
       profileExtra = ''
         if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
