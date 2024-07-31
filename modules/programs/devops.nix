@@ -37,6 +37,8 @@ in
       awscli2
       wireshark
       powershell
+      # docker-machine-kvm2
+      # runc
     ];
   };
 }
