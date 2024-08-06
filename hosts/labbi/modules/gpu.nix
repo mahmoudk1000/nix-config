@@ -1,10 +1,14 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  services.xserver.videoDrivers = [ "intel" "nvidia" ];
+  services.xserver.videoDrivers = [
+    "intel"
+    "nvidia"
+  ];
 
   hardware = {
     nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
       modesetting.enable = true;
       prime = {
         offload.enable = true;

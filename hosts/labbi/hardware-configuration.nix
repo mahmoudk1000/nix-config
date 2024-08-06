@@ -19,18 +19,16 @@
         "usb_storage"
         "sd_mod"
         "sr_mod"
+        "acpi_call"
       ];
-      kernelModules = [
-        "dm-snapshot"
-        "nvidia"
-      ];
+      kernelModules = [ "dm-snapshot" ];
     };
     blacklistedKernelModules = [
       "snd_pcsp"
       "pcspkr"
     ];
     kernelModules = [ "kvm-intel" ];
-    extraModulePackages = [ ];
+    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
   };
 
   fileSystems."/" = {
@@ -39,7 +37,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/nix";
+    device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
   };
 
