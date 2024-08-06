@@ -2,12 +2,18 @@
   config,
   pkgs,
   theme,
+  hostName,
   ...
 }:
 
 {
   programs.firefox = {
     enable = true;
+    languagePacks = [
+      "en-US"
+      "de"
+      "ar"
+    ];
     policies = {
       AppAutoUpdate = false;
       BackgroundAppUpdate = false;
@@ -67,9 +73,9 @@
       };
     };
     profiles = {
-      mahmoud = {
+      default = {
         id = 0;
-        name = "mahmoud";
+        name = "${hostName}";
         search = {
           force = true;
           default = "DuckDuckGo";
@@ -134,7 +140,6 @@
           languagetool
           tab-session-manager
           search-by-image
-          lastpass-password-manager
         ];
         extraConfig = ''
           user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
@@ -143,6 +148,64 @@
         settings = import ./settings.nix;
         userChrome = import ./userChrome.nix { inherit theme; };
         userContent = import ./userContent.nix { inherit theme; };
+      };
+      work = {
+        id = 1;
+        name = "Work";
+        search = {
+          force = true;
+          default = "DuckDuckGo";
+          engines = {
+            "Wikipedia (en)".metaData.alias = "@wiki";
+            "Google".metaData.hidden = true;
+            "Amazon.com".metaData.hidden = true;
+            "Bing".metaData.hidden = true;
+            "eBay".metaData.hidden = true;
+          };
+        };
+        bookmarks = [
+          {
+            name = "MyAtos";
+            tags = [ "atos" ];
+            keyword = "myatos";
+            url = "https://www.myatos.net/irj/portal";
+          }
+          {
+            name = "Microsoft 365";
+            toolbar = true;
+            bookmarks = [
+              {
+                name = "Outlook";
+                url = "https://outlook.office.com/";
+              }
+              {
+                name = "Teams";
+                url = "https://teams.microsoft.com/v2/";
+              }
+            ];
+          }
+          {
+            name = "Percipio";
+            tags = [ "atos" ];
+            keyword = "percipio";
+            url = "https://atos.percipio.com/";
+          }
+        ];
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          privacy-badger
+          bitwarden
+          clearurls
+          duckduckgo-privacy-essentials
+          languagetool
+          tab-session-manager
+          lastpass-password-manager
+        ];
+        extraConfig = ''
+          user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+          user_pref("full-screen-api.ignore-widgets", true);
+        '';
+        settings = import ./settings.nix;
       };
     };
   };
