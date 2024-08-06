@@ -40,18 +40,21 @@
         labbi =
           let
             user = "mahmoud";
+            hostName = "labbi";
           in
           nixpkgs.lib.nixosSystem {
             specialArgs = {
-              inherit self inputs user;
+              inherit
+                self
+                inputs
+                user
+                hostName
+                ;
             };
             modules = [
               nur.nixosModules.nur
               home-manager.nixosModules.home-manager
-              {
-                networking.hostName = "labbi";
-                imports = [ ./hosts/labbi/configuration.nix ];
-              }
+              { imports = [ ./hosts/labbi/configuration.nix ]; }
               {
                 home-manager = {
                   useGlobalPkgs = true;
@@ -64,7 +67,12 @@
                     _module.args.theme = import ./modules/themes;
                   };
                   extraSpecialArgs = {
-                    inherit self inputs user;
+                    inherit
+                      self
+                      inputs
+                      user
+                      hostName
+                      ;
                   };
                 };
                 nixpkgs.overlays = overlays;

@@ -1,8 +1,14 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  hostName,
+  ...
+}:
 
 {
   # Networking
   networking = {
+    hostName = hostName;
     wireless = {
       iwd.enable = true;
       interfaces = [ "wlan0" ];
@@ -41,6 +47,10 @@
     enable = true;
     package = pkgs.bluez;
     powerOnBoot = false;
-    settings = { General = { Enable = "Source,Sink,Media,Socket"; }; };
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
   };
 }
