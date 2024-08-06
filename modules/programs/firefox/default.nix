@@ -193,10 +193,7 @@
         ];
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
-          privacy-badger
           bitwarden
-          clearurls
-          duckduckgo-privacy-essentials
           languagetool
           tab-session-manager
           lastpass-password-manager
