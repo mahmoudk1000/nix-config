@@ -20,10 +20,8 @@
         finegrained = true;
       };
     };
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
       extraPackages = with pkgs; [
         intel-media-driver
         vaapiIntel
