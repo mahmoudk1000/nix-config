@@ -2,7 +2,7 @@
   config,
   pkgs,
   theme,
-  hostName,
+  labbi,
   ...
 }:
 
@@ -75,7 +75,7 @@
     profiles = {
       default = {
         id = 0;
-        name = "${hostName}";
+        name = "${labbi.hostName}";
         search = {
           force = true;
           default = "DuckDuckGo";
@@ -176,10 +176,12 @@
             bookmarks = [
               {
                 name = "Outlook";
+                tags = [ "office365" ];
                 url = "https://outlook.office.com/";
               }
               {
                 name = "Teams";
+                tags = [ "office365" ];
                 url = "https://teams.microsoft.com/v2/";
               }
             ];
