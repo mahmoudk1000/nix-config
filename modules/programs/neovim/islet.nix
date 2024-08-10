@@ -226,11 +226,6 @@ in
     highlight("diffRemoved", { fg = palette.red })
     highlight("diffChanged", { fg = palette.yellow })
 
-    -- GitSigns
-    highlight("GitSignsAdd", { fg = palette.green })
-    highlight("GitSignsChange", { fg = palette.yellow })
-    highlight("GitSignsDelete", { fg = palette.red })
-
     -- Terminal
     vim.g.terminal_color_0 = palette.black
     vim.g.terminal_color_1 = palette.red
@@ -385,20 +380,15 @@ in
 
     -- __GIT GUTTER__
     highlight("GitGutterAdd", { fg = palette.light_green })
+    highlight("GitGutterAddNr", { fg = palette.light_green })
+    highlight("GitGutterAddLn", { fg = palette.light_green })
     highlight("GitGutterChange", { fg = palette.light_purple })
+    highlight("GitGutterChangeNr", { fg = palette.light_purple })
+    highlight("GitGutterChangeLn", { fg = palette.light_purple })
     highlight("GitGutterDelete", { fg = palette.light_red })
-
-    -- __GITSIGNS__
-    highlight("GitSignsAdd", { fg = palette.light_green })
-    highlight("GitSignsAddNr", { fg = palette.light_green })
-    highlight("GitSignsAddLn", { fg = palette.light_green })
-    highlight("GitSignsChange", { fg = palette.light_purple })
-    highlight("GitSignsChangeNr", { fg = palette.light_purple })
-    highlight("GitSignsChangeLn", { fg = palette.light_purple })
-    highlight("GitSignsDelete", { fg = palette.light_red })
-    highlight("GitSignsDeleteNr", { fg = palette.light_red })
-    highlight("GitSignsDeleteLn", { fg = palette.light_red })
-    highlight("GitSignsCurrentLineBlame", { fg = palette.light_black, bold = true })
+    highlight("GitGutterDeleteNr", { fg = palette.light_red })
+    highlight("GitGutterDeleteLn", { fg = palette.light_red })
+    highlight("GitGutterCurrentLineBlame", { fg = palette.light_black, bold = true })
 
     -- __TELESCOPE__
     highlight("TelescopePromptBorder", { fg = palette.blue })

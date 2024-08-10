@@ -10,7 +10,7 @@ require("conform").setup({
 		zsh = { "shfmt" },
 		terraform = { "terraform_fmt", "tofu_fmt" },
 		tf = { "terraform_fmt", "tofu_fmt" },
-		yaml = { "yamlfmt" },
+		yaml = { "yamlfix" },
 		tex = { "latexindent" },
 	},
 	format_on_save = {
