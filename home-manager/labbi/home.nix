@@ -28,7 +28,6 @@
         playerctl
         pamixer
         lastpass-cli
-        pass
         libnotify
 
         mpc-cli

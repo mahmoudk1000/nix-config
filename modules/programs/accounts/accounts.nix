@@ -1,6 +1,13 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
+  age.secrets.accounts = {
+    personal.file = ../../../secrets/accounts/personal.age;
+    kind.file = ../../../secrets/accounts/kind.age;
+    work.file = ../../../secrets/accounts/work.age;
+    uni.file = ../../../secrets/accounts/uni.age;
+  };
+
   accounts.email.maildirBasePath = ".mail";
   accounts.email.accounts = {
     mahmoudk1000 = {
@@ -10,7 +17,7 @@
       realName = "Mahmoud Asran";
       userName = "mahmoudk1000@gmail.com";
       maildir.path = "mahmoudk1000";
-      passwordCommand = "${pkgs.pass}/bin/pass show Mail/mahmoudk1000";
+      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.secrets.accounts.personal.path}";
       signature = {
         text = ''
           --
@@ -36,13 +43,14 @@
         enable = true;
         create = "both";
         expunge = "both";
-        extraConfig.remote = { UseNamespace = "no"; };
+        extraConfig.remote = {
+          UseNamespace = "no";
+        };
       };
       imapnotify = {
         enable = true;
         boxes = [ "Inbox" ];
-        onNotifyPost = ''
-          ${pkgs.libnotify}/bin/notify-send "New Mail: mahmoudk1000@gmail.com!"'';
+        onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: mahmoudk1000@gmail.com!"'';
         onNotify = "${pkgs.isync}/bin/mbsync -a";
       };
       thunderbird = {
@@ -57,7 +65,7 @@
       realName = "Mahmoud Asran";
       userName = "dodok1000@gmail.com";
       maildir.path = "dodok1000";
-      passwordCommand = "${pkgs.pass}/bin/pass show Mail/dodok1000";
+      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.secrets.accounts.kind.path}";
       signature = {
         text = ''
           --
@@ -65,7 +73,9 @@
           <dodok1000@gmail.com>
         '';
       };
-      imap = { host = "imap.gmail.com"; };
+      imap = {
+        host = "imap.gmail.com";
+      };
       smtp = {
         host = "smtp.gmail.com";
         tls.enable = true;
@@ -80,13 +90,14 @@
         enable = true;
         create = "both";
         expunge = "both";
-        extraConfig.remote = { UseNamespace = "no"; };
+        extraConfig.remote = {
+          UseNamespace = "no";
+        };
       };
       imapnotify = {
         enable = true;
         boxes = [ "Inbox" ];
-        onNotifyPost = ''
-          ${pkgs.libnotify}/bin/notify-send "New Mail: dodok1000@gmail.com!"'';
+        onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: dodok1000@gmail.com!"'';
         onNotify = "${pkgs.isync}/bin/mbsync -a";
       };
       thunderbird = {
@@ -101,7 +112,7 @@
       realName = "Mahmoud Asran";
       userName = "mahmoud.a.asran@outlook.com";
       maildir.path = "mahmoud.a.asran";
-      passwordCommand = "${pkgs.pass}/bin/pass show Mail/mahmoud.asran";
+      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.secrets.accounts.work.path}";
       signature = {
         text = ''
           --
@@ -124,13 +135,14 @@
         enable = true;
         create = "both";
         expunge = "both";
-        extraConfig.remote = { UseNamespace = "no"; };
+        extraConfig.remote = {
+          UseNamespace = "no";
+        };
       };
       imapnotify = {
         enable = true;
         boxes = [ "Inbox" ];
-        onNotifyPost = ''
-          ${pkgs.libnotify}/bin/notify-send "New Mail: mahmoud.a.asran@outlook.com!"'';
+        onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: mahmoud.a.asran@outlook.com!"'';
         onNotify = "${pkgs.isync}/bin/mbsync -a";
       };
       thunderbird = {
@@ -145,7 +157,7 @@
       realName = "Mahmoud Asran";
       userName = "sim.mahmoudayman3129@alexu.edu.eg";
       maildir.path = "university";
-      passwordCommand = "${pkgs.pass}/bin/pass show Mail/uni";
+      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.secrets.accounts.uni.path}";
       imap = {
         host = "outlook.office365.com";
         port = 993;
@@ -163,15 +175,18 @@
         expunge = "both";
         patterns = [ "*" ];
         extraConfig = {
-          account = { AuthMechs = "XOAUTH2"; };
-          remote = { UseNamespace = "no"; };
+          account = {
+            AuthMechs = "XOAUTH2";
+          };
+          remote = {
+            UseNamespace = "no";
+          };
         };
       };
       imapnotify = {
         enable = false;
         boxes = [ "Inbox" ];
-        onNotifyPost = ''
-          ${pkgs.libnotify}/bin/notify-send "New Mail: sim.mahmoudayman3129@alexu.edu.eg!"'';
+        onNotifyPost = ''${pkgs.libnotify}/bin/notify-send "New Mail: sim.mahmoudayman3129@alexu.edu.eg!"'';
         onNotify = "${pkgs.isync}/bin/mbsync -a";
       };
       thunderbird = {

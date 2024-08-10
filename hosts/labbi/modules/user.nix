@@ -7,6 +7,9 @@
 }:
 
 {
+  age.secrets.users = {
+    ${labbi.user}.file = ../../../secrets/users/mahmoud.age;
+  };
   # User Account.
   users.users.${labbi.user} = {
     description = "Mahmoud Asran";
@@ -25,7 +28,7 @@
       "libvirtd"
       "wireshark"
     ];
-    hashedPassword = "$6$RC/pIIRmYnXN6vWB$pkDeNbr/SewvTKH4oK5ZzXXdnx8/Az8Wxp0Bg1imM44ECcjmj/eLjSAm0yx6dbozZY0RAN5QXWr/vdQBo35Lq/";
+    hashedPasswordFile = config.age.secrets.users.${labbi.user}.path;
   };
 
   environment.pathsToLink = [ "/share/zsh" ];
