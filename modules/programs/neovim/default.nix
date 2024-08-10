@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 let
-  autotools-language-server = import ./autotools-ls.nix { inherit pkgs; };
   groovy-language-server = import ./groovyls.nix { inherit pkgs; };
   customVimPlugins = import ./vim-plugins.nix { inherit pkgs; };
 in
