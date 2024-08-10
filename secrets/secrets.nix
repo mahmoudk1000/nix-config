@@ -21,5 +21,4 @@ in
   "accounts/kind.age".publicKeys = default;
   "accounts/work.age".publicKeys = default;
   "accounts/uni.age".publicKeys = default;
-
 }
