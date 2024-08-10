@@ -1,16 +1,17 @@
 {
+  inputs,
   config,
   pkgs,
-  user,
+  labbi,
   ...
 }:
 
 {
   # User Account.
-  users.users.${user} = {
+  users.users.${labbi.user} = {
     description = "Mahmoud Asran";
     isNormalUser = true;
-    home = "/home/${user}";
+    home = "/home/${labbi.user}";
     shell = pkgs.zsh;
     extraGroups = [
       "wheel"
@@ -31,6 +32,7 @@
 
   # Packages installed in system profile.
   environment.systemPackages = with pkgs; [
+    inputs.agenix.packages."${system}".default
     vim
     wget
     git

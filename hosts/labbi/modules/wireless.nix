@@ -1,14 +1,14 @@
 {
   config,
   pkgs,
-  hostName,
+  labbi,
   ...
 }:
 
 {
   # Networking
   networking = {
-    hostName = hostName;
+    hostName = labbi.hostName;
     wireless = {
       iwd.enable = true;
       interfaces = [ "wlan0" ];

@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  user,
+  labbi,
   ...
 }:
 
@@ -13,8 +13,8 @@
   ];
 
   home = {
-    username = "${user}";
-    homeDirectory = "/home/${user}";
+    username = "${labbi.user}";
+    homeDirectory = "/home/${labbi.user}";
     stateVersion = "22.05";
     extraOutputsToInstall = [ "man" ];
     packages =

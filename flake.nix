@@ -16,6 +16,7 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs =
@@ -26,6 +27,7 @@
       nur,
       nixpkgs-f2k,
       spicetify-nix,
+      agenix,
       ...
     }@inputs:
     let
@@ -39,21 +41,16 @@
       nixosConfigurations = {
         labbi =
           let
-            user = "mahmoud";
-            hostName = "labbi";
+            labbi = {
+              user = "mahmoud";
+              hostName = "labbi";
+            };
           in
           nixpkgs.lib.nixosSystem {
             specialArgs = {
-              inherit
-                self
-                inputs
-                user
-                hostName
-                ;
+              inherit self inputs labbi;
             };
             modules = [
-              nur.nixosModules.nur
-              home-manager.nixosModules.home-manager
               { imports = [ ./hosts/labbi/configuration.nix ]; }
               {
                 home-manager = {
@@ -67,16 +64,14 @@
                     _module.args.theme = import ./modules/themes;
                   };
                   extraSpecialArgs = {
-                    inherit
-                      self
-                      inputs
-                      user
-                      hostName
-                      ;
+                    inherit self inputs labbi;
                   };
                 };
                 nixpkgs.overlays = overlays;
               }
+              nur.nixosModules.nur
+              home-manager.nixosModules.home-manager
+              agenix.nixosModules.age
             ];
           };
       };
