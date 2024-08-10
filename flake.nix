@@ -47,9 +47,6 @@
             };
           in
           nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit self inputs labbi;
-            };
             modules = [
               { imports = [ ./hosts/labbi/configuration.nix ]; }
               {
@@ -60,6 +57,7 @@
                     imports = [
                       ./home-manager/labbi/home.nix
                       spicetify-nix.homeManagerModules.default
+                      agenix.homeManagerModules.default
                     ];
                     _module.args.theme = import ./modules/themes;
                   };
@@ -71,8 +69,11 @@
               }
               nur.nixosModules.nur
               home-manager.nixosModules.home-manager
-              agenix.nixosModules.age
+              agenix.nixosModules.default
             ];
+            specialArgs = {
+              inherit self inputs labbi;
+            };
           };
       };
     };
