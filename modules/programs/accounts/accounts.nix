@@ -17,7 +17,7 @@
       realName = "Mahmoud Asran";
       userName = "mahmoudk1000@gmail.com";
       maildir.path = "mahmoudk1000";
-      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.secrets.accounts.personal.path}";
+      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.age.secrets.accounts.personal.path}";
       signature = {
         text = ''
           --
@@ -65,7 +65,7 @@
       realName = "Mahmoud Asran";
       userName = "dodok1000@gmail.com";
       maildir.path = "dodok1000";
-      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.secrets.accounts.kind.path}";
+      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.age.secrets.accounts.kind.path}";
       signature = {
         text = ''
           --
@@ -112,7 +112,7 @@
       realName = "Mahmoud Asran";
       userName = "mahmoud.a.asran@outlook.com";
       maildir.path = "mahmoud.a.asran";
-      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.secrets.accounts.work.path}";
+      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.age.secrets.accounts.work.path}";
       signature = {
         text = ''
           --
@@ -157,7 +157,7 @@
       realName = "Mahmoud Asran";
       userName = "sim.mahmoudayman3129@alexu.edu.eg";
       maildir.path = "university";
-      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.secrets.accounts.uni.path}";
+      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.age.secrets.accounts.uni.path}";
       imap = {
         host = "outlook.office365.com";
         port = 993;
