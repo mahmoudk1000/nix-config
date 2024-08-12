@@ -18,7 +18,7 @@ in
 
   # Accounts
   "accounts/personal.age".publicKeys = default;
-  "accounts/kind.age".publicKeys = default;
+  "accounts/secondary.age".publicKeys = default;
   "accounts/work.age".publicKeys = default;
   "accounts/uni.age".publicKeys = default;
 }

@@ -3,7 +3,7 @@
 {
   age.secrets.accounts = {
     personal.file = ../../../secrets/accounts/personal.age;
-    kind.file = ../../../secrets/accounts/kind.age;
+    secondary.file = ../../../secrets/accounts/secondary.age;
     work.file = ../../../secrets/accounts/work.age;
     uni.file = ../../../secrets/accounts/uni.age;
   };
@@ -65,7 +65,7 @@
       realName = "Mahmoud Asran";
       userName = "dodok1000@gmail.com";
       maildir.path = "dodok1000";
-      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.age.secrets.accounts.kind.path}";
+      passwordCommand = "${pkgs.coreutils}/bin/cat ${config.age.secrets.accounts.secondary.path}";
       signature = {
         text = ''
           --
