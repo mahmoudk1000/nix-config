@@ -153,8 +153,8 @@
         bindkey '^f'            forward-char
         bindkey '^b'            backward-char
         bindkey '^w'            backward-kill-word
-        bindkey '^R'            fzf-history-widget
-        bindkey '^r'            history-incremental-search-backward
+        bindkey '^R'            history-incremental-search-backward
+        bindkey '^r'            fzf-history-widget
         bindkey -M vicmd 'k'    history-substring-search-up
         bindkey -M vicmd 'j'    history-substring-search-down
 
