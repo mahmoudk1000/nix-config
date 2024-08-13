@@ -7,8 +7,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "OXY2DEV";
       repo = "markview.nvim";
-      rev = "7f4639a53b3e3aac3ad5deab99b21097264f07cc";
-      hash = "sha256-4fXdQWQwmMkzBIkXFvBlV352k6Df7LR4ib6wZhK7rfo=";
+      rev = "913fe6414c038bce900a54ab157e46b958b56eb1";
+      hash = "sha256-RvCBJNwkj3y4bGu0X2d2nCz7/BvgWZe7I5zKDRld4ZQ=";
     };
   };
 }
