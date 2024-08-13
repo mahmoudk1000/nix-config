@@ -7,8 +7,8 @@
 }:
 
 {
-  age.secrets.users = {
-    ${labbi.user}.file = ../../../secrets/users/mahmoud.age;
+  age.secrets = {
+    "users/${labbi.user}".file = ../../../secrets/users/mahmoud.age;
   };
   # User Account.
   users.users.${labbi.user} = {
@@ -28,22 +28,23 @@
       "libvirtd"
       "wireshark"
     ];
-    hashedPasswordFile = config.age.secrets.users.${labbi.user}.path;
+    hashedPasswordFile = config.age.secrets."users/${labbi.user}".path;
   };
 
   environment.pathsToLink = [ "/share/zsh" ];
 
   # Packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    inputs.agenix.packages."${system}".default
-    vim
-    wget
-    git
-    man-pages
-    _2bwm
-    brightnessctl
-    gptfdisk
-  ];
+  environment.systemPackages =
+    [ inputs.agenix.packages."${pkgs.system}".default ]
+    ++ (with pkgs; [
+      vim
+      wget
+      git
+      man-pages
+      _2bwm
+      brightnessctl
+      gptfdisk
+    ]);
 
   # Settings
   nixpkgs.config = {
