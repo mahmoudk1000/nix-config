@@ -2,6 +2,7 @@
   config,
   pkgs,
   labbi,
+  lib ? pkgs.lib,
   ...
 }:
 
@@ -18,8 +19,7 @@
     stateVersion = "22.05";
     extraOutputsToInstall = [ "man" ];
     packages =
-      with pkgs;
-      [
+      (with pkgs; [
         vim
         unzip
         curl
@@ -58,7 +58,7 @@
 
         libsForQt5.breeze-icons
         xorg.xmodmap
-      ]
+      ])
       ++ (import ../../modules/scripts { inherit config pkgs lib; });
 
     sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
