@@ -66,11 +66,11 @@
         UrlbarInterventions = false;
         MoreFromMozilla = false;
       };
-      DNSOverHTTPS = {
-        Enabled = true;
-        Locked = true;
-        ProviderURL = "https://dns.nextdns.io/b28d16";
-      };
+      # DNSOverHTTPS = {
+      #   Enabled = true;
+      #   Locked = true;
+      #   ProviderURL = "https://dns.nextdns.io/b28d16/${labbi.hostName}";
+      # };
     };
     profiles = {
       default = {
