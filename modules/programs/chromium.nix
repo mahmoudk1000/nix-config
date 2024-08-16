@@ -2,7 +2,7 @@
 
 {
   programs.chromium = {
-    enable = true;
+    enable = false;
     # package = pkgs.ungoogled-chromium;
     commandLineArgs = [
       "--enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoDecoder,VaapiVideoEncoder"
