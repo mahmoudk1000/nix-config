@@ -39,9 +39,9 @@
   "network.trr.confirmation_telemetry_enabled" = false;
 
   # Custom DNS
-  "network.trr.mode" = 2;
-  "network.trr.custom_uri" = "https://dns.nextdns.io/b28d16";
-  "network.trr.uri" = "https://dns.nextdns.io/b28d16";
+  # "network.trr.mode" = 2;
+  # "network.trr.custom_uri" = "https://dns.nextdns.io/b28d16";
+  # "network.trr.uri" = "https://dns.nextdns.io/b28d16";
 
   # DOM
   "dom.battery.enabled" = false;
