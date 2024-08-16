@@ -47,6 +47,12 @@ vim.cmd([[colorscheme islet]])
 -- Keymaps
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
+-- Panel Switching
+vim.keymap.set("n", "<leader>h", ":wincmd h<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>j", ":wincmd j<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>k", ":wincmd k<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>l", ":wincmd l<CR>", { noremap = true, silent = true })
+
 -- Move text up and down (visual mode)
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
@@ -62,7 +68,7 @@ vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = t
 -- Duplicate Line
 vim.keymap.set("n", "<A-C-Down>", "yyP", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-C-Up>", "yyp", { noremap = true, silent = true })
-vim.keymap.set("i", "<A-C-d>", "<Esc>:t.<CR>gi", { noremap = true, silent = true })
+vim.keymap.set("v", "<leader>ds", "y'>p", { noremap = true, silent = true, desc = "[D]uplicate [S]election" })
 
 -- Default Text Editors
 vim.keymap.set("n", "<C-a>", "ggVG", { noremap = true, silent = true })
@@ -81,6 +87,10 @@ vim.keymap.set("n", "<leader>w", ":set wrap<CR>", { noremap = true, silent = tru
 -- Indent
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
+
+-- Comments
+vim.keymap.set("n", "<leader>cc", "gcc", { remap = true, silent = true, desc = "[[C]]omment Line" })
+vim.keymap.set("v", "<leader>cc", "gc", { remap = true, silent = true, desc = "[[C]]omment Selection" })
 
 -- Plugins
 --- Neotree
@@ -109,7 +119,7 @@ vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { des
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
-vim.keymap.set("n", "<leader>sgc", require("telescope.builtin").git_commits, { desc = "[S]earch by [G]it [C]omment" })
+vim.keymap.set("n", "<leader>gc", require("telescope.builtin").git_commits, { desc = "Search by [G]it [C]omment" })
 vim.keymap.set("n", "<leader>gs", require("telescope.builtin").git_status, { desc = "Search by [G]it [S]tatus" })
 vim.keymap.set("n", "<A-Tab>", require("telescope.builtin").buffers, { desc = "Show Buffers" })
 
