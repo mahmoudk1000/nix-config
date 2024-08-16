@@ -9,6 +9,15 @@
   # Networking
   networking = {
     hostName = labbi.hostName;
+    hosts = {
+      "127.0.0.1" = [
+        "local"
+        "localhost"
+        "${config.networking.hostName}"
+        "${config.networking.hostName}.lab"
+        "${config.networking.hostName}.local"
+      ];
+    };
     wireless = {
       iwd.enable = true;
       interfaces = [ "wlan0" ];
