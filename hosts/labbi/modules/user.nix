@@ -3,6 +3,7 @@
   config,
   pkgs,
   labbi,
+  lib,
   ...
 }:
 
@@ -23,9 +24,9 @@
       "users"
       "tty"
       "input"
-      "docker"
-      "adbusers"
-      "libvirtd"
+      (lib.mkIf config.virtualisation.docker.enable "docker")
+      (lib.mkIf config.programs.adb.enable "adbusers")
+      (lib.mkIf config.virtualisation.libvirtd.enable "libvirtd")
       "wireshark"
     ];
     hashedPasswordFile = config.age.secrets."users/${labbi.user}".path;
