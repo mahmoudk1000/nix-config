@@ -5,6 +5,11 @@ require("neo-tree").setup({
 	git_status_async = true,
 	enable_diagnostics = false,
 	hide_root_node = true,
+	open_files_do_not_replace_types = {
+		"terminal",
+		"trouble",
+		"qf",
+	},
 	sources = {
 		"filesystem",
 	},
