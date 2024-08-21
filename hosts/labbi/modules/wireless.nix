@@ -14,8 +14,8 @@
         "local"
         "localhost"
         "${config.networking.hostName}"
-        "${config.networking.hostName}.lab"
-        "${config.networking.hostName}.local"
+        "*.${config.networking.hostName}.lab"
+        "*.${config.networking.hostName}.local"
       ];
     };
     wireless = {
