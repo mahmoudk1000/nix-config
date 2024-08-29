@@ -131,6 +131,19 @@
         gp = "git push";
         gff = "git diff --minimal";
 
+        dc = "docker compose";
+
+        kb = "kubectl";
+        kbd = "kubectl describe";
+        kbg = "kubectl get";
+        kbgp = "kubectl get pods";
+        kbgd = "kubectl get deployments";
+        kbgns = "kubectl get namespaces";
+        kbl = "kubectl logs";
+        kba = "kubectl apply -f";
+        kbdel = "kubectl delete";
+        kbex = "kubectl exec -it";
+
         cleanup = "sudo nix-collect-garbage -d";
         bloat = "nix path-info -Sh /run/current-system";
       };
