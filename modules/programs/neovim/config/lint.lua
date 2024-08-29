@@ -1,5 +1,4 @@
 require("lint").linters_by_ft = {
-	["*"] = { "codespell" },
 	zsh = { "shellcheck" },
 	sh = { "shellcheck" },
 	python = { "ruff" },
