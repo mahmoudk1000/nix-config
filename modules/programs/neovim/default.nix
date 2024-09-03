@@ -28,6 +28,7 @@ in
         java-language-server
         lua-language-server
         markdownlint-cli
+        nixfmt-rfc-style
         terraform-ls
         ansible-lint
         shellcheck
@@ -36,12 +37,11 @@ in
         marksman
         yamllint
         hadolint
+        python3
         yamlfix
         ripgrep
         helm-ls
         deadnix
-        # nixfmt
-        nixfmt-rfc-style
         stylua
         tflint
         texlab
