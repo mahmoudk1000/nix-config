@@ -50,7 +50,9 @@
         };
         styles = {
           alias = "fg=purple";
-          globbing = "fg=yellow";
+          command = "fg=blue";
+          commandseparator = "fg=yellow";
+          redirection = "fg=magenta";
         };
       };
       historySubstringSearch = {
@@ -139,6 +141,9 @@
         kbgp = "kubectl get pods";
         kbgd = "kubectl get deployments";
         kbgns = "kubectl get namespaces";
+        kbgs = "kubectl get services";
+        kbgn = "kubectl get nodes";
+        kbgi = "kubectl get ingress";
         kbl = "kubectl logs";
         kba = "kubectl apply -f";
         kbdel = "kubectl delete";
@@ -211,9 +216,11 @@
         typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 
         # Custom Syntax-Highlighting Setting
+        typeset -A ZSH_HIGHLIGHT_STYLES
         ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
-        ZSH_HIGHLIGHT_STYLES[globbing]='fg=yellow,bold'
         ZSH_HIGHLIGHT_STYLES[command]='fg=blue'
+        ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=yellow'
+        ZSH_HIGHLIGHT_STYLES[redirection]='fg=magenta'
       '';
       profileExtra = ''
         if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
