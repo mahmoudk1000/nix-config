@@ -209,6 +209,11 @@
 
         # Custom Autosuggestion Setting
         typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
+
+        # Custom Syntax-Highlighting Setting
+        ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
+        ZSH_HIGHLIGHT_STYLES[globbing]='fg=yellow,bold'
+        ZSH_HIGHLIGHT_STYLES[command]='fg=blue'
       '';
       profileExtra = ''
         if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
