@@ -7,6 +7,7 @@
 
 {
   programs = {
+    command-not-found.enable = false;
     fzf = {
       enable = true;
       enableZshIntegration = true;
@@ -47,12 +48,6 @@
         ];
         patterns = {
           "rm -rf *" = "fg=red,bg=default,bold";
-        };
-        styles = {
-          alias = "fg=purple";
-          command = "fg=blue";
-          commandseparator = "fg=yellow";
-          redirection = "fg=magenta";
         };
       };
       historySubstringSearch = {
@@ -217,10 +212,16 @@
 
         # Custom Syntax-Highlighting Setting
         typeset -A ZSH_HIGHLIGHT_STYLES
-        ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
-        ZSH_HIGHLIGHT_STYLES[command]='fg=blue'
-        ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=yellow'
-        ZSH_HIGHLIGHT_STYLES[redirection]='fg=magenta'
+        ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue'
+        ZSH_HIGHLIGHT_STYLES[command]='fg=green'
+        ZSH_HIGHLIGHT_STYLES[alias]='fg=green'
+        ZSH_HIGHLIGHT_STYLES[path]='fg=yellow,underline'
+        ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan,bold'
+        ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
+        ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=blue'
+        ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=green'
+        ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
+        ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=yellow'
       '';
       profileExtra = ''
         if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
@@ -233,6 +234,7 @@
         dwn = "${config.home.homeDirectory}/download";
         msk = "${config.home.homeDirectory}/musik";
         dot = "${config.home.homeDirectory}/.config";
+        pjt = "${config.home.homeDirectory}/labbi/projects";
       };
     };
   };
