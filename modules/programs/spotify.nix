@@ -14,7 +14,7 @@
     {
       enable = true;
       windowManagerPatch = true;
-      theme = spicePkgs.themes.dribbblish;
+      theme = spicePkgs.themes.text;
       enabledExtensions = with spicePkgs.extensions; [
         shuffle
         history
@@ -30,22 +30,19 @@
       ];
       colorScheme = "custom";
       customColorScheme = {
-        text = stripHexPrefix theme.base01;
-        subtext = stripHexPrefix theme.base09;
-        sidebarText = stripHexPrefix theme.base01;
+        accent = stripHexPrefix theme.base02;
+        accent-active = stripHexPrefix theme.base06;
+        accent-inactive = stripHexPrefix theme.base02;
+        banner = stripHexPrefix theme.base06;
+        border-active = stripHexPrefix theme.base06;
+        border-inactive = stripHexPrefix theme.base02;
+        header = stripHexPrefix theme.base02;
+        highlight = stripHexPrefix theme.base02;
         main = stripHexPrefix theme.base00;
-        sidebar = stripHexPrefix theme.base06;
-        player = stripHexPrefix theme.base00;
-        card = stripHexPrefix theme.base00;
-        shadow = stripHexPrefix theme.base02;
-        selectedRow = stripHexPrefix theme.base0A;
-        button = stripHexPrefix theme.base06;
-        buttonActive = stripHexPrefix theme.base06;
-        buttonDisabled = stripHexPrefix theme.base02;
-        tabActive = stripHexPrefix theme.base0A;
         notification = stripHexPrefix theme.base0A;
-        notificationError = stripHexPrefix theme.base03;
-        misc = stripHexPrefix theme.base01;
+        notification-error = stripHexPrefix theme.base03;
+        subtext = stripHexPrefix theme.base01;
+        text = stripHexPrefix theme.base01;
       };
     };
 
