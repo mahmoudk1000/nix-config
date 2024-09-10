@@ -13,9 +13,11 @@
       "127.0.0.1" = [
         "local"
         "localhost"
-        "${config.networking.hostName}"
-        "*.${config.networking.hostName}.lab"
-        "*.${config.networking.hostName}.local"
+        "${config.networking.hostName}.lab"
+        "${config.networking.hostName}.local"
+        "jenkins.${config.networking.hostName}.lab"
+        "nexus.${config.networking.hostName}.lab"
+        "sonar.${config.networking.hostName}.lab"
       ];
     };
     wireless = {
