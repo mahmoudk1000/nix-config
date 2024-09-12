@@ -145,7 +145,10 @@
           user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
           user_pref("full-screen-api.ignore-widgets", true);
         '';
-        settings = import ./settings.nix;
+        settings = import ./settings.nix // {
+          "browser.display.background_color" = theme.base00;
+          "browser.display.foreground_color" = theme.base01;
+        };
         userChrome = import ./userChrome.nix { inherit theme; };
         userContent = import ./userContent.nix { inherit theme; };
       };

@@ -1,8 +1,14 @@
 {
   # Smooth scroll
   "general.smoothScroll" = true;
+  "browser.display.os-zoom-behavior" = 1;
+  "browser.newtabpage.enabled" = false;
+  "browser.send_pings" = false;
+  "browser.startup.page" = 3;
+  "browser.urlbar.placeholderName" = "Search The Web";
 
   # Force using WebRender. Improve performance
+  "geo.enabled" = false;
   "gfx.webrender.all" = true;
   "gfx.webrender.enabled" = true;
   "beacon.enabled" = false;
@@ -32,6 +38,8 @@
   # Privacy
   # "privacy.firstparty.isolate" = true;
   # "privacy.resistFingerprinting" = true;
+  "privacy.donottrackheader.enabled" = true;
+  "privacy.donottrackheader.value" = 1;
   "privacy.trackingprotection.enabled" = true;
   "privacy.trackingprotection.fingerprinting.enabled" = true;
   "privacy.trackingprotection.cryptomining.enabled" = true;
