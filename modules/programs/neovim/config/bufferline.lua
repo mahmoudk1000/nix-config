@@ -2,12 +2,12 @@ require("bufferline").setup({
 	options = {
 		mode = "buffers",
 		offsets = {
-			{
-				filetype = "neo-tree",
-				text = "󰉓  Files Explorer",
-				text_align = "center",
-				separator = true,
-			},
+            { 
+                filetype = "NvimTree",
+                text = "󰉓  Files Explorer",
+                text_align = "center"
+                separator = true,
+            },
 		},
 		separator_style = "thin",
 		buffer_close_icon = "✘",

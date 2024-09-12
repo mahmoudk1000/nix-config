@@ -35,5 +35,7 @@ require("lualine").setup({
 		"neo-tree",
 		"fugitive",
 		"toggleterm",
+        "nvim-tree",
+        "fzf",
 	},
 })

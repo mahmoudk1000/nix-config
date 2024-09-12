@@ -92,9 +92,9 @@ in
           config = builtins.readFile ./config/lualine.lua;
         }
         {
-          plugin = neo-tree-nvim;
+          plugin = nvim-tree-lua;
           type = "lua";
-          config = builtins.readFile ./config/neotree.lua;
+          config = builtins.readFile ./config/tree.lua;
         }
         {
           plugin = toggleterm-nvim;

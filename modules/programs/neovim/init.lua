@@ -14,6 +14,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Options
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.o.termguicolors = true
 vim.o.cursorline = false
 vim.o.hlsearch = false
@@ -93,8 +95,8 @@ vim.keymap.set("n", "<leader>cc", "gcc", { remap = true, silent = true, desc = "
 vim.keymap.set("v", "<leader>cc", "gc", { remap = true, silent = true, desc = "[[C]]omment Selection" })
 
 -- Plugins
---- Neotree
-vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", { noremap = true, silent = true })
+--- NvimTree
+vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 --- ToggleTerm
 vim.keymap.set("n", "<A-t>", ":ToggleTerm<CR>", {})
