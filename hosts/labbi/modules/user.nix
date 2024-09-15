@@ -11,7 +11,9 @@
   age.secrets = {
     "users/${labbi.user}".file = ../../../secrets/users/mahmoud.age;
   };
-  # User Account.
+
+  # System Users
+  users.users.root.hashedPasswordFile = config.age.secrets."users/${labbi.user}".path;
   users.users.${labbi.user} = {
     description = "Mahmoud Asran";
     isNormalUser = true;
