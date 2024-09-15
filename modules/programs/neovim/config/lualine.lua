@@ -12,9 +12,9 @@ require("lualine").setup({
 		component_separators = "|",
 		section_separators = { right = "▒▓", left = "▓▒" },
 		disabled_filetypes = {
-			statusline = { "neo-tree" },
+			statusline = { "nvim-tree" },
 		},
-		ignore_focus = { "neo-tree" },
+		ignore_focus = { "nvim-tree" },
 		refresh = {
 			statusline = 1000,
 		},
@@ -32,10 +32,9 @@ require("lualine").setup({
 		},
 	},
 	extensions = {
-		"neo-tree",
 		"fugitive",
 		"toggleterm",
-        "nvim-tree",
-        "fzf",
+		"nvim-tree",
+		"fzf",
 	},
 })
