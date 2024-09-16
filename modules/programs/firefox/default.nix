@@ -14,64 +14,7 @@
       "de"
       "ar"
     ];
-    policies = {
-      AppAutoUpdate = false;
-      BackgroundAppUpdate = false;
-      DisableAppUpdate = true;
-      DefaultDownloadDirectory = "${config.xdg.userDirs.download}";
-      CaptivePortal = false;
-      ExtensionUpdate = false;
-      DisableFirefoxStudies = true;
-      DisablePocket = true;
-      DisableTelemetry = true;
-      DisableFirefoxAccounts = false;
-      NoDefaultBookmarks = true;
-      OfferToSaveLogins = false;
-      OfferToSaveLoginsDefault = false;
-      PasswordManagerEnabled = false;
-      PrimaryPassword = false;
-      HardwareAcceleration = true;
-      FirefoxHome = {
-        Locked = true;
-        Search = true;
-        Pocket = false;
-        Snippets = false;
-        TopSites = false;
-        Highlights = false;
-        SponsoredPocket = false;
-        SponsoredTopSites = false;
-      };
-      Cookies = {
-        Default = true;
-        Behavior = "accept";
-        BehaviorPrivateBrowsing = "reject";
-        RejectTracker = true;
-      };
-      SanitizeOnShutdown = {
-        Enabled = false;
-        Locked = true;
-      };
-      EnableTrackingProtection = {
-        Value = true;
-        EmailTracking = true;
-        Cryptomining = true;
-        Fingerprinting = true;
-        Locked = true;
-      };
-      UserMessaging = {
-        ExtensionRecommendations = false;
-        SkipOnboarding = true;
-        WhatsNew = false;
-        FeatureRecomendations = false;
-        UrlbarInterventions = false;
-        MoreFromMozilla = false;
-      };
-      # DNSOverHTTPS = {
-      #   Enabled = true;
-      #   Locked = true;
-      #   ProviderURL = "https://dns.nextdns.io/b28d16/${labbi.hostName}";
-      # };
-    };
+    policies = import ./policies.nix { inherit config labbi; };
     profiles = {
       default = {
         id = 0;
@@ -141,14 +84,7 @@
           tab-session-manager
           search-by-image
         ];
-        extraConfig = ''
-          user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-          user_pref("full-screen-api.ignore-widgets", true);
-        '';
-        settings = import ./settings.nix // {
-          "browser.display.background_color" = theme.base00;
-          "browser.display.foreground_color" = theme.base01;
-        };
+        settings = import ./settings.nix { inherit theme; };
         userChrome = import ./userChrome.nix { inherit theme; };
         userContent = import ./userContent.nix { inherit theme; };
       };
@@ -203,11 +139,7 @@
           tab-session-manager
           lastpass-password-manager
         ];
-        extraConfig = ''
-          user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-          user_pref("full-screen-api.ignore-widgets", true);
-        '';
-        settings = import ./settings.nix;
+        settings = import ./settings.nix { inherit theme; };
       };
     };
   };

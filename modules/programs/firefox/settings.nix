@@ -1,3 +1,5 @@
+{ theme }:
+
 {
   # Smooth scroll
   "general.smoothScroll" = true;
@@ -28,12 +30,16 @@
   "browser.tabs.warnOnClose" = false;
   "widget.use-xdg-desktop-portal" = true;
   "ui.context_menus.after_mouseup" = true;
-  "browser.toolbars.bookmarks.visibility" = "never";
 
-  # Tab
+  # UI
+  "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+  "browser.display.background_color" = theme.base00;
+  "browser.display.foreground_color" = theme.base01;
+  "browser.toolbars.bookmarks.visibility" = "never";
   "browser.urlbar.suggest.quickactions" = false;
   "browser.urlbar.suggest.topsites" = false;
   "browser.tabs.tabmanager.enabled" = false;
+  "full-screen-api.ignore-widgets" = true;
 
   # Privacy
   # "privacy.firstparty.isolate" = true;
