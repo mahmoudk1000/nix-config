@@ -28,7 +28,6 @@
       acpi_call
       cpupower
       perf
-      nvidia_x11
     ];
   };
 

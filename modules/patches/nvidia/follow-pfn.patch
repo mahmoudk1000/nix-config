@@ -1,0 +1,43 @@
+diff --git a/kernel/nvidia/nv-frontend.c b/kernel/nvidia/nv-frontend.c
+index e280e59..a001f77 100644
+--- a/kernel/nvidia/nv-frontend.c
++++ b/kernel/nvidia/nv-frontend.c
+@@ -108,7 +108,7 @@
+ #define RM_THRESHOLD_UNAHNDLED_IRQ_COUNT 99900
+ #define RM_UNHANDLED_TIMEOUT_US          100000
+
+-MODULE_LICENSE("NVIDIA");
++MODULE_LICENSE("GPL");
+
+ MODULE_INFO(supported, "external");
+ MODULE_VERSION(NV_VERSION_STRING);
+diff --git a/kernel/nvidia/os-mlock.c b/kernel/nvidia/os-mlock.c
+index 46f99a1..b8f4100 100644
+--- a/kernel/nvidia/os-mlock.c
++++ b/kernel/nvidia/os-mlock.c
+@@ -30,9 +30,19 @@ static inline int nv_follow_pfn(struct vm_area_struct *vma,
+                                 unsigned long address,
+                                 unsigned long *pfn)
+ {
+-#if defined(NV_UNSAFE_FOLLOW_PFN_PRESENT)
+-    return unsafe_follow_pfn(vma, address, pfn);
+-#else
+-    return follow_pfn(vma, address, pfn);
+-#endif
++    int status = 0;
++    spinlock_t *ptl;
++    pte_t *ptep;
++
++    if (!(vma->vm_flags & (VM_IO | VM_PFNMAP)))
++        return status;
++
++    status = follow_pte(vma, address, &ptep, &ptl);
++    if (status)
++        return status;
++    *pfn = pte_pfn(ptep_get(ptep));
++
++    // The lock is acquired inside follow_pte()
++    pte_unmap_unlock(ptep, ptl);
++    return 0;
+ }
+
