@@ -1,13 +1,28 @@
+{ labbi, ... }:
+
 {
   services = {
     gvfs.enable = true;
     upower.enable = true;
     udisks2.enable = true;
     blueman.enable = true;
-    openssh.enable = true;
     printing.enable = true;
     tumbler.enable = true;
     thermald.enable = true;
+  };
+
+  services.openssh = {
+    enable = true;
+    hostKeys = [
+      {
+        path = "/home/${labbi.user}/.ssh/id_rsa";
+        type = "rsa";
+      }
+      {
+        path = "/home/${labbi.user}/.ssh/id_ed25519";
+        type = "ed25519";
+      }
+    ];
   };
 
   # TLP. (https://linrunner.de/tlp/settings/)
