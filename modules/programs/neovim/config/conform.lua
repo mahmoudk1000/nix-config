@@ -7,6 +7,7 @@ require("conform").setup({
 		json = { "jq" },
 		markdown = { "markdownlint" },
 		nix = { "nixfmt" },
+		bash = { "shfmt" },
 		sh = { "shfmt" },
 		zsh = { "shfmt" },
 		terraform = { "terraform_fmt", "tofu_fmt" },

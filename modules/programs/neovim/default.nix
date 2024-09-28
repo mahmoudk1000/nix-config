@@ -31,6 +31,7 @@ in
         nixfmt-rfc-style
         terraform-ls
         ansible-lint
+        tree-sitter
         shellcheck
         checkmake
         codespell
@@ -163,7 +164,6 @@ in
         cmp-nvim-lsp-signature-help
         nvim-colorizer-lua
         dressing-nvim
-        fzf-lua
         nui-nvim
         nvim-web-devicons
         tmux-nvim
