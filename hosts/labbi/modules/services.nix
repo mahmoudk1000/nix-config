@@ -1,4 +1,4 @@
-{ labbi, ... }:
+{ lib, labbi, ... }:
 
 {
   services = {
@@ -13,6 +13,9 @@
 
   services.openssh = {
     enable = true;
+    settings = {
+      PermitRootLogin = lib.mkDefault "no";
+    };
     hostKeys = [
       {
         path = "/home/${labbi.user}/.ssh/id_rsa";
