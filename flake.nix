@@ -35,6 +35,7 @@
         (import ./overlays)
         nur.overlay
         nixpkgs-f2k.overlays.window-managers
+        agenix.overlays.default
       ];
     in
     {

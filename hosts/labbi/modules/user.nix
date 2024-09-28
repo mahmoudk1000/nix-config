@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   pkgs,
   labbi,
@@ -8,8 +7,16 @@
 }:
 
 {
-  age.secrets = {
-    "users/${labbi.user}".file = ../../../secrets/users/mahmoud.age;
+  age = {
+    identityPaths = [
+      "/home/${labbi.user}/.ssh/id_rsa"
+      "/home/${labbi.user}/.ssh/id_rsa"
+      "/mnt/home/${labbi.user}/.ssh/id_ed25519"
+      "/mnt/home/${labbi.user}/.ssh/id_ed25519"
+    ];
+    secrets = {
+      "users/${labbi.user}".file = ../../../secrets/users/mahmoud.age;
+    };
   };
 
   # System Users
@@ -37,17 +44,16 @@
   environment.pathsToLink = [ "/share/zsh" ];
 
   # Packages installed in system profile.
-  environment.systemPackages =
-    [ inputs.agenix.packages."${pkgs.system}".default ]
-    ++ (with pkgs; [
-      vim
-      wget
-      git
-      man-pages
-      _2bwm
-      brightnessctl
-      gptfdisk
-    ]);
+  environment.systemPackages = with pkgs; [
+    agenix
+    vim
+    wget
+    git
+    man-pages
+    _2bwm
+    brightnessctl
+    gptfdisk
+  ];
 
   # Settings
   nixpkgs.config = {
@@ -72,7 +78,6 @@
       dejavu_fonts
       jetbrains-mono
       amiri
-      nika-fonts
       liberation_ttf
       noto-fonts
       noto-fonts-emoji
