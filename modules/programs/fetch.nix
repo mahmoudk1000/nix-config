@@ -26,7 +26,6 @@
         "packages"
         {
           type = "shell";
-          key = "$";
           format = "{1} {4}";
         }
         {
