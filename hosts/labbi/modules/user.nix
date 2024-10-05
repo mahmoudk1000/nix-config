@@ -10,9 +10,7 @@
   age = {
     identityPaths = [
       "/home/${labbi.user}/.ssh/id_rsa"
-      "/home/${labbi.user}/.ssh/id_rsa"
-      "/mnt/home/${labbi.user}/.ssh/id_ed25519"
-      "/mnt/home/${labbi.user}/.ssh/id_ed25519"
+      "/home/${labbi.user}/.ssh/id_ed25519"
     ];
     secrets = {
       "users/${labbi.user}".file = ../../../secrets/users/mahmoud.age;
