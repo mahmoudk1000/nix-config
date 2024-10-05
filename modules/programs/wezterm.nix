@@ -2,9 +2,10 @@
 
 {
   programs.wezterm = {
-    enable = false;
+    enable = true;
+    enableZshIntegration = true;
     colorSchemes = {
-      dunkelblau = {
+      default = {
         background = "${theme.base00}";
         cursor_bg = "${theme.base00}";
         cursor_border = "${theme.base02}";
@@ -35,107 +36,67 @@
       };
     };
     extraConfig = ''
-      local wezterm = require "wezterm"
-      local font_name = "IosevkaTerm Nerd Font"
+      local fonts = wezterm.font_with_fallback({
+        {
+          family = "IosevkaTerm Nerd Font",
+          weight = "Regular",
+          harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
+        },
+      })
+
+      local keys = {
+          { key = '?', mods = 'SHIFT|CTRL', action = wezterm.action.ShowLauncher },
+          { key = 'q', mods = 'SUPER',      action = wezterm.action.QuitApplication },
+          { key = 'k', mods = 'ALT|CTRL',   action = wezterm.action.DecreaseFontSize },
+          { key = 'j', mods = 'ALT|CTRL',   action = wezterm.action.IncreaseFontSize },
+          { key = '.', mods = 'ALT|CTRL',   action = wezterm.action.ResetFontSize },
+          { key = 'k', mods = 'ALT|SHIFT',  action = wezterm.action.ScrollByPage(-0.5) },
+          { key = 'j', mods = 'ALT|SHIFT',  action = wezterm.action.ScrollByPage(0.5) },
+      }
+
+      local launch_menu = {
+        {
+          label = "Open tmux",
+          args = { "tmux" },
+        },
+        {
+          label = "Open PowerShell",
+          args = { "pwsh" },
+        }
+      }
+
       return {
-        -- OpenGL for GPU acceleration, Software for CPU
-        front_end = "OpenGL",
-
-        -- Color Scheme
-        color_scheme_dirs = { '~/.config/wezterm/colors/dunkelblau.toml' },
-
-        -- No updates, bleeding edge only
-        check_for_updates = false,
-
-        -- Font Stuff
-        font = wezterm.font_with_fallback(font_name),
-        font_rules = {
-          { 
-            italic = true,
-            font = wezterm.font_with_fallback(family = font_name, italic = true)
-          },
-          {
-            intensity = "Bold",
-            font = wezterm.font_with_fallback(family = font_name, bold = true)
-          }
-        },
-        font_size = 9.0,
-        line_height = 1.0,
-
-        -- Cursor style
-        default_cursor_style = "SteadyUnderline",
-
-        -- Keys
-        disable_default_key_bindings = true,
-
-        keys = {
-          {
-            mods = "CTRL|SHIFT",
-            key = [[\]],
-            action = wezterm.action { SplitHorizontal = {domain = "CurrentPaneDomain"} }
-          },
-          {
-            mods = "CTRL",
-            key = [[\]],
-            action = wezterm.action { SplitVertical = {domain = "CurrentPaneDomain"} }
-          }, 
-          -- browser-like bindings for tabbing
-          {
-            key = "t",
-            mods = "CTRL",
-            action = wezterm.action { SpawnTab = "CurrentPaneDomain" }
-          },
-          {
-            key = "w",
-            mods = "CTRL",
-            action = wezterm.action { CloseCurrentTab = {confirm = false} }
-          },
-          {
-            mods = "CTRL",
-            key = "Tab",
-            action = wezterm.action { ActivateTabRelative = 1 }
-          },
-          {
-            mods = "CTRL|SHIFT",
-            key = "Tab",
-            action = wezterm.action { ActivateTabRelative = -1 }
-          }, 
-          -- standard copy/paste bindings
-          { 
-            key = "x",
-            mods = "CTRL",
-            action = wezterm.action { "ActivateCopyMode" }
-          },
-          {
-            key = "v",
-            mods = "CTRL|SHIFT",
-            action = wezterm.action { PasteFrom = "Clipboard" }
-          },
-          {
-            key = "c",
-            mods = "CTRL|SHIFT",
-            action = wezterm.action { CopyTo = "ClipboardAndPrimarySelection" }
-          }
-        },
-
-        -- Pretty Colors
-        bold_brightens_ansi_colors = false,
-
-        -- Get rid of close prompt
+        -- Default
+        term                      = 'xterm-256color',
+        check_for_updates         = false,
         window_close_confirmation = "NeverPrompt",
 
-        -- Padding
-        window_padding = { left = '40pt', right = '40pt', top = '40pt', bottom = '40pt' },
+        -- Appearance
+        color_scheme_dirs             = { '~/.config/wezterm/colors/default.toml' },
+        color_scheme                  = 'default',
+        force_reverse_video_cursor    = true,
+        bold_brightens_ansi_colors    = 'No',
+        hide_tab_bar_if_only_one_tab  = true,
+        window_padding                = { left = 35, right = 35, top = 18, bottom = 18 },
+        window_decorations            = 'RESIZE',
+        default_cursor_style          = "BlinkingUnderline",
+        enable_tab_bar                = false,
+        use_fancy_tab_bar             = false,
 
-        -- No opacity
-        inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
+        -- Menu
+        launch_menu = launch_menu,
 
-        window_frame = { active_titlebar_bg = "${theme.base00}" },
+        -- Font
+        font                      = fonts,
+        unicode_version           = 16,
+        custom_block_glyphs       = true,
+        font_size                 = 9.0,
+        command_palette_font_size = 9.0,
+        line_height               = 1.0,
 
-        enable_tab_bar = false,
-        use_fancy_tab_bar = false,
-        hide_tab_bar_if_only_one_tab = true,
-        show_tab_index_in_tab_bar = false
+        -- Keymaps
+        disable_default_key_bindings = true,
+        keys                         = keys,
       }
     '';
   };
