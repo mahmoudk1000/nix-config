@@ -52,6 +52,8 @@
           { key = '.', mods = 'ALT|CTRL',   action = wezterm.action.ResetFontSize },
           { key = 'k', mods = 'ALT|SHIFT',  action = wezterm.action.ScrollByPage(-0.5) },
           { key = 'j', mods = 'ALT|SHIFT',  action = wezterm.action.ScrollByPage(0.5) },
+          { key = 'C', mods = 'CTRL',       action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
+          { key = 'V', mods = 'CTRL',       action = wezterm.action.PasteFrom("Clipboard") },
       }
 
       local launch_menu = {
@@ -62,7 +64,7 @@
         {
           label = "Open PowerShell",
           args = { "pwsh" },
-        }
+        },
       }
 
       return {
@@ -93,6 +95,7 @@
         font_size                 = 9.0,
         command_palette_font_size = 9.0,
         line_height               = 1.0,
+        freetype_load_flags       = "NO_HINTING",
 
         -- Keymaps
         disable_default_key_bindings = true,
