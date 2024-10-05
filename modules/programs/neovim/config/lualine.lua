@@ -12,7 +12,7 @@ require("lualine").setup({
 		component_separators = { left = "|", right = "|" },
 		section_separators = { right = "", left = "" },
 		disabled_filetypes = {
-			statusline = { "alpha" },
+			statusline = { "alpha", "NvimTree" },
 		},
 		refresh = {
 			statusline = 1000,
@@ -27,7 +27,7 @@ require("lualine").setup({
 			{ "filename", file_status = true },
 		},
 		lualine_c = {
-			"diff"
+			"diff",
 		},
 		lualine_x = {
 			{ "diagnostics", sources = { "nvim_diagnostic" } },
