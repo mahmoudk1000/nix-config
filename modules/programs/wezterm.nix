@@ -45,15 +45,15 @@
       })
 
       local keys = {
-          { key = '?', mods = 'SHIFT|CTRL', action = wezterm.action.ShowLauncher },
-          { key = 'q', mods = 'SUPER',      action = wezterm.action.QuitApplication },
-          { key = 'k', mods = 'ALT|CTRL',   action = wezterm.action.DecreaseFontSize },
-          { key = 'j', mods = 'ALT|CTRL',   action = wezterm.action.IncreaseFontSize },
-          { key = '.', mods = 'ALT|CTRL',   action = wezterm.action.ResetFontSize },
-          { key = 'k', mods = 'ALT|SHIFT',  action = wezterm.action.ScrollByPage(-0.5) },
-          { key = 'j', mods = 'ALT|SHIFT',  action = wezterm.action.ScrollByPage(0.5) },
-          { key = 'C', mods = 'CTRL',       action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
-          { key = 'V', mods = 'CTRL',       action = wezterm.action.PasteFrom("Clipboard") },
+          { key = "?", mods = "SHIFT|CTRL", action = wezterm.action.ShowLauncher },
+          { key = "q", mods = "SUPER",      action = wezterm.action.QuitApplication },
+          { key = "k", mods = "ALT|CTRL",   action = wezterm.action.DecreaseFontSize },
+          { key = "j", mods = "ALT|CTRL",   action = wezterm.action.IncreaseFontSize },
+          { key = ".", mods = "ALT|CTRL",   action = wezterm.action.ResetFontSize },
+          { key = "k", mods = "ALT|SHIFT",  action = wezterm.action.ScrollByPage(-0.5) },
+          { key = "j", mods = "ALT|SHIFT",  action = wezterm.action.ScrollByPage(0.5) },
+          { key = "C", mods = "CTRL",       action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
+          { key = "V", mods = "CTRL",       action = wezterm.action.PasteFrom("Clipboard") },
       }
 
       local launch_menu = {
@@ -69,18 +69,20 @@
 
       return {
         -- Default
-        term                      = 'xterm-256color',
+        term                      = "xterm-256color",
+        audible_bell              = "Disabled",
         check_for_updates         = false,
         window_close_confirmation = "NeverPrompt",
+        default_prog              = { "/run/current-system/sw/bin/zsh" },
 
         -- Appearance
-        color_scheme_dirs             = { '~/.config/wezterm/colors/default.toml' },
-        color_scheme                  = 'default',
+        color_scheme_dirs             = { "~/.config/wezterm/colors/default.toml" },
+        color_scheme                  = "default",
         force_reverse_video_cursor    = true,
-        bold_brightens_ansi_colors    = 'No',
+        bold_brightens_ansi_colors    = "No",
         hide_tab_bar_if_only_one_tab  = true,
         window_padding                = { left = 35, right = 35, top = 18, bottom = 18 },
-        window_decorations            = 'RESIZE',
+        window_decorations            = "RESIZE",
         default_cursor_style          = "BlinkingUnderline",
         enable_tab_bar                = false,
         use_fancy_tab_bar             = false,
