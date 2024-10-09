@@ -2,7 +2,7 @@
 
 let
   groovy-language-server = import ./groovyls.nix { inherit pkgs; };
-  customVimPlugins = import ./vim-plugins.nix { inherit pkgs; };
+  # customVimPlugins = import ./vim-plugins.nix { inherit pkgs; };
 in
 {
   imports = [ ./islet.nix ];
@@ -31,7 +31,6 @@ in
         nixfmt-rfc-style
         terraform-ls
         ansible-lint
-        tree-sitter
         shellcheck
         checkmake
         codespell
@@ -58,126 +57,122 @@ in
         jedi-language-server
         pynvim
       ]);
-    plugins =
-      (with customVimPlugins; [ markview-nvim ])
-      ++ (with pkgs.vimPlugins; [
-
-        {
-          plugin = nvim-treesitter.withAllGrammars;
-          type = "lua";
-          config = builtins.readFile ./config/treesitter.lua;
-        }
-        {
-          plugin = alpha-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/alpha.lua;
-        }
-        {
-          plugin = bufferline-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/bufferline.lua;
-        }
-        {
-          plugin = indent-blankline-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/indent.lua;
-        }
-        {
-          plugin = nvim-lspconfig;
-          type = "lua";
-          config = builtins.readFile ./config/lsp.lua;
-        }
-        {
-          plugin = lualine-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/lualine.lua;
-        }
-        {
-          plugin = nvim-tree-lua;
-          type = "lua";
-          config = builtins.readFile ./config/tree.lua;
-        }
-        {
-          plugin = toggleterm-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/toggleterm.lua;
-        }
-        {
-          plugin = nvim-cmp;
-          type = "lua";
-          config = builtins.readFile ./config/cmp.lua;
-        }
-        {
-          plugin = which-key-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/whichkey.lua;
-        }
-        {
-          plugin = gitsigns-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/gitsigns.lua;
-        }
-        {
-          plugin = telescope-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/telescope.lua;
-        }
-        {
-          plugin = copilot-lua;
-          type = "lua";
-          config = builtins.readFile ./config/copilot.lua;
-        }
-        {
-          plugin = fidget-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/fidget.lua;
-        }
-        {
-          plugin = luasnip;
-          type = "lua";
-          config = builtins.readFile ./config/luasnip.lua;
-        }
-        {
-          plugin = vimtex;
-          type = "lua";
-          config = builtins.readFile ./config/vimtex.lua;
-        }
-        {
-          plugin = nvim-lint;
-          type = "lua";
-          config = builtins.readFile ./config/lint.lua;
-        }
-        {
-          plugin = conform-nvim;
-          type = "lua";
-          config = builtins.readFile ./config/conform.lua;
-        }
-        nvim-treesitter-textobjects
-        nvim-treesitter-refactor
-        cmp-buffer
-        cmp-cmdline
-        cmp-nvim-lsp
-        cmp-path
-        cmp-git
-        cmp_luasnip
-        copilot-cmp
-        cmp-nvim-lsp-signature-help
-        nvim-colorizer-lua
-        dressing-nvim
-        nui-nvim
-        nvim-web-devicons
-        tmux-nvim
-        vim-gitgutter
-        vim-nix
-        vim-sleuth
-        vim-terraform
-        vim-yaml
-        ansible-vim
-        playground
-        friendly-snippets
-        compiler-nvim
-        overseer-nvim
-        nvim-autopairs
-      ]);
+    plugins = with pkgs.vimPlugins; [
+      {
+        plugin = nvim-treesitter.withAllGrammars;
+        type = "lua";
+        config = builtins.readFile ./config/treesitter.lua;
+      }
+      {
+        plugin = alpha-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/alpha.lua;
+      }
+      {
+        plugin = bufferline-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/bufferline.lua;
+      }
+      {
+        plugin = indent-blankline-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/indent.lua;
+      }
+      {
+        plugin = nvim-lspconfig;
+        type = "lua";
+        config = builtins.readFile ./config/lsp.lua;
+      }
+      {
+        plugin = lualine-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/lualine.lua;
+      }
+      {
+        plugin = nvim-tree-lua;
+        type = "lua";
+        config = builtins.readFile ./config/tree.lua;
+      }
+      {
+        plugin = toggleterm-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/toggleterm.lua;
+      }
+      {
+        plugin = nvim-cmp;
+        type = "lua";
+        config = builtins.readFile ./config/cmp.lua;
+      }
+      {
+        plugin = which-key-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/whichkey.lua;
+      }
+      {
+        plugin = gitsigns-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/gitsigns.lua;
+      }
+      {
+        plugin = telescope-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/telescope.lua;
+      }
+      {
+        plugin = copilot-lua;
+        type = "lua";
+        config = builtins.readFile ./config/copilot.lua;
+      }
+      {
+        plugin = fidget-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/fidget.lua;
+      }
+      {
+        plugin = luasnip;
+        type = "lua";
+        config = builtins.readFile ./config/luasnip.lua;
+      }
+      {
+        plugin = vimtex;
+        type = "lua";
+        config = builtins.readFile ./config/vimtex.lua;
+      }
+      {
+        plugin = nvim-lint;
+        type = "lua";
+        config = builtins.readFile ./config/lint.lua;
+      }
+      {
+        plugin = conform-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/conform.lua;
+      }
+      cmp-buffer
+      cmp-cmdline
+      cmp-nvim-lsp
+      cmp-path
+      cmp-git
+      cmp_luasnip
+      copilot-cmp
+      cmp-nvim-lsp-signature-help
+      nvim-colorizer-lua
+      dressing-nvim
+      nui-nvim
+      nvim-web-devicons
+      tmux-nvim
+      vim-gitgutter
+      vim-nix
+      vim-sleuth
+      vim-terraform
+      vim-yaml
+      ansible-vim
+      playground
+      friendly-snippets
+      compiler-nvim
+      overseer-nvim
+      nvim-autopairs
+      markview-nvim
+    ];
   };
 }
