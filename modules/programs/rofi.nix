@@ -1,4 +1,9 @@
-{ config, theme, ... }:
+{
+  config,
+  theme,
+  lib,
+  ...
+}:
 
 let
   inherit (config.lib.formats.rasi) mkLiteral;
@@ -8,10 +13,10 @@ in
 
   programs = {
     poww = {
-      enable = false;
+      enable = lib.mkIf (!config.xsession.windowManager.awesome.enable) true;
     };
     rofi = {
-      enable = true;
+      enable = lib.mkIf (!config.xsession.windowManager.awesome.enable) true;
       font = "IosevkaTerm Nerd Font 9";
       terminal = "st";
       extraConfig = {
