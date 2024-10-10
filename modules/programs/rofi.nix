@@ -16,7 +16,7 @@ in
       enable = lib.mkIf (!config.xsession.windowManager.awesome.enable) true;
     };
     rofi = {
-      enable = lib.mkIf (!config.xsession.windowManager.awesome.enable) true;
+      enable = true;
       font = "IosevkaTerm Nerd Font 9";
       terminal = "st";
       extraConfig = {
