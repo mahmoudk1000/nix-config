@@ -90,7 +90,7 @@ in
           tab-session-manager
           search-by-image
         ];
-        inherit settings chrome userChrome userContent;
+        inherit settings userChrome userContent;
       };
       work = {
         id = 1;
