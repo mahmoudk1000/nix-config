@@ -5,14 +5,19 @@
     eza = {
       enable = true;
       git = true;
-      icons = true;
+      icons = "auto";
       enableZshIntegration = true;
-      extraOptions =
-        [ "--header" "--group-directories-first" "--octal-permissions" ];
+      extraOptions = [
+        "--header"
+        "--group-directories-first"
+        "--octal-permissions"
+      ];
     };
     bat = {
       enable = true;
-      config = { theme = "base16"; };
+      config = {
+        theme = "base16";
+      };
       extraPackages = with pkgs.bat-extras; [
         batdiff
         batman
