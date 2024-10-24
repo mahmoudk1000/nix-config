@@ -23,9 +23,16 @@ in
       opentofu
       ansible
       kubernetes-helm
+      helm-docs
       # kubernetes
       # minikube
       kubectl
+      krew
+      kubectl-tree
+      kubectl-ktop
+      kubectl-view-secret
+      kubectx
+      stern
       docker-compose
       gnumake
       kustomize
@@ -36,6 +43,7 @@ in
       azure-cli
       awscli2
       wireshark
+      hoppscotch
       powershell
       # docker-machine-kvm2
       # runc
