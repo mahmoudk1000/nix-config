@@ -23,13 +23,13 @@
         enable = true;
       };
       efi.canTouchEfiVariables = true;
-      tmp.cleanOnBoot = true;
     };
     extraModulePackages = with config.boot.kernelPackages; [
       acpi_call
       cpupower
       perf
     ];
+    tmp.cleanOnBoot = true;
   };
 
   documentation = {
