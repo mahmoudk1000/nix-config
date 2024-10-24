@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
     ./modules/gpu.nix
     ./modules/locale.nix
-    ./modules/nixos.nix
+    ./modules/nix.nix
     ./modules/programs.nix
     ./modules/security.nix
     ./modules/services.nix
