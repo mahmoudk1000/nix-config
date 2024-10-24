@@ -40,7 +40,7 @@ in
       chart-testing
       tfsec
       trivy
-      azure-cli
+      # azure-cli
       awscli2
       wireshark
       hoppscotch
