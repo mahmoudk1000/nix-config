@@ -8,6 +8,7 @@
   "browser.send_pings" = false;
   "browser.startup.page" = 3;
   "browser.urlbar.placeholderName" = "Search The Web";
+  "accessibility.typeaheadfind.enablesound" = false;
 
   # Force using WebRender. Improve performance
   "geo.enabled" = false;
