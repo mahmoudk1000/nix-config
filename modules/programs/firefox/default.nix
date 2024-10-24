@@ -6,6 +6,11 @@
   ...
 }:
 
+let
+  settings = import ./settings.nix { inherit theme; };
+  userChrome = import ./userChrome.nix { inherit theme; };
+  userContent = import ./userContent.nix { inherit theme; };
+in
 {
   programs.firefox = {
     enable = true;
@@ -76,6 +81,7 @@
           privacy-badger
           bitwarden
           clearurls
+          link-cleaner
           decentraleyes
           duckduckgo-privacy-essentials
           libredirect
@@ -84,9 +90,7 @@
           tab-session-manager
           search-by-image
         ];
-        settings = import ./settings.nix { inherit theme; };
-        userChrome = import ./userChrome.nix { inherit theme; };
-        userContent = import ./userContent.nix { inherit theme; };
+        inherit settings chrome userChrome userContent;
       };
       work = {
         id = 1;
@@ -139,7 +143,7 @@
           tab-session-manager
           lastpass-password-manager
         ];
-        settings = import ./settings.nix { inherit theme; };
+        inherit settings;
       };
     };
   };
