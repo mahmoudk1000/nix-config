@@ -2,6 +2,7 @@
 
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 [![built with garnix](https://img.shields.io/endpoint?url=https%3A%2F%2Fgarnix.io%2Fapi%2Fbadges%2Fmahmoudk1000%2Fnix-config%3Fbranch%3Dmain)](https://garnix.io)
+[![Statix Lint](https://github.com/mahmoudk1000/nix-config/actions/workflows/lint.yml/badge.svg)](https://github.com/mahmoudk1000/nix-config/actions/workflows/lint.yml)
 
 Welcome to nix configuration! This repository contains my NixOS system configurations and [dotfiles](https://github.com/mahmoudk1000/dotfiles)
 > I am no Nix expert.
