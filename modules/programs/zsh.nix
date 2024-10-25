@@ -114,7 +114,7 @@
         "..." = "cd -- ../..";
         "...." = "cd -- ../../..";
 
-        g = "git";
+        g = "lazygit";
         ga = "git add";
         glg = "git log";
         gl = "git clone";
