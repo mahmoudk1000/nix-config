@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  imports = [ ./custom/lowLatency.nix ];
+  imports = [ ./lowLatency.nix ];
 
   services.pipewire = {
     enable = true;

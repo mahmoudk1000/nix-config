@@ -2,16 +2,8 @@
 
 {
   imports = [
+    ../_modules/
     ./hardware-configuration.nix
-    ./modules/gpu.nix
-    ./modules/locale.nix
-    ./modules/nix.nix
-    ./modules/programs.nix
-    ./modules/security.nix
-    ./modules/services.nix
-    ./modules/sound.nix
-    ./modules/user.nix
-    ./modules/wireless.nix
   ];
 
   # Boot
