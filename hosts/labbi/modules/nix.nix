@@ -4,10 +4,14 @@
   # Nix
   nix = {
     package = pkgs.nixVersions.latest;
+    daemonIOSchedClass = "idle";
+    daemonCPUSchedPolicy = "idle";
+    daemonIOSchedPriority = 7;
     settings = {
       keep-outputs = false;
       keep-derivations = false;
       auto-optimise-store = true;
+      builders-use-substitutes = true;
       experimental-features = [
         "nix-command"
         "flakes"
@@ -37,10 +41,16 @@
 
   # NixOS
   system = {
+    switch = {
+      enable = false;
+      enableNg = true;
+    };
     autoUpgrade = {
       enable = false;
       channel = "https://nixos.org/channels/nixos-unstable";
     };
     stateVersion = "22.05";
   };
+
+  systemd.services.nix-gc.unitConfig.ConditionACPower = true;
 }
