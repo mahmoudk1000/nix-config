@@ -16,6 +16,12 @@
       init = {
         defaultBranch = "main";
       };
+      url = {
+        "https://github.com/".insteadOf = "gh:";
+        "git@github.com:".pushInsteadOf = "gh:";
+        "https://gitlab.com/".insteadOf = "gl:";
+        "git@gitlab.com:".pushInsteadOf = "gl:";
+      };
     };
     signing = {
       signByDefault = true;
