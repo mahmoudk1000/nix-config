@@ -2,8 +2,8 @@
 
 let
   groovy-language-server = import ./groovyls.nix { inherit pkgs; };
-  # customVimPlugins = import ./vim-plugins.nix { inherit pkgs; };
 in
+# customVimPlugins = import ./vim-plugins.nix { inherit pkgs; };
 {
   imports = [ ./islet.nix ];
 
@@ -42,13 +42,15 @@ in
         ripgrep
         helm-ls
         deadnix
+        statix
         stylua
         tflint
         texlab
         biber
         shfmt
         ruff
-        nixd
+        # nixd
+        nil
         gcc
         fd
       ])

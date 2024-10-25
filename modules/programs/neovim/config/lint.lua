@@ -9,7 +9,7 @@ require("lint").linters_by_ft = {
 	tf = { "tfsec", "trivy", "terraform_validate", "tflint" },
 	make = { "checkmake" },
 	ansible = { "ansible_lint" },
-	nix = { "deadnix", "nix" },
+	nix = { "deadnix", "nix", "statix" },
 	tex = { "chktex" },
 }
 

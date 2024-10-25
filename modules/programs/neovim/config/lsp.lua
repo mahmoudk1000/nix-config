@@ -16,7 +16,8 @@ local servers = {
 	"docker_compose_language_service",
 	"helm_ls",
 	"texlab",
-	"nixd",
+	-- "nixd",
+	"nil_ls",
 	"terraformls",
 	"tflint",
 	"autotools_ls",
@@ -25,13 +26,15 @@ local servers = {
 }
 
 -- LSP settings.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end
 
 	-- Options.
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+	client.server_capabilities.semanticTokensProvider = nil
 
 	-- Mappings.
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
