@@ -24,12 +24,19 @@
       };
       efi.canTouchEfiVariables = true;
     };
+    kernelParams = [
+      "snd_hda_intel.dmic_detect=0"
+      "acpi_osi=linux"
+    ];
     extraModulePackages = with config.boot.kernelPackages; [
       acpi_call
       cpupower
       perf
     ];
-    tmp.cleanOnBoot = true;
+    tmp = {
+      cleanOnBoot = true;
+      useTmpfs = true;
+    };
   };
 
   documentation = {
