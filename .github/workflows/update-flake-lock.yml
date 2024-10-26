@@ -8,7 +8,7 @@ on:
       AUTO_MERGE:
         description: Whether to set the pull request to automatically merge on success.
         default: true
-        required: false
+        required: true
         type: boolean
   workflow_call:
     inputs:
@@ -39,9 +39,10 @@ jobs:
           git-committer-email: github-actions[bot]@users.noreply.github.com
           pr-title: Update flake.lock
           pr-labels: |
-            dependencies
+            update
             automated
-      - name: Auto-merge PR #${{ steps.update.outputs.pull-request-number }}
+            flake
+      - name: Auto-merge PR '#${{ steps.update.outputs.pull-request-number }}'
         if: ${{ inputs.AUTO_MERGE }}
         run: |
           gh pr merge --auto --merge ${{  steps.update.outputs.pull-request-number }} --delete-branch
