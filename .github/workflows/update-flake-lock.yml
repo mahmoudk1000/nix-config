@@ -35,8 +35,9 @@ jobs:
           pr-labels: |
             dependencies
             automated
-      - name: Merge PR
+      - name: Merge PR \#${{ steps.update.outputs.pull-request-number }}
         if: ${{ fromJSON(inputs.automerge) }}
-        uses: peter-evans/enable-pull-request-automerge@v3
-        with:
-          pull-request-number: ${{ steps.update.outputs.pull-request-number }}
+        run: |
+          gh pr merge --auto --merge ${{  setps.update.outputs.pull-request-number }} --delete-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
