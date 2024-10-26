@@ -2,7 +2,7 @@
 name: Update Flake
 on:
   schedule:
-    - cron: '@weekly'
+    - cron: 0 0 * * 0'
   workflow_dispatch:
 inputs:
   automerge:
@@ -27,9 +27,7 @@ jobs:
         uses: DeterminateSystems/update-flake-lock@v24
         id: update
         with:
-          git-author-name: Jane Author
-          git-author-email: github-actions[bot]@users.noreply.github.com
-          git-committer-name: John Committer
+          git-committer-name: github-actions[bot]
           git-committer-email: github-actions[bot]@users.noreply.github.com
           pr-title: Update flake.lock
           pr-labels: |
