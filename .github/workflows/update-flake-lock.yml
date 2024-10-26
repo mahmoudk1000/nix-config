@@ -38,6 +38,6 @@ jobs:
       - name: Merge PR \#${{ steps.update.outputs.pull-request-number }}
         if: ${{ fromJSON(inputs.automerge) }}
         run: |
-          gh pr merge --auto --merge ${{  setps.update.outputs.pull-request-number }} --delete-branch
+          gh pr merge --auto --merge ${{  steps.update.outputs.pull-request-number }} --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
