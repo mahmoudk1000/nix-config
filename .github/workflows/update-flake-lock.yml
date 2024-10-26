@@ -4,9 +4,15 @@ on:
   schedule:
     - cron: 0 0 * * 0
   workflow_dispatch:
+    inputs:
+      AUTO_MERGE:
+        description: Whether to set the pull request to automatically merge on success.
+        default: true
+        required: false
+        type: boolean
   workflow_call:
     inputs:
-      auto_merge:
+      AUTO_MERGE:
         description: Whether to set the pull request to automatically merge on success.
         default: true
         required: false
@@ -35,9 +41,9 @@ jobs:
           pr-labels: |
             dependencies
             automated
-      - name: Auto-merge PR "#${{ steps.update.outputs.pull-request-number }}"
-        if: ${{ inputs.auto_merge }}
+      - name: Auto-merge PR #${{ steps.update.outputs.pull-request-number }}
+        if: ${{ inputs.AUTO_MERGE }}
         run: |
           gh pr merge --auto --merge ${{  steps.update.outputs.pull-request-number }} --delete-branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
