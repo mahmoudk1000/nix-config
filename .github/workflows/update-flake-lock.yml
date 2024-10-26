@@ -1,0 +1,42 @@
+---
+name: Update Flake
+on:
+  schedule:
+    - cron: '@weekly'
+  workflow_dispatch:
+inputs:
+  automerge:
+    default: 'true'
+    required: false
+    description: Whether to set the pull request to automatically merge on success.
+jobs:
+  update-flake-lock:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            substituters = https://cache.nixos.org https://nix-community.cachix.org https://cache.garnix.io
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@v24
+        id: update
+        with:
+          git-author-name: Jane Author
+          git-author-email: github-actions[bot]@users.noreply.github.com
+          git-committer-name: John Committer
+          git-committer-email: github-actions[bot]@users.noreply.github.com
+          pr-title: Update flake.lock
+          pr-labels: |
+            dependencies
+            automated
+      - name: Merge PR
+        if: ${{ fromJSON(inputs.automerge) }}
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          pull-request-number: ${{ steps.update.outputs.pull-request-number }}
