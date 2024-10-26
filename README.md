@@ -1,6 +1,6 @@
 # NixOS System Configurations
 
-[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+![built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20With%20Nix&color=5277C3)
 [![built with garnix](https://img.shields.io/endpoint?url=https%3A%2F%2Fgarnix.io%2Fapi%2Fbadges%2Fmahmoudk1000%2Fnix-config%3Fbranch%3Dmain)](https://garnix.io)
 [![Statix Lint](https://github.com/mahmoudk1000/nix-config/actions/workflows/lint.yml/badge.svg)](https://github.com/mahmoudk1000/nix-config/actions/workflows/lint.yml)
 
