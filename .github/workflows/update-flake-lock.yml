@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   workflow_call:
     inputs:
-      automerge:
+      auto_merge:
         description: Whether to set the pull request to automatically merge on success.
         default: 'true'
         required: false
@@ -35,9 +35,9 @@ jobs:
           pr-labels: |
             dependencies
             automated
-      - name: Merge PR \#${{ steps.update.outputs.pull-request-number }}
-        if: ${{ fromJSON(inputs.automerge) }}
+      - name: Auto-merge PR (#${{ steps.update.outputs.pull-request-number }})
+        if: ${{ fromJSON(inputs.auto_merge) }}
         run: |
           gh pr merge --auto --merge ${{  steps.update.outputs.pull-request-number }} --delete-branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
