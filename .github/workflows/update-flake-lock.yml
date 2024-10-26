@@ -8,9 +8,9 @@ on:
     inputs:
       auto_merge:
         description: Whether to set the pull request to automatically merge on success.
-        default: 'true'
+        default: true
         required: false
-        type: string
+        type: boolean
 jobs:
   update-flake-lock:
     runs-on: ubuntu-latest
@@ -35,9 +35,9 @@ jobs:
           pr-labels: |
             dependencies
             automated
-      - name: Auto-merge PR (#${{ steps.update.outputs.pull-request-number }})
-        if: ${{ fromJSON(inputs.auto_merge) }}
+      - name: Auto-merge PR "#${{ steps.update.outputs.pull-request-number }}"
+        if: ${{ inputs.auto_merge }}
         run: |
           gh pr merge --auto --merge ${{  steps.update.outputs.pull-request-number }} --delete-branch
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
