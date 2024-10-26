@@ -4,11 +4,13 @@ on:
   schedule:
     - cron: 0 0 * * 0
   workflow_dispatch:
-inputs:
-  automerge:
-    default: 'true'
-    required: false
-    description: Whether to set the pull request to automatically merge on success.
+  workflow_call:
+    inputs:
+      automerge:
+        description: Whether to set the pull request to automatically merge on success.
+        default: 'true'
+        required: false
+        type: string
 jobs:
   update-flake-lock:
     runs-on: ubuntu-latest
