@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  imprts = [ ./awedots.nix ];
+  imports = [ ./awedots.nix ];
 
   xsession.windowManager = {
     awesome = {
