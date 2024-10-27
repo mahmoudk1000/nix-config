@@ -3,29 +3,29 @@ name: Statix Lint
 on:
   push:
     branches: [main]
-    paths-ignore: [.github/**, README.md]
+    paths-ignore: [.github/**, assets/**, README.md]
 jobs:
   lint:
     runs-on: ubuntu-latest
     if: github.actor != 'github-actions[bot]'
     outputs:
-      lint-success: ${{ steps.build-result.outputs.success }}
+      lint-success: ${{ steps.result.outputs.success }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v30
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
       - name: Run statix linter
         run: |
           echo "Linting Flake..."
-          if nix run --extra-experimental-features 'nix-command flakes' nixpkgs#statix -- check .; then
+          if nix run nixpkgs#statix -- check .; then
             echo "success=true" >> $GITHUB_ENV
           else
-            echo "Lint failed, listing flake.lock for debugging:"
-            cat flake.lock
             echo "success=false" >> $GITHUB_ENV
             exit 1
           fi
       - name: Determine lint result
-        id: build-result
-        run: echo "success=${{ env.success }}" >> $GITHUB_OUTPUT
+        id: result
+        run: echo "result=${{ env.success }}" >> $GITHUB_OUTPUT

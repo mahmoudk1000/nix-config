@@ -6,16 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       AUTO_MERGE:
-        description: Whether to set the pull request to automatically merge on success.
+        description: Auto-merge PR on success.
         default: true
         required: true
-        type: boolean
-  workflow_call:
-    inputs:
-      AUTO_MERGE:
-        description: Whether to set the pull request to automatically merge on success.
-        default: true
-        required: false
         type: boolean
 jobs:
   update-flake-lock:
@@ -24,27 +17,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Set up Nix
-        uses: cachix/install-nix-action@v27
+        uses: cachix/install-nix-action@v30
         with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
           nix_path: nixpkgs=channel:nixos-unstable
-          extra_nix_config: |
-            substituters = https://cache.nixos.org https://nix-community.cachix.org https://cache.garnix.io
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v24
         id: update
         with:
           git-committer-name: github-actions[bot]
           git-committer-email: github-actions[bot]@users.noreply.github.com
-          pr-title: Update flake.lock
+          pr-title: 'chore(flake): automated flake update'
+          commit-msg: 'chore(flake): update `flake.lock`'
           pr-labels: |
             update
             automated
             flake
       - name: Auto-merge PR '#${{ steps.update.outputs.pull-request-number }}'
-        if: ${{ inputs.AUTO_MERGE }}
+        if: ${{ inputs.AUTO_MERGE  || github.event_name == 'schedule' }}
         run: |
-          gh pr merge --auto --merge ${{  steps.update.outputs.pull-request-number }} --delete-branch
+          if [ -n "${{ steps.update.outputs.pull-request-number }}" ]; then
+            gh pr merge \
+              --auto \
+              --merge ${{  steps.update.outputs.pull-request-number }} \
+              --delete-branch
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
