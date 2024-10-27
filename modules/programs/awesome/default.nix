@@ -6,7 +6,7 @@
   xsession.windowManager = {
     awesome = {
       package = pkgs.awesome-git;
-      awedots = false;
+      awedots.enable = false;
       luaModules = with pkgs.luaPackages; [
         luafilesystem
         luarocks
