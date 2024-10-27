@@ -47,8 +47,8 @@
       local keys = {
           { key = "?", mods = "SHIFT|CTRL", action = wezterm.action.ShowLauncher },
           { key = "q", mods = "SUPER",      action = wezterm.action.QuitApplication },
-          { key = "k", mods = "ALT|CTRL",   action = wezterm.action.DecreaseFontSize },
-          { key = "j", mods = "ALT|CTRL",   action = wezterm.action.IncreaseFontSize },
+          { key = "j", mods = "ALT|CTRL",   action = wezterm.action.DecreaseFontSize },
+          { key = "k", mods = "ALT|CTRL",   action = wezterm.action.IncreaseFontSize },
           { key = ".", mods = "ALT|CTRL",   action = wezterm.action.ResetFontSize },
           { key = "k", mods = "ALT|SHIFT",  action = wezterm.action.ScrollByPage(-0.5) },
           { key = "j", mods = "ALT|SHIFT",  action = wezterm.action.ScrollByPage(0.5) },
