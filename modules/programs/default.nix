@@ -1,13 +1,13 @@
 {
   imports = [
     ./accounts
+    ./awesome
     ./firefox
     ./ncmpcpp
     ./neovim
     ./vscode
     ./2bwm.nix
     ./alacritty.nix
-    ./awesomewm.nix
     ./bash.nix
     ./bitwarden.nix
     ./bspwm.nix
