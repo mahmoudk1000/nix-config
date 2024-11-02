@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   theme,
   labbi,
   ...
@@ -10,6 +11,10 @@ let
   settings = import ./settings.nix { inherit theme; };
   userChrome = import ./userChrome.nix { inherit theme; };
   userContent = import ./userContent.nix { inherit theme; };
+  customAddons = import ./addons.nix {
+    inherit lib;
+    inherit (pkgs.nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
+  };
 in
 {
   programs.firefox = {
@@ -76,20 +81,23 @@ in
             "eBay".metaData.hidden = true;
           };
         };
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-          privacy-badger
-          bitwarden
-          clearurls
-          link-cleaner
-          decentraleyes
-          duckduckgo-privacy-essentials
-          libredirect
-          privacy-badger
-          languagetool
-          tab-session-manager
-          search-by-image
-        ];
+        extensions =
+          with pkgs.nur.repos.rycee.firefox-addons;
+          [
+            ublock-origin
+            privacy-badger
+            bitwarden
+            clearurls
+            link-cleaner
+            decentraleyes
+            duckduckgo-privacy-essentials
+            libredirect
+            privacy-badger
+            languagetool
+            tab-session-manager
+            search-by-image
+          ]
+          ++ (with customAddons; [ startpage ]);
         inherit settings userChrome userContent;
       };
       work = {
