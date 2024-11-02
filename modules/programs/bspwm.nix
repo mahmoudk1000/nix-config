@@ -127,5 +127,5 @@ in
     };
   };
 
-  home.packages = lib.mkIf (config.xsession.windowManager.bspwm.enable) (with pkgs; [ wmutils-opt ]);
+  home.packages = lib.mkIf config.xsession.windowManager.bspwm.enable (with pkgs; [ wmutils-opt ]);
 }

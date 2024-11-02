@@ -58,7 +58,7 @@
     };
   };
 
-  home.packages = lib.mkIf (config.programs.git.enable) (
+  home.packages = lib.mkIf config.programs.git.enable (
     with pkgs;
     [
       git-crypt

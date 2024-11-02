@@ -59,23 +59,25 @@
           "window_type = 'desktop'"
         ];
       }
-      (lib.mkIf (config.services.picom.shadow) { shadow-radius = 12; })
-      (lib.mkIf (config.services.picom.package == pkgs.picom-pijulius) {
-        animations = true;
-        animation-stiffness = 220;
-        animation-window-mass = 0.4;
-        animation-dampening = 20;
-        animation-clamping = true;
+      (lib.mkIf config.services.picom.shadow { shadow-radius = 12; })
+      (
+        lib.mkIf config.services.picom.package == pkgs.picom-pijulius {
+          animations = true;
+          animation-stiffness = 220;
+          animation-window-mass = 0.4;
+          animation-dampening = 20;
+          animation-clamping = true;
 
-        animation-for-open-window = "zoom";
-        animation-for-unmap-window = "none";
+          animation-for-open-window = "zoom";
+          animation-for-unmap-window = "none";
 
-        animation-for-menu-window = "none";
-        animation-for-transient-window = "none";
+          animation-for-menu-window = "none";
+          animation-for-transient-window = "none";
 
-        animation-for-workspace-switch-in = "none";
-        animation-for-workspace-switch-out = "none";
-      })
+          animation-for-workspace-switch-in = "none";
+          animation-for-workspace-switch-out = "none";
+        }
+      )
     ];
 
     wintypes = {

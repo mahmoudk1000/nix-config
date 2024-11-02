@@ -31,19 +31,21 @@
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
   };
 
-  fileSystems."/" = {
-    device = "/dev/linux/os";
-    fsType = "xfs";
-  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/linux/os";
+      fsType = "xfs";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
-  };
+    "/boot" = {
+      device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+    };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-label/HOME";
-    fsType = "ext4";
+    "/home" = {
+      device = "/dev/disk/by-label/HOME";
+      fsType = "ext4";
+    };
   };
 
   swapDevices = [ ];

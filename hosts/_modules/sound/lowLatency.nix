@@ -1,7 +1,9 @@
 { config, lib, ... }:
 
-let cfg = config.services.pipewire.lowLatency;
-in {
+let
+  cfg = config.services.pipewire.lowLatency;
+in
+{
   options = {
     services.pipewire = {
       lowLatency = {
@@ -37,13 +39,15 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.pipewire.extraConfig = lib.mkIf (config.services.pipewire.enable) {
+    services.pipewire.extraConfig = lib.mkIf config.services.pipewire.enable {
       pipewire."92-low-latency" = {
         context.properties = {
-          default.clock.rate = cfg.rate;
-          default.clock.quantum = cfg.quantum.def;
-          default.clock.min-quantum = cfg.quantum.min;
-          default.clock.max-quantum = cfg.quantum.max;
+          default.clock = {
+            inherit (cfg) rate;
+            quantum = cfg.quantum.def;
+            min-quantum = cfg.quantum.min;
+            max-quantum = cfg.quantum.max;
+          };
         };
       };
       pipewire-pulse."92-low-latency" = {
@@ -52,25 +56,27 @@ in {
             name = "libpipewire-module-rtkit";
             args = {
               nice.level = -15;
-              rt.prio = 88;
-              rt.time.soft = 200000;
-              rt.time.hard = 200000;
+              rt = {
+                prio = 88;
+                time.soft = 200000;
+                time.hard = 200000;
+              };
             };
-            flags = [ "ifexists" "nofail" ];
+            flags = [
+              "ifexists"
+              "nofail"
+            ];
           }
           {
             name = "libpipewire-module-protocol-pulse";
             args = {
-              pulse.min.req =
-                "${toString cfg.quantum.min}/${toString cfg.rate}";
-              pulse.default.req =
-                "${toString cfg.quantum.min}/${toString cfg.rate}";
-              pulse.max.req =
-                "${toString cfg.quantum.min}/${toString cfg.rate}";
-              pulse.min.quantum =
-                "${toString cfg.quantum.min}/${toString cfg.rate}";
-              pulse.max.quantum =
-                "${toString cfg.quantum.min}/${toString cfg.rate}";
+              pulse = {
+                min.req = "${toString cfg.quantum.min}/${toString cfg.rate}";
+                default.req = "${toString cfg.quantum.min}/${toString cfg.rate}";
+                max.req = "${toString cfg.quantum.min}/${toString cfg.rate}";
+                min.quantum = "${toString cfg.quantum.min}/${toString cfg.rate}";
+                max.quantum = "${toString cfg.quantum.min}/${toString cfg.rate}";
+              };
               server.address = [ "unix:native" ];
             };
           }
@@ -82,11 +88,11 @@ in {
       };
     };
 
-    services.pipewire.wireplumber.extraConfig =
-      lib.mkIf (config.services.pipewire.enable) {
-        main."92-low-latency" = {
-          "monitor.alsa.rules" = [{
-            matches = [{ "device.name" = "~alsa_card.*"; }];
+    services.pipewire.wireplumber.extraConfig = lib.mkIf config.services.pipewire.enable {
+      main."92-low-latency" = {
+        "monitor.alsa.rules" = [
+          {
+            matches = [ { "device.name" = "~alsa_card.*"; } ];
             actions = {
               update-props = {
                 "audio.format" = "S32LE";
@@ -95,11 +101,13 @@ in {
                 "api.alsa.disable-batch" = false;
               };
             };
-          }];
-        };
-        bluetooth."10-bluez" = {
-          "monitor.bluez.rules" = [{
-            matches = [{ "device.name" = "~bluez_card.*"; }];
+          }
+        ];
+      };
+      bluetooth."10-bluez" = {
+        "monitor.bluez.rules" = [
+          {
+            matches = [ { "device.name" = "~bluez_card.*"; } ];
             actions = {
               update-props = {
                 "bluez5.roles" = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]";
@@ -109,8 +117,9 @@ in {
                 "bluez5.enable-hw-volume" = true;
               };
             };
-          }];
-        };
+          }
+        ];
       };
+    };
   };
 }

@@ -18,25 +18,27 @@
   };
 
   # System Users
-  users.users.root.hashedPasswordFile = config.age.secrets."users/${labbi.user}".path;
-  users.users.${labbi.user} = {
-    description = "Mahmoud Asran";
-    isNormalUser = true;
-    home = "/home/${labbi.user}";
-    shell = pkgs.zsh;
-    extraGroups = [
-      "wheel"
-      "video"
-      "audio"
-      "users"
-      "tty"
-      "input"
-      (lib.mkIf config.virtualisation.docker.enable "docker")
-      (lib.mkIf config.programs.adb.enable "adbusers")
-      (lib.mkIf config.virtualisation.libvirtd.enable "libvirtd")
-      "wireshark"
-    ];
-    hashedPasswordFile = config.age.secrets."users/${labbi.user}".path;
+  users.users = {
+    root.hashedPasswordFile = config.age.secrets."users/${labbi.user}".path;
+    ${labbi.user} = {
+      description = "Mahmoud Asran";
+      isNormalUser = true;
+      home = "/home/${labbi.user}";
+      shell = pkgs.zsh;
+      extraGroups = [
+        "wheel"
+        "video"
+        "audio"
+        "users"
+        "tty"
+        "input"
+        (lib.mkIf config.virtualisation.docker.enable "docker")
+        (lib.mkIf config.programs.adb.enable "adbusers")
+        (lib.mkIf config.virtualisation.libvirtd.enable "libvirtd")
+        "wireshark"
+      ];
+      hashedPasswordFile = config.age.secrets."users/${labbi.user}".path;
+    };
   };
 
   environment.pathsToLink = [ "/share/zsh" ];
