@@ -1,4 +1,4 @@
-{ lib, labbi, ... }:
+{ lib, host, ... }:
 
 {
   services = {
@@ -18,11 +18,11 @@
     };
     hostKeys = [
       {
-        path = "/home/${labbi.user}/.ssh/id_rsa";
+        path = "/home/${host.username}/.ssh/id_rsa";
         type = "rsa";
       }
       {
-        path = "/home/${labbi.user}/.ssh/id_ed25519";
+        path = "/home/${host.username}/.ssh/id_ed25519";
         type = "ed25519";
       }
     ];

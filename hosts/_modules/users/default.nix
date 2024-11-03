@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  labbi,
+  host,
   lib,
   ...
 }:
@@ -9,21 +9,21 @@
 {
   age = {
     identityPaths = [
-      "/home/${labbi.user}/.ssh/id_rsa"
-      "/home/${labbi.user}/.ssh/id_ed25519"
+      "/home/${host.username}/.ssh/id_rsa"
+      "/home/${host.username}/.ssh/id_ed25519"
     ];
     secrets = {
-      "users/${labbi.user}".file = ../../../secrets/users/mahmoud.age;
+      "users/${host.username}".file = ../../../secrets/users/mahmoud.age;
     };
   };
 
   # System Users
   users.users = {
-    root.hashedPasswordFile = config.age.secrets."users/${labbi.user}".path;
-    ${labbi.user} = {
+    root.hashedPasswordFile = config.age.secrets."users/${host.username}".path;
+    ${host.username} = {
       description = "Mahmoud Asran";
       isNormalUser = true;
-      home = "/home/${labbi.user}";
+      home = "/home/${host.username}";
       shell = pkgs.zsh;
       extraGroups = [
         "wheel"
@@ -37,7 +37,7 @@
         (lib.mkIf config.virtualisation.libvirtd.enable "libvirtd")
         "wireshark"
       ];
-      hashedPasswordFile = config.age.secrets."users/${labbi.user}".path;
+      hashedPasswordFile = config.age.secrets."users/${host.username}".path;
     };
   };
 

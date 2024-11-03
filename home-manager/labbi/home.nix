@@ -1,7 +1,8 @@
 {
   config,
   pkgs,
-  labbi,
+  host,
+  osConfig,
   lib ? pkgs.lib,
   ...
 }:
@@ -14,9 +15,9 @@
   ];
 
   home = {
-    username = "${labbi.user}";
-    homeDirectory = "/home/${labbi.user}";
-    stateVersion = "22.05";
+    inherit (host) username;
+    stateVersion = lib.mkDefault osConfig.system.stateVersion;
+    homeDirectory = "/home/${host.username}";
     extraOutputsToInstall = [ "man" ];
     packages =
       (with pkgs; [

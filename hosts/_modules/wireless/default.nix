@@ -1,14 +1,14 @@
 {
   config,
   pkgs,
-  labbi,
+  host,
   ...
 }:
 
 {
   # Networking
   networking = {
-    inherit (labbi) hostName;
+    inherit (host) hostName;
     hosts = {
       "127.0.0.1" = [
         "local"
