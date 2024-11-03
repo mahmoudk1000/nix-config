@@ -41,6 +41,7 @@
   "browser.urlbar.suggest.topsites" = false;
   "browser.tabs.tabmanager.enabled" = false;
   "full-screen-api.ignore-widgets" = true;
+  "findbar.highlightAll" = true;
 
   # Privacy
   # "privacy.firstparty.isolate" = true;

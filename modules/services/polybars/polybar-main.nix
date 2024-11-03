@@ -1,4 +1,9 @@
-{ pkgs, theme, ... }:
+{
+  pkgs,
+  theme,
+  font,
+  ...
+}:
 
 {
   services.polybar = {
@@ -12,7 +17,7 @@
     };
     config = {
       "bar/main" = {
-        font-0 = "Iosevka:style=Heavy Extended Oblique::size=9;4";
+        font-0 = "${font.name}:style=Heavy Extended Oblique::size=9;4";
         monitor = "eDP-1";
         height = 35;
         width = "100%";

@@ -1,11 +1,11 @@
-{ theme }:
+{ theme, font }:
 
 with theme;
 
 ''
   @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
   * {
-    font-family: "Iosevka" !important;
+    font-family: "${font.name}" !important;
     font-size: 12px !important;
 
     --arrowpanel-background: ${base00} !important;

@@ -1,11 +1,11 @@
-{ theme, ... }:
+{ theme, font, ... }:
 
 {
   services.dunst = {
     enable = false;
     settings = {
       global = {
-        font = "Iosevka 9";
+        font = "${font.name} 9";
         markup = "full";
         format = ''<b>%s</b>\n%b'';
         sort = "yes";

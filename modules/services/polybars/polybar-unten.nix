@@ -1,4 +1,9 @@
-{ pkgs, theme, ... }:
+{
+  pkgs,
+  theme,
+  font,
+  ...
+}:
 
 let
   blum-stat = pkgs.writeScriptBin "blum-stat" ''
@@ -32,7 +37,7 @@ in
         wm-restack = "generic";
         border-size = 2;
         border-color = theme.base02;
-        font-0 = "IosevkaTerm Nerd Font:style=Semibold:size=8;3";
+        font-0 = "${font.nameTerm}:style=Semibold:size=8;3";
         background = theme.base00;
         foreground = theme.base01;
       };

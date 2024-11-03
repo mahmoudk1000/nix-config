@@ -1,4 +1,4 @@
-{ theme }:
+{ theme, font }:
 
 with theme;
 
@@ -19,7 +19,7 @@ with theme;
   }
   @-moz-document url("about:newtab"), url("about:home") {
     * {
-      font-family: "Iosevka" !important;
+      font-family: "${font.name}" !important;
     }
     body {
       background-color: ${base00} !important;

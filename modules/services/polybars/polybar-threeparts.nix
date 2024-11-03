@@ -1,4 +1,9 @@
-{ pkgs, theme, ... }:
+{
+  pkgs,
+  theme,
+  font,
+  ...
+}:
 
 {
   services.polybar = {
@@ -22,7 +27,7 @@
         override-redirect = true;
         border-size = 5;
         border-color = theme.base02;
-        font-0 = "Iosevka:style=Semibold:size=10;3";
+        font-0 = "${font.name}:style=Semibold:size=10;3";
         font-1 = "Material Design Icons Desktop:size=10;3";
         background = theme.base00;
         foreground = theme.base01;
@@ -41,7 +46,7 @@
         override-redirect = true;
         border-size = 5;
         border-color = theme.base02;
-        font-0 = "Iosevka:style=Semibold:size=10;3";
+        font-0 = "${font.nameTerm}:style=Semibold:size=10;3";
         font-1 = "Material Design Icons Desktop:size=10;3";
         background = theme.base00;
         foreground = theme.base01;
@@ -60,7 +65,7 @@
         override-redirect = true;
         border-size = 5;
         border-color = theme.base02;
-        font-0 = "Iosevka:style=Semibold:size=10;3";
+        font-0 = "${font.name}:style=Semibold:size=10;3";
         font-1 = "Material Design Icons Desktop:size=10;3";
         background = theme.base00;
         foreground = theme.base01;

@@ -2,6 +2,7 @@
   theme,
   pkgs,
   inputs,
+  font,
   ...
 }:
 
@@ -44,7 +45,7 @@
     extraConfig = ''
       local fonts = wezterm.font_with_fallback({
         {
-          family = "IosevkaTerm Nerd Font",
+          family = "${font.nameTerm}",
           weight = "Regular",
           harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
         },

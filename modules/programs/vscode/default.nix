@@ -1,4 +1,9 @@
-{ pkgs, theme, ... }:
+{
+  pkgs,
+  theme,
+  font,
+  ...
+}:
 
 {
   programs.vscode = {
@@ -52,8 +57,8 @@
       editor = {
         fontSize = 12;
         fontFamily = [
-          "Iosevka"
-          "IosevkaTerm Nerd Font"
+          "${font.name}"
+          "${font.nameTerm}"
         ];
         fontLigatures = true;
         acceptSuggestionOnEnter = "off";
@@ -97,7 +102,7 @@
       # Terminal
       terminal = {
         integrated = {
-          fontFamily = "IosevkaTerm Nerd Font";
+          fontFamily = "${font.nameTerm}";
           fontSize = 12;
           allowChords = false;
           gpuAcceleration = "on";

@@ -3,6 +3,7 @@
   pkgs,
   lib,
   theme,
+  font,
   ...
 }:
 
@@ -33,7 +34,7 @@ let
       
       -- Text settings --
       use_xft = true,
-      font = 'Iosevkat:size=9',
+      font = '${font.name}:size=9',
 
       -- Color Settings --
       default_color = '${theme.base0A}',
@@ -60,11 +61,11 @@ let
 
     conky.text = [[
       ''${execi 600 ${klima}/bin/klima}\
-      ''${offset -5}''${voffset 0}''${font Iosevka:style=Heavy Extended:size=35}''${color}''${time %H.%M} \
-      ''${offset -18}''${voffset -20}''${color}''${font Iosevka:style=Heavy Extended:size=11}''${execi 1 ${pkgs.mpc-cli}/bin/mpc current | ${pkgs.gnused}/bin/sed -r 's/ - /\n/g' | ${pkgs.coreutils}/bin/head -1}
-      ''${offset 145}''${voffset -3}''${color}''${font Iosevka:style=Heavy Extended:size=13}''${execi 1 ${pkgs.mpc-cli}/bin/mpc current | ${pkgs.gnused}/bin/sed -r 's/ - /\n/g' | ${pkgs.coreutils}/bin/tail -1}
-      ''${offset 0}''${voffset 5}''${font Iosevka:style=Heavy Extended:size=13}''${color1}''${execi 600 ${pkgs.coreutils}/bin/cat ~/.cache/weather.json | ${pkgs.jq}/bin/jq '.main.temp'}°C\
-      ''${offset 10}''${voffset 0}''${font Iosevka:style=Heavy Extended:size=13}''${color}''${execi 600 ${description}/bin/description}
+      ''${offset -5}''${voffset 0}''${font ${font.name}:style=Heavy Extended:size=35}''${color}''${time %H.%M} \
+      ''${offset -18}''${voffset -20}''${color}''${font ${font.name}:style=Heavy Extended:size=11}''${execi 1 ${pkgs.mpc-cli}/bin/mpc current | ${pkgs.gnused}/bin/sed -r 's/ - /\n/g' | ${pkgs.coreutils}/bin/head -1}
+      ''${offset 145}''${voffset -3}''${color}''${font ${font.name}:style=Heavy Extended:size=13}''${execi 1 ${pkgs.mpc-cli}/bin/mpc current | ${pkgs.gnused}/bin/sed -r 's/ - /\n/g' | ${pkgs.coreutils}/bin/tail -1}
+      ''${offset 0}''${voffset 5}''${font ${font.name}:style=Heavy Extended:size=13}''${color1}''${execi 600 ${pkgs.coreutils}/bin/cat ~/.cache/weather.json | ${pkgs.jq}/bin/jq '.main.temp'}°C\
+      ''${offset 10}''${voffset 0}''${font ${font.name}:style=Heavy Extended:size=13}''${color}''${execi 600 ${description}/bin/description}
     ]]
   '';
 in

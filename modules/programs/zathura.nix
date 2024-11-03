@@ -1,11 +1,11 @@
-{ theme, ... }:
+{ theme, font, ... }:
 
 {
   programs = {
     zathura = {
       enable = true;
       options = {
-        font = "Iosevka 10";
+        font = "${font.name} 10";
         notification-error-bg = theme.base03;
         notification-error-fg = theme.base01;
         notification-warning-bg = theme.base05;

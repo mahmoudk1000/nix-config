@@ -1,4 +1,4 @@
-{ config, labbi }:
+{ config, host, ... }:
 
 {
   AppAutoUpdate = false;
@@ -55,6 +55,6 @@
   # DNSOverHTTPS = {
   #   Enabled = true;
   #   Locked = true;
-  #   ProviderURL = "https://dns.nextdns.io/b28d16/${labbi.hostName}";
+  #   ProviderURL = "https://dns.nextdns.io/b28d16/${host.hostName}";
   # };
 }

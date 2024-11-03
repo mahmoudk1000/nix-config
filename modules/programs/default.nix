@@ -8,6 +8,7 @@
     ./vscode
     ./2bwm.nix
     ./alacritty.nix
+    ./atuin.nix
     ./bash.nix
     ./bitwarden.nix
     ./bspwm.nix

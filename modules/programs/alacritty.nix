@@ -2,6 +2,7 @@
   config,
   pkgs,
   theme,
+  font,
   ...
 }:
 
@@ -27,19 +28,19 @@
       font = {
         size = 9;
         normal = {
-          family = "IosevkaTerm Nerd Font";
+          family = "${font.nameTerm}";
           style = "Regular";
         };
         bold = {
-          family = "IosevkaTerm Nerd Font";
+          family = "${font.nameTerm}";
           style = "Bold";
         };
         italic = {
-          family = "IosevkaTerm Nerd Font";
+          family = "${font.nameTerm}";
           style = "Italic";
         };
         bold_italic = {
-          family = "IosevkaTerm Nerd Font";
+          family = "${font.nameTerm}";
           style = "Bold Italic";
         };
         offset = {

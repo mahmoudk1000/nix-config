@@ -1,11 +1,16 @@
-{ pkgs, theme, ... }:
+{
+  pkgs,
+  theme,
+  font,
+  ...
+}:
 
 {
   programs.urxvt = {
     enable = false;
     package = pkgs.rxvt-unicode;
     iso14755 = true;
-    fonts = [ "xft:IosevkaTerm Nerd Font:pixelsize=12:antialias=true:autohint=true" ];
+    fonts = [ "xft:${font.nameTerm}:pixelsize=12:antialias=true:autohint=true" ];
     keybindings = {
       "Shift-Up" = ''command:\033]720;1\007'';
       "Shift-Down" = ''command:\033]721;1\007'';

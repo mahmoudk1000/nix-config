@@ -115,11 +115,13 @@
         "...." = "cd -- ../../..";
 
         g = "lazygit";
+        gb = "git branch -v";
         ga = "git add";
         glg = "git log";
         gl = "git clone";
         gs = "git status --short";
         gaa = "git add --all";
+        gc = "git commit --verbose";
         gco = "git checkout";
         gcp = "git cherry-pick";
         gcm = "git commit --verbose -m ";

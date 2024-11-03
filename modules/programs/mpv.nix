@@ -1,4 +1,9 @@
-{ pkgs, theme, ... }:
+{
+  pkgs,
+  theme,
+  font,
+  ...
+}:
 
 {
   programs.mpv = {
@@ -41,7 +46,7 @@
       alang = "ar,en,de";
 
       osc = "no";
-      osd-font = ''"Iosevka Nerd Font"'';
+      osd-font = ''"${font.nameTerm}"'';
       osd-font-size = 24;
       osd-color = theme.base01;
       osd-border-size = 2;

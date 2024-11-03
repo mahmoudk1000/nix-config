@@ -2,6 +2,7 @@
   config,
   pkgs,
   theme,
+  font,
   ...
 }:
 
@@ -16,8 +17,8 @@ in
     enable = true;
 
     font = {
-      name = "Iosevka";
-      package = pkgs.iosevka;
+      name = "${font.name}";
+      package = font.pkg;
       size = 10;
     };
 

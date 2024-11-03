@@ -3,14 +3,15 @@
   pkgs,
   lib,
   theme,
-  labbi,
+  host,
+  font,
   ...
 }:
 
 let
   settings = import ./settings.nix { inherit theme; };
-  userChrome = import ./userChrome.nix { inherit theme; };
-  userContent = import ./userContent.nix { inherit theme; };
+  userChrome = import ./userChrome.nix { inherit theme font; };
+  userContent = import ./userContent.nix { inherit theme font; };
   customAddons = import ./addons.nix {
     inherit lib;
     inherit (pkgs.nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
@@ -24,11 +25,11 @@ in
       "de"
       "ar"
     ];
-    policies = import ./policies.nix { inherit config labbi; };
+    policies = import ./policies.nix { inherit config host; };
     profiles = {
       default = {
         id = 0;
-        name = "${labbi.hostName}";
+        name = "${host.hostName}";
         search = {
           force = true;
           default = "DuckDuckGo";
@@ -116,10 +117,21 @@ in
         };
         bookmarks = [
           {
-            name = "MyAtos";
-            tags = [ "atos" ];
-            keyword = "myatos";
-            url = "https://www.myatos.net/irj/portal";
+            name = "Atos";
+            bookmarks = [
+              {
+                name = "MyAtos";
+                tags = [ "atos" ];
+                keyword = "myatos";
+                url = "https://www.myatos.net/irj/portal";
+              }
+              {
+                name = "Percipio";
+                tags = [ "atos" ];
+                keyword = "percipio";
+                url = "https://atos.percipio.com/";
+              }
+            ];
           }
           {
             name = "Microsoft 365";
@@ -136,12 +148,6 @@ in
                 url = "https://teams.microsoft.com/v2/";
               }
             ];
-          }
-          {
-            name = "Percipio";
-            tags = [ "atos" ];
-            keyword = "percipio";
-            url = "https://atos.percipio.com/";
           }
         ];
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [

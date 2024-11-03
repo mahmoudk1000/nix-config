@@ -2,6 +2,7 @@
   config,
   theme,
   lib,
+  font,
   ...
 }:
 
@@ -17,7 +18,7 @@ in
     };
     rofi = {
       enable = true;
-      font = "IosevkaTerm Nerd Font 9";
+      font = "${font.nameTerm} 9";
       terminal = "st";
       extraConfig = {
         "location" = 5;

@@ -1,4 +1,9 @@
-{ pkgs, theme, ... }:
+{
+  pkgs,
+  theme,
+  font,
+  ...
+}:
 
 {
   services.polybar = {
@@ -12,7 +17,7 @@
     };
     config = {
       "bar/main" = {
-        font-0 = "Iosevka:style=Semibold:size=9;3";
+        font-0 = "${font.name}:style=Semibold:size=9;3";
         font-1 = "NotoMono Nerd Font:size=10;3";
         monitor = "eDP-1";
         height = 35;
