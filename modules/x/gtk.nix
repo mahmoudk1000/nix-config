@@ -17,7 +17,7 @@ in
     enable = true;
 
     font = {
-      name = "${font.name}";
+      inherit (font) name;
       package = font.pkg;
       size = 10;
     };

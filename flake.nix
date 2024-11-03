@@ -81,7 +81,7 @@
                 inputs.agenix.homeManagerModules.default
               ];
               _module.args.theme = import ./modules/themes;
-              _module.args.font = import ./modules/themes/font.nix;
+              _module.args.font = import ./modules/themes/font.nix { inherit pkgs; };
             };
             extraSpecialArgs = {
               inherit self inputs host;

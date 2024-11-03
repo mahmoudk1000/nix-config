@@ -28,19 +28,19 @@
       font = {
         size = 9;
         normal = {
-          family = "${font.nameTerm}";
+          family = font.nameTerm;
           style = "Regular";
         };
         bold = {
-          family = "${font.nameTerm}";
+          family = font.nameTerm;
           style = "Bold";
         };
         italic = {
-          family = "${font.nameTerm}";
+          family = font.nameTerm;
           style = "Italic";
         };
         bold_italic = {
-          family = "${font.nameTerm}";
+          family = font.nameTerm;
           style = "Bold Italic";
         };
         offset = {

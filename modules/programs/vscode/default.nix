@@ -57,8 +57,8 @@
       editor = {
         fontSize = 12;
         fontFamily = [
-          "${font.name}"
-          "${font.nameTerm}"
+          font.name
+          font.nameTerm
         ];
         fontLigatures = true;
         acceptSuggestionOnEnter = "off";
@@ -102,7 +102,7 @@
       # Terminal
       terminal = {
         integrated = {
-          fontFamily = "${font.nameTerm}";
+          fontFamily = font.nameTerm;
           fontSize = 12;
           allowChords = false;
           gpuAcceleration = "on";
