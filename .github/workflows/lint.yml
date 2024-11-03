@@ -3,7 +3,7 @@ name: Statix Lint
 on:
   push:
     branches: [main]
-    paths-ignore: [.github/**, assets/**, README.md]
+    paths-ignore: [.github/**, assets/**, notes/**, README.md]
 jobs:
   lint:
     runs-on: ubuntu-latest
