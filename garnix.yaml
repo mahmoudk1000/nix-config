@@ -1,5 +1,8 @@
 ---
 builds:
   branch: main
-  include: ['*.x86_64-linux.*', nixosConfigurations.*]
+  include:
+    - '*.x86_64-linux.*'
+    - homeConfigurations.*
+    - nixosConfigurations.*
   exclude: []
