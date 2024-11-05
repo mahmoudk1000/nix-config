@@ -186,6 +186,7 @@
         zstyle ':completion:*' group-name '''
         zstyle ':completion:*' use-cache on
         zstyle ':completion:*' cache-path ~/.zsh_cache
+        zstyle ':completion:*' special-dirs ..
         zstyle ':completion:*:approximate:*' max-errors 1 numeric
         zstyle ':completion:*:functions' ignored-patterns '_*'
         zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=01=31"
@@ -224,6 +225,14 @@
         ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=green'
         ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
         ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=yellow'
+
+        sudo-command-line() {
+          [[ -z $BUFFER ]] && zle up-history
+          [[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
+          zle end-of-line
+        }
+        zle -N sudo-command-line
+        bindkey '\e\e' sudo-command-line
       '';
       profileExtra = ''
         if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
