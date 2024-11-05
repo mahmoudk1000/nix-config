@@ -10,6 +10,7 @@
   boot = {
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    initrd.systemd.enable = true;
     loader = {
       systemd-boot = {
         enable = true;
