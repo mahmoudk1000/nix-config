@@ -10,6 +10,7 @@
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
+    lfs.enable = true;
     userName = "Mahmoud Ayman";
     userEmail = "mahmoudk1000@gmail.com";
     extraConfig = {
