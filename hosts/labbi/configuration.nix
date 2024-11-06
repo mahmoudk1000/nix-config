@@ -38,7 +38,13 @@
   };
 
   # Docker
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
 
   # Virtualisation
   programs.virt-manager.enable = true;
