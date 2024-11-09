@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 
 let
@@ -10,4 +11,5 @@ let
 in
 [
   blum
-] ++ (lib.optional config.programs.poww.enable poww)
+]
+++ (lib.optional config.programs.poww.enable poww)

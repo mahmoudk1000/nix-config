@@ -2,9 +2,15 @@
 
 {
   programs = {
-    mbsync = { enable = true; };
-    msmtp = { enable = false; };
-    mu = { enable = false; };
+    mbsync = {
+      enable = true;
+    };
+    msmtp = {
+      enable = false;
+    };
+    mu = {
+      enable = false;
+    };
     neomutt = {
       enable = false;
       vimKeys = true;

@@ -1,5 +1,8 @@
 {
-  imports = [ ./accounts.nix ./thunderbird.nix ];
+  imports = [
+    ./accounts.nix
+    ./thunderbird.nix
+  ];
 
   services.imapnotify.enable = true;
 }

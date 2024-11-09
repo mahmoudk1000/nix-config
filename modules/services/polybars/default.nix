@@ -6,4 +6,3 @@
     ./polybar-unten.nix
   ];
 }
-
