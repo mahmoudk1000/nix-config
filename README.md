@@ -32,3 +32,5 @@ sudo nixos-rebuild switch --flake '.#labbi'
 [nerdypepper](https://git.peppe.rs/config/nixos/about/) Most thanks goes to you. I have built my config based on yours :)
 
 [JavaCafe01](https://github.com/JavaCafe01/frostedflakes)
+
+[Gvolpe](https://github.com/gvolpe/nix-config/)
