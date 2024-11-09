@@ -1,8 +1,16 @@
-{ lib, host, ... }:
+{
+  pkgs,
+  lib,
+  host,
+  ...
+}:
 
 {
   services = {
-    gvfs.enable = true;
+    gvfs = {
+      enable = true;
+      package = pkgs.gvfs;
+    };
     upower.enable = true;
     udisks2.enable = true;
     blueman.enable = true;
