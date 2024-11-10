@@ -4,6 +4,22 @@ with theme;
 
 ''
   @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+  :root {
+    --button-bgcolor: ${base0A} !important;
+    --button-hover-bgcolor: ${base0E} !important;
+    --button-active-bgcolor: ${base06} !important;
+    --button-primary-bgcolor: ${base06} !important;
+    --button-primary-hover-bgcolor: ${base06} !important;
+    --button-primary-active-bgcolor: ${base0E} !important;
+    --button-primary-color: ${base00} !important;
+    --input-bgcolor: ${base02} !important;
+    --input-color: ${base01} !important;
+    --input-border-color: ${base0A} !important;
+    --lwt-accent-color: ${base00} !important;
+    --lwt-text-color: ${base01} !important;
+    --foldertree-background: ${base00} !important;
+    --tree-view-bg: ${base00} !important;
+  }
   element {
     -tab-max-width: 200px !important;
   }
@@ -157,5 +173,40 @@ with theme;
   calendar-month-view, calendar-multiweek-view,
   #folderPane {
     background-color: ${base00} !important;
+  }
+  #threadTree[rows="thread-card"] {
+    & .card-layout {
+      background-color: ${base00} !important;
+    }
+  }
+  #categories {
+    & > .category {
+      border-color: none !important;
+    }
+  }
+  .sidebar-footer-link {
+    border-color: none !important;
+  }
+  #tabmail-arrowscrollbox {
+    &::part(scrollbox-clip) {
+      background-color: ${base00} !important;
+    }
+  }
+  :root[tabsintitlebar] {
+    &:not([lwtheme]) #navigation-toolbox {
+      &:-moz-window-inactive {
+        color: ${base0A} !important;
+      }
+    }
+  }
+  :is(ul, ol)[role="tree"] {
+  & .container {
+    margin-inline: 0 !important;
+    margin: 1px 0px 1px 0px !important;
+  }
+  #tabs-toolbar {
+    box-shadow: none !important;
+    padding-top: 1px !important;
+    padding-inline: 2px !important;
   }
 ''
