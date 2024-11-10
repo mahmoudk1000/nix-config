@@ -28,7 +28,6 @@
         jq
         playerctl
         pamixer
-        lastpass-cli
         libnotify
 
         mpc-cli

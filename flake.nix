@@ -76,15 +76,13 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.${host.username} = {
-              imports = [
-                ./home-manager/${host.hostName}/home.nix
-                inputs.spicetify-nix.homeManagerModules.default
-                inputs.agenix.homeManagerModules.default
-              ];
-              _module.args.theme = import ./modules/themes;
-              _module.args.font = import ./modules/themes/font.nix { inherit pkgs; };
-            };
+            users.${host.username} = import ./home-manager/${host.hostName}/home.nix;
+            sharedModules = [
+              inputs.spicetify-nix.homeManagerModules.default
+              inputs.agenix.homeManagerModules.default
+              { _module.args.theme = import ./modules/themes; }
+              { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
+            ];
             extraSpecialArgs = {
               inherit self inputs host;
             };
