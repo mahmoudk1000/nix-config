@@ -113,6 +113,11 @@
         ".." = "cd -- ..";
         "..." = "cd -- ../..";
         "...." = "cd -- ../../..";
+        ".2" = "cd -- ../..";
+        ".3" = "cd -- ../../..";
+        ".4" = "cd -- ../../../..";
+        ".5" = "cd -- ../../../../..";
+        ".6" = "cd -- ../../../../../..";
 
         g = "lazygit";
         gb = "git branch -v";
@@ -125,9 +130,11 @@
         gco = "git checkout";
         gcp = "git cherry-pick";
         gcm = "git commit --verbose -m ";
-        gca = "git commit --amend";
+        gca = "git commit --amend --no-edit";
+        gcae = "commit --amend";
         gpl = "git pull";
         gp = "git push";
+        grbc = "git rebase --continue";
         gff = "git diff --minimal";
 
         dc = "docker compose";
