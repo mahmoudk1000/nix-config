@@ -57,10 +57,8 @@
 
   # Settings
   nixpkgs.config = {
-    "2bwm".patches = [ ../../../modules/patches/2bwm/momo-patch.diff ];
-
     allowUnfree = true;
-    input-fonts.acceptLicense = true;
+    "2bwm".patches = [ ../../../modules/patches/2bwm/momo-patch.diff ];
   };
 
   # Fonts
@@ -74,7 +72,6 @@
     packages = with pkgs; [
       iosevka
       nerdfonts
-      input-fonts
       dejavu_fonts
       jetbrains-mono
       amiri
