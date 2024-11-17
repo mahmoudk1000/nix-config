@@ -71,36 +71,33 @@
         config.allowUnfree = true;
       };
 
-      mkHomeModules = host: [
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.${host.username} = import ./home-manager/${host.hostName}/home.nix;
-            sharedModules = [
-              inputs.spicetify-nix.homeManagerModules.default
-              inputs.agenix.homeManagerModules.default
-              { _module.args.theme = import ./modules/themes; }
-              { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
-            ];
-            extraSpecialArgs = {
-              inherit self inputs host;
-            };
-          };
-        }
-      ];
+      mkHomeConfig = host: {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users.${host.username} = import ./home-manager/${host.hostName}/home.nix;
+        sharedModules = [
+          inputs.spicetify-nix.homeManagerModules.default
+          inputs.agenix.homeManagerModules.default
+          { _module.args.theme = import ./modules/themes; }
+          { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
+        ];
+        extraSpecialArgs = {
+          inherit self inputs host;
+        };
+      };
 
       mkHost =
         host:
         nixosSystem {
           inherit system;
           modules = [
-            { imports = [ ./hosts/${host.hostName}/configuration.nix ]; }
-            { nixpkgs.overlays = overlays; }
-            inputs.nur.nixosModules.nur
             inputs.home-manager.nixosModules.home-manager
+            inputs.nur.nixosModules.nur
             inputs.agenix.nixosModules.default
-          ] ++ (mkHomeModules host);
+            { imports = [ ./hosts/${host.hostName}/configuration.nix ]; }
+            { home-manager = mkHomeConfig host; }
+            { nixpkgs.overlays = overlays; }
+          ];
           specialArgs = {
             inherit self inputs host;
           };
@@ -114,8 +111,16 @@
       homeConfigurations = {
         labbi = homeManagerConfiguration {
           inherit pkgs;
-          modules = mkHomeModules hosts.labbi;
+          modules = [ (mkHomeConfig hosts.labbi) ] ++ [ { home.stateVersion = "22.05"; } ];
         };
+      };
+
+      devShells."${system}".default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          inputs.agenix.packages.${system}.default
+          git
+          vim
+        ];
       };
     };
 }

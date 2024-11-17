@@ -16,7 +16,7 @@
 
   home = {
     inherit (host) username;
-    stateVersion = lib.mkDefault osConfig.system.stateVersion;
+    inherit (osConfig.system) stateVersion;
     homeDirectory = "/home/${host.username}";
     extraOutputsToInstall = [ "man" ];
     packages =
