@@ -1,6 +1,8 @@
 ---
-name: Statix Lint
+name: Lint & Format
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
     paths-ignore: [.github/**, assets/**, notes/**, README.md]
@@ -9,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor != 'github-actions[bot]'
     outputs:
-      lint-success: ${{ steps.result.outputs.success }}
+      lint-success: ${{ steps.result.outputs.lint }}
+      format-success: ${{ steps.result.outputs.format }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,11 +24,22 @@ jobs:
         run: |
           echo "Linting Flake..."
           if nix run nixpkgs#statix -- check .; then
-            echo "success=true" >> $GITHUB_ENV
+            echo "lint=true" >> $GITHUB_ENV
           else
-            echo "success=false" >> $GITHUB_ENV
+            echo "lint=false" >> $GITHUB_ENV
+            exit 1
+          fi
+      - name: Run nixfmt format
+        run: |
+          echo "Format Flake..."
+          if nix run nixpkgs#nixfmt-rfc-style -- check .; then
+            echo "format=true" >> $GITHUB_ENV
+          else
+            echo "format=false" >> $GITHUB_ENV
             exit 1
           fi
       - name: Determine lint result
         id: result
-        run: echo "result=${{ env.success }}" >> $GITHUB_OUTPUT
+        run: |-
+          echo "lint=${{ env.lint }}" >> $GITHUB_OUTPUT
+          echo "format=${{ env.format }}" >> $GITHUB_OUTPUT
