@@ -45,6 +45,7 @@ in
       wireshark
       hoppscotch
       powershell
+      mkcert
       # docker-machine-kvm2
       # runc
     ];
