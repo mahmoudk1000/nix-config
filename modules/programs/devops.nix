@@ -46,6 +46,7 @@ in
       hoppscotch
       powershell
       mkcert
+      eksctl
       # docker-machine-kvm2
       # runc
     ];
