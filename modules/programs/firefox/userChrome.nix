@@ -181,7 +181,7 @@ with theme;
     background-color: ${base00} !important;
     border-radius: 5px !important;
   }
-  #urlbar-results .urlbarView-row:hover{
+  #urlbar-results .urlbarView-row:hover {
     color: ${base06} !important;
     border-radius: 5px !important;
   }
