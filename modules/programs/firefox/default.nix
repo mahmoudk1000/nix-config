@@ -53,6 +53,28 @@ in
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [ "@np" ];
             };
+            "Home Manager Options" = {
+              definedAliases = [
+                "@homemanager"
+                "@hm"
+              ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              urls = [
+                {
+                  template = "https://home-manager-options.extranix.com/";
+                  params = [
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                    {
+                      name = "release";
+                      value = "master";
+                    }
+                  ];
+                }
+              ];
+            };
             "NixOS Wiki" = {
               urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
               iconUpdateURL = "https://nixos.wiki/favicon.png";
