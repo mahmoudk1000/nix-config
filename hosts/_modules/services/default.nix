@@ -9,15 +9,30 @@
   services = {
     gvfs = {
       enable = true;
-      package = pkgs.gvfs;
+      package = pkgs.gvfs.override {
+        gnomeSupport = false;
+        udevSupport = true;
+      };
     };
+    xfconf.enable = true;
     upower.enable = true;
     udisks2.enable = true;
     blueman.enable = true;
     printing.enable = true;
     tumbler.enable = true;
     thermald.enable = true;
+    dbus = {
+      enable = true;
+      packages = with pkgs; [
+        dconf
+      ];
+      implementation = "broker";
+    };
   };
+
+  systemd.packages = with pkgs; [
+    dconf
+  ];
 
   services.openssh = {
     enable = true;
