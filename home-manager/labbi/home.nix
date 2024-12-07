@@ -63,6 +63,11 @@
       ++ (import ../../modules/scripts { inherit config pkgs lib; });
 
     sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
+
+    sessionVariables = {
+      BROWSER = "${config.programs.firefox.package}/bin/firefox";
+      EDITOR = "nvim";
+    };
   };
 
   xdg = {
