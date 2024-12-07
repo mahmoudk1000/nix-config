@@ -7,6 +7,7 @@ let
   crystal = import ./crystal.nix;
   fujin = import ./fuji.nix;
   iceberg = import ./iceberg.nix;
+  idx = import ./idx.nix;
   jotai = import ./jotai.nix;
   kalt = import ./kalt.nix;
   late = import ./late.nix;
