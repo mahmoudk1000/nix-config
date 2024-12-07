@@ -47,6 +47,7 @@ in
       powershell
       mkcert
       eksctl
+      openssl
       # docker-machine-kvm2
       # runc
     ];
