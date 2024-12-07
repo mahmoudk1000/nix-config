@@ -19,6 +19,7 @@ with theme;
     --lwt-text-color: ${base01} !important;
     --foldertree-background: ${base00} !important;
     --tree-view-bg: ${base00} !important;
+    --tabs-toolbar-background-color: ${base00} !important;
   }
   element {
     -tab-max-width: 200px !important;
@@ -208,5 +209,13 @@ with theme;
     box-shadow: none !important;
     padding-top: 1px !important;
     padding-inline: 2px !important;
+  }
+  [is="tree-view-table-body"] {
+    & > .card-layout > td {
+      & > .card-container {
+        background-color: ${base0A} !important;
+        border: 1px solid ${base02} !important;
+      }
+    }
   }
 ''
