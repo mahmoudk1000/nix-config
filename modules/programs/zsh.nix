@@ -243,7 +243,7 @@
       '';
       profileExtra = ''
         if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
-          startx
+          startx -- :0
         fi
       '';
       dirHashes = {
