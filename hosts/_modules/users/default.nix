@@ -36,6 +36,8 @@
         (lib.mkIf config.programs.adb.enable "adbusers")
         (lib.mkIf config.virtualisation.libvirtd.enable "libvirtd")
         "wireshark"
+        "disk"
+        "polkituser"
       ];
       hashedPasswordFile = config.age.secrets."users/${host.username}".path;
     };
@@ -53,6 +55,7 @@
     _2bwm
     brightnessctl
     gptfdisk
+    fuse3
   ];
 
   # Settings
@@ -71,7 +74,8 @@
     };
     packages = with pkgs; [
       iosevka
-      nerdfonts
+      nerd-fonts.iosevka-term
+      nerd-fonts.noto
       dejavu_fonts
       jetbrains-mono
       amiri
