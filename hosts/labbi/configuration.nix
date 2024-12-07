@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -8,7 +13,11 @@
 
   # Boot
   boot = {
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = lib.mkForce [
+      "xfs"
+      "vfat"
+      "ext4"
+    ];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     initrd.systemd.enable = false;
     loader = {
@@ -37,23 +46,20 @@
     man.generateCaches = true;
   };
 
-  # Docker
-  virtualisation.docker = {
-    enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
-
   # Virtualisation
-  programs.virt-manager.enable = true;
-  virtualisation.libvirtd = {
-    enable = true;
-    onShutdown = "shutdown";
-    qemu = {
-      package = pkgs.qemu_kvm;
-      swtpm.enable = true;
+  programs.virt-manager.enable = lib.mkIf config.virtualisation.libvirtd.enable true;
+
+  virtualisation = {
+    docker = {
+      enable = true;
+    };
+    libvirtd = {
+      enable = true;
+      onShutdown = "shutdown";
+      qemu = {
+        package = pkgs.qemu_kvm;
+        swtpm.enable = true;
+      };
     };
   };
 
