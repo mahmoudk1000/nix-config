@@ -114,7 +114,6 @@ with theme;
   #save-to-pocket-button,
   #pageActionSeparator,
   #reader-mode-button,
-  #PanelUI-button,
   #urlbar-one-offs-header-label,
   .titlebar-buttonbox-container,
   .titlebar-spacer {
@@ -146,7 +145,6 @@ with theme;
     background-color: ${base00} !important;
     border-radius: 10px !important;
     padding: 0 !important;
-    margin-block: 2px !important;
   }
   #urlbar-input,
   #urlbar-scheme,
@@ -199,15 +197,63 @@ with theme;
     padding-inline: var(--urlbarView-item-inline-padding) 18px;
     opacity: 0.6;
   }
+  #urlbar:not(:hover) #page-action-buttons .urlbar-page-action:not([open]) {
+    visibility: collapse;
+  }
+  #page-action-buttons .urlbar-page-action {
+    position: absolute;
+    right: 0;
+  }
+  #urlbar[breakout][breakout-extend] {
+    z-index: 600 !important;
+  }
   #urlbar {
     opacity: 0;
-    visibility: hidden;
+    pointer-events: none !important;
     transition: opacity 0.2s ease, visibility 0.2s ease;
   }
   #navigator-toolbox:hover #urlbar,
   #navigator-toolbox:focus-within #urlbar {
     opacity: 1;
-    visibility: visible;
+    margin-top: calc((var(--urlbar-container-height) - 5px)) !important;
+    pointer-events: auto !important;
+  }
+
+  /* Megabar: disable breakout */
+  #urlbar[breakout][breakout-extend] {
+    margin-left: 0 !important;
+    width: var(--urlbar-width) !important;
+    margin-top: calc((var(--urlbar-container-height) - var(--urlbar-height)) / 2) !important;
+
+    > .urlbar-input-container {
+      height: var(--urlbar-height) !important;
+      padding-block: var(--urlbar-container-padding) !important;
+      padding-inline: var(--urlbar-container-padding) !important;
+    }
+  }
+
+  #urlbar[breakout][breakout-extend] > #urlbar-background {
+    animation-name: unset !important;
+  }
+
+  #urlbar[breakout][breakout-extend] > :is(#urlbar-input-container,.urlbar-input-container) {
+    height: var(--urlbar-height) !important;
+    padding-block: 1px !important;
+    padding-inline: 1px !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+  }
+
+  /* disable 'breakout' animation */
+  #urlbar[breakout],
+  #urlbar[breakout] * {
+    animation: unset !important;
+    duration: 0s !important;
+    animation-duration: 0s !important;
+  }
+
+  .urlbarView-body-inner {
+    border-top: 0px !important;
   }
 
   /* Other Elements Styling */
