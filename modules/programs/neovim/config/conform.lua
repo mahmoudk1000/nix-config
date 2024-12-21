@@ -14,6 +14,7 @@ require("conform").setup({
 		tf = { "terraform_fmt", "tofu_fmt" },
 		yaml = { "yamlfix" },
 		tex = { "latexindent" },
+		go = { "gofmt", "goimports-reviser", "golines" },
 	},
 	format_on_save = {
 		timeout_ms = 1000,

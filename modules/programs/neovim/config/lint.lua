@@ -11,6 +11,7 @@ require("lint").linters_by_ft = {
 	ansible = { "ansible_lint" },
 	nix = { "deadnix", "nix", "statix" },
 	tex = { "chktex" },
+	go = { "golangcilint" },
 }
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

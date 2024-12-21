@@ -93,3 +93,19 @@ lspconfig.lua_ls.setup({
 		},
 	},
 })
+
+lspconfig.gopls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = { "gopls" },
+	settings = {
+		gopls = {
+			experimentalPostfixCompletions = true,
+			analyses = {
+				unusedparams = true,
+				shadow = true,
+			},
+			staticcheck = true,
+		},
+	},
+})

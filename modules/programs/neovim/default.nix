@@ -27,8 +27,10 @@ in
         yaml-language-server
         java-language-server
         lua-language-server
+        goimports-reviser
         markdownlint-cli
         nixfmt-rfc-style
+        golangci-lint
         terraform-ls
         ansible-lint
         shellcheck
@@ -41,6 +43,7 @@ in
         yamlfix
         ripgrep
         helm-ls
+        golines
         deadnix
         statix
         stylua
@@ -48,11 +51,13 @@ in
         texlab
         biber
         shfmt
+        gopls
         ruff
         # nixd
         nil
         gcc
         fd
+        go
       ])
       ++ (with pkgs.nodePackages_latest; [ bash-language-server ])
       ++ (with pkgs.python3Packages; [
