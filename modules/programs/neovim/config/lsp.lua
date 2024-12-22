@@ -23,6 +23,7 @@ local servers = {
 	"autotools_ls",
 	"jsonnet_ls",
 	"jedi_language_server",
+	"gopls",
 }
 
 -- LSP settings.
@@ -90,22 +91,6 @@ lspconfig.lua_ls.setup({
 				},
 			},
 			telemetry = { enable = false },
-		},
-	},
-})
-
-lspconfig.gopls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	cmd = { "gopls" },
-	settings = {
-		gopls = {
-			experimentalPostfixCompletions = true,
-			analyses = {
-				unusedparams = true,
-				shadow = true,
-			},
-			staticcheck = true,
 		},
 	},
 })
