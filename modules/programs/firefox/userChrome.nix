@@ -215,15 +215,18 @@ with theme;
   #navigator-toolbox:hover #urlbar,
   #navigator-toolbox:focus-within #urlbar {
     opacity: 1;
-    margin-top: calc((var(--urlbar-container-height) - 5px)) !important;
+    position: fixed;
+    top: calc(var(--urlbar-container-height) + (var(--urlbar-container-height) - var(--urlbar-height)) / 2) !important;
     pointer-events: auto !important;
   }
 
   /* Megabar: disable breakout */
   #urlbar[breakout][breakout-extend] {
     margin-left: 0 !important;
+    margin-top: 0 !important;
     width: var(--urlbar-width) !important;
-    margin-top: calc((var(--urlbar-container-height) - var(--urlbar-height)) / 2) !important;
+    position: fixed;
+    top: calc((var(--urlbar-container-height) - var(--urlbar-height)) / 2) !important;
 
     > .urlbar-input-container {
       height: var(--urlbar-height) !important;
