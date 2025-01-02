@@ -80,11 +80,16 @@ require("nvim-tree").setup({
 		add_trailing = false,
 		group_empty = false,
 		icons = {
+			webdev_colors = false,
 			git_placement = "after",
 		},
 		indent_markers = {
 			enable = true,
 		},
+	},
+	hijack_directories = {
+		enable = true,
+		auto_open = true,
 	},
 	view = {
 		width = 35,
