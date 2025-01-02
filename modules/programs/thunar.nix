@@ -27,8 +27,8 @@ in
       ]
       ++ (with pkgs; [
         dconf
-        gio
-      ]);
+      ])
+      ++ [ gio ];
 
     sessionVariables = {
       GIO_EXTRA_MODULES = "${gio}/lib/gio/modules:${pkgs.dconf.lib}/lib/gio/modules";

@@ -5,7 +5,6 @@
     adb.enable = true;
     xfconf.enable = true;
     dconf.enable = true;
-    fuse.userAllowOther = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;

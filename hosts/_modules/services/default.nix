@@ -9,14 +9,13 @@
   services = {
     gvfs = {
       enable = true;
-      package = pkgs.gvfs.override {
-        gnomeSupport = false;
+      package = lib.mkForce pkgs.gvfs.override {
+        samba = null;
         udevSupport = true;
       };
     };
-    xfconf.enable = true;
-    upower.enable = true;
     udisks2.enable = true;
+    upower.enable = true;
     blueman.enable = true;
     printing.enable = true;
     tumbler.enable = true;
