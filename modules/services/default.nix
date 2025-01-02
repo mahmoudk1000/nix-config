@@ -14,6 +14,7 @@
     ./picom.nix
     ./redshift.nix
     ./sxhkd.nix
+    ./udiskie.nix
     ./unclutter.nix
   ];
 
