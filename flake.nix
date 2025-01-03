@@ -54,7 +54,7 @@
 
       overlays = [
         (import ./overlays)
-        inputs.nur.overlay
+        inputs.nur.overlays.default
         inputs.nixpkgs-f2k.overlays.window-managers
         inputs.agenix.overlays.default
       ];
