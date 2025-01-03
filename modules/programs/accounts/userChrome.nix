@@ -3,7 +3,6 @@
 with theme;
 
 ''
-  @namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
   :root {
     --button-bgcolor: ${base0A} !important;
     --button-hover-bgcolor: ${base0E} !important;
@@ -19,7 +18,11 @@ with theme;
     --lwt-text-color: ${base01} !important;
     --foldertree-background: ${base00} !important;
     --tree-view-bg: ${base00} !important;
+    --tree-card-background: ${base00} !important;
+    --tree-card-background-selected-current-unfocused: ${base0A} !important;
     --tabs-toolbar-background-color: ${base00} !important;
+    --color-green-40: ${base04} !important;
+    --color-green-60: ${base0C} !important;
   }
   element {
     -tab-max-width: 200px !important;
@@ -209,13 +212,5 @@ with theme;
     box-shadow: none !important;
     padding-top: 1px !important;
     padding-inline: 2px !important;
-  }
-  [is="tree-view-table-body"] {
-    & > .card-layout > td {
-      & > .card-container {
-        background-color: ${base0A} !important;
-        border: 1px solid ${base02} !important;
-      }
-    }
   }
 ''
