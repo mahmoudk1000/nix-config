@@ -1,5 +1,4 @@
 {
-  osConfig,
   config,
   pkgs,
   ...
@@ -15,7 +14,11 @@ let
         thunar-media-tags-plugin
       ];
     });
-  gio = osConfig.services.gvfs.package;
+  gio = pkgs.gvfs.override {
+    samba = null;
+    gnomeSupport = false;
+    udevSupport = true;
+  };
 in
 {
   home = {
@@ -31,7 +34,7 @@ in
       ++ [ gio ];
 
     sessionVariables = {
-      GIO_EXTRA_MODULES = "${gio}/lib/gio/modules:${pkgs.dconf.lib}/lib/gio/modules";
+      GIO_EXTRA_MODULES = "$GIO_EXTRA_MODULES:${gio}/lib/gio/modules:${pkgs.dconf.lib}/lib/gio/modules";
     };
 
     file.".config/Thunar/uca.xml".text = ''
