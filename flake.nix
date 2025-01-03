@@ -92,7 +92,7 @@
           inherit system;
           modules = [
             inputs.home-manager.nixosModules.home-manager
-            inputs.nur.nixosModules.nur
+            inputs.nur.modules.nixos.default
             inputs.agenix.nixosModules.default
             { imports = [ ./hosts/${host.hostName}/configuration.nix ]; }
             { home-manager = mkHomeConfig host; }
