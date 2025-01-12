@@ -1,12 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   hardware = {
     nvidia = {
       open = false;
-      nvidiaSettings = true;
+      nvidiaSettings = false;
       modesetting.enable = true;
       package =
         let
@@ -45,10 +45,10 @@
       enable = true;
       extraPackages = with pkgs; [
         intel-media-driver
-        intel-ocl
+        intel-vaapi-driver
         libvdpau-va-gl
-        vaapiIntel
         vaapiVdpau
+        mesa.drivers
       ];
     };
   };
