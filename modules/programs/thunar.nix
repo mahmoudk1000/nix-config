@@ -1,4 +1,5 @@
 {
+  osConfig,
   config,
   pkgs,
   ...
@@ -14,27 +15,18 @@ let
         thunar-media-tags-plugin
       ];
     });
-  gio = pkgs.gvfs.override {
-    samba = null;
-    gnomeSupport = false;
-    udevSupport = true;
-  };
+  gio = osConfig.services.gvfs.package;
 in
 {
   home = {
-    packages =
-      with pkgs.xfce;
-      [
-        thunar-with-plugins
-        exo
-      ]
-      ++ (with pkgs; [
-        dconf
-      ])
-      ++ [ gio ];
+    packages = [
+      thunar-with-plugins
+      gio
+      pkgs.dconf
+    ];
 
     sessionVariables = {
-      GIO_EXTRA_MODULES = "$GIO_EXTRA_MODULES:${gio}/lib/gio/modules:${pkgs.dconf.lib}/lib/gio/modules";
+      GIO_EXTRA_MODULES = "${gio}/lib/gio/modules:${pkgs.dconf.lib}/lib/gio/modules";
     };
 
     file.".config/Thunar/uca.xml".text = ''
@@ -124,7 +116,8 @@ in
       "last-image-preview-visible" = false;
       "last-statusbar-visible" = false;
       "last-location-bar" = "void";
-      "last-details-view-visible-columns" = "THUNAR_COLUMN_DATE_MODIFIED,THUNAR_COLUMN_NAME,THUNAR_COLUMN_SIZE,THUNAR_COLUMN_TYPE";
+      "last-details-view-visible-columns" =
+        "THUNAR_COLUMN_DATE_MODIFIED,THUNAR_COLUMN_NAME,THUNAR_COLUMN_SIZE,THUNAR_COLUMN_TYPE";
       "misc-volume-management" = true;
       "misc-full-path-in-tab-title" = false;
       "misc-thumbnail-max-file-size" = 0;
@@ -148,6 +141,7 @@ in
     Service = {
       Type = "dbus";
       ExecStart = "${thunar-with-plugins}/bin/Thunar --daemon";
+      WantedBy = [ "graphical-session.target" ];
       BusName = "org.xfce.FileManager";
       KillMode = "process";
       # NOTE: PATH is necessary for when thunar is launched by browsers
