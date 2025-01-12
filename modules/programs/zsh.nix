@@ -131,7 +131,7 @@
         gcp = "git cherry-pick";
         gcm = "git commit --verbose -m ";
         gca = "git commit --amend --no-edit";
-        gcae = "commit --amend";
+        gcae = "git commit --amend";
         gpl = "git pull";
         gp = "git push";
         grbc = "git rebase --continue";
