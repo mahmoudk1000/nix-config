@@ -11,6 +11,7 @@
       enable = true;
       package = lib.mkForce pkgs.gvfs.override {
         samba = null;
+        gnomeSupport = false;
         udevSupport = true;
       };
     };
@@ -19,19 +20,11 @@
     blueman.enable = true;
     printing.enable = true;
     tumbler.enable = true;
-    thermald.enable = true;
     dbus = {
       enable = true;
-      packages = with pkgs; [
-        dconf
-      ];
       implementation = "broker";
     };
   };
-
-  systemd.packages = with pkgs; [
-    dconf
-  ];
 
   services.openssh = {
     enable = true;

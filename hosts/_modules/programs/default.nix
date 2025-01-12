@@ -4,7 +4,6 @@
   programs = {
     adb.enable = true;
     xfconf.enable = true;
-    dconf.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -12,12 +11,6 @@
     java = {
       enable = true;
       package = pkgs.jdk;
-    };
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [
-        fuse3
-      ];
     };
     zsh = {
       enable = true;
