@@ -13,12 +13,13 @@
 
   # Boot
   boot = {
-    supportedFilesystems = lib.mkForce [
+    supportedFilesystems = [
       "xfs"
       "vfat"
       "ext4"
+      "ntfs"
     ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     initrd.systemd.enable = false;
     loader = {
       systemd-boot = {
@@ -28,12 +29,8 @@
     };
     kernelParams = [
       "snd_hda_intel.dmic_detect=0"
-      "acpi_osi=linux"
-    ];
-    extraModulePackages = with config.boot.kernelPackages; [
-      acpi_call
-      cpupower
-      perf
+      "acpi_osi=Linux"
+      "i915.enable_psr=0"
     ];
     tmp = {
       cleanOnBoot = true;

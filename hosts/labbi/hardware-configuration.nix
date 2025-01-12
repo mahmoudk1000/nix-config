@@ -15,9 +15,6 @@
     initrd = {
       availableKernelModules = [
         "xhci_pci"
-        "ahci"
-        "usb_storage"
-        "sd_mod"
         "sr_mod"
         "acpi_call"
       ];
@@ -28,7 +25,7 @@
       "pcspkr"
     ];
     kernelModules = [ "kvm-intel" ];
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
+    extraModulePackages = with config.boot.kernelPackages; [ acpi_call cpupower perf ];
   };
 
   fileSystems = {
