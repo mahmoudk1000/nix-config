@@ -88,6 +88,15 @@
         pure_msg = "[pure shell](bold green)";
         format = "via [  $state( \($name\))](bold blue) ";
       };
+      aws = {
+        disabled = true;
+      };
+      gcloud = {
+        disabled = true;
+      };
+      azure = {
+        disabled = true;
+      };
     };
   };
 }
