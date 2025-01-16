@@ -22,6 +22,7 @@ in
     packages = [
       thunar-with-plugins
       gio
+      pkgs.xfce.xfconf
       pkgs.dconf
     ];
 

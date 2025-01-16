@@ -3,7 +3,6 @@
 {
   programs = {
     adb.enable = true;
-    xfconf.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
