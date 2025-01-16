@@ -42,19 +42,21 @@
     };
   };
 
-  environment.pathsToLink = [ "/share/zsh" ];
-
   # Packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    agenix
-    vim
-    wget
-    git
-    man-pages
-    _2bwm
-    brightnessctl
-    gptfdisk
-  ];
+  environment = {
+    pathsToLink = [ "/share/zsh" ];
+    shells = [ config.users.users.${host.username}.shell ];
+    systemPackages = with pkgs; [
+      agenix
+      vim
+      wget
+      git
+      man-pages
+      _2bwm
+      brightnessctl
+      gptfdisk
+    ];
+  };
 
   # Settings
   nixpkgs.config = {
