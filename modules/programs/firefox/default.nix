@@ -137,47 +137,11 @@ in
             "eBay".metaData.hidden = true;
           };
         };
-        bookmarks = [
-          {
-            name = "Atos";
-            bookmarks = [
-              {
-                name = "MyAtos";
-                tags = [ "atos" ];
-                keyword = "myatos";
-                url = "https://www.myatos.net/irj/portal";
-              }
-              {
-                name = "Percipio";
-                tags = [ "atos" ];
-                keyword = "percipio";
-                url = "https://atos.percipio.com/";
-              }
-            ];
-          }
-          {
-            name = "Microsoft 365";
-            toolbar = true;
-            bookmarks = [
-              {
-                name = "Outlook";
-                tags = [ "office365" ];
-                url = "https://outlook.office.com/";
-              }
-              {
-                name = "Teams";
-                tags = [ "office365" ];
-                url = "https://teams.microsoft.com/v2/";
-              }
-            ];
-          }
-        ];
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
           bitwarden
           languagetool
           tab-session-manager
-          lastpass-password-manager
         ];
         inherit settings;
       };
