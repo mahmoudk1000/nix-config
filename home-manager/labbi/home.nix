@@ -54,14 +54,7 @@
         evince
         krita
         popcorntime
-        # zoom-us
-        (pkgs.zoom-us.overrideAttrs {
-          version = "6.2.11.5069";
-          src = pkgs.fetchurl {
-            url = "https://zoom.us/client/6.2.11.5069/zoom_x86_64.pkg.tar.xz";
-            hash = "sha256-k8T/lmfgAFxW1nwEyh61lagrlHP5geT2tA7e5j61+qw=";
-          };
-        })
+        zoom-us
         teams-for-linux
 
         libsForQt5.breeze-icons
