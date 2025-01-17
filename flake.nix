@@ -50,7 +50,6 @@
     let
       system = "x86_64-linux";
       inherit (nixpkgs.lib) nixosSystem;
-      inherit (inputs.home-manager.lib) homeManagerConfiguration;
 
       overlays = [
         (import ./overlays)
@@ -71,21 +70,6 @@
         config.allowUnfree = true;
       };
 
-      mkHomeConfig = host: {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.${host.username} = import ./home-manager/${host.hostName}/home.nix;
-        sharedModules = [
-          inputs.spicetify-nix.homeManagerModules.default
-          inputs.agenix.homeManagerModules.default
-          { _module.args.theme = import ./modules/themes; }
-          { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
-        ];
-        extraSpecialArgs = {
-          inherit self inputs host;
-        };
-      };
-
       mkHost =
         host:
         nixosSystem {
@@ -95,8 +79,23 @@
             inputs.nur.modules.nixos.default
             inputs.agenix.nixosModules.default
             { imports = [ ./hosts/${host.hostName}/configuration.nix ]; }
-            { home-manager = mkHomeConfig host; }
             { nixpkgs.overlays = overlays; }
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${host.username} = import ./home-manager/${host.hostName}/home.nix;
+                sharedModules = [
+                  inputs.spicetify-nix.homeManagerModules.default
+                  inputs.agenix.homeManagerModules.default
+                  { _module.args.theme = import ./modules/themes; }
+                  { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
+                ];
+                extraSpecialArgs = {
+                  inherit self inputs host;
+                };
+              };
+            }
           ];
           specialArgs = {
             inherit self inputs host;
@@ -106,13 +105,6 @@
     {
       nixosConfigurations = {
         labbi = mkHost hosts.labbi;
-      };
-
-      homeConfigurations = {
-        labbi = homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ (mkHomeConfig hosts.labbi) ] ++ [ { home.stateVersion = "22.05"; } ];
-        };
       };
 
       devShells."${system}".default = pkgs.mkShell {
