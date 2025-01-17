@@ -12,7 +12,6 @@ let
       thunarPlugins = [
         thunar-volman
         thunar-archive-plugin
-        thunar-media-tags-plugin
       ];
     });
   gio = osConfig.services.gvfs.package;
