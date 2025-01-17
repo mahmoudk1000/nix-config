@@ -9,7 +9,7 @@
   services = {
     gvfs = {
       enable = true;
-      package = lib.mkForce pkgs.gvfs.override {
+      package = pkgs.gvfs.override {
         samba = null;
         gnomeSupport = false;
         udevSupport = true;
@@ -19,7 +19,6 @@
     upower.enable = true;
     blueman.enable = true;
     printing.enable = true;
-    tumbler.enable = true;
     dbus = {
       enable = true;
       implementation = "broker";
