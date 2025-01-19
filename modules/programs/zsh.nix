@@ -119,6 +119,8 @@
         ".5" = "cd -- ../../../../..";
         ".6" = "cd -- ../../../../../..";
 
+        pwdcp = "pwd | tr -d '\n' | xclip -sel c";
+
         g = "lazygit";
         gb = "git branch -v";
         ga = "git add";
