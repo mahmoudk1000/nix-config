@@ -52,10 +52,7 @@
         foliate
         obsidian
         evince
-        krita
-        popcorntime
         zoom-us
-        teams-for-linux
 
         libsForQt5.breeze-icons
         xorg.xmodmap
