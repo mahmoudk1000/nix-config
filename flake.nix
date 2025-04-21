@@ -19,6 +19,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    NixOS-WSL = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nur.url = "github:nix-community/NUR";
 
     nixpkgs-f2k = {
@@ -63,6 +68,10 @@
           username = "mahmoud";
           hostName = "labbi";
         };
+	blue = {
+	  username = "frouk";
+	  hostName = "blue";
+	};
       };
 
       pkgs = import inputs.nixpkgs {
@@ -71,7 +80,7 @@
       };
 
       mkHost =
-        host:
+        host: hasHome: isWSL:
         nixosSystem {
           inherit system;
           modules = [
@@ -80,7 +89,8 @@
             inputs.agenix.nixosModules.default
             { imports = [ ./hosts/${host.hostName}/configuration.nix ]; }
             { nixpkgs.overlays = overlays; }
-            {
+	    (if isWSL then inputs.NixOS-WSL.nixosModules.wsl else {})
+            (if hasHome then {
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -95,7 +105,7 @@
                   inherit self inputs host;
                 };
               };
-            }
+            } else {})
           ];
           specialArgs = {
             inherit self inputs host;
@@ -104,7 +114,8 @@
     in
     {
       nixosConfigurations = {
-        labbi = mkHost hosts.labbi;
+        labbi = mkHost hosts.labbi true false;
+	blue = mkHost hosts.blue false true;
       };
 
       devShells."${system}".default = pkgs.mkShell {
