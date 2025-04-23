@@ -19,7 +19,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    NixOS-WSL = {
+    nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -68,10 +68,10 @@
           username = "mahmoud";
           hostName = "labbi";
         };
-	blue = {
-	  username = "frouk";
-	  hostName = "blue";
-	};
+        blue = {
+          username = "farouk";
+          hostName = "blue";
+        };
       };
 
       pkgs = import inputs.nixpkgs {
@@ -89,23 +89,28 @@
             inputs.agenix.nixosModules.default
             { imports = [ ./hosts/${host.hostName}/configuration.nix ]; }
             { nixpkgs.overlays = overlays; }
-	    (if isWSL then inputs.NixOS-WSL.nixosModules.wsl else {})
-            (if hasHome then {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${host.username} = import ./home-manager/${host.hostName}/home.nix;
-                sharedModules = [
-                  inputs.spicetify-nix.homeManagerModules.default
-                  inputs.agenix.homeManagerModules.default
-                  { _module.args.theme = import ./modules/themes; }
-                  { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
-                ];
-                extraSpecialArgs = {
-                  inherit self inputs host;
-                };
-              };
-            } else {})
+            (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
+            (
+              if hasHome then
+                {
+                  home-manager = {
+                    useGlobalPkgs = true;
+                    useUserPackages = true;
+                    users.${host.username} = import ./home-manager/${host.hostName}/home.nix;
+                    sharedModules = [
+                      inputs.spicetify-nix.homeManagerModules.default
+                      inputs.agenix.homeManagerModules.default
+                      { _module.args.theme = import ./modules/themes; }
+                      { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
+                    ];
+                    extraSpecialArgs = {
+                      inherit self inputs host;
+                    };
+                  };
+                }
+              else
+                { }
+            )
           ];
           specialArgs = {
             inherit self inputs host;
@@ -115,7 +120,7 @@
     {
       nixosConfigurations = {
         labbi = mkHost hosts.labbi true false;
-	blue = mkHost hosts.blue false true;
+        blue = mkHost hosts.blue true true;
       };
 
       devShells."${system}".default = pkgs.mkShell {
