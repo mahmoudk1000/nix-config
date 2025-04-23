@@ -38,7 +38,6 @@
         hashicorp.terraform
         jnoortheen.nix-ide
         vscodevim.vim
-        equinusocio.vsc-material-theme-icons
         visualstudioexptteam.vscodeintellicode
         github.copilot
         github.copilot-chat
