@@ -25,7 +25,11 @@
       "pcspkr"
     ];
     kernelModules = [ "kvm-intel" ];
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call cpupower perf ];
+    extraModulePackages = with config.boot.kernelPackages; [
+      acpi_call
+      cpupower
+      perf
+    ];
   };
 
   fileSystems = {
