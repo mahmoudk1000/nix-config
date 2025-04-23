@@ -154,6 +154,7 @@
         kba = "kubectl apply -f";
         kbdel = "kubectl delete";
         kbex = "kubectl exec -it";
+        kbcx = "kubectx";
 
         cleanup = "sudo nix-collect-garbage -d";
         bloat = "nix path-info -Sh /run/current-system";
