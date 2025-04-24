@@ -1,10 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-# NixOS-WSL specific options are documented on the NixOS-WSL repository:
-# https://github.com/nix-community/NixOS-WSL
-
 {
   config,
   lib,
@@ -89,17 +82,21 @@
   security.sudo.wheelNeedsPassword = false;
 
   # Disable systemd units that don't make sense on WSL
-  systemd.services."serial-getty@ttyS0".enable = false;
-  systemd.services."serial-getty@hvc0".enable = false;
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@".enable = false;
+  systemd = {
+    services = {
+      "serial-getty@ttyS0".enable = false;
+      "serial-getty@hvc0".enable = false;
+      "getty@tty1".enable = false;
+      "autovt@".enable = false;
+      firewall.enable = false;
+      systemd-resolved.enable = false;
+      systemd-udevd.enable = false;
+    };
 
-  systemd.services.firewall.enable = false;
-  systemd.services.systemd-resolved.enable = false;
-  systemd.services.systemd-udevd.enable = false;
+    enableEmergencyMode = false;
+  };
 
   # Don't allow emergency mode, because we don't have a console.
-  systemd.enableEmergencyMode = false;
 
   environment = {
     pathsToLink = [ "/share/zsh" ];
