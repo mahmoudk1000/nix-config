@@ -68,9 +68,9 @@
           username = "mahmoud";
           hostName = "labbi";
         };
-        blue = {
+        zanpakuto = {
           username = "farouk";
-          hostName = "blue";
+          hostName = "zanpakuto";
         };
       };
 
@@ -120,7 +120,7 @@
     {
       nixosConfigurations = {
         labbi = mkHost hosts.labbi true false;
-        blue = mkHost hosts.blue true true;
+        zanpakuto = mkHost hosts.zanpakuto true true;
       };
 
       devShells."${system}".default = pkgs.mkShell {

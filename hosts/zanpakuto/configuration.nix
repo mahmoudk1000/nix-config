@@ -11,9 +11,6 @@
   imports = [ ];
 
   age = {
-    identityPaths = [
-      "/home/${host.username}/.ssh/id_ed25519"
-    ];
     secrets = {
       "users/${host.username}".file = ../../secrets/users/farouk.age;
     };
@@ -39,19 +36,37 @@
     };
   };
 
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    settings = {
+      PasswordAuthentication = false;
+    };
+    hostKeys = [
+      {
+        path = "/home/${host.username}/.ssh/id_ed25519";
+        type = "ed25519";
+      }
+    ];
+  };
+
   wsl = {
     enable = true;
     defaultUser = "${host.username}";
     startMenuLaunchers = true;
     docker-desktop.enable = true;
     wslConf = {
+      ws12 = {
+        networkingMode = "mirrored";
+      };
+      usbip.enable = true;
       interop = {
         enabled = false;
         appendWindowsPath = false;
       };
       automount.root = "/mnt";
       network = {
-        generateHosts = false;
+        generateHosts = true;
       };
     };
   };
@@ -89,8 +104,8 @@
       "getty@tty1".enable = false;
       "autovt@".enable = false;
       firewall.enable = false;
-      systemd-resolved.enable = false;
       systemd-udevd.enable = false;
+      systemd-resolved.enable = false;
     };
 
     enableEmergencyMode = false;
@@ -108,6 +123,7 @@
       git
       wslu
       wsl-open
+      wsl-vpnkit
       man-pages
     ];
   };
