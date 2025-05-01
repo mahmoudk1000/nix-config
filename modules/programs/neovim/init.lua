@@ -92,8 +92,8 @@ vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 
 -- Comments
-vim.keymap.set("n", "<leader>cc", "gcc", { remap = true, silent = true, desc = "[[C]]omment Line" })
-vim.keymap.set("v", "<leader>cc", "gc", { remap = true, silent = true, desc = "[[C]]omment Selection" })
+vim.keymap.set("n", "<leader>c", "gcc", { remap = true, silent = true, desc = "[[C]]omment Line" })
+vim.keymap.set("v", "<leader>/", "gc", { remap = true, silent = true, desc = "[[C]]omment Selection" })
 
 -- Plugins
 --- NvimTree
