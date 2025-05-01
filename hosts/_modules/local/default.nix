@@ -28,7 +28,7 @@
       enable = true;
       xkb = {
         layout = "us,ara";
-        variant = "qwerty,,";
+        variant = ",qwerty,";
         options = "caps:ctrl_modifier,grp:alt_space_toggle";
       };
       displayManager.startx.enable = true;
