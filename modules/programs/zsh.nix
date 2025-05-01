@@ -163,7 +163,7 @@
         "-h" = "-h 2>&1 | bat --language=help --style=plain";
         "--help" = "--help 2>&1 | bat --language=help --style=plain";
       };
-      initExtra = ''
+      initContent = ''
         autoload -Uz promptinit; promptinit
         eval "$(starship init zsh)"
 
