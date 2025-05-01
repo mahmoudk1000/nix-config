@@ -28,12 +28,14 @@ local servers = {
 
 -- LSP settings.
 local on_attach = function(client, bufnr)
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
+	local function buf_set_option(name, value)
+		vim.api.nvim_set_option_value(name, value, {
+			buf = bufnr,
+		})
 	end
 
 	if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
-		vim.diagnostic.disable(bufnr)
+		vim.diagnostic.enable(false, { bufnr = bufnr })
 		vim.defer_fn(function()
 			vim.diagnostic.reset(nil, bufnr)
 		end, 1000)
