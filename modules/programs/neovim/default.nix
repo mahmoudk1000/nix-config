@@ -173,6 +173,7 @@ in
       vim-sleuth
       vim-terraform
       vim-yaml
+      vim-helm
       ansible-vim
       playground
       friendly-snippets
