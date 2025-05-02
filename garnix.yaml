@@ -4,4 +4,5 @@ builds:
   include:
     - '*.x86_64-linux.*'
     - nixosConfigurations.*
+    - homeConfigurations.*
   exclude: []
