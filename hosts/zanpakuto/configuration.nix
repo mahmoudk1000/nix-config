@@ -81,10 +81,6 @@
     };
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
-
   boot.isContainer = true;
 
   networking.hostName = "${host.hostName}";

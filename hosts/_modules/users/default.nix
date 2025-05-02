@@ -61,7 +61,6 @@
 
   # Settings
   nixpkgs.config = {
-    allowUnfree = true;
     "2bwm".patches = [ ../../../modules/patches/2bwm/momo-patch.diff ];
   };
 
