@@ -53,8 +53,23 @@
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
       inherit (nixpkgs.lib) nixosSystem;
+
+      supportedSystems = [
+        "x86_64-linux"
+        "x86_64-darwin"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
+
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      nixpkgsFor = forAllSystems (
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+      );
 
       overlays = [
         (import ./overlays)
@@ -74,61 +89,120 @@
         };
       };
 
-      pkgs = import inputs.nixpkgs {
-        inherit system overlays;
-        config.allowUnfree = true;
-      };
-
       mkHost =
-        host: hasHome: isWSL:
-        nixosSystem {
+        {
+          system,
+          host,
+          extraNixModules ? [ ],
+          extraOverlays ? [ ],
+          includeHomeManager ? true,
+        }:
+        nixosSystem rec {
           inherit system;
-          modules = [
-            inputs.home-manager.nixosModules.home-manager
-            inputs.nur.modules.nixos.default
-            inputs.agenix.nixosModules.default
-            { imports = [ ./hosts/${host.hostName}/configuration.nix ]; }
-            { nixpkgs.overlays = overlays; }
-            (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
-            (
-              if hasHome then
-                {
-                  home-manager = {
-                    useGlobalPkgs = true;
-                    useUserPackages = true;
-                    users.${host.username} = import ./home-manager/${host.hostName}/home.nix;
-                    sharedModules = [
-                      inputs.spicetify-nix.homeManagerModules.default
-                      inputs.agenix.homeManagerModules.default
-                      { _module.args.theme = import ./modules/themes; }
-                      { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
-                    ];
-                    extraSpecialArgs = {
-                      inherit self inputs host;
+          pkgs = nixpkgsFor.${system};
+          modules =
+            [
+              inputs.nur.modules.nixos.default
+              inputs.agenix.nixosModules.default
+              { imports = [ ./hosts/${host.hostName}/configuration.nix ]; }
+              { nixpkgs.overlays = overlays ++ extraOverlays; }
+            ]
+            ++ (
+              if includeHomeManager then
+                [
+                  inputs.home-manager.nixosModules.home-manager
+                  {
+                    home-manager = {
+                      useGlobalPkgs = true;
+                      useUserPackages = true;
+                      users.${host.username} = import ./home-manager/${host.hostName}/home.nix;
+                      sharedModules = [
+                        inputs.spicetify-nix.homeManagerModules.default
+                        inputs.agenix.homeManagerModules.default
+                        { _module.args.theme = import ./modules/themes; }
+                        { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
+                      ];
+                      extraSpecialArgs = {
+                        inherit self inputs host;
+                      };
                     };
-                  };
-                }
+                  }
+                ]
               else
-                { }
+                [ ]
             )
-          ];
+            ++ extraNixModules;
           specialArgs = {
             inherit self inputs host;
+          };
+        };
+
+      mkHome =
+        {
+          system,
+          host,
+          stateVersion ? "22.05",
+          extraModules ? [ ],
+        }:
+        inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgsFor."${system}";
+          modules = [
+            ./home-manager/${host.hostName}/home.nix
+          ] ++ extraModules;
+          extraSpecialArgs = {
+            inherit
+              self
+              inputs
+              host
+              stateVersion
+              ;
           };
         };
     in
     {
       nixosConfigurations = {
-        labbi = mkHost hosts.labbi true false;
-        zanpakuto = mkHost hosts.zanpakuto true true;
+        labbi = mkHost {
+          system = "x86_64-linux";
+          host = hosts.labbi;
+        };
+        zanpakuto = mkHost {
+          system = "x86_64-linux";
+          host = hosts.zanpakuto;
+          extraNixModules = [
+            inputs.nixos-wsl.nixosModules.wsl
+          ];
+        };
       };
 
-      devShells."${system}".default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          inputs.agenix.packages.${system}.default
-          git
-          vim
-        ];
+      homeConfigurations = {
+        labbi = mkHome {
+          system = "x86_64-linux";
+          host = hosts.labbi;
+        };
+        zanpakuto = mkHome {
+          system = "x86_64-linux";
+          stateVersion = "24.11";
+          host = hosts.zanpakuto;
+          extraModules = [
+            inputs.nixos-wsl.homeManagerModules.wsl
+          ];
+        };
       };
+
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              inputs.agenix.packages.${system}.default
+              git
+              vim
+            ];
+          };
+        }
+      );
     };
 }
