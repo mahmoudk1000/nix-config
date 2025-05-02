@@ -35,3 +35,5 @@ sudo nixos-rebuild switch --flake '.#labbi'
 [JavaCafe01](https://github.com/JavaCafe01/frostedflakes)
 
 [Gvolpe](https://github.com/gvolpe/nix-config/)
+
+[redyf](https://github.com/redyf/nixdots)
