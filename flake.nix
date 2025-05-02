@@ -115,7 +115,7 @@
                     home-manager = {
                       useGlobalPkgs = true;
                       useUserPackages = true;
-                      users.${host.username} = import ./home-manager/${host.hostName}/home.nix;
+                      users.${host.username} = import ./home/${host.hostName}/home.nix;
                       sharedModules = [
                         inputs.spicetify-nix.homeManagerModules.default
                         inputs.agenix.homeManagerModules.default
@@ -147,7 +147,7 @@
         inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgsFor."${system}";
           modules = [
-            ./home-manager/${host.hostName}/home.nix
+            ./home/${host.hostName}/home.nix
           ] ++ extraModules;
           extraSpecialArgs = {
             inherit
