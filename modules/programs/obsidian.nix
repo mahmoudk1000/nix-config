@@ -30,7 +30,7 @@ in
       description = "Enable Obsidian and its git sync script.";
     };
     gitSync = lib.mkOption {
-      type = lib.types.pool;
+      type = lib.types.bool;
       default = false;
       description = "Enable systemd git sync for Obsidian.";
     };
