@@ -145,10 +145,12 @@
           stateVersion ? "22.05",
           extraModules ? [ ],
         }:
-        homeManagerConfiguration {
+        homeManagerConfiguration rec {
           pkgs = nixpkgsFor."${system}";
           modules = [
             ./home/${host.hostName}/home.nix
+            { _module.args.theme = import ./modules/themes; }
+            { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
           ] ++ extraModules;
           extraSpecialArgs = {
             inherit
