@@ -32,7 +32,7 @@ in
         name = "${host.hostName}";
         search = {
           force = true;
-          default = "DuckDuckGo";
+          default = "ddg";
           engines = {
             "Nix Packages" = {
               urls = [
@@ -104,23 +104,25 @@ in
             "eBay".metaData.hidden = true;
           };
         };
-        extensions =
-          with pkgs.nur.repos.rycee.firefox-addons;
-          [
-            ublock-origin
-            privacy-badger
-            bitwarden
-            clearurls
-            link-cleaner
-            decentraleyes
-            duckduckgo-privacy-essentials
-            libredirect
-            privacy-badger
-            languagetool
-            tab-session-manager
-            search-by-image
-          ]
-          ++ (with customAddons; [ startpage ]);
+        extensions = {
+          packages =
+            with pkgs.nur.repos.rycee.firefox-addons;
+            [
+              ublock-origin
+              privacy-badger
+              bitwarden
+              clearurls
+              link-cleaner
+              decentraleyes
+              duckduckgo-privacy-essentials
+              libredirect
+              privacy-badger
+              languagetool
+              tab-session-manager
+              search-by-image
+            ]
+            ++ (with customAddons; [ startpage ]);
+        };
         inherit settings userChrome userContent;
       };
       work = {
@@ -128,7 +130,7 @@ in
         name = "Work";
         search = {
           force = true;
-          default = "DuckDuckGo";
+          default = "ddg";
           engines = {
             "Wikipedia (en)".metaData.alias = "@wiki";
             "Google".metaData.hidden = true;
@@ -137,12 +139,14 @@ in
             "eBay".metaData.hidden = true;
           };
         };
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-          bitwarden
-          languagetool
-          tab-session-manager
-        ];
+        extensions = {
+          packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            ublock-origin
+            bitwarden
+            languagetool
+            tab-session-manager
+          ];
+        };
         inherit settings;
       };
     };
