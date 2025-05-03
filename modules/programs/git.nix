@@ -48,6 +48,20 @@
       lfs.enable = true;
       userName = "Mahmoud Ayman";
       userEmail = "mahmoudk1000@gmail.com";
+      includes = [
+        {
+          condition = "gitdir:~/work/";
+          contents = {
+            commit.gpgSign = false;
+            user = {
+              name = "Mahmoud Frouk";
+              email = "mahmoud.frouk@atos.net";
+              signingKey = "A23D3563FD90EA8F";
+            };
+            gpg.format = "ssh";
+          };
+        }
+      ];
       extraConfig = {
         commit.verbose = true;
         init = {
@@ -59,12 +73,22 @@
           "https://gitlab.com/".insteadOf = "gl:";
           "git@gitlab.com:".pushInsteadOf = "gl:";
         };
+        # Set default "git pull" behaviour so it doesn't try to default to
+        # either "git fetch; git merge" (default) or "git fetch; git rebase".
+        pull.ff = "only";
+        # REuse REcorded REsolution to remember and resolve merge conflicts
+        # better when you hit the several conflict several times.
+        rerere.enabled = true;
       };
       signing = {
         signByDefault = true;
         key = "A23D3563FD90EA8F";
       };
-      ignores = [ ".envrc" ];
+      ignores = [
+        ".envrc"
+        ".direnv"
+        ".vscode"
+      ];
       delta = {
         enable = true;
         options = {
