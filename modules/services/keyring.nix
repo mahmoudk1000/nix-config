@@ -8,6 +8,8 @@
     defaultCacheTtl = 1800;
     enableSshSupport = true;
     enableExtraSocket = true;
-    pinentryPackage = if config.gtk.enable then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
+    pinentry = {
+      package = if config.gtk.enable then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
+    };
   };
 }
