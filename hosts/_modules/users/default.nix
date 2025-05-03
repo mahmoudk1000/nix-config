@@ -53,15 +53,9 @@
       wget
       git
       man-pages
-      _2bwm
       brightnessctl
       gptfdisk
     ];
-  };
-
-  # Settings
-  nixpkgs.config = {
-    "2bwm".patches = [ ../../../modules/patches/2bwm/momo-patch.diff ];
   };
 
   # Fonts
