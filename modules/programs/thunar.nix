@@ -1,5 +1,4 @@
 {
-  osConfig,
   config,
   pkgs,
   ...
@@ -14,19 +13,18 @@ let
         thunar-archive-plugin
       ];
     });
-  gio = osConfig.services.gvfs.package;
 in
 {
   home = {
     packages = [
       thunar-with-plugins
-      gio
       pkgs.xfce.xfconf
       pkgs.dconf
+      pkgs.gvfs
     ];
 
     sessionVariables = {
-      GIO_EXTRA_MODULES = "${gio}/lib/gio/modules:${pkgs.dconf.lib}/lib/gio/modules";
+      GIO_EXTRA_MODULES = "${pkgs.gvfs}/lib/gio/modules:${pkgs.dconf.lib}/lib/gio/modules";
     };
 
     file.".config/Thunar/uca.xml".text = ''
