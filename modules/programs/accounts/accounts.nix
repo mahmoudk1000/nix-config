@@ -1,11 +1,21 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  host,
+  ...
+}:
 
 {
-  age.secrets = {
-    "accounts/personal".file = ../../../secrets/accounts/personal.age;
-    "accounts/secondary".file = ../../../secrets/accounts/secondary.age;
-    "accounts/work".file = ../../../secrets/accounts/work.age;
-    "accounts/uni".file = ../../../secrets/accounts/uni.age;
+  age = {
+    identityPaths = [
+      "/home/${host.username}/.ssh/id_ed25519"
+    ];
+    secrets = {
+      "accounts/personal".file = ../../../secrets/accounts/personal.age;
+      "accounts/secondary".file = ../../../secrets/accounts/secondary.age;
+      "accounts/work".file = ../../../secrets/accounts/work.age;
+      "accounts/uni".file = ../../../secrets/accounts/uni.age;
+    };
   };
 
   accounts.email.maildirBasePath = ".mail";
