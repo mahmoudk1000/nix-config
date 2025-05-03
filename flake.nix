@@ -67,7 +67,7 @@
       nixpkgsFor = forAllSystems (
         system:
         import nixpkgs {
-          inherit system;
+          inherit system overlays;
           config.allowUnfree = true;
         }
       );
@@ -178,7 +178,7 @@
         zanpakuto = mkHost {
           system = "x86_64-linux";
           host = hosts.zanpakuto;
-          extraNixModules = [
+          extraModules = [
             inputs.nixos-wsl.nixosModules.wsl
           ];
         };
