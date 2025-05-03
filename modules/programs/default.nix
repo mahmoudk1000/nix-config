@@ -20,6 +20,7 @@
     ./herbstluftwm.nix
     ./mpv.nix
     ./newsboat.nix
+    ./obsidian.nix
     ./rofi.nix
     ./spotify.nix
     ./starship.nix
@@ -33,4 +34,12 @@
     ./zathura.nix
     ./zsh.nix
   ];
+
+  programs = {
+    obsidian = {
+      enable = true;
+      gitSync = true;
+      vaultDir = "$HOME/Notes/obsidian";
+    };
+  };
 }

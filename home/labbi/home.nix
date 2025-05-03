@@ -50,7 +50,6 @@
         tdesktop
         element-desktop
         foliate
-        obsidian
         evince
         zoom-us
 
