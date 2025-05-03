@@ -95,7 +95,6 @@
           system,
           host,
           extraModules ? [ ],
-          extraOverlays ? [ ],
           includeHomeManager ? true,
         }:
         nixosSystem rec {
@@ -106,7 +105,6 @@
               inputs.nur.modules.nixos.default
               inputs.agenix.nixosModules.default
               { imports = [ ./hosts/${host.hostName}/configuration.nix ]; }
-              { nixpkgs.overlays = overlays ++ extraOverlays; }
             ]
             ++ (
               if includeHomeManager then
