@@ -123,11 +123,17 @@
                         { _module.args.theme = import ./modules/themes; }
                         { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
                       ];
-                      extraSpecialArgs = {
-                        inherit self inputs host;
-                      };
                     };
                   }
+                  (
+                    { config, ... }:
+                    {
+                      config.home-manager.extraSpecialArgs = {
+                        inherit self inputs host;
+                        inherit (config.system) stateVersion;
+                      };
+                    }
+                  )
                 ]
               else
                 [ ]
