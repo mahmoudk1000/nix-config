@@ -54,6 +54,7 @@
     }@inputs:
     let
       inherit (nixpkgs.lib) nixosSystem;
+      inherit (inputs.home-manager.lib) homeManagerConfiguration;
 
       supportedSystems = [
         "x86_64-linux"
@@ -143,7 +144,7 @@
           host,
           extraModules ? [ ],
         }:
-        inputs.home-manager.lib.homeManagerConfiguration {
+        homeManagerConfiguration {
           pkgs = nixpkgsFor."${system}";
           modules = [
             ./home/${host.hostName}/home.nix
