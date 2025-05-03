@@ -94,7 +94,7 @@
         {
           system,
           host,
-          extraNixModules ? [ ],
+          extraModules ? [ ],
           extraOverlays ? [ ],
           includeHomeManager ? true,
         }:
@@ -138,7 +138,7 @@
               else
                 [ ]
             )
-            ++ extraNixModules;
+            ++ extraModules;
           specialArgs = {
             inherit self inputs host;
           };
@@ -155,6 +155,7 @@
           pkgs = nixpkgsFor."${system}";
           modules = [
             ./home/${host.hostName}/home.nix
+            inputs.agenix.homeManagerModules.default
             { _module.args.theme = import ./modules/themes; }
             { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
           ] ++ extraModules;
@@ -187,6 +188,9 @@
         labbi = mkHome {
           system = "x86_64-linux";
           host = hosts.labbi;
+          extraModules = [
+            inputs.spicetify-nix.homeManagerModules.default
+          ];
         };
         zanpakuto = mkHome {
           system = "x86_64-linux";
