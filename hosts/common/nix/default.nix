@@ -51,7 +51,6 @@
       enable = false;
       channel = "https://nixos.org/channels/nixos-unstable";
     };
-    stateVersion = "22.05";
   };
 
   systemd.services.nix-gc.unitConfig.ConditionACPower = true;

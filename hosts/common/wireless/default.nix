@@ -15,9 +15,6 @@
         "localhost"
         "${config.networking.hostName}.lab"
         "${config.networking.hostName}.local"
-        "jenkins.${config.networking.hostName}.lab"
-        "nexus.${config.networking.hostName}.lab"
-        "sonar.${config.networking.hostName}.lab"
       ];
     };
     wireless = {

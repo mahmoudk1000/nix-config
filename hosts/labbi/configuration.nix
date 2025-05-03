@@ -66,4 +66,6 @@
     algorithm = "zstd";
     memoryPercent = 64;
   };
+
+  system.stateVersion = "22.05";
 }
