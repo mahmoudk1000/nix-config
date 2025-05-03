@@ -92,7 +92,6 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  # Disable systemd units that don't make sense on WSL
   systemd = {
     services = {
       "serial-getty@ttyS0".enable = false;
@@ -106,8 +105,6 @@
 
     enableEmergencyMode = false;
   };
-
-  # Don't allow emergency mode, because we don't have a console.
 
   environment = {
     pathsToLink = [ "/share/zsh" ];
@@ -127,9 +124,6 @@
   # Nix
   nix = {
     package = pkgs.nixVersions.latest;
-    daemonIOSchedClass = "idle";
-    daemonCPUSchedPolicy = "idle";
-    daemonIOSchedPriority = 7;
     settings = {
       keep-outputs = false;
       keep-derivations = false;
@@ -159,7 +153,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 14d";
+      options = "--delete-older-than 7d";
     };
     registry.nixpkgs.flake = inputs.nixpkgs;
   };
