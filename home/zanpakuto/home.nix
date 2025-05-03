@@ -1,7 +1,7 @@
 {
   pkgs,
   host,
-  osConfig,
+  stateVersion,
   ...
 }:
 
@@ -12,7 +12,7 @@
 
   home = {
     inherit (host) username;
-    inherit (osConfig.system) stateVersion;
+    inherit stateVersion;
     homeDirectory = "/home/${host.username}";
     extraOutputsToInstall = [ "man" ];
     packages = with pkgs; [
