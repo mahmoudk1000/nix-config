@@ -141,7 +141,6 @@
         {
           system,
           host,
-          stateVersion ? "22.05",
           extraModules ? [ ],
         }:
         inputs.home-manager.lib.homeManagerConfiguration {
@@ -154,7 +153,6 @@
               self
               inputs
               host
-              stateVersion
               ;
           };
         };
@@ -181,11 +179,7 @@
         };
         zanpakuto = mkHome {
           system = "x86_64-linux";
-          stateVersion = "24.11";
           host = hosts.zanpakuto;
-          extraModules = [
-            inputs.nixos-wsl.homeManagerModules.wsl
-          ];
         };
       };
 
