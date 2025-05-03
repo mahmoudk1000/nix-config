@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  host,
   ...
 }:
 
@@ -36,7 +37,7 @@ in
     };
     vaultDir = lib.mkOption {
       type = lib.types.path;
-      default = "$HOME/Notes/Obsidian";
+      default = "/home/${host.username}/Notes/Obsidian";
       description = "Path to the Obsidian vault directory.";
     };
   };
@@ -58,7 +59,7 @@ in
           After = [ "graphical-session.target" ];
         };
         Timer = {
-          Timer.OnCalendar = "*:0/45";
+          OnCalendar = "*:0/45";
           Unit = "git-sync-obsidian.service";
         };
         Install = {

@@ -1,4 +1,9 @@
 {
+  host,
+  ...
+}:
+
+{
   imports = [
     ./accounts
     ./awesome
@@ -39,7 +44,7 @@
     obsidian = {
       enable = true;
       gitSync = true;
-      vaultDir = "$HOME/Notes/obsidian";
+      vaultDir = "/home/${host.username}/Notes/obsidian";
     };
   };
 }
