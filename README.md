@@ -85,3 +85,5 @@ you will partition, format and mount the disk for /dev/nvme0n1 (change as needed
 [Gvolpe](https://github.com/gvolpe/nix-config/)
 
 [redyf](https://github.com/redyf/nixdots)
+
+[linuxmobile](https://github.com/linuxmobile/kaku)
