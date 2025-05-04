@@ -107,6 +107,7 @@
         o = "xdg-open";
         l = "eza";
         c = "clear";
+        q = "exit";
         v = "nvim";
         m = "ncmpcpp";
 
@@ -120,6 +121,10 @@
         ".6" = "cd -- ../../../../../..";
 
         pwdcp = "pwd | tr -d '\n' | xclip -sel c";
+        tree = "eza --tree --icons --tree";
+
+        us = "systemctl --user";
+        rs = "sudo systemctl";
 
         g = "lazygit";
         gb = "git branch -v";
@@ -134,10 +139,14 @@
         gcm = "git commit --verbose -m ";
         gca = "git commit --amend --no-edit";
         gcae = "git commit --amend";
-        gpl = "git pull";
         gp = "git push";
+        pp = "!git push origin $(git rev-parse --abbrev-ref HEAD)";
+        gpl = "git pull";
+        pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)";
         grbc = "git rebase --continue";
         gff = "git diff --minimal";
+        hist = ''git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all'';
+        llog = ''git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative'';
 
         dc = "docker compose";
 
@@ -156,7 +165,9 @@
         kbex = "kubectl exec -it";
         kbcx = "kubectx";
 
-        cleanup = "sudo nix-collect-garbage -d";
+        cleanup = "sudo nix-collect-garbage --delete-older-than 1d";
+        listgen = "sudo nix-env -p /nix/var/nix/profiles/system --list-generations";
+
         bloat = "nix path-info -Sh /run/current-system";
       };
       shellGlobalAliases = lib.mkIf config.programs.bat.enable {
@@ -195,7 +206,7 @@
         zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
         zstyle ':completion:*' group-name '''
         zstyle ':completion:*' use-cache on
-        zstyle ':completion:*' cache-path ~/.zsh_cache
+        zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/.zcompcache
         zstyle ':completion:*' special-dirs ..
         zstyle ':completion:*:approximate:*' max-errors 1 numeric
         zstyle ':completion:*:functions' ignored-patterns '_*'
