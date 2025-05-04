@@ -67,6 +67,10 @@
         init = {
           defaultBranch = "main";
         };
+        push = {
+          default = "current";
+          autoSetupRemote = true;
+        };
         url = {
           "https://github.com/".insteadOf = "gh:";
           "git@github.com:".pushInsteadOf = "gh:";
@@ -78,7 +82,10 @@
         pull.ff = "only";
         # REuse REcorded REsolution to remember and resolve merge conflicts
         # better when you hit the several conflict several times.
-        rerere.enabled = true;
+        rerere = {
+          enabled = true;
+          autoupdate = true;
+        };
       };
       signing = {
         signByDefault = true;
@@ -88,6 +95,9 @@
         ".envrc"
         ".direnv"
         ".vscode"
+        "*.swp"
+        "*result*"
+        "node_modules"
       ];
       delta = {
         enable = true;
@@ -123,6 +133,9 @@
     with pkgs;
     [
       git-crypt
+      gh
     ]
   );
+
+  home.sessionVariables.DELTA_PAGER = "less -R";
 }
