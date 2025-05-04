@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   programs = {
@@ -16,6 +21,7 @@
     bat = {
       enable = true;
       config = {
+        pager = "less -FR";
         theme = "base16";
       };
       extraPackages = with pkgs.bat-extras; [
@@ -34,5 +40,10 @@
         vim_keys = true;
       };
     };
+  };
+
+  home.sessionVariables = lib.mkIf config.programs.btop.enable {
+    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    MANROFFOPT = "-c";
   };
 }
