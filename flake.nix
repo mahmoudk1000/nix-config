@@ -70,10 +70,12 @@
         labbi = {
           username = "mahmoud";
           hostName = "labbi";
+          theme = "melle";
         };
         zanpakuto = {
           username = "farouk";
           hostName = "zanpakuto";
+          theme = "momo";
         };
       };
     in
