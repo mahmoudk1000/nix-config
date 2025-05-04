@@ -18,7 +18,8 @@
       modules = [
         ../home/${host.hostName}/home.nix
         inputs.agenix.homeManagerModules.default
-        # Additional modules here...
+        { _module.args.theme = import ../modules/themes; }
+        { _module.args.font = import ../modules/themes/font.nix { inherit pkgs; }; }
       ] ++ extraModules;
       extraSpecialArgs = {
         inherit
