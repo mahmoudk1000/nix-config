@@ -36,6 +36,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,28 +54,10 @@
   outputs =
     {
       self,
-      nixpkgs,
       ...
     }@inputs:
     let
-      inherit (nixpkgs.lib) nixosSystem;
-      inherit (inputs.home-manager.lib) homeManagerConfiguration;
-
-      supportedSystems = [
-        "x86_64-linux"
-        "x86_64-darwin"
-        "aarch64-linux"
-        "aarch64-darwin"
-      ];
-
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-      nixpkgsFor = forAllSystems (
-        system:
-        import nixpkgs {
-          inherit system overlays;
-          config.allowUnfree = true;
-        }
-      );
+      lib = import ./lib/default.nix { inherit self inputs overlays; };
 
       overlays = [
         (import ./overlays)
@@ -89,91 +76,17 @@
           hostName = "zanpakuto";
         };
       };
-
-      mkHost =
-        {
-          system,
-          host,
-          extraModules ? [ ],
-          includeHomeManager ? true,
-        }:
-        nixosSystem rec {
-          inherit system;
-          pkgs = nixpkgsFor.${system};
-          modules =
-            [
-              inputs.nur.modules.nixos.default
-              inputs.agenix.nixosModules.default
-              { imports = [ ./hosts/${host.hostName}/configuration.nix ]; }
-            ]
-            ++ (
-              if includeHomeManager then
-                [
-                  inputs.home-manager.nixosModules.home-manager
-                  {
-                    home-manager = {
-                      useGlobalPkgs = true;
-                      useUserPackages = true;
-                      users.${host.username} = import ./home/${host.hostName}/home.nix;
-                      sharedModules = [
-                        inputs.spicetify-nix.homeManagerModules.default
-                        inputs.agenix.homeManagerModules.default
-                        { _module.args.theme = import ./modules/themes; }
-                        { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
-                      ];
-                    };
-                  }
-                  (
-                    { config, ... }:
-                    {
-                      config.home-manager.extraSpecialArgs = {
-                        inherit self inputs host;
-                        inherit (config.system) stateVersion;
-                      };
-                    }
-                  )
-                ]
-              else
-                [ ]
-            )
-            ++ extraModules;
-          specialArgs = {
-            inherit self inputs host;
-          };
-        };
-
-      mkHome =
-        {
-          system,
-          host,
-          stateVersion ? "22.05",
-          extraModules ? [ ],
-        }:
-        homeManagerConfiguration rec {
-          pkgs = nixpkgsFor."${system}";
-          modules = [
-            ./home/${host.hostName}/home.nix
-            inputs.agenix.homeManagerModules.default
-            { _module.args.theme = import ./modules/themes; }
-            { _module.args.font = import ./modules/themes/font.nix { inherit pkgs; }; }
-          ] ++ extraModules;
-          extraSpecialArgs = {
-            inherit
-              self
-              inputs
-              host
-              stateVersion
-              ;
-          };
-        };
     in
     {
       nixosConfigurations = {
-        labbi = mkHost {
+        labbi = lib.mkHost {
           system = "x86_64-linux";
           host = hosts.labbi;
+          extraModules = [
+            inputs.disko.nixosModules.disko
+          ];
         };
-        zanpakuto = mkHost {
+        zanpakuto = lib.mkHost {
           system = "x86_64-linux";
           host = hosts.zanpakuto;
           extraModules = [
@@ -183,24 +96,24 @@
       };
 
       homeConfigurations = {
-        labbi = mkHome {
+        labbi = lib.mkHome {
           system = "x86_64-linux";
           host = hosts.labbi;
           extraModules = [
             inputs.spicetify-nix.homeManagerModules.default
           ];
         };
-        zanpakuto = mkHome {
+        zanpakuto = lib.mkHome {
           system = "x86_64-linux";
           stateVersion = "24.11";
           host = hosts.zanpakuto;
         };
       };
 
-      devShells = forAllSystems (
+      devShells = lib.forAllSystems (
         system:
         let
-          pkgs = nixpkgsFor.${system};
+          pkgs = lib.nixpkgsFor.${system};
         in
         {
           default = pkgs.mkShell {
