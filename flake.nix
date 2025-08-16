@@ -75,7 +75,7 @@
         zanpakuto = {
           username = "farouk";
           hostName = "zanpakuto";
-          theme = "momo";
+          theme = "techbase";
         };
       };
     in
