@@ -38,18 +38,35 @@
     };
   };
 
-  services.openssh = {
-    enable = true;
-    ports = [ 22 ];
-    settings = {
-      PasswordAuthentication = false;
+  services = {
+    openssh = {
+      enable = true;
+      ports = [ 22 ];
+      settings = {
+        PasswordAuthentication = false;
+      };
+      hostKeys = [
+        {
+          path = "/home/${host.username}/.ssh/id_ed25519";
+          type = "ed25519";
+        }
+      ];
     };
-    hostKeys = [
-      {
-        path = "/home/${host.username}/.ssh/id_ed25519";
-        type = "ed25519";
-      }
-    ];
+    openvscode-server = {
+      enable = true;
+      user = "${host.username}";
+      telemetryLevel = "off";
+      port = 8542;
+      host = "127.0.0.1";
+      withoutConnectionToken = true;
+      extraPackages = with pkgs; [
+        nodejs
+        git
+        gh
+        direnv
+        go
+      ];
+    };
   };
 
   wsl = {
@@ -103,22 +120,6 @@
       firewall.enable = false;
       systemd-udevd.enable = false;
       systemd-resolved.enable = false;
-      openvscode-server = {
-        enable = true;
-        package = pkgs.openvscode-server;
-        user = "${host.username}";
-        telemetryLevel = "off";
-        port = 8542;
-        host = "127.0.0.1";
-        withoutConnectionToken = true;
-        extraPackages = with pkgs; [
-          nodejs
-          git
-          gh
-          direnv
-
-        ];
-      };
     };
 
     enableEmergencyMode = false;
