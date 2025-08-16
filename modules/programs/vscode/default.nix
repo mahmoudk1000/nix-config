@@ -12,60 +12,47 @@
     profiles = {
       default = {
         enableUpdateCheck = false;
-        extensions =
-          with pkgs.vscode-extensions;
-          [
-            ms-azuretools.vscode-containers
-            ms-vscode-remote.remote-containers
-            ms-azuretools.vscode-docker
-            miguelsolorio.fluent-icons
-            github.vscode-github-actions
-            github.copilot
-            github.copilot-chat
-            github.github-vscode-theme
-            eamodio.gitlens
-            tim-koehler.helm-intellisense
-            zainchen.json
-            ms-kubernetes-tools.vscode-kubernetes-tools
-            davidanson.vscode-markdownlint
-            miguelsolorio.min-theme
-            ms-vscode.powershell
-            esbenp.prettier-vscode
-            ms-vscode-remote.remote-ssh
-            ms-vscode-remote.remote-ssh-edit
-            ms-vscode-remote.vscode-remote-extensionpack
-            ms-vscode.remote-explorer
-            ms-vscode-remote.remote-wsl
-            redhat.vscode-yaml
-            antfu.icons-carbon
-            github.vscode-pull-request-github
-            usernamehw.errorlens
-            foxundermoon.shell-format
-            arrterian.nix-env-selector
-            kamikillerto.vscode-colorize
-            ms-python.python
-            redhat.java
-            ritwickdey.liveserver
-            davidlday.languagetool-linter
-            mads-hartmann.bash-ide-vscode
-            pkief.material-icon-theme
-            shardulm94.trailing-spaces
-            streetsidesoftware.code-spell-checker
-            ms-ceintl.vscode-language-pack-de
-            bbenoist.nix
-            ms-python.vscode-pylance
-            hashicorp.terraform
-            jnoortheen.nix-ide
-            vscodevim.vim
-            visualstudioexptteam.vscodeintellicode
-          ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-            {
-              name = "fluent-icons";
-              publisher = "miguelsolorio";
-              version = "0.0.18";
-              sha256 = "sha256-sE0A441QPwokBoLoCqtImDHmlAXd66fj8zsJR7Ci+Qs=t";
-            }
-          ];
+        extensions = with pkgs.vscode-extensions; [
+          ms-azuretools.vscode-containers
+          ms-vscode-remote.remote-containers
+          ms-azuretools.vscode-docker
+          miguelsolorio.fluent-icons
+          github.vscode-github-actions
+          github.copilot
+          github.copilot-chat
+          github.github-vscode-theme
+          eamodio.gitlens
+          tim-koehler.helm-intellisense
+          zainchen.json
+          ms-kubernetes-tools.vscode-kubernetes-tools
+          davidanson.vscode-markdownlint
+          miguelsolorio.min-theme
+          ms-vscode.powershell
+          esbenp.prettier-vscode
+          ms-vscode-remote.remote-ssh
+          ms-vscode-remote.remote-ssh-edit
+          ms-vscode-remote.vscode-remote-extensionpack
+          ms-vscode.remote-explorer
+          ms-vscode-remote.remote-wsl
+          redhat.vscode-yaml
+          antfu.icons-carbon
+          foxundermoon.shell-format
+          arrterian.nix-env-selector
+          kamikillerto.vscode-colorize
+          ms-python.python
+          davidlday.languagetool-linter
+          mads-hartmann.bash-ide-vscode
+          pkief.material-icon-theme
+          shardulm94.trailing-spaces
+          streetsidesoftware.code-spell-checker
+          ms-ceintl.vscode-language-pack-de
+          bbenoist.nix
+          ms-python.vscode-pylance
+          hashicorp.terraform
+          jnoortheen.nix-ide
+          vscodevim.vim
+          visualstudioexptteam.vscodeintellicode
+        ];
         keybindings = import ./keybind.nix;
         userSettings = {
           editor = {
