@@ -26,6 +26,7 @@ let
     rnvy = import ./rnvy.nix;
     rogue = import ./rogue.nix;
     seaul = import ./seaul.nix;
+    techbase = import ./techbase.nix;
     tokyonight = import ./tokyonight.nix;
     uwu = import ./uwu.nix;
     yuto = import ./yuro.nix;
