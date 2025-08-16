@@ -51,7 +51,8 @@ in
     ];
     home.packages = [
       pkgs.obsidian
-    ] ++ lib.optionals cfg.gitSync [ gitSyncObsidian ];
+    ]
+    ++ lib.optionals cfg.gitSync [ gitSyncObsidian ];
     systemd.user = lib.mkIf cfg.gitSync {
       timers.git-sync-obsidian = {
         Unit = {

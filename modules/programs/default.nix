@@ -1,9 +1,4 @@
 {
-  host,
-  ...
-}:
-
-{
   imports = [
     ./accounts
     ./awesome
@@ -25,7 +20,6 @@
     ./herbstluftwm.nix
     ./mpv.nix
     ./newsboat.nix
-    ./obsidian.nix
     ./rofi.nix
     ./spotify.nix
     ./starship.nix
@@ -39,12 +33,4 @@
     ./zathura.nix
     ./zsh.nix
   ];
-
-  programs = {
-    obsidian = {
-      enable = true;
-      gitSync = true;
-      vaultDir = "/home/${host.username}/Notes/obsidian";
-    };
-  };
 }

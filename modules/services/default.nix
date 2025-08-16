@@ -16,7 +16,4 @@
     ./sxhkd.nix
     ./unclutter.nix
   ];
-
-  services.batteryNotifier.enable = true;
-  services.conkyWidget.enable = false;
 }
