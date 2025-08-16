@@ -3,7 +3,6 @@
   lib,
   pkgs,
   host,
-  inputs,
   ...
 }:
 
@@ -59,10 +58,6 @@
     startMenuLaunchers = true;
     docker-desktop.enable = true;
     wslConf = {
-      ws12 = {
-        networkingMode = "mirrored";
-      };
-      usbip.enable = true;
       interop = {
         enabled = false;
         appendWindowsPath = false;
@@ -79,7 +74,11 @@
   };
 
   virtualisation = {
+    containers.enable = true;
     docker = {
+      enable = true;
+    };
+    podman = {
       enable = true;
     };
   };
@@ -104,6 +103,22 @@
       firewall.enable = false;
       systemd-udevd.enable = false;
       systemd-resolved.enable = false;
+      openvscode-server = {
+        enable = true;
+        package = pkgs.openvscode-server;
+        user = "${host.username}";
+        telemetryLevel = "off";
+        port = 8542;
+        host = "127.0.0.1";
+        withoutConnectionToken = true;
+        extraPackages = with pkgs; [
+          nodejs
+          git
+          gh
+          direnv
+
+        ];
+      };
     };
 
     enableEmergencyMode = false;
