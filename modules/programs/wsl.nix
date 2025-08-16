@@ -10,6 +10,7 @@
     ./starship.nix
     ./texlive.nix
     ./tmux.nix
+    ./yt-dlp.nix
     ./zsh.nix
   ];
 }
