@@ -87,6 +87,16 @@
     };
   };
 
+  services = {
+    batteryNotifier.enable = true;
+    conkyWidget.enable = false;
+    obsidian = {
+      enable = true;
+      gitSync = true;
+      vaultDir = "/home/${host.username}/Notes/obsidian";
+    };
+  };
+
   xsession = {
     enable = true;
     windowManager = {

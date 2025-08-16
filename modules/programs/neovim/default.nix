@@ -15,55 +15,56 @@ in
     withPython3 = true;
     withNodeJs = true;
     defaultEditor = true;
-    extraPackages =
-      [ groovy-language-server ]
-      ++ (with pkgs; [
-        dockerfile-language-server-nodejs
-        docker-compose-language-service
-        vscode-langservers-extracted
-        # autotools-language-server
-        jsonnet-language-server
-        ansible-language-server
-        yaml-language-server
-        java-language-server
-        lua-language-server
-        goimports-reviser
-        markdownlint-cli
-        nixfmt-rfc-style
-        golangci-lint
-        terraform-ls
-        ansible-lint
-        shellcheck
-        checkmake
-        codespell
-        marksman
-        yamllint
-        hadolint
-        python3
-        yamlfix
-        ripgrep
-        helm-ls
-        golines
-        deadnix
-        statix
-        stylua
-        tflint
-        texlab
-        biber
-        shfmt
-        gopls
-        ruff
-        # nixd
-        nil
-        gcc
-        fd
-        go
-      ])
-      ++ (with pkgs.nodePackages_latest; [ bash-language-server ])
-      ++ (with pkgs.python3Packages; [
-        jedi-language-server
-        pynvim
-      ]);
+    extraPackages = [
+      groovy-language-server
+    ]
+    ++ (with pkgs; [
+      dockerfile-language-server-nodejs
+      docker-compose-language-service
+      vscode-langservers-extracted
+      # autotools-language-server
+      jsonnet-language-server
+      ansible-language-server
+      yaml-language-server
+      java-language-server
+      lua-language-server
+      goimports-reviser
+      markdownlint-cli
+      nixfmt-rfc-style
+      golangci-lint
+      terraform-ls
+      ansible-lint
+      shellcheck
+      checkmake
+      codespell
+      marksman
+      yamllint
+      hadolint
+      python3
+      yamlfix
+      ripgrep
+      helm-ls
+      golines
+      deadnix
+      statix
+      stylua
+      tflint
+      texlab
+      biber
+      shfmt
+      gopls
+      ruff
+      # nixd
+      nil
+      gcc
+      fd
+      go
+    ])
+    ++ (with pkgs.nodePackages_latest; [ bash-language-server ])
+    ++ (with pkgs.python3Packages; [
+      jedi-language-server
+      pynvim
+    ]);
     plugins = with pkgs.vimPlugins; [
       {
         plugin = nvim-treesitter.withAllGrammars;
