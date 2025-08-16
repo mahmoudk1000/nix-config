@@ -21,7 +21,7 @@ in
         dockerfile-language-server-nodejs
         docker-compose-language-service
         vscode-langservers-extracted
-        autotools-language-server
+        # autotools-language-server
         jsonnet-language-server
         ansible-language-server
         yaml-language-server
