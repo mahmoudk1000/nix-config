@@ -180,7 +180,6 @@ in
       compiler-nvim
       overseer-nvim
       nvim-autopairs
-      markview-nvim
     ];
   };
 }

@@ -20,3 +20,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 		require("lint").try_lint()
 	end,
 })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+	group = vim.api.nvim_create_augroup("NoSpellCheck", { clear = true }),
+	callback = function()
+		vim.opt_local.spell = false
+	end,
+})
