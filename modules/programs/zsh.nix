@@ -36,7 +36,7 @@
       autocd = true;
       completionInit = "autoload -U compinit && compinit";
       defaultKeymap = "viins";
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
       syntaxHighlighting = {
         enable = true;
         highlighters = [
