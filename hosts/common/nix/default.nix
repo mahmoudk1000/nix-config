@@ -43,10 +43,6 @@
 
   # NixOS
   system = {
-    switch = {
-      enable = false;
-      enableNg = true;
-    };
     autoUpgrade = {
       enable = false;
       channel = "https://nixos.org/channels/nixos-unstable";
