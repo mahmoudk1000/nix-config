@@ -152,6 +152,7 @@
 
         kb = "kubectl";
         kbd = "kubectl describe";
+        kbe = "kubectl edit";
         kbg = "kubectl get";
         kbgp = "kubectl get pods";
         kbgd = "kubectl get deployments";
@@ -163,7 +164,8 @@
         kba = "kubectl apply -f";
         kbdel = "kubectl delete";
         kbex = "kubectl exec -it";
-        kbcx = "kubectx";
+        kbcx = "kubie ctx";
+        kbns = "kubie ns";
 
         cleanup = "sudo nix-collect-garbage --delete-older-than 1d";
         listgen = "sudo nix-env -p /nix/var/nix/profiles/system --list-generations";
