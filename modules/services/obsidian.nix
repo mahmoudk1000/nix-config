@@ -7,7 +7,7 @@
 }:
 
 let
-  cfg = config.programs.obsidian;
+  cfg = config.services.obsidian;
   gitSyncObsidian = pkgs.writeShellScriptBin "git-sync-obsidian" ''
     #!/usr/bin/env sh
 
@@ -24,7 +24,7 @@ let
   '';
 in
 {
-  options.programs.obsidian = {
+  options.services.obsidian = {
     enable = lib.mkOption {
       default = false;
       type = lib.types.bool;
