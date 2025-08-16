@@ -39,7 +39,6 @@ in
         kubectl-tree
         kubectl-ktop
         kubectl-view-secret
-        kubectx
         stern
         docker-compose
         gnumake
@@ -51,10 +50,13 @@ in
         azure-cli
         awscli2
         powershell
-        mkcert
         eksctl
         openssl
         k9s
+        etcd
+        kubeseal
+        vcluster
+        kubie
       ];
     })
 
