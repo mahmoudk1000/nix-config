@@ -49,6 +49,18 @@
         patterns = {
           "rm -rf *" = "fg=red,bg=default,bold";
         };
+        styles = {
+          builtin = "fg=blue";
+          command = "fg=green";
+          alias = "fg=green";
+          path = "fg=yellow,underline";
+          commandseparator = "fg=cyan,bold";
+          redirection = "fg=cyan";
+          autodirectory = "fg=blue";
+          history-expansion = "fg=green";
+          single-hyphen-option = "fg=magenta";
+          double-hyphen-option = "fg=yellow";
+        };
       };
       historySubstringSearch = {
         enable = true;
@@ -103,82 +115,90 @@
           "completion"
         ];
       };
-      shellAliases = {
-        o = "xdg-open";
-        l = "eza";
-        c = "clear";
-        q = "exit";
-        v = "nvim";
-        m = "ncmpcpp";
+      shellAliases = lib.mkMerge [
+        {
+          o = "xdg-open";
+          l = "eza";
+          c = "clear";
+          q = "exit";
+          v = "nvim";
+          m = "ncmpcpp";
 
-        ".." = "cd -- ..";
-        "..." = "cd -- ../..";
-        "...." = "cd -- ../../..";
-        ".2" = "cd -- ../..";
-        ".3" = "cd -- ../../..";
-        ".4" = "cd -- ../../../..";
-        ".5" = "cd -- ../../../../..";
-        ".6" = "cd -- ../../../../../..";
+          ".." = "cd -- ..";
+          "..." = "cd -- ../..";
+          "...." = "cd -- ../../..";
+          ".2" = "cd -- ../..";
+          ".3" = "cd -- ../../..";
+          ".4" = "cd -- ../../../..";
+          ".5" = "cd -- ../../../../..";
+          ".6" = "cd -- ../../../../../..";
 
-        pwdcp = "pwd | tr -d '\n' | xclip -sel c";
-        tree = "eza --tree --icons --tree";
+          pwdcp = "pwd | tr -d '\n' | xclip -sel c";
+          tree = "eza --tree --icons --tree";
 
-        us = "systemctl --user";
-        rs = "sudo systemctl";
+          us = "systemctl --user";
+          rs = "sudo systemctl";
+        }
 
-        g = "lazygit";
-        gb = "git branch -v";
-        ga = "git add";
-        glg = "git log";
-        gl = "git clone";
-        gs = "git status --short";
-        gaa = "git add --all";
-        gc = "git commit --verbose";
-        gco = "git checkout";
-        gcp = "git cherry-pick";
-        gcm = "git commit --verbose -m ";
-        gca = "git commit --amend --no-edit";
-        gcae = "git commit --amend";
-        gp = "git push";
-        pp = "!git push origin $(git rev-parse --abbrev-ref HEAD)";
-        gpl = "git pull";
-        pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)";
-        grbc = "git rebase --continue";
-        gff = "git diff --minimal";
-        hist = ''git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all'';
-        llog = ''git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative'';
+        (lib.mkIf config.programs.git.enable {
+          g = "lazygit";
+          gb = "git branch -v";
+          ga = "git add";
+          glg = "git log";
+          gl = "git clone";
+          gs = "git status --short";
+          gaa = "git add --all";
+          gc = "git commit --verbose";
+          gco = "git checkout";
+          gcp = "git cherry-pick";
+          gcm = "git commit --verbose -m ";
+          gca = "git commit --amend --no-edit";
+          gcae = "git commit --amend";
+          gp = "git push";
+          pp = "!git push origin $(git rev-parse --abbrev-ref HEAD)";
+          gpl = "git pull";
+          pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)";
+          grbc = "git rebase --continue";
+          gff = "git diff --minimal";
+          hist = ''git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all'';
+          llog = ''git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative'';
+        })
 
-        dc = "docker compose";
+        (lib.mkIf config.programs.docker.enable {
+          dc = "docker compose";
+        })
 
-        kb = "kubectl";
-        kbd = "kubectl describe";
-        kbe = "kubectl edit";
-        kbg = "kubectl get";
-        kbgp = "kubectl get pods";
-        kbgd = "kubectl get deployments";
-        kbgns = "kubectl get namespaces";
-        kbgs = "kubectl get services";
-        kbgn = "kubectl get nodes";
-        kbgi = "kubectl get ingress";
-        kbl = "kubectl logs";
-        kba = "kubectl apply -f";
-        kbdel = "kubectl delete";
-        kbex = "kubectl exec -it";
-        kbcx = "kubie ctx";
-        kbns = "kubie ns";
+        (lib.mkIf config.programs.devops.enable {
+          kb = "kubectl";
+          kbd = "kubectl describe";
+          kbe = "kubectl edit";
+          kbg = "kubectl get";
+          kbgp = "kubectl get pods";
+          kbgd = "kubectl get deployments";
+          kbgns = "kubectl get namespaces";
+          kbgs = "kubectl get services";
+          kbgn = "kubectl get nodes";
+          kbgi = "kubectl get ingress";
+          kbl = "kubectl logs";
+          kba = "kubectl apply -f";
+          kbdel = "kubectl delete";
+          kbex = "kubectl exec -it";
+          kbcx = "kubie ctx";
+          kbns = "kubie ns";
+        })
 
-        cleanup = "sudo nix-collect-garbage --delete-older-than 1d";
-        listgen = "sudo nix-env -p /nix/var/nix/profiles/system --list-generations";
-
-        bloat = "nix path-info -Sh /run/current-system";
-      };
+        {
+          cleanup = "sudo nix-collect-garbage --delete-older-than 1d";
+          listgen = "sudo nix-env -p /nix/var/nix/profiles/system --list-generations";
+          bloat = "nix path-info -Sh /run/current-system";
+        }
+      ];
       shellGlobalAliases = lib.mkIf config.programs.bat.enable {
         "-h" = "-h 2>&1 | bat --language=help --style=plain";
         "--help" = "--help 2>&1 | bat --language=help --style=plain";
       };
       initContent = ''
         autoload -Uz promptinit; promptinit
-        eval "$(starship init zsh)"
 
         # Keybinds
         bindkey '^ '            autosuggest-accept
@@ -235,19 +255,6 @@
 
         # Custom Autosuggestion Setting
         typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
-
-        # Custom Syntax-Highlighting Setting
-        typeset -A ZSH_HIGHLIGHT_STYLES
-        ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue'
-        ZSH_HIGHLIGHT_STYLES[command]='fg=green'
-        ZSH_HIGHLIGHT_STYLES[alias]='fg=green'
-        ZSH_HIGHLIGHT_STYLES[path]='fg=yellow,underline'
-        ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan,bold'
-        ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
-        ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=blue'
-        ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=green'
-        ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
-        ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=yellow'
 
         sudo-command-line() {
           [[ -z $BUFFER ]] && zle up-history
