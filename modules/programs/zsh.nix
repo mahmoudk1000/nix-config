@@ -1,4 +1,5 @@
 {
+  osConfig,
   config,
   pkgs,
   lib,
@@ -164,7 +165,7 @@
           llog = ''git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative'';
         })
 
-        (lib.mkIf config.programs.docker.enable {
+        (lib.mkIf osConfig.virtualisation.docker.enable {
           dc = "docker compose";
         })
 
