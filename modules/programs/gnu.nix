@@ -40,10 +40,21 @@
         vim_keys = true;
       };
     };
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+      options = [ "--cmd cd" ];
+    };
   };
 
-  home.sessionVariables = lib.mkIf config.programs.btop.enable {
-    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-    MANROFFOPT = "-c";
-  };
+  home.sessionVariables = lib.mkMerge [
+    {
+      PAGER = "less -FR";
+    }
+
+    (lib.mkIf config.programs.btop.enable {
+      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+      MANROFFOPT = "-c";
+    })
+  ];
 }
