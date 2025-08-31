@@ -189,6 +189,8 @@
         })
 
         {
+          nix = "noglob nix";
+          nixos-rebuild = "noglob nixos-rebuild";
           cleanup = "sudo nix-collect-garbage --delete-older-than 1d";
           listgen = "sudo nix-env -p /nix/var/nix/profiles/system --list-generations";
           bloat = "nix path-info -Sh /run/current-system";
