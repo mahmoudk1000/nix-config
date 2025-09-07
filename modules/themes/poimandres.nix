@@ -1,7 +1,7 @@
 {
-  base00 = "#1B1E28";
+  base00 = "#171922";
   base01 = "#E4F0FB";
-  base02 = "#181B24";
+  base02 = "#1B1E28";
   base03 = "#D0679D";
   base04 = "#5DE4C7";
   base05 = "#fffAC2";
@@ -9,7 +9,7 @@
   base07 = "#FCC5E9";
   base08 = "#ADD7FF";
   base09 = "#FFFFFF";
-  base0A = "#161820";
+  base0A = "#303340";
   base0B = "#D0679D";
   base0C = "#5DE4C7";
   base0D = "#FFFAC2";

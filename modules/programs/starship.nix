@@ -60,9 +60,9 @@
       git_state = {
         style = "fg:${theme.base05} bg:${theme.base0A}";
         rebase = "REBASING";
-        merge = " MERGING";
+        merge = "MERGING";
         revert = "REVERTING";
-        cherry_pick = " CHERRY-PICKING";
+        cherry_pick = "CHERRY-PICKING";
         bisect = "BISECTING";
         am = "AM";
         am_or_rebase = "AM/REBASE";

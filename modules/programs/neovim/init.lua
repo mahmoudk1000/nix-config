@@ -50,12 +50,10 @@ vim.opt.smartindent = true
 vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.spelllang = { "en_us" }
 vim.opt.listchars = { space = "⋅", eol = "↴", tab = "→ " }
-vim.opt.shell = "zsh"
-vim.opt.belloff = "all"
-vim.opt.fileencoding = "utf-8"
 vim.opt.encoding = "utf-8"
-vim.scriptencoding = "utf-8"
 vim.o.cmdheight = 0
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
 -- Color Scheme
 vim.cmd([[colorscheme islet]])
@@ -172,7 +170,5 @@ vim.filetype.add({
 -- starting them. Otherwise, the plugin itself is required and its `setup` method is called.
 require("colorizer").setup({})
 require("gitsigns").setup({})
-require("cmp_git").setup({})
 require("tmux").setup({})
 require("nvim-autopairs").setup({})
-require("copilot_cmp").setup({})

@@ -16,11 +16,11 @@ in
     vim.o.background = "dark"
     vim.o.termguicolors = true
 
-    local palette = {
+    local c = {
       bg = "${base00}",
       fg = "${base01}",
       norm = "#E9ECEF",
-      subtle = "#DEE2E6",
+      subtle = "#ADB5BD",
       black = "${base02}",
       red = "${base03}",
       green = "${base04}",
@@ -47,130 +47,130 @@ in
     end
 
     -- __TEXT__
-    highlight("Normal", { fg = palette.norm, bg = "NONE" })
-    highlight("Title", { fg = palette.green, bold = true })
+    highlight("Normal", { fg = c.norm, bg = "NONE" })
+    highlight("Title", { fg = c.green, bold = true })
 
     -- __Normal__
-    highlight("Cursor", { fg = palette.white, reverse = true })
-    highlight("SpecialKey", { fg = palette.light_red })
+    highlight("Cursor", { fg = c.white, reverse = true })
+    highlight("SpecialKey", { fg = c.light_red })
     highlight("Structure", { link = "Type" })
     highlight("Define", { link = "PreProc" })
     highlight("Macro", { link = "PreProc" })
     highlight("Typedef", { link = "Type" })
     highlight("PreCondit", { link = "PreProc" })
-    highlight("SpecialChar", { fg = palette.light_cyan })
+    highlight("SpecialChar", { fg = c.light_cyan })
     highlight("Tag", { link = "Special" })
     highlight("Debug", { link = "Special" })
 
     -- __CURSOR__
-    highlight("LineNr", { fg = palette.light_black })
-    highlight("SignColumn", { fg = palette.white })
-    highlight("CursorLineNr", { fg = palette.white })
-    highlight("CursorLine", { bg = palette.black })
-    highlight("CursorColumn", { bg = palette.black })
-    highlight("highlightColumn", { bg = palette.black })
-    highlight("FoldColumn", { fg = palette.light_cyan })
+    highlight("LineNr", { fg = c.light_black })
+    highlight("SignColumn", { fg = c.white })
+    highlight("CursorLineNr", { fg = c.white })
+    highlight("CursorLine", { bg = c.black })
+    highlight("CursorColumn", { bg = c.black })
+    highlight("highlightColumn", { bg = c.black })
+    highlight("FoldColumn", { fg = c.light_cyan })
 
     -- __SEARCH__
-    highlight("Search", { fg = palette.blue, bg = palette.light_black, reverse = true })
-    highlight("CurSearch", { fg = palette.blue, bg = palette.white, reverse = true })
+    highlight("Search", { fg = c.blue, bg = c.light_black, reverse = true })
+    highlight("CurSearch", { fg = c.blue, bg = c.white, reverse = true })
     highlight("IncSearch", { link = "CurSearch" })
     highlight("Substitute", { link = "Search" })
 
     -- __VISUAL__
-    highlight("Visual", { bg = palette.black })
+    highlight("Visual", { bg = c.black })
     highlight("VisualNOS", { link = "Visual" })
-    highlight("Ignore", { fg = palette.bg })
+    highlight("Ignore", { fg = c.bg })
 
     -- __MESSAGE__
-    highlight("Error", { fg = palette.red, bold = true })
+    highlight("Error", { fg = c.red, bold = true })
     highlight("ErrorMsg", { link = "Error" })
-    highlight("ModeMsg", { fg = palette.white })
-    highlight("MoreMsg", { fg = palette.white })
-    highlight("MsgArea", { fg = palette.white })
-    highlight("WarningMsg", { fg = palette.yellow })
-    highlight("NvimInternalError", { fg = palette.yellow })
-    highlight("healthError", { fg = palette.red })
-    highlight("healthSuccess", { fg = palette.green })
-    highlight("healthWarning", { fg = palette.purple })
+    highlight("ModeMsg", { fg = c.white })
+    highlight("MoreMsg", { fg = c.white })
+    highlight("MsgArea", { fg = c.white })
+    highlight("WarningMsg", { fg = c.yellow })
+    highlight("NvimInternalError", { fg = c.yellow })
+    highlight("healthError", { fg = c.red })
+    highlight("healthSuccess", { fg = c.green })
+    highlight("healthWarning", { fg = c.purple })
 
     -- __StatusLine__
-    highlight("StatusLine", { fg = palette.white, bg = palette.black })
-    highlight("StatusLineNC", { fg = palette.light_white, bg = palette.light_black })
+    highlight("StatusLine", { fg = c.white, bg = c.black })
+    highlight("StatusLineNC", { fg = c.light_white, bg = c.light_black })
     highlight("StatusLineTerm", { link = "StatusLine" })
     highlight("StatusLineTermNC", { link = "StatusLineNC" })
 
     -- __TABLINE__
-    highlight("Tabline", { fg = palette.white, bg = palette.black })
-    highlight("TablineSel", { fg = palette.black, bg = palette.blue })
+    highlight("Tabline", { fg = c.white, bg = c.black })
+    highlight("TablineSel", { fg = c.black, bg = c.blue })
     highlight("TabLineFill", { reverse = true })
 
     -- __FLOAT__
-    highlight("NormalFloat", { fg = palette.fg, bg = palette.black })
-    highlight("FloatBorder", { fg = palette.light_black, bg = palette.black })
-    highlight("FloatTitle", { fg = palette.fg })
+    highlight("NormalFloat", { fg = c.fg, bg = c.black })
+    highlight("FloatBorder", { fg = c.light_black, bg = c.black })
+    highlight("FloatTitle", { fg = c.fg })
 
     -- __MENU__
     highlight("Pmenu", { link = "NormalFloat" })
-    highlight("PmenuSel", { fg = palette.black, bg = palette.blue })
-    highlight("PmenuSbar", { fg = palette.white, bg = palette.black })
-    highlight("PmenuThumb", { bg = palette.white })
+    highlight("PmenuSel", { fg = c.black, bg = c.blue })
+    highlight("PmenuSbar", { fg = c.white, bg = c.black })
+    highlight("PmenuThumb", { bg = c.white })
 
     -- __OTHER UI__
-    highlight("WinSeparator", { fg = palette.light_black })
-    highlight("EndOfBuffer", { fg = palette.black })
-    highlight("QuickFixLine", { fg = palette.green })
+    highlight("WinSeparator", { fg = c.light_black })
+    highlight("EndOfBuffer", { fg = c.black })
+    highlight("QuickFixLine", { fg = c.green })
 
     -- __SYNTAX__
-    highlight("Function", { fg = palette.subtle, bold = true})
-    highlight("Identifier", { fg = palette.subtle, bold = true })
-    highlight("Type", { fg = palette.subtle })
-    highlight("Variable", { fg = palette.light_white })
-    highlight("Statement", { fg = palette.subtle })
-    highlight("Include", { fg = palette.light_purple })
-    highlight("Special", { fg = palette.light_green })
-    highlight("Keyword", { fg = palette.light_blue, italic = true })
-    highlight("Conditional", { fg = palette.white })
+    highlight("Function", { fg = c.subtle, bold = true})
+    highlight("Identifier", { fg = c.subtle, bold = true })
+    highlight("Type", { fg = c.subtle })
+    highlight("Variable", { fg = c.light_white })
+    highlight("Statement", { fg = c.subtle })
+    highlight("Include", { fg = c.light_purple })
+    highlight("Special", { fg = c.light_green })
+    highlight("Keyword", { fg = c.light_blue, italic = true })
+    highlight("Conditional", { fg = c.white })
     highlight("Repeat", { link = "Keyword" })
     highlight("Label", { link = "Keyword" })
     highlight("Exception", { link = "Keyword" })
     highlight("PreProc", { link = "Keyword" })
 
     -- __CONSTANTS__
-    highlight("String", { fg = palette.light_green })
-    highlight("Constant", { fg = palette.light_white })
-    highlight("Directory", { fg = palette.cyan })
+    highlight("String", { fg = c.light_green })
+    highlight("Constant", { fg = c.light_white })
+    highlight("Directory", { fg = c.cyan })
     highlight("Character", { link = "String" })
-    highlight("Number", { fg = palette.purple })
-    highlight("Boolean", { fg = palette.light_cyan })
-    highlight("Float", { fg = palette.purple })
+    highlight("Number", { fg = c.purple })
+    highlight("Boolean", { fg = c.light_cyan })
+    highlight("Float", { fg = c.purple })
 
     -- __PUNCTUATION__
-    highlight("Quote", { fg = palette.light_green })
-    highlight("Operator", { fg = palette.light_purple })
-    highlight("Delimiter", { fg = palette.light_white })
-    highlight("MatchParen", { fg = palette.purple, bold = true })
+    highlight("Quote", { fg = c.light_green })
+    highlight("Operator", { fg = c.light_purple })
+    highlight("Delimiter", { fg = c.light_white })
+    highlight("MatchParen", { fg = c.purple, bold = true })
 
     -- __NonText__
-    highlight("NonText", { fg = palette.black })
+    highlight("NonText", { fg = c.black })
     highlight("Folded", { link = "NonText" })
     highlight("qfLineNr", { link = "NonText" })
 
     -- __COMMENT__
-    highlight("Todo", { fg = palette.yellow, bold = true, italic = true })
-    highlight("Question", { fg = palette.green })
-    highlight("Comment", { fg = palette.light_black, italic = true })
-    highlight("SpecialComment", { fg = palette.cyan })
-    highlight("Conceal", { fg = palette.black })
+    highlight("Todo", { fg = c.yellow, bold = true, italic = true })
+    highlight("Question", { fg = c.green })
+    highlight("Comment", { fg = c.light_black, italic = true })
+    highlight("SpecialComment", { fg = c.cyan })
+    highlight("Conceal", { fg = c.black })
 
     -- __SPELL__
-    highlight("SpellBad", { fg = palette.red, underline = true })
-    highlight("SpellCap", { fg = palette.light_green, underline = true })
-    highlight("SpellRare", { fg = palette.light_red, underline = true })
-    highlight("SpellLocal", { fg = palette.light_green, underline = true })
+    highlight("SpellBad", { fg = c.red, underline = true })
+    highlight("SpellCap", { fg = c.light_green, underline = true })
+    highlight("SpellRare", { fg = c.light_red, underline = true })
+    highlight("SpellLocal", { fg = c.light_green, underline = true })
 
     -- __WILD MENU__
-    highlight("WildMenu", { fg = palette.light_black, bold = true, underline = true })
+    highlight("WildMenu", { fg = c.light_black, bold = true, underline = true })
 
     -- __HTML__
     highlight("htmlH1", { link = "Normal" })
@@ -188,41 +188,41 @@ in
     highlight("markdownH5", { link = "Statement" })
     highlight("markdownH6", { link = "Statement" })
     highlight("markdownListMarker", { link = "Constant" })
-    highlight("markdownCode", { bg = palette.black })
-    highlight("markdownInlineCode", { fg = palette.light_blue, bg = palette.light_black })
+    highlight("markdownCode", { bg = c.black })
+    highlight("markdownInlineCode", { fg = c.light_blue, bg = c.light_black })
     highlight("markdownCodeDelimiter", { link = "Constant" })
     highlight("markdownHeadingDelimiter", { link = "Constant" })
 
-    highlight("InfoMsg", { fg = palette.blue })
-    highlight("HintMsg", { fg = palette.purple })
-    highlight("Warnings", { fg = palette.purple })
+    highlight("InfoMsg", { fg = c.blue })
+    highlight("HintMsg", { fg = c.purple })
+    highlight("Warnings", { fg = c.purple })
 
     -- Diff
-    highlight("DiffAdd", { fg = palette.green })
-    highlight("DiffChange", { fg = palette.yellow })
-    highlight("DiffDelete", { fg = palette.red })
-    highlight("DiffText", { fg = palette.purple })
-    highlight("diffAdded", { fg = palette.green })
-    highlight("diffRemoved", { fg = palette.red })
-    highlight("diffChanged", { fg = palette.yellow })
+    highlight("DiffAdd", { fg = c.green })
+    highlight("DiffChange", { fg = c.yellow })
+    highlight("DiffDelete", { fg = c.red })
+    highlight("DiffText", { fg = c.purple })
+    highlight("diffAdded", { fg = c.green })
+    highlight("diffRemoved", { fg = c.red })
+    highlight("diffChanged", { fg = c.yellow })
 
     -- Terminal
-    vim.g.terminal_color_0 = palette.black
-    vim.g.terminal_color_1 = palette.red
-    vim.g.terminal_color_2 = palette.green
-    vim.g.terminal_color_3 = palette.yellow
-    vim.g.terminal_color_4 = palette.blue
-    vim.g.terminal_color_5 = palette.purple
-    vim.g.terminal_color_6 = palette.cyan
-    vim.g.terminal_color_7 = palette.white
-    vim.g.terminal_color_8 = palette.light_black
-    vim.g.terminal_color_9 = palette.light_red
-    vim.g.terminal_color_10 = palette.light_green
-    vim.g.terminal_color_11 = palette.light_yellow
-    vim.g.terminal_color_12 = palette.light_blue
-    vim.g.terminal_color_13 = palette.light_purple
-    vim.g.terminal_color_14 = palette.light_cyan
-    vim.g.terminal_color_15 = palette.light_white
+    vim.g.terminal_color_0 = c.black
+    vim.g.terminal_color_1 = c.red
+    vim.g.terminal_color_2 = c.green
+    vim.g.terminal_color_3 = c.yellow
+    vim.g.terminal_color_4 = c.blue
+    vim.g.terminal_color_5 = c.purple
+    vim.g.terminal_color_6 = c.cyan
+    vim.g.terminal_color_7 = c.white
+    vim.g.terminal_color_8 = c.light_black
+    vim.g.terminal_color_9 = c.light_red
+    vim.g.terminal_color_10 = c.light_green
+    vim.g.terminal_color_11 = c.light_yellow
+    vim.g.terminal_color_12 = c.light_blue
+    vim.g.terminal_color_13 = c.light_purple
+    vim.g.terminal_color_14 = c.light_cyan
+    vim.g.terminal_color_15 = c.light_white
 
     -- __ TREE SITTER __
     highlight("@keyword", { link = "Keyword" })
@@ -286,7 +286,7 @@ in
     highlight("@punctuation.bracket", { link = "Keyword" })
     highlight("@punctuation.delimiter", { link = "Keyword" })
     highlight("@string", { link = "String" })
-    highlight("@string.escape", { fg = palette.yellow })
+    highlight("@string.escape", { fg = c.yellow })
     highlight("@string.regexp", { link = "SpecialChar" })
     highlight("@string.special.symbol", { link = "Identifier" })
     highlight("@string.special.url", { link = "Constant" })
@@ -294,9 +294,9 @@ in
     highlight("@tag.delimiter", { link = "Delimiter" })
     highlight("@tag.attribute", { link = "@attribute" })
     highlight("@variable", { link = "Normal" })
-    highlight("@variable.builtin", { fg = palette.fg, bold = true })
+    highlight("@variable.builtin", { fg = c.fg, bold = true })
     highlight("@variable.member", { link = "Normal" })
-    highlight("@variable.parameter", { fg = palette.subtle, italic = true })
+    highlight("@variable.parameter", { fg = c.subtle, italic = true })
     highlight("@variable.parameter.reference", { link = "Statement" })
 
     -- __DIAGNOSTICS__
@@ -325,14 +325,14 @@ in
     highlight("DiagnosticUnderlineHint", { link = "HintMsg" })
 
     -- __LSP__
-    -- Assuming the `palette.highlight` function is defined elsewhere, and 'palette.light_purple', 'palette.light_red', etc., are defined variables
-    highlight("LspTroubleNormal", { fg = palette.light_purple })
-    highlight("LspTroubleText", { fg = palette.light_red })
-    highlight("LspTroubleCount", { fg = palette.red })
+    -- Assuming the `c.highlight` function is defined elsewhere, and 'c.light_purple', 'c.light_red', etc., are defined variables
+    highlight("LspTroubleNormal", { fg = c.light_purple })
+    highlight("LspTroubleText", { fg = c.light_red })
+    highlight("LspTroubleCount", { fg = c.red })
 
-    highlight("LspReferenceText", { fg = palette.white, bold = true })
-    highlight("LspReferenceRead", { fg = palette.white, bold = true })
-    highlight("LspReferenceWrite", { fg = palette.white, bold = true })
+    highlight("LspReferenceText", { fg = c.white, bold = true })
+    highlight("LspReferenceRead", { fg = c.white, bold = true })
+    highlight("LspReferenceWrite", { fg = c.white, bold = true })
 
     highlight("LspDiagnosticsDefaultError", { link = "Error" })
     highlight("LspDiagnosticsSignError", { link = "DiagnosticSignError" })
@@ -359,25 +359,25 @@ in
     highlight("LspDiagnosticsUnderlineHint", { link = "DiagnosticUnderlineHint" })
 
     -- __GIT GUTTER__
-    highlight("GitGutterAdd", { fg = palette.light_green })
-    highlight("GitGutterAddNr", { fg = palette.light_green })
-    highlight("GitGutterAddLn", { fg = palette.light_green })
-    highlight("GitGutterChange", { fg = palette.light_purple })
-    highlight("GitGutterChangeNr", { fg = palette.light_purple })
-    highlight("GitGutterChangeLn", { fg = palette.light_purple })
-    highlight("GitGutterDelete", { fg = palette.light_red })
-    highlight("GitGutterDeleteNr", { fg = palette.light_red })
-    highlight("GitGutterDeleteLn", { fg = palette.light_red })
-    highlight("GitGutterCurrentLineBlame", { fg = palette.light_black, bold = true })
+    highlight("GitGutterAdd", { fg = c.light_green })
+    highlight("GitGutterAddNr", { fg = c.light_green })
+    highlight("GitGutterAddLn", { fg = c.light_green })
+    highlight("GitGutterChange", { fg = c.light_purple })
+    highlight("GitGutterChangeNr", { fg = c.light_purple })
+    highlight("GitGutterChangeLn", { fg = c.light_purple })
+    highlight("GitGutterDelete", { fg = c.light_red })
+    highlight("GitGutterDeleteNr", { fg = c.light_red })
+    highlight("GitGutterDeleteLn", { fg = c.light_red })
+    highlight("GitGutterCurrentLineBlame", { fg = c.light_black, bold = true })
 
     -- __TELESCOPE__
-    highlight("TelescopePromptBorder", { fg = palette.blue })
-    highlight("TelescopeResultsBorder", { fg = palette.blue })
-    highlight("TelescopePreviewBorder", { fg = palette.light_green })
-    highlight("TelescopeSelectionCaret", { fg = palette.blue })
-    highlight("TelescopeSelection", { fg = palette.blue })
-    highlight("TelescopeMatching", { fg = palette.blue })
-    highlight("TelescopeMatching", { fg = palette.purple })
+    highlight("TelescopePromptBorder", { fg = c.blue })
+    highlight("TelescopeResultsBorder", { fg = c.blue })
+    highlight("TelescopePreviewBorder", { fg = c.light_green })
+    highlight("TelescopeSelectionCaret", { fg = c.blue })
+    highlight("TelescopeSelection", { fg = c.blue })
+    highlight("TelescopeMatching", { fg = c.blue })
+    highlight("TelescopeMatching", { fg = c.purple })
     highlight("TelescopeNormal", { link = "NormalFloat" })
     highlight("TelescopeBorder", { link = "FloatBorder" })
     highlight("TelescopePromptBorder", { link = "FloatBorder" })
@@ -385,83 +385,84 @@ in
     highlight("TelescopeResultsBorder", { link = "FloatBorder" })
 
     -- __WHICHKEY__
-    highlight("WhichKey", { fg = palette.white, bold = true })
+    highlight("WhichKey", { fg = c.white, bold = true })
     highlight("WhichKeyDesc", { link = "Normal" })
-    highlight("WhichKeyGroup", { fg = palette.blue })
-    highlight("WhichKeySeperator", { fg = palette.light_black })
-    highlight("WhichKeyFloating", { bg = palette.black })
-    highlight("WhichKeyFloat", { bg = palette.black })
+    highlight("WhichKeyGroup", { fg = c.blue })
+    highlight("WhichKeySeperator", { fg = c.light_black })
+    highlight("WhichKeyFloating", { bg = c.black })
+    highlight("WhichKeyFloat", { bg = c.black })
 
     -- __CMP__
     highlight("CmpPmenu", { link = "NormalFloat" })
     highlight("CmpPmenuBorder", { link = "FloatBorder" })
-    highlight("CmpItemKind", { fg = palette.blue })
-    highlight("CmpItemAbbrMatch", { fg = palette.white, bold = true })
-    highlight("CmpItemAbbrMatchFuzzy", { fg = palette.light_white, bold = true })
-    highlight("CmpItemAbbr", { fg = palette.white })
-    highlight("CmpItemMenu", { fg = palette.light_purple })
+    highlight("CmpItemKind", { fg = c.blue })
+    highlight("CmpItemAbbrMatch", { fg = c.white, bold = true })
+    highlight("CmpItemAbbrMatchFuzzy", { fg = c.light_white, bold = true })
+    highlight("CmpItemAbbr", { fg = c.white })
+    highlight("CmpItemMenu", { fg = c.light_purple })
 
     -- __COPILOT__
-    highlight("CopilotLabel", { fg = palette.light_black })
-    highlight("CmpItemKindCopilot", { fg = palette.blue })
+    highlight("CopilotLabel", { fg = c.light_black })
+    highlight("CmpItemKindCopilot", { fg = c.blue })
 
     -- __INDENT BLANKLINE__
-    highlight("IndentBlanklineChar", { fg = palette.light_black })
-    highlight("IndentBlanklineContextChar", { fg = palette.light_black })
+    highlight("IndentBlanklineChar", { fg = c.light_black })
+    highlight("IndentBlanklineContextChar", { fg = c.light_black })
 
     -- __NEOTREE__
-    highlight("NeoTreeNormal", { fg = palette.white })
-    highlight("NeoTreeFileName", { fg = palette.fg })
-    highlight("NeoTreeDotfile", { fg = palette.light_black })
-    highlight("NeoTreeCursorLine", { fg = palette.fg })
-    highlight("NeoTreeDirectoryName", { fg = palette.subtle })
-    highlight("NeoTreeDirectoryIcon", { fg = palette.blue })
-    highlight("NeoTreeGitModified", { fg = palette.light_blue })
-    highlight("NeoTreeGitUntracked", { fg = palette.light_yellow })
-    highlight("NeoTreeGitDeleted", { fg = palette.light_red })
-    highlight("NeoTreeGitRenamed", { fg = palette.light_purple })
-    highlight("NeoTreeIndentMarker", { fg = palette.light_black })
-    highlight("NeoTreeExpander", { fg = palette.light_black })
-    highlight("NeoTreeFileIcon", { fg = palette.blue })
+    highlight("NeoTreeNormal", { fg = c.white })
+    highlight("NeoTreeFileName", { fg = c.fg })
+    highlight("NeoTreeDotfile", { fg = c.light_black })
+    highlight("NeoTreeCursorLine", { fg = c.fg })
+    highlight("NeoTreeDirectoryName", { fg = c.subtle })
+    highlight("NeoTreeDirectoryIcon", { fg = c.blue })
+    highlight("NeoTreeGitModified", { fg = c.light_blue })
+    highlight("NeoTreeGitUntracked", { fg = c.light_yellow })
+    highlight("NeoTreeGitDeleted", { fg = c.light_red })
+    highlight("NeoTreeGitRenamed", { fg = c.light_purple })
+    highlight("NeoTreeIndentMarker", { fg = c.light_black })
+    highlight("NeoTreeExpander", { fg = c.light_black })
+    highlight("NeoTreeFileIcon", { fg = c.blue })
 
     -- __BUFFERLINE__
-    highlight("BufferLineFill", { fg = palette.black })
-    highlight("BufferLineSeparator", { fg = palette.black })
-    highlight("BufferLineIndicatorVisible", { fg = palette.light_black, bg = palette.black })
-    highlight("BufferLineIndicatorSelected", { fg = palette.blue })
-    highlight("BufferLineCloseButton", { bg = palette.white, fg = palette.black })
-    highlight("BufferLineCloseButtonVisible", { bg = palette.white, fg = palette.black })
-    highlight("BufferLineCloseButtonSelected", { bg = palette.red, fg = palette.black })
-    highlight("BufferLineBackground", { fg = palette.black, bg = palette.fg })
-    highlight("BufferLineBufferVisible", { bg = palette.subtle, fg = palette.black })
-    highlight("BufferLineDuplicate", { fg = palette.white, bg = palette.black })
-    highlight("BufferLineDuplicateVisible", { fg = palette.white, bg = palette.light_black })
-    highlight("BufferLineBufferSelected", { fg = palette.light_black, bg = palette.fg })
-    highlight("BufferLineDuplicateSelected", { fg = palette.white, bg = palette.bg })
-    highlight("BufferLineTabSeparator", { fg = palette.black, bg = palette.bg })
-    highlight("BufferLineTabSeparatorSelected", { fg = palette.blue, bg = palette.bg })
+    highlight("BufferLineFill", { fg = c.black })
+    highlight("BufferLineSeparator", { fg = c.black })
+    highlight("BufferLineIndicatorVisible", { fg = c.light_black, bg = c.black })
+    highlight("BufferLineIndicatorSelected", { fg = c.blue })
+    highlight("BufferLineCloseButton", { bg = c.white, fg = c.black })
+    highlight("BufferLineCloseButtonVisible", { bg = c.white, fg = c.black })
+    highlight("BufferLineCloseButtonSelected", { bg = c.red, fg = c.light_black })
+    highlight("BufferLineBackground", { fg = c.black, bg = c.fg })
+    highlight("BufferLineBufferVisible", { bg = c.subtle, fg = c.black })
+    highlight("BufferLineDuplicate", { fg = c.white, bg = c.black })
+    highlight("BufferLineDuplicateVisible", { fg = c.white, bg = c.light_black })
+    highlight("BufferLineBufferSelected", { fg = c.light_black, bg = c.fg })
+    highlight("BufferLineDuplicateSelected", { fg = c.white, bg = c.bg })
+    highlight("BufferLineTabSeparator", { fg = c.black, bg = c.bg })
+    highlight("BufferLineTabSeparatorSelected", { fg = c.blue, bg = c.bg })
     highlight("BufferLineDevIconDefaultInactive", { bg = "NONE", ctermfg = "NONE" })
-    highlight("BufferLineModifiedSelected", { fg = palette.black, bg = palette.green })
-    highlight("BufferLineIcon", { fg = palette.blue, bg = palette.black })
+    highlight("BufferLineModifiedSelected", { fg = c.light_black, bg = c.green })
+    highlight("BufferLineModifiedVisible", { fg = c.black, bg = c.green })
+    highlight("BufferLineIcon", { fg = c.blue, bg = c.black })
 
     -- __LUALINE__
-    highlight("LuaLineNormalA", { fg = palette.bg, bg = palette.blue, bold = true })
-    highlight("LuaLineNormalB", { fg = palette.fg, bg = palette.black })
-    highlight("LuaLineNormalC", { fg = palette.fg })
-    highlight("LuaLineInsertA", { fg = palette.bg, bg = palette.green, bold = true })
-    highlight("LuaLineVisualA", { fg = palette.bg, bg = palette.purple, bold = true })
-    highlight("LuaLineReplaceA", { fg = palette.bg, bg = palette.yellow, bold = true })
+    highlight("LuaLineNormalA", { fg = c.bg, bg = c.blue, bold = true })
+    highlight("LuaLineNormalB", { fg = c.fg, bg = c.light_black })
+    highlight("LuaLineNormalC", { fg = c.fg })
+    highlight("LuaLineInsertA", { fg = c.bg, bg = c.green, bold = true })
+    highlight("LuaLineVisualA", { fg = c.bg, bg = c.purple, bold = true })
+    highlight("LuaLineReplaceA", { fg = c.bg, bg = c.yellow, bold = true })
 
     -- __NvimTree__
     highlight("NvimTreeCursorLine", { link = "CursorLine" })
-    highlight("NvimTreeEmptyFolderName", { fg = palette.light_black, bg = "NONE" })
+    highlight("NvimTreeEmptyFolderName", { fg = c.light_black, bg = "NONE" })
     highlight("NvimTreeEndOfBuffer", { link = "EndOfBuffer" })
     highlight("NvimTreeFolderIcon", { link = "Directory" })
-    highlight("NvimTreeFolderName", { fg = palette.fg, bg = "NONE" })
+    highlight("NvimTreeFolderName", { fg = c.fg, bg = "NONE" })
     highlight("NvimTreeNormal", { link = "Normal" })
     highlight("NvimTreeOpenedFolderName", { link = "NvimTreeFolderName" })
-    highlight("NvimTreeRootFolder", { fg = palette.fg, bg = "NONE", bold = true })
-    highlight("NvimTreeSpecialFile", { fg = palette.cyan, bg = "NONE", underline = true })
+    highlight("NvimTreeRootFolder", { fg = c.fg, bg = "NONE", bold = true })
+    highlight("NvimTreeSpecialFile", { fg = c.cyan, bg = "NONE", underline = true })
     highlight("NvimTreeStatusLine", { bg = "NONE" })
   '';
 }

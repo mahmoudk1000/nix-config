@@ -1,10 +1,7 @@
 local lspconfig = require("lspconfig")
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local servers = {
-	"cssls",
 	"bashls",
-	"html",
 	"jsonls",
 	"marksman",
 	"yamlls",
@@ -22,7 +19,17 @@ local servers = {
 	"gopls",
 }
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
+}
+
 local on_attach = function(client, bufnr)
+	if vim.g.extra_lsp_actions ~= nil then
+		vim.g.extra_lsp_actions()
+	end
+
 	local function buf_set_option(name, value)
 		vim.api.nvim_set_option_value(name, value, { buf = bufnr })
 	end
@@ -165,12 +172,4 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
-	callback = function()
-		if vim.bo.filetype ~= "" then
-			vim.defer_fn(function()
-				vim.cmd("silent! TSBufEnable highlight")
-			end, 50)
-		end
-	end,
-})
+vim.cmd("doautocmd FileType")

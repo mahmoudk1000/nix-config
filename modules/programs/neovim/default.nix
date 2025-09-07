@@ -107,9 +107,9 @@ in
         config = builtins.readFile ./config/toggleterm.lua;
       }
       {
-        plugin = nvim-cmp;
+        plugin = blink-cmp;
         type = "lua";
-        config = builtins.readFile ./config/cmp.lua;
+        config = builtins.readFile ./config/blink.lua;
       }
       {
         plugin = which-key-nvim;
@@ -156,16 +156,7 @@ in
         type = "lua";
         config = builtins.readFile ./config/conform.lua;
       }
-      cmp-buffer
-      cmp-cmdline
-      cmp-nvim-lsp
-      cmp-path
-      cmp-git
-      cmp_luasnip
-      copilot-cmp
-      cmp-nvim-lsp-signature-help
       nvim-colorizer-lua
-      dressing-nvim
       nui-nvim
       nvim-web-devicons
       tmux-nvim
@@ -177,10 +168,8 @@ in
       vim-helm
       ansible-vim
       playground
-      friendly-snippets
-      compiler-nvim
-      overseer-nvim
       nvim-autopairs
+      blink-copilot
     ];
   };
 }
