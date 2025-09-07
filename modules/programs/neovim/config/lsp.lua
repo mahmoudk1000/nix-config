@@ -1,9 +1,6 @@
 local lspconfig = require("lspconfig")
-
--- nvim-cmp supports additional completion capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- Enable the following language servers
 local servers = {
 	"cssls",
 	"bashls",
@@ -16,7 +13,6 @@ local servers = {
 	"docker_compose_language_service",
 	"helm_ls",
 	"texlab",
-	-- "nixd",
 	"nil_ls",
 	"terraformls",
 	"tflint",
@@ -26,12 +22,9 @@ local servers = {
 	"gopls",
 }
 
--- LSP settings.
 local on_attach = function(client, bufnr)
 	local function buf_set_option(name, value)
-		vim.api.nvim_set_option_value(name, value, {
-			buf = bufnr,
-		})
+		vim.api.nvim_set_option_value(name, value, { buf = bufnr })
 	end
 
 	if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
@@ -41,26 +34,100 @@ local on_attach = function(client, bufnr)
 		end, 1000)
 	end
 
-	-- Options.
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	client.server_capabilities.semanticTokensProvider = nil
 
-	-- Mappings.
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-	vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, bufopts)
-	vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+	local opts = { noremap = true, silent = true, buffer = bufnr }
 
-	local opts = { noremap = true, silent = true }
-	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-	vim.keymap.set("n", "<space>d", vim.diagnostic.open_float, opts)
-	vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
+	vim.keymap.set(
+		"n",
+		"gi",
+		vim.lsp.buf.implementation,
+		vim.tbl_extend("force", opts, { desc = "Go to implementation" })
+	)
+	vim.keymap.set(
+		"n",
+		"gt",
+		vim.lsp.buf.type_definition,
+		vim.tbl_extend("force", opts, { desc = "Go to type definition" })
+	)
+	vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "Go to references" }))
+
+	vim.keymap.set(
+		"n",
+		"<leader>lh",
+		vim.lsp.buf.hover,
+		vim.tbl_extend("force", opts, { desc = "Hover documentation" })
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>ls",
+		vim.lsp.buf.signature_help,
+		vim.tbl_extend("force", opts, { desc = "Signature help" })
+	)
+	vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
+	vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code actions" }))
+	vim.keymap.set("n", "<leader>lf", function()
+		vim.lsp.buf.format({ async = true })
+	end, vim.tbl_extend("force", opts, { desc = "Format document" }))
+	vim.keymap.set("v", "<leader>lf", function()
+		vim.lsp.buf.format({ async = true })
+	end, vim.tbl_extend("force", opts, { desc = "Format selection" }))
+
+	vim.keymap.set("n", "<leader>e", function()
+		vim.diagnostic.open_float(nil, { focus = false, scope = "line" })
+	end, vim.tbl_extend("force", opts, { desc = "Show diagnostics for current line" }))
+
+	vim.keymap.set(
+		"n",
+		"<leader>dd",
+		vim.diagnostic.open_float,
+		vim.tbl_extend("force", opts, { desc = "Show diagnostic float" })
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>dl",
+		vim.diagnostic.setloclist,
+		vim.tbl_extend("force", opts, { desc = "Diagnostic list" })
+	)
+
+	vim.keymap.set("n", "[d", function()
+		vim.diagnostic.jump({ count = -1, float = true })
+	end, vim.tbl_extend("force", opts, { desc = "Previous diagnostic" }))
+
+	vim.keymap.set("n", "]d", function()
+		vim.diagnostic.jump({ count = 1, float = true })
+	end, vim.tbl_extend("force", opts, { desc = "Next diagnostic" }))
+
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
+
+	vim.api.nvim_create_autocmd("BufEnter", {
+		buffer = bufnr,
+		callback = function()
+			vim.cmd("syntax sync fromstart")
+		end,
+	})
 end
+
+-- Configure diagnostic display
+vim.diagnostic.config({
+	virtual_text = false,
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+	float = {
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+		scope = "line",
+	},
+})
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
@@ -87,19 +154,23 @@ lspconfig.lua_ls.setup({
 	capabilities = capabilities,
 	settings = {
 		Lua = {
-			runtime = {
-				version = "LuaJIT",
-			},
-			diagnostics = {
-				globals = { "vim" },
-			},
+			runtime = { version = "LuaJIT" },
+			diagnostics = { globals = { "vim" } },
 			workspace = {
 				checkThirdParty = false,
-				library = {
-					vim.env.VIMRUNTIME,
-				},
+				library = { vim.env.VIMRUNTIME },
 			},
 			telemetry = { enable = false },
 		},
 	},
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		if vim.bo.filetype ~= "" then
+			vim.defer_fn(function()
+				vim.cmd("silent! TSBufEnable highlight")
+			end, 50)
+		end
+	end,
 })

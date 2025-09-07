@@ -26,7 +26,7 @@ local kind_icons = {
 	Struct = "󰙅",
 	Event = "",
 	Operator = "󰆕",
-	Copilot = "",
+	Copilot = "󰚩",
 	TypeParameter = "",
 }
 
@@ -42,7 +42,7 @@ cmp.setup({
 		end,
 	},
 	completion = {
-		completeopt = "menu,menuone,preview,noselect",
+		completeopt = "menu,menuone,noinsert,noselect",
 	},
 	window = {
 		completion = {
@@ -59,7 +59,7 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif require("luasnip").expand_or_jumpable then
+			elseif require("luasnip").expand_or_jumpable() then
 				require("luasnip").expand_or_jump()
 			elseif has_words_before() then
 				cmp.complete()
@@ -85,72 +85,65 @@ cmp.setup({
 			select = true,
 		}),
 		["<C-Tab>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		["<C-j>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-		["<C-k>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+		["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+		["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 	}),
 	formatting = {
 		format = function(entry, vim_item)
-			-- Kind icons
 			vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
-			-- Source
 			vim_item.menu = ({
 				buffer = "[Buf]",
 				nvim_lsp = "[LSP]",
 				luasnip = "[Snp]",
 				nvim_lua = "[Lua]",
-				latex_symbols = "[LaT]",
-				copilot = "[Git]",
-				path = "[Dir]",
-				cmdline = "[Cmd]",
-				nvim_lsp_signature_help = "[Sig]",
+				path = "[Pth]",
 			})[entry.source.name]
 			return vim_item
 		end,
 	},
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
-		{ name = "luasnip" },
-		{ name = "copilot" },
-		{ name = "path" },
+		{ name = "nvim_lsp", priority = 1000 },
+		{ name = "luasnip", priority = 750 },
+		{ name = "nvim_lua", priority = 500 },
+		{ name = "path", priority = 250 },
 	}, {
-		{ name = "buffer" },
-	}),
-})
-
-cmp.setup.filetype("gitcommit", {
-	sources = cmp.config.sources({
-		{ name = "git" },
-	}, {
-		{ name = "buffer" },
-	}),
-})
-
-cmp.setup.cmdline({ "/", "?" }, {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = {
 		{
 			name = "buffer",
-			max_item_count = 10,
-			keyword_length = 1,
+			priority = 100,
+			keyword_length = 3,
+			option = {
+				get_bufnrs = function()
+					local bufs = {}
+					for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+						local bufsize = vim.api.nvim_buf_get_offset(bufnr, vim.api.nvim_buf_line_count(bufnr))
+						if bufsize < 1024 * 1024 then
+							table.insert(bufs, bufnr)
+						end
+					end
+					return bufs
+				end,
+			},
 		},
+	}),
+	experimental = {
+		ghost_text = false,
 	},
+	preselect = cmp.PreselectMode.None,
 })
 
+-- Command line completion
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {
-		{
-			name = "cmdline",
-			option = {
-				ignore_cmds = { "Man", "!" },
-			},
-		},
+		{ name = "cmdline" },
 	}),
 })
 
-cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
+cmp.setup.cmdline("/", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
+})

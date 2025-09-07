@@ -2,12 +2,17 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Performance optimizations
+vim.opt.updatetime = 100
+vim.opt.timeout = true
+vim.opt.timeoutlen = 500
+vim.opt.ttimeoutlen = 10
+
 -- Highlight on yank
--- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
-		vim.highlight.on_yank()
+		vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
 	end,
 	group = highlight_group,
 	pattern = "*",
@@ -16,84 +21,81 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Options
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.o.termguicolors = true
-vim.o.cursorline = false
-vim.o.hlsearch = false
-vim.wo.number = true
-vim.o.mouse = "a"
-vim.o.breakindent = true
-vim.o.undofile = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.updatetime = 250
-vim.wo.signcolumn = "yes"
-vim.o.autoindent = true
-vim.o.clipboard = "unnamedplus"
-vim.o.expandtab = true
-vim.o.relativenumber = true
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.softtabstop = 4
-vim.o.list = true
-vim.o.omnifunc = "syntaxcomplete#Complete"
+vim.opt.termguicolors = true
+vim.opt.cursorline = false
+vim.opt.hlsearch = false
+vim.opt.number = true
+vim.opt.mouse = "a"
+vim.opt.breakindent = true
+vim.opt.undofile = true
+vim.opt.ignorecase = true
+vim.opt.linebreak = true
+vim.opt.smartcase = true
+vim.opt.signcolumn = "yes"
+vim.opt.autoindent = true
+vim.opt.clipboard = "unnamedplus"
+vim.opt.expandtab = true
+vim.opt.relativenumber = true
+vim.opt.smartindent = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.list = true
+vim.opt.omnifunc = "syntaxcomplete#Complete"
 vim.opt.wrap = true
 vim.opt.spell = true
 vim.opt.smartindent = true
 vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.spelllang = { "en_us" }
-vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("eol:↴")
+vim.opt.listchars = { space = "⋅", eol = "↴", tab = "→ " }
+vim.opt.shell = "zsh"
+vim.opt.belloff = "all"
+vim.opt.fileencoding = "utf-8"
+vim.opt.encoding = "utf-8"
+vim.scriptencoding = "utf-8"
+vim.o.cmdheight = 0
 
 -- Color Scheme
 vim.cmd([[colorscheme islet]])
 
--- Keymaps
+-- Disable space in normal and visual mode (since it's our leader)
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
--- Panel Switching
-vim.keymap.set("n", "<leader>h", ":wincmd h<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>j", ":wincmd j<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>k", ":wincmd k<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>l", ":wincmd l<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<space>n", ":NvimTreeToggle<CR>", { noremap = true })
 
--- Move text up and down (visual mode)
-vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+-- Move lines up/down (Visual mode)
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move selection down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move selection up" })
 
--- Move text up and down (insert mode)
-vim.keymap.set("i", "<A-Up>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
-vim.keymap.set("i", "<A-Down>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
-vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
-vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
+-- Better indenting
+vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true, desc = "Indent left and reselect" })
+vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true, desc = "Indent right and reselect" })
 
 -- Duplicate Line
 vim.keymap.set("n", "<A-C-Down>", "yyP", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-C-Up>", "yyp", { noremap = true, silent = true })
 vim.keymap.set("v", "<leader>ds", "y'>p", { noremap = true, silent = true, desc = "[D]uplicate [S]election" })
 
--- Default Text Editors
-vim.keymap.set("n", "<C-a>", "ggVG", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-s>", ":w<CR>", { noremap = true })
-vim.keymap.set("n", "fq", ":q!<CR>", { noremap = true })
-vim.keymap.set("n", "qq", ":q<CR>", { noremap = true })
-vim.keymap.set("i", "<A-d>", "<C-o>dd", { noremap = true, silent = true })
-vim.keymap.set("i", "<C-b>", "<ESC>^i", { noremap = true })
-vim.keymap.set("i", "<C-e>", "<End>", { noremap = true })
-
--- UI
-vim.keymap.set("n", "<leader>v", ":vsplit<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>h", ":split<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>w", ":set wrap<CR>", { noremap = true, silent = true })
-
--- Indent
-vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
-vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
-
 -- Comments
 vim.keymap.set("n", "<leader>c", "gcc", { remap = true, silent = true, desc = "[[C]]omment Line" })
 vim.keymap.set("v", "<leader>/", "gc", { remap = true, silent = true, desc = "[[C]]omment Selection" })
+
+-- Paste without losing register
+vim.keymap.set("x", "<leader>p", [["_dP]], { noremap = true, silent = true, desc = "Paste without losing register" })
+
+-- WINDOW MANAGEMENT - <leader>w prefix
+vim.keymap.set("n", "<leader>wh", "<C-w>h", { noremap = true, silent = true, desc = "Go to left window" })
+vim.keymap.set("n", "<leader>wj", "<C-w>j", { noremap = true, silent = true, desc = "Go to bottom window" })
+vim.keymap.set("n", "<leader>wk", "<C-w>k", { noremap = true, silent = true, desc = "Go to top window" })
+vim.keymap.set("n", "<leader>wl", "<C-w>l", { noremap = true, silent = true, desc = "Go to right window" })
+
+vim.keymap.set("n", "<leader>w=", "<C-w>=", { noremap = true, silent = true, desc = "Equalize window sizes" })
+vim.keymap.set("n", "<leader>w+", "<C-w>+", { noremap = true, silent = true, desc = "Increase window height" })
+vim.keymap.set("n", "<leader>w-", "<C-w>-", { noremap = true, silent = true, desc = "Decrease window height" })
+vim.keymap.set("n", "<leader>w<", "<C-w><", { noremap = true, silent = true, desc = "Decrease window width" })
+vim.keymap.set("n", "<leader>w>", "<C-w>>", { noremap = true, silent = true, desc = "Increase window width" })
 
 -- Plugins
 --- NvimTree
@@ -125,6 +127,22 @@ vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc
 vim.keymap.set("n", "<leader>gc", require("telescope.builtin").git_commits, { desc = "Search by [G]it [C]omment" })
 vim.keymap.set("n", "<leader>gs", require("telescope.builtin").git_status, { desc = "Search by [G]it [S]tatus" })
 vim.keymap.set("n", "<A-Tab>", require("telescope.builtin").buffers, { desc = "Show Buffers" })
+
+-- Replace
+vim.keymap.set(
+	"n",
+	"<leader>sr",
+	":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+	{ noremap = true, desc = "Search and replace word under cursor" }
+)
+vim.keymap.set("v", "<leader>sr", ":s/", { noremap = true, desc = "Search and replace in selection" })
+
+-- Save and quit
+vim.keymap.set("n", "<C-s>", ":w<CR>", { noremap = true, silent = true, desc = "Save file" })
+vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { noremap = true, silent = true, desc = "Save file (insert mode)" })
+vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true, desc = "Quit" })
+vim.keymap.set("n", "<leader>Q", ":qa<CR>", { noremap = true, silent = true, desc = "Quit all" })
+vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true, desc = "Save file" })
 
 -- Filetypes
 vim.filetype.add({

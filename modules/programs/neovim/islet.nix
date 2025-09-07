@@ -13,36 +13,14 @@ in
     end
 
     vim.g.colors_name = "${name}"
-
     vim.o.background = "dark"
     vim.o.termguicolors = true
 
-    local function adjustHex(hex, percent, mode)
-      local m = mode or "darken"
-      hex = hex:gsub("#", "")
-
-      local r = tonumber(hex:sub(1, 2), 16)
-      local g = tonumber(hex:sub(3, 4), 16)
-      local b = tonumber(hex:sub(5, 6), 16)
-
-      local factor = (m == "darken") and (100 - percent) / 100 or (100 + percent) / 100
-
-      r = math.floor(r * factor)
-      g = math.floor(g * factor)
-      b = math.floor(b * factor)
-
-      r = math.max(0, math.min(255, r))
-      g = math.max(0, math.min(255, g))
-      b = math.max(0, math.min(255, b))
-
-      return string.format("#%02X%02X%02X", r, g, b)
-    end
-
     local palette = {
-      background = "${base00}",
-      foreground = "${base01}",
-      norm = adjustHex("${base01}", 8),
-      subtle = adjustHex("${base01}", 25),
+      bg = "${base00}",
+      fg = "${base01}",
+      norm = "#E9ECEF",
+      subtle = "#DEE2E6",
       black = "${base02}",
       red = "${base03}",
       green = "${base04}",
@@ -63,11 +41,13 @@ in
 
     local function highlight(group, opts)
         opts.force = true
+        opts.cterm = opts.cterm or {}
+
         vim.api.nvim_set_hl(0, group, opts)
     end
 
     -- __TEXT__
-    highlight("Normal", { fg = palette.norm })
+    highlight("Normal", { fg = palette.norm, bg = "NONE" })
     highlight("Title", { fg = palette.green, bold = true })
 
     -- __Normal__
@@ -100,7 +80,7 @@ in
     -- __VISUAL__
     highlight("Visual", { bg = palette.black })
     highlight("VisualNOS", { link = "Visual" })
-    highlight("Ignore", { fg = palette.background })
+    highlight("Ignore", { fg = palette.bg })
 
     -- __MESSAGE__
     highlight("Error", { fg = palette.red, bold = true })
@@ -126,9 +106,9 @@ in
     highlight("TabLineFill", { reverse = true })
 
     -- __FLOAT__
-    highlight("NormalFloat", { fg = palette.foreground, bg = palette.black })
+    highlight("NormalFloat", { fg = palette.fg, bg = palette.black })
     highlight("FloatBorder", { fg = palette.light_black, bg = palette.black })
-    highlight("FloatTitle", { fg = palette.foreground })
+    highlight("FloatTitle", { fg = palette.fg })
 
     -- __MENU__
     highlight("Pmenu", { link = "NormalFloat" })
@@ -142,7 +122,7 @@ in
     highlight("QuickFixLine", { fg = palette.green })
 
     -- __SYNTAX__
-    highlight("Function", { fg = palette.light_yellow })
+    highlight("Function", { fg = palette.subtle, bold = true})
     highlight("Identifier", { fg = palette.subtle, bold = true })
     highlight("Type", { fg = palette.subtle })
     highlight("Variable", { fg = palette.light_white })
@@ -314,7 +294,7 @@ in
     highlight("@tag.delimiter", { link = "Delimiter" })
     highlight("@tag.attribute", { link = "@attribute" })
     highlight("@variable", { link = "Normal" })
-    highlight("@variable.builtin", { fg = palette.foreground, bold = true })
+    highlight("@variable.builtin", { fg = palette.fg, bold = true })
     highlight("@variable.member", { link = "Normal" })
     highlight("@variable.parameter", { fg = palette.subtle, italic = true })
     highlight("@variable.parameter.reference", { link = "Statement" })
@@ -431,9 +411,9 @@ in
 
     -- __NEOTREE__
     highlight("NeoTreeNormal", { fg = palette.white })
-    highlight("NeoTreeFileName", { fg = palette.foreground })
+    highlight("NeoTreeFileName", { fg = palette.fg })
     highlight("NeoTreeDotfile", { fg = palette.light_black })
-    highlight("NeoTreeCursorLine", { fg = palette.foreground })
+    highlight("NeoTreeCursorLine", { fg = palette.fg })
     highlight("NeoTreeDirectoryName", { fg = palette.subtle })
     highlight("NeoTreeDirectoryIcon", { fg = palette.blue })
     highlight("NeoTreeGitModified", { fg = palette.light_blue })
@@ -445,54 +425,43 @@ in
     highlight("NeoTreeFileIcon", { fg = palette.blue })
 
     -- __BUFFERLINE__
-    highlight("BufferLineFill", { bg = palette.black })
-    highlight("BufferLineSeparator", { fg = palette.light_black })
+    highlight("BufferLineFill", { fg = palette.black })
+    highlight("BufferLineSeparator", { fg = palette.black })
+    highlight("BufferLineIndicatorVisible", { fg = palette.light_black, bg = palette.black })
     highlight("BufferLineIndicatorSelected", { fg = palette.blue })
-    highlight("BufferLineCloseButton", { fg = palette.white, bg = palette.black })
-    highlight("BufferLineCloseButtonVisible", { fg = palette.white, bg = palette.light_black })
-    highlight("BufferLineCloseButtonSelected", { fg = palette.red })
-    highlight("BufferLineBackground", { fg = palette.white, bg = palette.black })
-    highlight("BufferLineBufferVisible", { fg = palette.white, bg = palette.light_black })
+    highlight("BufferLineCloseButton", { bg = palette.white, fg = palette.black })
+    highlight("BufferLineCloseButtonVisible", { bg = palette.white, fg = palette.black })
+    highlight("BufferLineCloseButtonSelected", { bg = palette.red, fg = palette.black })
+    highlight("BufferLineBackground", { fg = palette.black, bg = palette.fg })
+    highlight("BufferLineBufferVisible", { bg = palette.subtle, fg = palette.black })
     highlight("BufferLineDuplicate", { fg = palette.white, bg = palette.black })
     highlight("BufferLineDuplicateVisible", { fg = palette.white, bg = palette.light_black })
-    highlight("BufferLineDuplicateSelected", { fg = palette.white, bg = palette.background })
-    highlight("BufferLineTabSeparator", { fg = palette.black, bg = palette.background })
-    highlight("BufferLineTabSeparatorSelected", { fg = palette.blue, bg = palette.background })
+    highlight("BufferLineBufferSelected", { fg = palette.light_black, bg = palette.fg })
+    highlight("BufferLineDuplicateSelected", { fg = palette.white, bg = palette.bg })
+    highlight("BufferLineTabSeparator", { fg = palette.black, bg = palette.bg })
+    highlight("BufferLineTabSeparatorSelected", { fg = palette.blue, bg = palette.bg })
+    highlight("BufferLineDevIconDefaultInactive", { bg = "NONE", ctermfg = "NONE" })
+    highlight("BufferLineModifiedSelected", { fg = palette.black, bg = palette.green })
+    highlight("BufferLineIcon", { fg = palette.blue, bg = palette.black })
 
     -- __LUALINE__
-    highlight("LuaLineNormalA", { fg = palette.background, bg = palette.blue, bold = true })
-    highlight("LuaLineNormalB", { fg = palette.foreground, bg = palette.black })
-    highlight("LuaLineNormalC", { fg = palette.foreground })
-    highlight("LuaLineInsertA", { fg = palette.background, bg = palette.green, bold = true })
-    highlight("LuaLineVisualA", { fg = palette.background, bg = palette.purple, bold = true })
-    highlight("LuaLineReplaceA", { fg = palette.background, bg = palette.yellow, bold = true })
+    highlight("LuaLineNormalA", { fg = palette.bg, bg = palette.blue, bold = true })
+    highlight("LuaLineNormalB", { fg = palette.fg, bg = palette.black })
+    highlight("LuaLineNormalC", { fg = palette.fg })
+    highlight("LuaLineInsertA", { fg = palette.bg, bg = palette.green, bold = true })
+    highlight("LuaLineVisualA", { fg = palette.bg, bg = palette.purple, bold = true })
+    highlight("LuaLineReplaceA", { fg = palette.bg, bg = palette.yellow, bold = true })
 
-    -- __MARKVIEW__
-    highlight("MarkviewCol1", { fg= palette.red, bg = palette.background })
-    highlight("MarkviewCol2", { fg= palette.yellow, bg = palette.background })
-    highlight("MarkviewCol3", { fg= palette.green, bg = palette.background })
-    highlight("MarkviewCol4", { fg= palette.blue, bg = palette.background })
-    highlight("MarkviewCol5", { fg= palette.purple, bg = palette.background })
-    highlight("MarkviewCol6", { fg= palette.cyan, bg = palette.background })
-    highlight("MarkviewCol7", { fg= palette.white, bg = palette.background })
-    highlight("MarkviewCol1Fg", { fg= palette.light_red })
-    highlight("MarkviewCol2Fg", { fg= palette.light_yellow })
-    highlight("MarkviewCol3Fg", { fg= palette.light_green })
-    highlight("MarkviewCol4Fg", { fg= palette.light_blue })
-    highlight("MarkviewCol5Fg", { fg= palette.light_purple })
-    highlight("MarkviewCol6Fg", { fg= palette.light_cyan })
-    highlight("MarkviewCol7Fg", { fg= palette.light_white })
-    highlight("MarkviewLayer", { link = "markdownInlineCode" })
-    highlight("MarkviewLayer2", { link = "markdownCode" })
-    highlight("MarkviewGradient1", { fg = adjustHex(palette.blue, 10) })
-    highlight("MarkviewGradient2", { fg = adjustHex(palette.blue, 20) })
-    highlight("MarkviewGradient3", { fg = adjustHex(palette.blue, 30) })
-    highlight("MarkviewGradient4", { fg = adjustHex(palette.blue, 40) })
-    highlight("MarkviewGradient5", { fg = adjustHex(palette.blue, 50) })
-    highlight("MarkviewGradient6", { fg = adjustHex(palette.green, 50) })
-    highlight("MarkviewGradient7", { fg = adjustHex(palette.green, 40) })
-    highlight("MarkviewGradient8", { fg = adjustHex(palette.green, 30) })
-    highlight("MarkviewGradient9", { fg = adjustHex(palette.green, 20) })
-    highlight("MarkviewGradient10", { fg = adjustHex(palette.green, 10) })
+    -- __NvimTree__
+    highlight("NvimTreeCursorLine", { link = "CursorLine" })
+    highlight("NvimTreeEmptyFolderName", { fg = palette.light_black, bg = "NONE" })
+    highlight("NvimTreeEndOfBuffer", { link = "EndOfBuffer" })
+    highlight("NvimTreeFolderIcon", { link = "Directory" })
+    highlight("NvimTreeFolderName", { fg = palette.fg, bg = "NONE" })
+    highlight("NvimTreeNormal", { link = "Normal" })
+    highlight("NvimTreeOpenedFolderName", { link = "NvimTreeFolderName" })
+    highlight("NvimTreeRootFolder", { fg = palette.fg, bg = "NONE", bold = true })
+    highlight("NvimTreeSpecialFile", { fg = palette.cyan, bg = "NONE", underline = true })
+    highlight("NvimTreeStatusLine", { bg = "NONE" })
   '';
 }

@@ -1,14 +1,19 @@
 require("bufferline").setup({
 	options = {
 		mode = "buffers",
+		numbers = "none",
 		offsets = {
 			{
 				filetype = "NvimTree",
-				text = "󰉓  Files Explorer",
+				text = "󰉓  NvimTree",
+				-- text = function()
+				-- 	return vim.fn.fnamemodify(vim.fn.getcwd(), ":~") --(".", ":p:h:t")
+				-- end,
+				highlight = "BufferLineBufferSelected",
 				text_align = "center",
-				separator = true,
 			},
 		},
+		indicator = { style = "none" },
 		separator_style = "thin",
 		buffer_close_icon = "✘",
 		modified_icon = "",
@@ -22,12 +27,17 @@ require("bufferline").setup({
 		show_tab_indicators = true,
 		enforce_regular_tabs = false,
 		show_buffer_close_icons = true,
-		themable = true,
 		color_icons = true,
-		-- diagnostics = 'nvim_lsp',
-		-- diagnostics_indicator = function(count, level)
-		--     local icon = level:match("error") and "" or ""
-		--     return " " .. icon .. " " .. count
-		-- end
+		show_buffer_icons = true,
+		get_element_icon = function(element)
+			local icon, _ = require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
+
+			return icon, "BufferLineIcon"
+		end,
+		diagnostics = false, -- OR: | "nvim_lsp"
+		diagnostics_indicator = function(count, level)
+			local icon = level:match("error") and "" or ""
+			return " " .. icon .. " " .. count
+		end,
 	},
 })

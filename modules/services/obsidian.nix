@@ -24,21 +24,23 @@ let
   '';
 in
 {
-  options.services.obsidian = {
-    enable = lib.mkOption {
-      default = false;
-      type = lib.types.bool;
-      description = "Enable Obsidian and its git sync script.";
-    };
-    gitSync = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable systemd git sync for Obsidian.";
-    };
-    vaultDir = lib.mkOption {
-      type = lib.types.path;
-      default = "/home/${host.username}/Notes/Obsidian";
-      description = "Path to the Obsidian vault directory.";
+  options = {
+    services.obsidian = {
+      enable = lib.mkOption {
+        default = false;
+        type = lib.types.bool;
+        description = "Enable Obsidian and its git sync script.";
+      };
+      gitSync = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable systemd git sync for Obsidian.";
+      };
+      vaultDir = lib.mkOption {
+        type = lib.types.path;
+        default = "/home/${host.username}/Notes/Obsidian";
+        description = "Path to the Obsidian vault directory.";
+      };
     };
   };
 
