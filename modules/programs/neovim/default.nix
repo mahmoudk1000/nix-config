@@ -12,8 +12,6 @@ in
     extraLuaConfig = builtins.readFile ./init.lua;
     package = pkgs.neovim-unwrapped;
     vimAlias = true;
-    withPython3 = true;
-    withNodeJs = true;
     defaultEditor = true;
     extraPackages = [
       groovy-language-server
@@ -22,7 +20,6 @@ in
       dockerfile-language-server-nodejs
       docker-compose-language-service
       vscode-langservers-extracted
-      # autotools-language-server
       jsonnet-language-server
       ansible-language-server
       yaml-language-server
@@ -53,8 +50,8 @@ in
       biber
       shfmt
       gopls
+      nixd
       ruff
-      # nixd
       nil
       gcc
       fd
@@ -62,7 +59,6 @@ in
     ])
     ++ (with pkgs.nodePackages_latest; [ bash-language-server ])
     ++ (with pkgs.python3Packages; [
-      jedi-language-server
       pynvim
     ]);
     plugins = with pkgs.vimPlugins; [

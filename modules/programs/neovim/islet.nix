@@ -330,9 +330,9 @@ in
     highlight("LspTroubleText", { fg = c.light_red })
     highlight("LspTroubleCount", { fg = c.red })
 
-    highlight("LspReferenceText", { fg = c.white, bold = true })
-    highlight("LspReferenceRead", { fg = c.white, bold = true })
-    highlight("LspReferenceWrite", { fg = c.white, bold = true })
+    highlight("LspReferenceText", { bold = true, underline = true })
+    highlight("LspReferenceRead", { bold = true, underline = true })
+    highlight("LspReferenceWrite", { bold = true, underline = true })
 
     highlight("LspDiagnosticsDefaultError", { link = "Error" })
     highlight("LspDiagnosticsSignError", { link = "DiagnosticSignError" })

@@ -105,7 +105,7 @@ require("blink.cmp").setup({
 			winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 			draw = {
 				columns = {
-					{ "label", gap = 1 },
+					{ "label", "label_description", gap = 1 },
 					{ "kind_icon" },
 					{ "source_name" },
 				},
