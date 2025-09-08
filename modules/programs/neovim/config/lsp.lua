@@ -1,24 +1,3 @@
-local lspconfig = require("lspconfig")
-
-local servers = {
-	"bashls",
-	"jsonls",
-	"marksman",
-	"yamlls",
-	"ansiblels",
-	"dockerls",
-	"docker_compose_language_service",
-	"helm_ls",
-	"texlab",
-	"nil_ls",
-	"terraformls",
-	"tflint",
-	"autotools_ls",
-	"jsonnet_ls",
-	"jedi_language_server",
-	"gopls",
-}
-
 local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.general.positionEncodings = { "utf-16" }
 
@@ -75,41 +54,54 @@ vim.diagnostic.config({
 		focusable = false,
 		style = "minimal",
 		border = "rounded",
-		source = "always",
+		source = true,
 		header = "",
 		prefix = "",
 		scope = "line",
 	},
 })
 
-for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup({
-		capabilities = capabilities,
-	})
-end
-
-lspconfig.groovyls.setup({
-	capabilities = capabilities,
-	filetypes = { "groovy" },
-	cmd = { "groovy-language-server" },
-})
-
-lspconfig.java_language_server.setup({
-	capabilities = capabilities,
-	cmd = { "java-language-server" },
-})
-
-lspconfig.lua_ls.setup({
-	capabilities = capabilities,
-	settings = {
-		Lua = {
-			runtime = { version = "LuaJIT" },
-			diagnostics = { globals = { "vim" } },
-			workspace = {
-				checkThirdParty = false,
-				library = { vim.env.VIMRUNTIME },
+local lsps = {
+	{ "bashls" },
+	{ "jsonls" },
+	{ "marksman" },
+	{ "yamlls" },
+	{ "ansiblels" },
+	{ "dockerls" },
+	{ "docker_compose_language_service" },
+	{ "helm_ls" },
+	{ "texlab" },
+	{ "nil_ls" },
+	{ "terraformls" },
+	{ "tflint" },
+	{ "autotools_ls" },
+	{ "jsonnet_ls" },
+	{ "jedi_language_server" },
+	{ "gopls" },
+	{ "groovyls", { filetypes = { "groovy" }, cmd = { "groovy-language-server" } } },
+	{ "java_language_server", { cmd = { "java-language-server" } } },
+	{
+		"lua_ls",
+		{
+			settings = {
+				Lua = {
+					runtime = { version = "LuaJIT" },
+					diagnostics = { globals = { "vim" } },
+					workspace = {
+						checkThirdParty = false,
+						library = { vim.env.VIMRUNTIME },
+					},
+					telemetry = { enable = false },
+				},
 			},
-			telemetry = { enable = false },
 		},
 	},
-})
+}
+
+for _, lsp in ipairs(lsps) do
+	local name, config = lsp[1], lsp[2]
+	config = config or {}
+	config.capabilities = capabilities
+	vim.lsp.config(name, config)
+	vim.lsp.enable(name)
+end
