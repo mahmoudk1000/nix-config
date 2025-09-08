@@ -153,7 +153,7 @@ in
 
     -- __NonText__
     highlight("NonText", { fg = c.black })
-    highlight("Folded", { link = "NonText" })
+    highlight("Folded", { fg = c.subtle, italic = true })
     highlight("qfLineNr", { link = "NonText" })
 
     -- __COMMENT__
@@ -232,7 +232,6 @@ in
     highlight("@keyword.builtin", { link = "Special" })
     highlight("@keyword.macro", { link = "PreProc" })
     highlight("@keyword.method", { link = "Identifier" })
-    highlight("@attribute", { link = "Special" })
     highlight("@type", { link = "Type" })
     highlight("@type.builtin", { link = "@type" })
     highlight("@type.definition", { link = "Type" })
@@ -376,7 +375,6 @@ in
     highlight("TelescopePreviewBorder", { fg = c.light_green })
     highlight("TelescopeSelectionCaret", { fg = c.blue })
     highlight("TelescopeSelection", { fg = c.blue })
-    highlight("TelescopeMatching", { fg = c.blue })
     highlight("TelescopeMatching", { fg = c.purple })
     highlight("TelescopeNormal", { link = "NormalFloat" })
     highlight("TelescopeBorder", { link = "FloatBorder" })
@@ -464,5 +462,10 @@ in
     highlight("NvimTreeRootFolder", { fg = c.fg, bg = "NONE", bold = true })
     highlight("NvimTreeSpecialFile", { fg = c.cyan, bg = "NONE", underline = true })
     highlight("NvimTreeStatusLine", { bg = "NONE" })
+
+    -- __BLINK_PAIRS__
+    highlight("BlinkPairsYellow", { fg = c.yellow })
+    highlight("BlinkPairsPurple", { fg = c.purple })
+    highlight("BlinkPairsCyan", { fg = c.cyan })
   '';
 }

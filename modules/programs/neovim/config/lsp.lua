@@ -1,3 +1,40 @@
+local lsps = {
+	{ "bashls" },
+	{ "jsonls" },
+	{ "marksman" },
+	{ "yamlls" },
+	{ "ansiblels" },
+	{ "dockerls" },
+	{ "docker_compose_language_service" },
+	{ "helm_ls" },
+	{ "texlab" },
+	{ "nil_ls" },
+	{ "terraformls" },
+	{ "tflint" },
+	{ "autotools_ls" },
+	{ "jsonnet_ls" },
+	{ "jedi_language_server" },
+	{ "gopls" },
+	{ "groovyls", { filetypes = { "groovy" }, cmd = { "groovy-language-server" } } },
+	{ "java_language_server", { cmd = { "java-language-server" } } },
+	{
+		"lua_ls",
+		{
+			settings = {
+				Lua = {
+					runtime = { version = "LuaJIT" },
+					diagnostics = { globals = { "vim" } },
+					workspace = {
+						checkThirdParty = false,
+						library = { vim.env.VIMRUNTIME },
+					},
+					telemetry = { enable = false },
+				},
+			},
+		},
+	},
+}
+
 local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.general.positionEncodings = { "utf-16" }
 
@@ -60,43 +97,6 @@ vim.diagnostic.config({
 		scope = "line",
 	},
 })
-
-local lsps = {
-	{ "bashls" },
-	{ "jsonls" },
-	{ "marksman" },
-	{ "yamlls" },
-	{ "ansiblels" },
-	{ "dockerls" },
-	{ "docker_compose_language_service" },
-	{ "helm_ls" },
-	{ "texlab" },
-	{ "nil_ls" },
-	{ "terraformls" },
-	{ "tflint" },
-	{ "autotools_ls" },
-	{ "jsonnet_ls" },
-	{ "jedi_language_server" },
-	{ "gopls" },
-	{ "groovyls", { filetypes = { "groovy" }, cmd = { "groovy-language-server" } } },
-	{ "java_language_server", { cmd = { "java-language-server" } } },
-	{
-		"lua_ls",
-		{
-			settings = {
-				Lua = {
-					runtime = { version = "LuaJIT" },
-					diagnostics = { globals = { "vim" } },
-					workspace = {
-						checkThirdParty = false,
-						library = { vim.env.VIMRUNTIME },
-					},
-					telemetry = { enable = false },
-				},
-			},
-		},
-	},
-}
 
 for _, lsp in ipairs(lsps) do
 	local name, config = lsp[1], lsp[2]

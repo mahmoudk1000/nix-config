@@ -18,13 +18,6 @@ require("blink.cmp").setup({
 					end,
 				},
 			},
-			path = {
-				opts = {
-					get_cwd = function(_)
-						return vim.fn.getcwd()
-					end,
-				},
-			},
 		},
 	},
 	keymap = {

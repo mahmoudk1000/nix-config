@@ -54,6 +54,8 @@ vim.opt.encoding = "utf-8"
 vim.o.cmdheight = 0
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Color Scheme
 vim.cmd([[colorscheme islet]])
@@ -171,4 +173,3 @@ vim.filetype.add({
 require("colorizer").setup({})
 require("gitsigns").setup({})
 require("tmux").setup({})
-require("nvim-autopairs").setup({})

@@ -152,6 +152,11 @@ in
         type = "lua";
         config = builtins.readFile ./config/conform.lua;
       }
+      {
+        plugin = blink-pairs;
+        type = "lua";
+        config = builtins.readFile ./config/pairs.lua;
+      }
       nvim-colorizer-lua
       nui-nvim
       nvim-web-devicons
@@ -164,7 +169,6 @@ in
       vim-helm
       ansible-vim
       playground
-      nvim-autopairs
       blink-copilot
     ];
   };
