@@ -33,7 +33,6 @@
         mpc-cli
         xclip
         spotdl
-        ventoy-bin
 
         ffmpeg
         arandr
