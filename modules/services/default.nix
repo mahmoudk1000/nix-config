@@ -11,6 +11,7 @@
     ./mbsync.nix
     ./mpd.nix
     ./nextcloud.nix
+    ./obsidian.nix
     ./picom.nix
     ./redshift.nix
     ./sxhkd.nix
