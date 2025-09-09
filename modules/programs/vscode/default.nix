@@ -16,7 +16,6 @@
           ms-azuretools.vscode-containers
           ms-vscode-remote.remote-containers
           ms-azuretools.vscode-docker
-          miguelsolorio.fluent-icons
           github.vscode-github-actions
           github.copilot
           github.copilot-chat
