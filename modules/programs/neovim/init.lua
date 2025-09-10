@@ -127,16 +127,40 @@ vim.keymap.set("n", "<leader>w<", "<C-w><", { noremap = true, silent = true, des
 vim.keymap.set("n", "<leader>w>", "<C-w>>", { noremap = true, silent = true, desc = "Increase window width" })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { noremap = true, silent = true, desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { noremap = true, silent = true, desc = 'Open diagnostics list' })
-
+vim.keymap.set(
+	"n",
+	"<leader>e",
+	vim.diagnostic.open_float,
+	{ noremap = true, silent = true, desc = "Open floating diagnostic message" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>q",
+	vim.diagnostic.setloclist,
+	{ noremap = true, silent = true, desc = "Open diagnostics list" }
+)
 
 -- You should instead use these keybindings so that they are still easy to use, but don't conflict
-vim.keymap.set({"v", "x", "n"}, '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
-vim.keymap.set({"n", "v", "x"}, '<leader>Y', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
-vim.keymap.set({'n', 'v', 'x'}, '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
-vim.keymap.set('i', '<C-p>', '<C-r><C-p>+', { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' })
-vim.keymap.set("x", "<leader>P", '"_dP', { noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
+vim.keymap.set({ "v", "x", "n" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
+vim.keymap.set(
+	{ "n", "v", "x" },
+	"<leader>Y",
+	'"+yy',
+	{ noremap = true, silent = true, desc = "Yank line to clipboard" }
+)
+vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
+vim.keymap.set(
+	"i",
+	"<C-p>",
+	"<C-r><C-p>+",
+	{ noremap = true, silent = true, desc = "Paste from clipboard from within insert mode" }
+)
+vim.keymap.set(
+	"x",
+	"<leader>P",
+	'"_dP',
+	{ noremap = true, silent = true, desc = "Paste over selection without erasing unnamed register" }
+)
 
 -- Replace
 vim.keymap.set(
@@ -182,7 +206,7 @@ vim.filetype.add({
 -- and trigger vim.lsp.enable and the rtp config collection only on the correct filetypes
 -- it adds the lsp field used below
 -- (and must be registered before any load calls that use it!)
-require('lze').register_handlers(require('lzextras').lsp)
+require("lze").register_handlers(require("lzextras").lsp)
 
 require("lze").load({
 	{
@@ -349,7 +373,7 @@ require("lze").load({
 			vim.lsp.enable(plugin.name)
 		end,
 		before = function(_)
-			vim.lsp.config('*', {
+			vim.lsp.config("*", {
 				on_attach = function(_, bufnr)
 					local opts = { buffer = bufnr }
 
@@ -435,6 +459,11 @@ require("lze").load({
 		"nixd",
 		lsp = {
 			filetypes = { "nix" },
+			settings = {
+				formatting = {
+					command = { "nixfmt" },
+				},
+			},
 		},
 	},
 
@@ -631,7 +660,7 @@ require("lze").load({
 				function()
 					require("telescope.builtin").git_commits()
 				end,
-				desc = "[G]it [C]ommits",
+				desc = "[G]it [C]omits",
 			},
 			{
 				"<leader>gs",
@@ -645,7 +674,7 @@ require("lze").load({
 				function()
 					require("telescope.builtin").buffers()
 				end,
-				desc = "[B]uffers",
+				desc = "[B]buffers",
 			},
 		},
 		cmd = { "Telescope" },
@@ -1189,7 +1218,12 @@ require("lze").load({
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				pattern = "*",
 				callback = function(args)
-					require("conform").format({ bufnr = args.buf })
+					require("conform").format({
+						timeout_ms = 1000,
+						async = false,
+						lsp_fallback = true,
+						bufnr = args.buf,
+					})
 				end,
 			})
 		end,
