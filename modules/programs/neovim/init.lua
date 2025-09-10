@@ -67,8 +67,8 @@ vim.o.completeopt = "menu,preview,noselect"
 vim.opt.encoding = "utf-8"
 
 -- Folding
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Command line & Timings
 vim.o.cmdheight = 0
@@ -93,10 +93,10 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("n", "<space>n", ":NvimTreeToggle<CR>", { noremap = true })
 
 -- Move lines up/down (Visual mode)
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move selection down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move selection up" })
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Moves Line Down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Moves Line Up" })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Moves Line Down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Moves Line Up" })
 
 -- Better indenting
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true, desc = "Indent left and reselect" })
@@ -131,13 +131,13 @@ vim.keymap.set(
 	"n",
 	"<leader>e",
 	vim.diagnostic.open_float,
-	{ noremap = true, silent = true, desc = "Open floating diagnostic message" }
+	{ desc = "Open floating diagnostic message" }
 )
 vim.keymap.set(
 	"n",
-	"<leader>q",
+	"<leader>ee",
 	vim.diagnostic.setloclist,
-	{ noremap = true, silent = true, desc = "Open diagnostics list" }
+	{ desc = "Open diagnostics list" }
 )
 
 -- You should instead use these keybindings so that they are still easy to use, but don't conflict
@@ -388,10 +388,24 @@ require("lze").load({
 					vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
 				end,
 			})
+			vim.diagnostic.config({
+				virtual_text = false,
+				signs = true,
+				underline = true,
+				update_in_insert = false,
+				float = {
+					focusable = false,
+					style = "minimal",
+					border = "rounded",
+					source = true,
+					header = "",
+					prefix = "",
+					scope = "line",
+				},
+			})
 		end,
 	},
 
-	-- Individual LSP servers with filetype-based loading
 	{
 		"bashls",
 		lsp = {
@@ -761,7 +775,6 @@ require("lze").load({
 		end,
 	},
 
-	-- Terminal - load on keybind
 	{
 		"toggleterm.nvim",
 		keys = {
@@ -900,8 +913,8 @@ require("lze").load({
 						{
 							icon = "󱉭 ",
 							color = function()
-								local hl = vim.api.nvim_get_hl_by_name("Special", true)
-								return { fg = string.format("#%06x", hl.foreground) }
+								local hl = string.format("#%06X", vim.api.nvim_get_hl(0, { name = "Special" }).fg)
+								return { fg = hl }
 							end,
 							function()
 								return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
@@ -922,7 +935,6 @@ require("lze").load({
 		end,
 	},
 
-	-- Startup screen - load at start (highest priority for first impression)
 	{
 		"alpha-nvim",
 		event = "VimEnter",
@@ -1078,7 +1090,6 @@ require("lze").load({
 		end,
 	},
 
-	-- Copilot - load on insert mode
 	{
 		"copilot.lua",
 		event = "InsertEnter",
@@ -1098,7 +1109,6 @@ require("lze").load({
 		end,
 	},
 
-	-- Fidget (LSP progress) - load with LSP
 	{
 		"fidget.nvim",
 		on_plugin = { "nvim-lspconfig" },
@@ -1256,7 +1266,6 @@ require("lze").load({
 		end,
 	},
 
-	-- Always loaded plugins (minimal startup impact) - Use DeferredUIEnter for better performance
 	{
 		"nvim-colorizer.lua",
 		event = "DeferredUIEnter",
@@ -1273,7 +1282,6 @@ require("lze").load({
 		end,
 	},
 
-	-- Plugins that don't need configuration
 	{
 		"vim-sleuth",
 		event = { "BufReadPre", "BufNewFile" },
