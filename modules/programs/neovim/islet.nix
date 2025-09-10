@@ -70,6 +70,7 @@ in
     highlight("CursorColumn", { bg = c.black })
     highlight("highlightColumn", { bg = c.black })
     highlight("FoldColumn", { fg = c.subtle })
+    highlight("YankHighlight", { fg = c.white, bg = c.light_black })
 
     -- __SEARCH__
     highlight("Search", { fg = c.bg, bg = c.yellow, bold = true })

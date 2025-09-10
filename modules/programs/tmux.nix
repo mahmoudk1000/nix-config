@@ -86,7 +86,7 @@
       set -g status-style bg=black
 
       setw -g window-status-format          "#[fg=white,bg=brightblack] #I #[fg=white,bg=black] #W "
-      setw -g window-status-current-format  "#[fg=white,bg=blue] #I #[fg=white,bg=brightblack] #W "
+      setw -g window-status-current-format  "#[fg=black,bg=blue] #I #[fg=white,bg=brightblack] #W "
 
       # Status Right
       set -g status-right-length 70
