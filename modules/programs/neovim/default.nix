@@ -52,7 +52,6 @@ in
       gopls
       nixd
       ruff
-      nil
       gcc
       fd
       go
@@ -95,6 +94,7 @@ in
       ansible-vim
       playground
       blink-copilot
+      lzextras
     ];
   };
 }

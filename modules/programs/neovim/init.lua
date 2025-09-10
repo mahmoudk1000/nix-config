@@ -177,6 +177,13 @@ vim.filetype.add({
 	},
 })
 
+-- NOTE: Register a handler from lzextras. This one makes it so that
+-- you can set up lsps within lze specs,
+-- and trigger vim.lsp.enable and the rtp config collection only on the correct filetypes
+-- it adds the lsp field used below
+-- (and must be registered before any load calls that use it!)
+require('lze').register_handlers(require('lzextras').lsp)
+
 require("lze").load({
 	{
 		"blink.cmp",
@@ -325,56 +332,25 @@ require("lze").load({
 		end,
 	},
 
-	-- LSP Configuration - load on various triggers (high priority)
 	{
 		"nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
 		priority = 90,
-		after = function()
-			local lsps = {
-				{ "bashls" },
-				{ "jsonls" },
-				{ "marksman" },
-				{ "yamlls" },
-				{ "ansiblels" },
-				{ "dockerls" },
-				{ "docker_compose_language_service" },
-				{ "helm_ls" },
-				{ "texlab" },
-				{ "nil_ls" },
-				{ "terraformls" },
-				{ "tflint" },
-				{ "jsonnet_ls" },
-				{ "ruff" },
-				{ "gopls" },
-				{ "groovyls", { filetypes = { "groovy" }, cmd = { "groovy-language-server" } } },
-				{ "java_language_server", { cmd = { "java-language-server" } } },
-				{
-					"lua_ls",
-					{
-						settings = {
-							Lua = {
-								runtime = { version = "LuaJIT" },
-								diagnostics = { globals = { "vim" } },
-								workspace = {
-									checkThirdParty = false,
-									library = { vim.env.VIMRUNTIME },
-								},
-								telemetry = { enable = false },
-							},
-						},
-					},
-				},
-			}
-
+		on_require = { "lspconfig" },
+		-- define a function to run over all type(plugin.lsp) == table
+		-- when their filetype trigger loads them
+		lsp = function(plugin)
 			local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 			capabilities.general.positionEncodings = { "utf-16" }
 
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("custom_lsp_attach", { clear = true }),
-				callback = function(event)
-					local bufnr = event.buf
-					local client = vim.lsp.get_client_by_id(event.data.client_id)
+			local config = plugin.lsp or {}
+			config.capabilities = capabilities
+
+			vim.lsp.config(plugin.name, config)
+			vim.lsp.enable(plugin.name)
+		end,
+		before = function(_)
+			vim.lsp.config('*', {
+				on_attach = function(_, bufnr)
 					local opts = { buffer = bufnr }
 
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -388,13 +364,147 @@ require("lze").load({
 					vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
 				end,
 			})
-
-			for _, lsp in ipairs(lsps) do
-				local name, config = lsp[1], lsp[2] or {}
-				config.capabilities = capabilities
-				require("lspconfig")[name].setup(config)
-			end
 		end,
+	},
+
+	-- Individual LSP servers with filetype-based loading
+	{
+		"bashls",
+		lsp = {
+			filetypes = { "sh", "bash" },
+		},
+	},
+
+	{
+		"jsonls",
+		lsp = {
+			filetypes = { "json", "jsonc" },
+		},
+	},
+
+	{
+		"marksman",
+		lsp = {
+			filetypes = { "markdown", "markdown.mdx" },
+		},
+	},
+
+	{
+		"yamlls",
+		lsp = {
+			filetypes = { "yaml", "yaml.docker-compose" },
+		},
+	},
+
+	{
+		"ansiblels",
+		lsp = {
+			filetypes = { "yaml.ansible" },
+		},
+	},
+
+	{
+		"dockerls",
+		lsp = {
+			filetypes = { "dockerfile" },
+		},
+	},
+
+	{
+		"docker_compose_language_service",
+		lsp = {
+			filetypes = { "yaml.docker-compose" },
+		},
+	},
+
+	{
+		"helm_ls",
+		lsp = {
+			filetypes = { "helm" },
+		},
+	},
+
+	{
+		"texlab",
+		lsp = {
+			filetypes = { "tex", "plaintex", "bib" },
+		},
+	},
+
+	{
+		"nixd",
+		lsp = {
+			filetypes = { "nix" },
+		},
+	},
+
+	{
+		"terraformls",
+		lsp = {
+			filetypes = { "terraform", "terraform-vars" },
+		},
+	},
+
+	{
+		"tflint",
+		lsp = {
+			filetypes = { "terraform" },
+		},
+	},
+
+	{
+		"jsonnet_ls",
+		lsp = {
+			filetypes = { "jsonnet", "libsonnet" },
+		},
+	},
+
+	{
+		"ruff",
+		lsp = {
+			filetypes = { "python" },
+		},
+	},
+
+	{
+		"gopls",
+		lsp = {
+			filetypes = { "go", "gomod", "gowork", "gotmpl" },
+		},
+	},
+
+	{
+		"groovyls",
+		lsp = {
+			filetypes = { "groovy" },
+			cmd = { "groovy-language-server" },
+		},
+	},
+
+	{
+		"java_language_server",
+		lsp = {
+			filetypes = { "java" },
+			cmd = { "java-language-server" },
+		},
+	},
+
+	{
+		"lua_ls",
+		lsp = {
+			filetypes = { "lua" },
+			settings = {
+				Lua = {
+					runtime = { version = "LuaJIT" },
+					diagnostics = { globals = { "vim" } },
+					workspace = {
+						checkThirdParty = false,
+						library = { vim.env.VIMRUNTIME },
+					},
+					telemetry = { enable = false },
+				},
+			},
+		},
 	},
 
 	{
