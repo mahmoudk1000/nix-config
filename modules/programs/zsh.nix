@@ -122,6 +122,7 @@
           c = "clear";
           q = "exit";
           v = "nvim";
+          "v." = "nvim .";
           m = "ncmpcpp";
 
           ".." = "cd -- ..";
