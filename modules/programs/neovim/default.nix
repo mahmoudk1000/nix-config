@@ -70,7 +70,6 @@ in
       nvim-tree-lua
       toggleterm-nvim
       blink-cmp
-      which-key-nvim
       gitsigns-nvim
       telescope-nvim
       copilot-lua
@@ -81,7 +80,7 @@ in
       conform-nvim
       blink-pairs
       lze
-      nvim-colorizer-lua
+      nvim-highlight-colors
       nui-nvim
       nvim-web-devicons
       tmux-nvim

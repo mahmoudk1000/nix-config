@@ -460,7 +460,7 @@ in
 
     -- __LUALINE__
     highlight("LuaLineNormalA", { fg = c.bg, bg = c.blue, bold = true })
-    highlight("LuaLineNormalB", { fg = c.fg, bg = c.light_black })
+    highlight("LuaLineNormalB", { fg = c.fg })
     highlight("LuaLineNormalC", { fg = c.fg })
     highlight("LuaLineInsertA", { fg = c.bg, bg = c.green, bold = true })
     highlight("LuaLineVisualA", { fg = c.bg, bg = c.purple, bold = true })

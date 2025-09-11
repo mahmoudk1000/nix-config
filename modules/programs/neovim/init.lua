@@ -127,18 +127,8 @@ vim.keymap.set("n", "<leader>w<", "<C-w><", { noremap = true, silent = true, des
 vim.keymap.set("n", "<leader>w>", "<C-w>>", { noremap = true, silent = true, desc = "Increase window width" })
 
 -- Diagnostic keymaps
-vim.keymap.set(
-	"n",
-	"<leader>e",
-	vim.diagnostic.open_float,
-	{ desc = "Open floating diagnostic message" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>ee",
-	vim.diagnostic.setloclist,
-	{ desc = "Open diagnostics list" }
-)
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>ee", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- You should instead use these keybindings so that they are still easy to use, but don't conflict
 vim.keymap.set({ "v", "x", "n" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
@@ -856,9 +846,7 @@ require("lze").load({
 					color_icons = true,
 					show_buffer_icons = true,
 					get_element_icon = function(element)
-						local icon, _ =
-							require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
-
+						local icon, _ = require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
 						return icon, "BufferLineIcon"
 					end,
 					diagnostics = false, -- OR: | "nvim_lsp"
@@ -886,8 +874,8 @@ require("lze").load({
 					icons_enabled = true,
 					always_divide_middle = true,
 					globalstatus = true,
-					component_separators = { left = "|", right = "|" },
-					section_separators = { right = "", left = "" },
+					component_separators = { left = " ", right = " " },
+					section_separators = { right = " ", left = " " },
 					disabled_filetypes = {
 						statusline = { "alpha", "NvimTree" },
 					},
@@ -897,34 +885,35 @@ require("lze").load({
 				},
 				sections = {
 					lualine_a = {
-						{ "mode", icons_enabled = true, icon = "" },
+						{ "mode", icons_enabled = true, icon = " " },
 					},
 					lualine_b = {
-						{ "branch", icon = "" },
-						{ "filename", file_status = true },
+						{ "filename", path = 4 },
 					},
 					lualine_c = {
-						"diff",
+						{ "branch", icon = "" },
 					},
 					lualine_x = {
-						{ "diagnostics", sources = { "nvim_diagnostic" } },
-					},
-					lualine_y = {
 						{
-							icon = "󱉭 ",
-							color = function()
-								local hl = string.format("#%06X", vim.api.nvim_get_hl(0, { name = "Special" }).fg)
-								return { fg = hl }
-							end,
-							function()
-								return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+							"diagnostics",
+							sources = { "nvim_diagnostic" },
+							colored = true,
+							symbols = { error = "󰅚 ", warn = " ", info = " ", hint = "󰛩 " },
+						},
+						"diff",
+						{
+							"filetype",
+							icons_enabled = false,
+							fmt = function(str)
+								return string.upper(str)
 							end,
 						},
 						"progress",
 					},
-					lualine_z = {
-						{ "location", icon = "", padding = { left = 1, right = 1 } },
+					lualine_y = {
+						"location"
 					},
+					lualine_z = {},
 				},
 				extensions = {
 					"fugitive",
@@ -995,59 +984,6 @@ require("lze").load({
 				},
 				opts = {
 					margin = 3,
-				},
-			})
-		end,
-	},
-
-	{
-		"which-key.nvim",
-		keys = { { "<leader>", mode = { "n", "v" } } },
-		after = function()
-			require("which-key").setup({
-				plugins = {
-					marks = true,
-					registers = true,
-					spelling = {
-						enabled = true,
-						suggestions = 20,
-					},
-				},
-				operators = { gc = "Comments" },
-				key_labels = {
-					["<space>"] = "SPC",
-					["<cr>"] = "RET",
-					["<tab>"] = "TAB",
-				},
-				icons = {
-					breadcrumb = "»",
-					separator = "➜",
-					group = "+",
-				},
-				popup_mappings = {
-					scroll_down = "<c-d>",
-					scroll_up = "<c-u>",
-				},
-				window = {
-					border = "rounded",
-					position = "bottom",
-					margin = { 1, 0, 1, 0 },
-					padding = { 2, 2, 2, 2 },
-					winblend = 0,
-				},
-				layout = {
-					height = { min = 4, max = 25 },
-					width = { min = 20, max = 50 },
-					spacing = 3,
-					align = "left",
-				},
-				ignore_missing = true,
-				hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
-				show_help = true,
-				triggers = "auto",
-				triggers_blacklist = {
-					i = { "j", "k" },
-					v = { "j", "k" },
 				},
 			})
 		end,
@@ -1267,10 +1203,10 @@ require("lze").load({
 	},
 
 	{
-		"nvim-colorizer.lua",
+		"nvim-highlight-colors",
 		event = "DeferredUIEnter",
 		after = function()
-			require("colorizer").setup({})
+			require('nvim-highlight-colors').setup({})
 		end,
 	},
 
