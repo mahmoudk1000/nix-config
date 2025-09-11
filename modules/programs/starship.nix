@@ -23,9 +23,9 @@
         fish_style_pwd_dir_length = 2;
         format = "[ \$path ](\$style)[\$read_only](\$read_only_style)";
         repo_root_format = "[ \$before_root_path](\$style)[\$repo_root](\$repo_root_style)[\$path ](\$style)[\$read_only](\$read_only_style)";
-        style = "fg:${theme.base05} bg:${theme.base00}";
-        read_only_style = "fg:${theme.base07} bg:${theme.base00}";
-        repo_root_style = "bold fg:${theme.base06} bg:${theme.base00}";
+        style = "fg:${theme.base05}";
+        read_only_style = "fg:${theme.base07}";
+        repo_root_style = "bold fg:${theme.base06}";
       };
       hostname = {
         disabled = false;
@@ -48,14 +48,14 @@
       };
       git_branch = {
         disabled = false;
-        symbol = "󰊢  ";
+        symbol = " ";
         style = "fg:${theme.base04} bg:${theme.base0A}";
-        format = "[[ ](fg:${theme.base0A} bg:${theme.base00})$symbol$branch[ ](bg:${theme.base00} fg:${theme.base0A})]($style)";
+        format = "[[ ](fg:${theme.base0A})$symbol$branch[ ](fg:${theme.base0A})]($style)";
       };
       git_commit = {
         style = "fg:${theme.base07} bg:${theme.base0A}";
         commit_hash_length = 4;
-        format = "[[ ](fg:${theme.base0A} bg:${theme.base00})#$hash[ ](fg:${theme.base0A} bg:${theme.base00})]($style)";
+        format = "[[ ](fg:${theme.base0A})#$hash[ ](fg:${theme.base0A})]($style)";
       };
       git_state = {
         style = "fg:${theme.base05} bg:${theme.base0A}";
@@ -66,7 +66,7 @@
         bisect = "BISECTING";
         am = "AM";
         am_or_rebase = "AM/REBASE";
-        format = "\([[ ](fg:${theme.base0A} bg:${theme.base00})$state($progress_current/$progress_total)[ ](fg:${theme.base0A} bg:${theme.base00})]($style)\)";
+        format = "\([[ ](fg:${theme.base0A})$state($progress_current/$progress_total)[ ](fg:${theme.base0A})]($style)\)";
       };
       git_status = {
         style = "fg:${theme.base05} bg:${theme.base0A}";
@@ -80,13 +80,15 @@
         modified = " 󰙏 \${count} ";
         staged = " 󰸞 \${count} ";
         untracked = "  \${count} ";
-        format = "([[ ](fg:${theme.base0A} bg:${theme.base00})$stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[ ](fg:${theme.base0A} bg:${theme.base00})]($style))";
+        format = "([[ ](fg:${theme.base0A})$stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[ ](fg:${theme.base0A})]($style))";
       };
       nix_shell = {
         disabled = false;
         impure_msg = "[impure shell](bold red)";
         pure_msg = "[pure shell](bold green)";
-        format = "via [  $state( \($name\))](bold blue) ";
+        symbol = "  ";
+        heuristic = true;
+        format = "via [$symbol$state( \($name\))]($style)";
       };
       aws = {
         disabled = true;
