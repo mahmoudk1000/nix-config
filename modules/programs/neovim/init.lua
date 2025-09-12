@@ -823,6 +823,17 @@ require("lze").load({
 		},
 		after = function()
 			require("bufferline").setup({
+				highlights = {
+					buffer_visible = {
+						fg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "BufferLineCloseButtonVisible" }).fg),
+						bg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "BufferLineCloseButtonVisible" }).bg),
+					},
+					buffer_selected = {
+						fg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Normal" }).fg),
+						bg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "BufferLineCloseButtonSelected" }).bg),
+						bold = true,
+					},
+				},
 				options = {
 					mode = "buffers",
 					numbers = "none",
