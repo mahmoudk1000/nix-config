@@ -911,8 +911,19 @@ require("lze").load({
 								return string.upper(str)
 							end,
 						},
-						"progress",
-						"location",
+						{
+							function()
+								local cur = vim.fn.line('.')
+								local total = vim.fn.line('$')
+								if cur == 1 then
+									return string.format('Top/%d', total)
+								elseif cur == total then
+									return string.format('Bot/%d', total)
+								else
+									return string.format('%d/%d', cur, total)
+								end
+							end
+						},
 					},
 					lualine_y = {},
 					lualine_z = {},
