@@ -94,6 +94,7 @@ in
       playground
       blink-copilot
       lzextras
+      codecompanion-nvim
     ];
   };
 }

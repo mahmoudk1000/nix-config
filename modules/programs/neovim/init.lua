@@ -567,6 +567,14 @@ require("lze").load({
 	},
 
 	{
+		"nvim-web-devicons",
+		on_require = "nvim-web-devicons",
+		after = function()
+			require('nvim-web-devicons').setup({})
+		end
+	},
+
+	{
 		"nvim-tree.lua",
 		keys = {
 			{ "<space>n", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
@@ -845,10 +853,6 @@ require("lze").load({
 					show_buffer_close_icons = true,
 					color_icons = true,
 					show_buffer_icons = true,
-					get_element_icon = function(element)
-						local icon, _ = require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
-						return icon, "BufferLineIcon"
-					end,
 					diagnostics = false, -- OR: | "nvim_lsp"
 					diagnostics_indicator = function(count, level)
 						local icon = level:match("error") and "" or ""
@@ -885,12 +889,11 @@ require("lze").load({
 				},
 				sections = {
 					lualine_a = {
-						{ "mode", icons_enabled = true, icon = " " },
+						{ "mode", icon = " " },
 					},
-					lualine_b = {
-						{ "filename", path = 4 },
-					},
+					lualine_b = {},
 					lualine_c = {
+						{ "filename", path = 4 },
 						{ "branch", icon = "" },
 					},
 					lualine_x = {
@@ -909,10 +912,9 @@ require("lze").load({
 							end,
 						},
 						"progress",
+						"location",
 					},
-					lualine_y = {
-						"location"
-					},
+					lualine_y = {},
 					lualine_z = {},
 				},
 				extensions = {
@@ -1040,6 +1042,62 @@ require("lze").load({
 							telemetryLevel = "off",
 						},
 					},
+				},
+			})
+		end,
+	},
+
+	{
+		"codecompanion",
+		cmd = "CodeCompanion",
+		keys = {
+			{ "<C-x>", ":CodeCompanionActions<CR>", desc = "AI Code Actions" },
+			{ "<C-a>", ":CodeCompanionChat<CR>", desc = "AI Code Chat" },
+			{ "<C-ga>", ":CodeCompanionChat Add<CR>", desc = "AI Code Actions" },
+		},
+		after = function()
+			require("codecompanion").setup({
+				strategies = {
+					chat = {
+						adapter = "copilot",
+						roles = {
+							-- https://github.com/olimorris/codecompanion.nvim/discussions/1094
+							llm = function(adapter)
+								local model = ""
+								if adapter.schema and adapter.schema.model and adapter.schema.model.default then
+									model = adapter.schema.model.default
+									if type(model) == "function" then
+										model = model(adapter)
+									end
+								end
+
+								return "  " .. adapter.formatted_name .. " (" .. model .. ")"
+							end,
+							user = "Mahmoud",
+						},
+					},
+					inline = {
+						adapter = "copilot",
+					},
+				},
+				display = {
+					chat = {
+						window = {
+							position = "right",
+							width = 0.33,
+						},
+					},
+				},
+				adapters = {
+					copilot = function()
+						return require("codecompanion.adapters").extend("copilot", {
+							schema = {
+								model = {
+									default = "gpt-4.1",
+								},
+							},
+						})
+					end,
 				},
 			})
 		end,

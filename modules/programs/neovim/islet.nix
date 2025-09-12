@@ -41,7 +41,6 @@ in
 
     local function highlight(group, opts)
         opts.force = true
-        opts.cterm = opts.cterm or {}
 
         vim.api.nvim_set_hl(0, group, opts)
     end
@@ -438,29 +437,27 @@ in
     highlight("NeoTreeFileIcon", { fg = c.blue })
 
     -- __BUFFERLINE__
-    highlight("BufferLineFill", { fg = c.black })
-    highlight("BufferLineSeparator", { fg = c.black })
-    highlight("BufferLineIndicatorVisible", { fg = c.light_black, bg = c.black })
+    highlight("BufferLineFill", { fg = c.bg })
+    highlight("BufferLineSeparator", { fg = c.bg })
+    highlight("BufferLineIndicatorVisible", { fg = c.bg, bg = c.light_black })
     highlight("BufferLineIndicatorSelected", { fg = c.blue })
     highlight("BufferLineCloseButton", { bg = c.white, fg = c.black })
-    highlight("BufferLineCloseButtonVisible", { bg = c.white, fg = c.black })
-    highlight("BufferLineCloseButtonSelected", { bg = c.red, fg = c.light_black })
+    highlight("BufferLineCloseButtonVisible", { bg = c.white, fg = c.light_black })
+    highlight("BufferLineCloseButtonSelected", { bg = c.red, fg = c.bg })
     highlight("BufferLineBackground", { fg = c.black, bg = c.fg })
-    highlight("BufferLineBufferVisible", { bg = c.subtle, fg = c.black })
+    highlight("BufferLineBufferVisible", { bg = c.subtle, fg = c.light_black })
     highlight("BufferLineDuplicate", { fg = c.white, bg = c.black })
     highlight("BufferLineDuplicateVisible", { fg = c.white, bg = c.light_black })
-    highlight("BufferLineBufferSelected", { fg = c.light_black, bg = c.fg })
+    highlight("BufferLineBufferSelected", { fg = c.bg, bg = c.fg })
     highlight("BufferLineDuplicateSelected", { fg = c.white, bg = c.bg })
     highlight("BufferLineTabSeparator", { fg = c.black, bg = c.bg })
     highlight("BufferLineTabSeparatorSelected", { fg = c.blue, bg = c.bg })
-    highlight("BufferLineDevIconDefaultInactive", { bg = "NONE", ctermfg = "NONE" })
     highlight("BufferLineModifiedSelected", { fg = c.light_black, bg = c.green })
     highlight("BufferLineModifiedVisible", { fg = c.black, bg = c.green })
-    highlight("BufferLineIcon", { fg = c.blue, bg = c.black })
 
     -- __LUALINE__
     highlight("LuaLineNormalA", { fg = c.bg, bg = c.blue, bold = true })
-    highlight("LuaLineNormalB", { fg = c.fg })
+    highlight("LuaLineNormalB", { fg = c.fg, bg = c.black })
     highlight("LuaLineNormalC", { fg = c.fg })
     highlight("LuaLineInsertA", { fg = c.bg, bg = c.green, bold = true })
     highlight("LuaLineVisualA", { fg = c.bg, bg = c.purple, bold = true })

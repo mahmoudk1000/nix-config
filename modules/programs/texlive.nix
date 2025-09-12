@@ -26,6 +26,7 @@
         xkeyval
         xurl
         xifthen
+        titlesec
         ;
     };
   };
