@@ -61,40 +61,35 @@ in
       pynvim
     ]);
     plugins = with pkgs.vimPlugins; [
-      nvim-treesitter.withAllGrammars
-      alpha-nvim
-      bufferline-nvim
-      indent-blankline-nvim
-      nvim-lspconfig
-      lualine-nvim
-      nvim-tree-lua
-      toggleterm-nvim
+      ansible-vim
       blink-cmp
-      gitsigns-nvim
-      telescope-nvim
+      blink-copilot
+      blink-pairs
+      bufferline-nvim
+      codecompanion-nvim
+      conform-nvim
       copilot-lua
       fidget-nvim
+      lualine-nvim
       luasnip
-      vimtex
-      nvim-lint
-      conform-nvim
-      blink-pairs
       lze
-      nvim-highlight-colors
+      lzextras
       nui-nvim
+      nvim-highlight-colors
+      nvim-lint
+      nvim-lspconfig
+      nvim-treesitter-textsubjects
+      nvim-treesitter.withAllGrammars
       nvim-web-devicons
+      snacks-nvim
       tmux-nvim
       vim-gitgutter
+      vim-helm
       vim-nix
       vim-sleuth
       vim-terraform
+      vimtex
       vim-yaml
-      vim-helm
-      ansible-vim
-      playground
-      blink-copilot
-      lzextras
-      codecompanion-nvim
     ];
   };
 }

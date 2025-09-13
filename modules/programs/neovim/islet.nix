@@ -170,7 +170,7 @@ in
     -- __COMMENT__
     highlight("Todo", { fg = c.norm, bg = c.bg, bold = true })
     highlight("Question", { fg = c.light_cyan, bold = true })
-    highlight("Comment", { fg = c.subtle, italic = true })
+    highlight("Comment", { fg = c.light_black, italic = true })
     highlight("SpecialComment", { fg = c.red })
     highlight("Conceal", { fg = c.light_black })
 
@@ -274,10 +274,10 @@ in
     highlight("@diff.plus", { link = "DiffAdd" })
     highlight("@error", { link = "Error" })
     highlight("@exception", { link = "Exception" })
-    highlight("@function", { fg = c.green, bold = true })
+    highlight("@function", { fg = c.norm, bold = true })
     highlight("@function.builtin", { fg = c.green, bold = true })
     highlight("@function.macro", { fg = c.cyan, bold = true })
-    highlight("@function.method", { fg = c.green, bold = true })
+    highlight("@function.method", { fg = c.light_blue, bold = true })
     highlight("@keyword.conditional", { fg = c.red })
     highlight("@keyword.import", { link = "Include" })
     highlight("@keyword.repeat", { fg = c.red })
@@ -384,47 +384,6 @@ in
     highlight("GitGutterDeleteLn", { bg = c.light_black })
     highlight("GitGutterCurrentLineBlame", { fg = c.light_black, italic = true })
 
-    -- __TELESCOPE__
-    highlight("TelescopePromptBorder", { fg = c.green })
-    highlight("TelescopeResultsBorder", { fg = c.subtle })
-    highlight("TelescopePreviewBorder", { fg = c.blue })
-    highlight("TelescopeSelectionCaret", { fg = c.blue, bold = true })
-    highlight("TelescopeSelection", { fg = c.white, bg = c.light_black })
-    highlight("TelescopeMatching", { fg = c.yellow, bold = true })
-    highlight("TelescopeNormal", { fg = c.norm, bg = c.black })
-    highlight("TelescopeBorder", { fg = c.subtle, bg = c.black })
-    highlight("TelescopePromptPrefix", { fg = c.green, bold = true })
-    highlight("TelescopePromptTitle", { fg = c.green, bold = true })
-    highlight("TelescopeResultsTitle", { fg = c.subtle })
-    highlight("TelescopePreviewTitle", { fg = c.blue, bold = true })
-
-    -- __COPILOT__
-    highlight("CopilotLabel", { fg = c.light_black, italic = true })
-    highlight("CmpItemKindCopilot", { fg = c.cyan, bold = true })
-
-    -- __INDENT BLANKLINE__
-    highlight("IndentBlanklineChar", { fg = c.light_black })
-    highlight("IndentBlanklineContextChar", { fg = c.subtle, bold = true })
-    highlight("IndentBlanklineContextStart", { underline = true, sp = c.subtle })
-
-    -- __BUFFERLINE__
-    highlight("BufferLineFill", { fg = "NONE", bg = c.black })
-    highlight("BufferLineSeparator", { fg = c.black, bg = c.black })
-    highlight("BufferLineIndicatorVisible", { fg = c.light_black, bg = c.light_black })
-    highlight("BufferLineIndicatorSelected", { fg = c.yellow, bg = c.bg })
-    highlight("BufferLineCloseButton", { fg = c.subtle, bg = c.light_black })
-    highlight("BufferLineCloseButtonVisible", { fg = c.subtle, bg = c.light_black })
-    highlight("BufferLineCloseButtonSelected", { fg = c.red, bg = c.bg })
-    highlight("BufferLineBackground", { fg = c.subtle, bg = c.light_black })
-    -- Just to fix the icons coloring
-    -- highlight("BufferLineBufferVisible", { fg = c.fg, bg = c.light_black })
-    -- highlight("BufferLineBufferSelected", { fg = c.norm, bg = c.bg, bold = true })
-    highlight("BufferLineTabSeparator", { fg = c.black, bg = c.light_black })
-    highlight("BufferLineTabSeparatorSelected", { fg = c.bg, bg = c.bg })
-    highlight("BufferLineModified", { fg = c.green, bg = "NONE" })
-    highlight("BufferLineModifiedSelected", { fg = c.green, bg = "NONE" })
-    highlight("BufferLineModifiedVisible", { fg = c.green, bg = "NONE" })
-
     -- __LUALINE__
     highlight("LuaLineNormalA", { fg = c.bg, bg = c.blue, bold = true })
     highlight("LuaLineNormalB", { fg = c.norm, bg = c.black })
@@ -432,18 +391,6 @@ in
     highlight("LuaLineInsertA", { fg = c.bg, bg = c.green, bold = true })
     highlight("LuaLineVisualA", { fg = c.bg, bg = c.purple, bold = true })
     highlight("LuaLineReplaceA", { fg = c.bg, bg = c.yellow, bold = true })
-
-    -- __NvimTree__
-    highlight("NvimTreeCursorLine", { link = "CursorLine" })
-    highlight("NvimTreeEmptyFolderName", { fg = c.light_black, bg = "NONE" })
-    highlight("NvimTreeEndOfBuffer", { link = "EndOfBuffer" })
-    highlight("NvimTreeFolderIcon", { link = "Directory" })
-    highlight("NvimTreeFolderName", { fg = c.fg, bg = "NONE" })
-    highlight("NvimTreeNormal", { link = "Normal" })
-    highlight("NvimTreeOpenedFolderName", { link = "NvimTreeFolderName" })
-    highlight("NvimTreeRootFolder", { fg = c.fg, bg = "NONE", bold = true })
-    highlight("NvimTreeSpecialFile", { fg = c.cyan, bg = "NONE", underline = true })
-    highlight("NvimTreeStatusLine", { bg = "NONE" })
 
     -- __BLINK_PAIRS__
     highlight("BlinkPairsYellow", { fg = c.yellow })

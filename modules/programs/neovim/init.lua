@@ -90,8 +90,6 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Disable space in normal and visual mode (since it's our leader)
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
-vim.keymap.set("n", "<space>n", ":NvimTreeToggle<CR>", { noremap = true })
-
 -- Move lines up/down (Visual mode)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
@@ -108,11 +106,8 @@ vim.keymap.set("n", "<A-C-Up>", "yyp", { noremap = true, silent = true })
 vim.keymap.set("v", "<leader>ds", "y'>p", { noremap = true, silent = true, desc = "[D]uplicate [S]election" })
 
 -- Comments
-vim.keymap.set("n", "<leader>c", "gcc", { remap = true, silent = true, desc = "[[C]]omment Line" })
-vim.keymap.set("v", "<leader>/", "gc", { remap = true, silent = true, desc = "[[C]]omment Selection" })
-
--- Paste without losing register
-vim.keymap.set("x", "<leader>p", [["_dP]], { noremap = true, silent = true, desc = "Paste without losing register" })
+vim.keymap.set("n", "<leader>c", "gcc", { remap = true, silent = true, desc = "[C]omment Line" })
+vim.keymap.set("v", "<leader>/", "gc", { remap = true, silent = true, desc = "[C]omment Selection" })
 
 -- WINDOW MANAGEMENT - <leader>w prefix
 vim.keymap.set("n", "<leader>wh", "<C-w>h", { noremap = true, silent = true, desc = "Go to left window" })
@@ -128,7 +123,6 @@ vim.keymap.set("n", "<leader>w>", "<C-w>>", { noremap = true, silent = true, des
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set("n", "<leader>ee", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- You should instead use these keybindings so that they are still easy to use, but don't conflict
 vim.keymap.set({ "v", "x", "n" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
@@ -151,6 +145,12 @@ vim.keymap.set(
 	'"_dP',
 	{ noremap = true, silent = true, desc = "Paste over selection without erasing unnamed register" }
 )
+
+-- Buffers
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", { noremap = true, silent = true, desc = "Go to next buffer" })
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { noremap = true, silent = true, desc = "Go to previous buffer" })
+vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { noremap = true, silent = true, desc = "Delete current buffer" })
+vim.keymap.set("n", "<leader>bD", ":bufdo bdelete<CR>", { noremap = true, silent = true, desc = "Delete all buffers" })
 
 -- Replace
 vim.keymap.set(
@@ -544,25 +544,76 @@ require("lze").load({
 		"nvim-treesitter",
 		event = { "BufReadPost", "BufNewFile" },
 		priority = 100,
-		after = function()
-			require("nvim-treesitter.configs").setup({
-				highlight = {
-					enable = true,
-					additional_vim_regex_highlighting = false,
-				},
-				indent = {
-					enable = true,
-				},
-				incremental_selection = {
-					enable = true,
-					keymaps = {
-						init_selection = "gnn",
-						node_incremental = "grn",
-						node_decremental = "grm",
-						scope_incremental = "grc",
-					},
-				},
+		load = function(name)
+			require("lzextras").loaders.multi({
+				name,
+				"nvim-treesitter-textobjects",
 			})
+		end,
+		after = function()
+			vim.defer_fn(function()
+				require("nvim-treesitter.configs").setup({
+					highlight = {
+						enable = true,
+						additional_vim_regex_highlighting = false,
+					},
+					indent = {
+						enable = true,
+					},
+					incremental_selection = {
+						enable = true,
+						keymaps = {
+							init_selection = "gnn",
+							node_incremental = "grn",
+							node_decremental = "grm",
+							scope_incremental = "grc",
+						},
+					},
+					textobjects = {
+						select = {
+							enable = true,
+							lookahead = true,
+							keymaps = {
+								["aa"] = "@parameter.outer",
+								["ia"] = "@parameter.inner",
+								["af"] = "@function.outer",
+								["if"] = "@function.inner",
+								["ac"] = "@class.outer",
+								["ic"] = "@class.inner",
+							},
+						},
+						move = {
+							enable = true,
+							set_jumps = true,
+							goto_next_start = {
+								["]m"] = "@function.outer",
+								["]]"] = "@class.outer",
+							},
+							goto_next_end = {
+								["]M"] = "@function.outer",
+								["]["] = "@class.outer",
+							},
+							goto_previous_start = {
+								["[m"] = "@function.outer",
+								["[["] = "@class.outer",
+							},
+							goto_previous_end = {
+								["[M"] = "@function.outer",
+								["[]"] = "@class.outer",
+							},
+						},
+						swap = {
+							enable = true,
+							swap_next = {
+								["<leader>a"] = "@parameter.inner",
+							},
+							swap_previous = {
+								["<leader>A"] = "@parameter.inner",
+							},
+						},
+					},
+				})
+			end, 0)
 		end,
 	},
 
@@ -570,305 +621,189 @@ require("lze").load({
 		"nvim-web-devicons",
 		on_require = "nvim-web-devicons",
 		after = function()
-			require('nvim-web-devicons').setup({})
-		end
-	},
-
-	{
-		"nvim-tree.lua",
-		keys = {
-			{ "<space>n", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
-			{ "<C-n>", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
-		},
-		cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeRefresh" },
-		after = function()
-			require("nvim-tree").setup({
-				hijack_cursor = true,
-				disable_netrw = true,
-				hijack_netrw = true,
-				prefer_startup_root = true,
-				respect_buf_cwd = false,
-				update_focused_file = {
-					enable = true,
-					update_root = true,
-				},
-				actions = {
-					change_dir = { global = true },
-					open_file = { quit_on_open = true },
-				},
-				renderer = {
-					root_folder_label = false,
-					full_name = false,
-					add_trailing = false,
-					group_empty = false,
-					icons = {
-						webdev_colors = false,
-						git_placement = "after",
-					},
-					indent_markers = {
-						enable = true,
-					},
-				},
-				hijack_directories = {
-					enable = true,
-					auto_open = true,
-				},
-				view = {
-					width = 35,
-					adaptive_size = false,
-					relativenumber = true,
-				},
-			})
-			vim.api.nvim_create_autocmd({ "QuitPre" }, {
-				callback = function()
-					vim.cmd("NvimTreeClose")
-				end,
-			})
+			require("nvim-web-devicons").setup({})
 		end,
 	},
 
 	{
-		"telescope.nvim",
+		"snacks.nvim",
+		priority = 1000,
+		lazy = false,
 		keys = {
+			{
+				"<A-t>",
+				function()
+					require("snacks").terminal()
+				end,
+				desc = "Toggle Terminal",
+			},
+			{
+				"<A-f>",
+				function()
+					require("snacks").terminal(nil, { win = { position = "float", height = 0.8 } })
+				end,
+				desc = "Toggle [F]loating Terminal",
+			},
+			{
+				"<C-n>",
+				function()
+					require("snacks").picker.explorer()
+				end,
+				desc = "Toggle File Explorer",
+			},
 			{
 				"<leader>/",
 				function()
-					require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-						previewer = false,
-					}))
+					require("snacks").picker.lines()
 				end,
-				desc = "[/] Fuzzily search in current buffer]",
+				desc = "Fuzzily Search in Current Buffer",
 			},
 			{
 				"<leader>sf",
 				function()
-					require("telescope.builtin").find_files()
+					require("snacks").picker.files()
 				end,
 				desc = "[S]earch [F]iles",
 			},
 			{
 				"<leader>sh",
 				function()
-					require("telescope.builtin").help_tags()
+					require("snacks").picker.help()
 				end,
 				desc = "[S]earch [H]elp",
 			},
 			{
 				"<leader>sw",
 				function()
-					require("telescope.builtin").grep_string()
+					require("snacks").picker.grep_word()
 				end,
-				desc = "[S]earch current [W]ord",
+				desc = "[S]earch [W]ord",
+				mode = { "n", "x" },
 			},
 			{
 				"<leader>sg",
 				function()
-					require("telescope.builtin").live_grep()
+					require("snacks").picker.grep()
 				end,
 				desc = "[S]earch by [G]rep",
 			},
 			{
 				"<leader>gc",
 				function()
-					require("telescope.builtin").git_commits()
+					require("snacks").picker.git_log()
 				end,
 				desc = "[G]it [C]omits",
 			},
 			{
 				"<leader>gs",
 				function()
-					require("telescope.builtin").git_status()
+					require("snacks").picker.git_status()
 				end,
-				desc = "[G]it [S]tatus",
+				desc = "Git Status",
 			},
 			{
-				"<A-Tab>",
+				"<leader>sb",
 				function()
-					require("telescope.builtin").buffers()
+					require("snacks").picker.buffers()
 				end,
-				desc = "[B]buffers",
+				desc = "[S]earch [B]buffers",
+			},
+			{
+				"<leader>sd",
+				function()
+					require("snacks").picker.diagnostics()
+				end,
+				desc = "[S]earch [D]iagnostics",
+			},
+			{
+				"<leader>sD",
+				function()
+					require("snacks").picker.diagnostics_buffer()
+				end,
+				desc = "[S]earch Buffer [D]iagnostics",
+			},
+			{
+				"<leader>gB",
+				function()
+					require("snacks").gitbrowse()
+				end,
+				desc = "[G]it [B]rowse",
+			},
+			{
+				"<leader>gb",
+				function()
+					require("snacks.git").blame_line()
+				end,
+				desc = "[G]it [B]lame Line",
 			},
 		},
-		cmd = { "Telescope" },
 		after = function()
-			require("telescope").setup({
-				defaults = {
-					prompt_prefix = "   ",
-					selection_caret = "  ",
-					entry_prefix = "  ",
-					color_devicons = true,
-					initial_mode = "insert",
-					selection_strategy = "reset",
-					sorting_strategy = "ascending",
-					layout_strategy = "horizontal",
-					file_sorter = require("telescope.sorters").get_fuzzy_file,
-					file_ignore_patterns = { "node_modules" },
-					generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-					path_display = { "truncate" },
-					layout_config = {
-						horizontal = {
-							prompt_position = "top",
-							preview_width = 0.55,
-							results_width = 0.8,
-						},
-						vertical = {
-							mirror = false,
-						},
-						width = 0.87,
-						height = 0.80,
-						preview_cutoff = 120,
-					},
-					border = {},
-					borderchars = {
-						prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
-						results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
-						preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-					},
-					mappings = {
-						i = {
-							["<C-u>"] = false,
-							["<C-d>"] = false,
-						},
+			require("snacks").setup({
+				bigfile = { enabled = true },
+				quickfile = { enabled = true },
+				statuscolumn = {
+					enabled = true,
+					left = { "mark", "sign" },
+					right = { "fold", "git" },
+					git = {
+						patterns = { "GitSign", "MiniDiffSign" },
 					},
 				},
-			})
-		end,
-	},
-
-	{
-		"gitsigns.nvim",
-		event = { "BufRead" },
-		after = function()
-			require("gitsigns").setup({
-				signs = {
-					add = { text = "+" },
-					change = { text = "~" },
-					delete = { text = "_" },
-					topdelete = { text = "‾" },
-					changedelete = { text = "~" },
-					untracked = { text = "┆" },
-				},
-				signcolumn = true,
-				numhl = false,
-				linehl = false,
-				word_diff = false,
-				watch_gitdir = {
-					follow_files = true,
-				},
-				auto_attach = true,
-				attach_to_untracked = false,
-				current_line_blame = false,
-				sign_priority = 6,
-				update_debounce = 100,
-				status_formatter = nil,
-				max_file_length = 40000,
-				preview_config = {
-					border = "single",
-					style = "minimal",
-					relative = "cursor",
-					row = 0,
-					col = 1,
-				},
-			})
-		end,
-	},
-
-	{
-		"toggleterm.nvim",
-		keys = {
-			{ "<A-t>", ":ToggleTerm<CR>", desc = "Toggle terminal" },
-			{ "<A-f>", ":ToggleTerm direction=float<CR>", desc = "Toggle floating terminal" },
-		},
-		cmd = { "ToggleTerm" },
-		after = function()
-			require("toggleterm").setup({
-				size = function(term)
-					if term.direction == "horizontal" then
-						return 15
-					elseif term.direction == "vertical" then
-						return vim.o.columns * 0.4
-					end
-				end,
-				hide_numbers = true,
-				open_mapping = [[<c-\>]],
-				shade_filetypes = {},
-				shade_terminals = true,
-				shading_factor = "1",
-				start_in_insert = true,
-				persist_size = true,
-				persist_mode = false,
-				close_on_exit = true,
-				auto_scroll = true,
-				shell = vim.o.shell,
-				direction = "horizontal",
-				highlights = {
-					Normal = { link = "Normal" },
-					NormalFloat = { link = "NormalFloat" },
-					WinSeparator = { link = "WinSeparator" },
-					FloatBorder = { link = "FloatBorder" },
-				},
-				float_opts = {
-					border = "single",
-				},
-			})
-		end,
-	},
-
-	{
-		"bufferline.nvim",
-		event = "DeferredUIEnter",
-		keys = {
-			{ "<A-Right>", ":BufferLineCycleNext<CR>", desc = "Next buffer" },
-			{ "<A-Left>", ":BufferLineCyclePrev<CR>", desc = "Previous buffer" },
-		},
-		after = function()
-			require("bufferline").setup({
-				highlights = {
-					buffer_visible = {
-						fg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "BufferLineCloseButtonVisible" }).fg),
-						bg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "BufferLineCloseButtonVisible" }).bg),
-					},
-					buffer_selected = {
-						fg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Normal" }).fg),
-						bg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "BufferLineCloseButtonSelected" }).bg),
-						bold = true,
+				input = { enabled = true },
+				terminal = {
+					enabled = true,
+					win = {
+						position = "bottom",
+						height = 0.4,
+						border = "rounded",
 					},
 				},
-				options = {
-					mode = "buffers",
-					numbers = "none",
-					offsets = {
-						{
-							filetype = "NvimTree",
-							text = "󰉓  NvimTree",
-							-- text = function()
-							-- 	return vim.fn.fnamemodify(vim.fn.getcwd(), ":~") --(".", ":p:h:t")
-							-- end,
-							highlight = "BufferLineBufferSelected",
-							text_align = "center",
+				explorer = {
+					enabled = true,
+					width = 35,
+					focus = "list",
+					auto_close = false,
+					tree = true,
+					diagnostics = true,
+					git_status = true,
+					follow_file = true,
+				},
+				picker = {
+					enabled = true,
+					win = {
+						input = {
+							keys = {
+								["<C-u>"] = { "list_scroll_up", mode = { "i", "n" } },
+								["<C-d>"] = { "list_scroll_down", mode = { "i", "n" } },
+							},
 						},
 					},
-					indicator = { style = "none" },
-					separator_style = "thin",
-					buffer_close_icon = "✘",
-					modified_icon = "",
-					close_icon = "✘",
-					show_close_icon = true,
-					left_trunc_marker = "",
-					right_trunc_marker = "",
-					max_name_length = 20,
-					max_prefix_length = 13,
-					tab_size = 20,
-					show_tab_indicators = true,
-					enforce_regular_tabs = false,
-					show_buffer_close_icons = true,
-					color_icons = true,
-					show_buffer_icons = true,
-					diagnostics = false, -- OR: | "nvim_lsp"
-					diagnostics_indicator = function(count, level)
-						local icon = level:match("error") and "" or ""
-						return " " .. icon .. " " .. count
-					end,
+					sources = {
+						explorer = {
+							layout = { preset = "sidebar", preview = false },
+							formatters = {
+								file = { filename_only = false },
+							},
+						},
+					},
+				},
+				indent = {
+					enabled = true,
+					indent = {
+						char = "┊",
+						only_scope = false,
+						only_current = false,
+					},
+					scope = {
+						enabled = true,
+						char = "┊",
+					},
+				},
+				git = {
+					enabled = true,
+				},
+				gitbrowse = {
+					enabled = true,
 				},
 			})
 		end,
@@ -924,16 +859,16 @@ require("lze").load({
 						},
 						{
 							function()
-								local cur = vim.fn.line('.')
-								local total = vim.fn.line('$')
+								local cur = vim.fn.line(".")
+								local total = vim.fn.line("$")
 								if cur == 1 then
-									return string.format('Top/%d', total)
+									return string.format("Top/%d", total)
 								elseif cur == total then
-									return string.format('Bot/%d', total)
+									return string.format("Bot/%d", total)
 								else
-									return string.format('%d/%d', cur, total)
+									return string.format("%d/%d", cur, total)
 								end
-							end
+							end,
 						},
 					},
 					lualine_y = {},
@@ -943,108 +878,6 @@ require("lze").load({
 					"fugitive",
 					"toggleterm",
 					"nvim-tree",
-				},
-			})
-		end,
-	},
-
-	{
-		"alpha-nvim",
-		event = "VimEnter",
-		priority = 1000,
-		after = function()
-			local dashboard = require("alpha.themes.dashboard")
-			dashboard.section.header = {
-				type = "text",
-				val = {
-					[[  ██████   █████ █████   █████ █████ ██████   ██████ ]],
-					[[ ░░██████ ░░███ ░░███   ░░███ ░░███ ░░██████ ██████  ]],
-					[[  ░███░███ ░███  ░███    ░███  ░███  ░███░█████░███  ]],
-					[[  ░███░░███░███  ░███    ░███  ░███  ░███░░███ ░███  ]],
-					[[  ░███ ░░██████  ░░███   ███   ░███  ░███ ░░░  ░███  ]],
-					[[  ░███  ░░█████   ░░░█████░    ░███  ░███      ░███  ]],
-					[[  █████  ░░█████    ░░███      █████ █████     █████ ]],
-					[[ ░░░░░    ░░░░░      ░░░      ░░░░░ ░░░░░     ░░░░░  ]],
-					[[ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ]],
-				},
-				opts = {
-					hl = "Keyword",
-					position = "center",
-				},
-			}
-
-			dashboard.section.buttons = {
-				type = "group",
-				val = {
-					dashboard.button("n f", "  New File", ":ene <BAR> startinsert<CR>"),
-					dashboard.button("f f", "  Find File", ":Telescope find_files<CR>"),
-					dashboard.button("b k", "  Bookmarks", ":Telescope marks<CR>"),
-					dashboard.button("r l", "󰒲  Recent Files", ":Telescope oldfiles<CR>"),
-				},
-				opts = {
-					spacing = 1,
-					-- hl_shortcut = "Special",
-					position = "center",
-				},
-			}
-
-			dashboard.section.footer = {
-				type = "text",
-				val = "Programming isn't about what you know; it's about what you can figure out.",
-				opts = {
-					hl = "Comment",
-					position = "center",
-				},
-			}
-
-			require("alpha").setup({
-				layout = {
-					{ type = "padding", val = vim.fn.max({ 2, vim.fn.floor(vim.fn.winheight(0) * 0.33) }) },
-					dashboard.section.header,
-					{ type = "padding", val = 3 },
-					dashboard.section.buttons,
-					{ type = "padding", val = 3 },
-					dashboard.section.footer,
-				},
-				opts = {
-					margin = 3,
-				},
-			})
-		end,
-	},
-
-	{
-		"indent-blankline.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		after = function()
-			require("ibl").setup({
-				indent = {
-					char = "┊",
-					tab_char = "→",
-				},
-				scope = {
-					enabled = true,
-					show_start = false,
-					show_end = false,
-				},
-				whitespace = {
-					remove_blankline_trail = true,
-				},
-				exclude = {
-					filetypes = {
-						"help",
-						"terminal",
-						"dashboard",
-						"alpha",
-						"packer",
-						"TelescopePrompt",
-						"TelescopeResults",
-						"mason",
-						"v",
-					},
-					buftypes = {
-						"terminal",
-					},
 				},
 			})
 		end,
@@ -1286,7 +1119,7 @@ require("lze").load({
 		"nvim-highlight-colors",
 		event = "DeferredUIEnter",
 		after = function()
-			require('nvim-highlight-colors').setup({})
+			require("nvim-highlight-colors").setup({})
 		end,
 	},
 
