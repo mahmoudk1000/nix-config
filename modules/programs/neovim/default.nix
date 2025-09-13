@@ -70,6 +70,7 @@ in
       conform-nvim
       copilot-lua
       fidget-nvim
+      gitsigns-nvim
       lualine-nvim
       luasnip
       lze
@@ -83,7 +84,6 @@ in
       nvim-web-devicons
       snacks-nvim
       tmux-nvim
-      vim-gitgutter
       vim-helm
       vim-nix
       vim-sleuth

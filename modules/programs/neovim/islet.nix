@@ -372,18 +372,6 @@ in
     highlight("LspDiagnosticsVirtualTextHint", { link = "DiagnosticVirtualTextHint" })
     highlight("LspDiagnosticsUnderlineHint", { link = "DiagnosticUnderlineHint" })
 
-    -- __GIT GUTTER__
-    highlight("GitGutterAdd", { fg = c.green, bold = true })
-    highlight("GitGutterAddNr", { fg = c.green })
-    highlight("GitGutterAddLn", { bg = c.light_black })
-    highlight("GitGutterChange", { fg = c.yellow, bold = true })
-    highlight("GitGutterChangeNr", { fg = c.yellow })
-    highlight("GitGutterChangeLn", { bg = c.light_black })
-    highlight("GitGutterDelete", { fg = c.red, bold = true })
-    highlight("GitGutterDeleteNr", { fg = c.red })
-    highlight("GitGutterDeleteLn", { bg = c.light_black })
-    highlight("GitGutterCurrentLineBlame", { fg = c.light_black, italic = true })
-
     -- __LUALINE__
     highlight("LuaLineNormalA", { fg = c.bg, bg = c.blue, bold = true })
     highlight("LuaLineNormalB", { fg = c.norm, bg = c.black })

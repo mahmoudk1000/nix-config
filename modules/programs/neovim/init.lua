@@ -677,8 +677,8 @@ require("lze").load({
 				function()
 					require("snacks").picker.grep_word()
 				end,
-				desc = "[S]earch [W]ord",
 				mode = { "n", "x" },
+				desc = "[S]earch [W]ord",
 			},
 			{
 				"<leader>sg",
@@ -727,6 +727,7 @@ require("lze").load({
 				function()
 					require("snacks").gitbrowse()
 				end,
+				mode = { "n", "v" },
 				desc = "[G]it [B]rowse",
 			},
 			{
@@ -1089,6 +1090,44 @@ require("lze").load({
 	},
 
 	{
+		"gitsigns.nvim",
+		event = { "BufRead" },
+		after = function()
+			require("gitsigns").setup({
+				signs = {
+					add = { text = "+" },
+					change = { text = "~" },
+					delete = { text = "_" },
+					topdelete = { text = "‾" },
+					changedelete = { text = "~" },
+					untracked = { text = "┆" },
+				},
+				signcolumn = true,
+				numhl = false,
+				linehl = false,
+				word_diff = false,
+				watch_gitdir = {
+					follow_files = true,
+				},
+				auto_attach = true,
+				attach_to_untracked = false,
+				current_line_blame = false,
+				sign_priority = 6,
+				update_debounce = 100,
+				status_formatter = nil,
+				max_file_length = 40000,
+				preview_config = {
+					border = "single",
+					style = "minimal",
+					relative = "cursor",
+					row = 0,
+					col = 1,
+				},
+			})
+		end,
+	},
+
+	{
 		"blink-pairs",
 		on_plugin = { "blink.cmp" },
 		after = function()
@@ -1134,11 +1173,6 @@ require("lze").load({
 	{
 		"vim-sleuth",
 		event = { "BufReadPre", "BufNewFile" },
-	},
-
-	{
-		"vim-gitgutter",
-		event = { "BufRead", "BufNewFile" },
 	},
 
 	{
