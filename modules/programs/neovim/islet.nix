@@ -134,13 +134,13 @@ in
     -- __SYNTAX__
     highlight("Function", { fg = c.green, bold = true })
     highlight("Identifier", { fg = c.norm })
-    highlight("Type", { fg = c.yellow, bold = true })
+    highlight("Type", { fg = c.light_blue, bold = true })
     highlight("Variable", { fg = c.fg })
     highlight("Statement", { fg = c.red })
     highlight("Include", { fg = c.cyan, bold = true })
     highlight("Special", { fg = c.light_cyan })
     highlight("Keyword", { fg = c.blue, bold = true })
-    highlight("Conditional", { fg = c.red })
+    highlight("Conditional", { fg = c.purple, bold = true })
     highlight("Repeat", { fg = c.red })
     highlight("Label", { fg = c.red, italic = true })
     highlight("Exception", { fg = c.red, bold = true })
@@ -149,11 +149,11 @@ in
 
     -- __CONSTANTS__
     highlight("String", { fg = c.green })
-    highlight("Constant", { fg = c.purple, bold = true })
+    highlight("Constant", { fg = c.light_red, bold = true })
     highlight("Directory", { fg = c.green, bold = true })
     highlight("Character", { fg = c.purple })
     highlight("Number", { fg = c.purple })
-    highlight("Boolean", { fg = c.purple, bold = true })
+    highlight("Boolean", { fg = c.light_red })
     highlight("Float", { fg = c.purple })
 
     -- __PUNCTUATION__
@@ -241,16 +241,16 @@ in
     vim.g.terminal_color_15 = c.light_white
 
     -- __TREE SITTER__
-    highlight("@keyword", { fg = c.blue, bold = true })
+    highlight("@keyword", { fg = c.norm, bold = true })
     highlight("@keyword.function", { fg = c.blue, bold = true })
-    highlight("@keyword.return", { fg = c.blue, bold = true })
+    highlight("@keyword.return", { fg = c.cyan, bold = true })
     highlight("@keyword.operator", { fg = c.subtle })
     highlight("@keyword.builtin", { fg = c.blue, bold = true })
     highlight("@keyword.macro", { link = "PreProc" })
     highlight("@keyword.method", { fg = c.green, bold = true })
     highlight("@type", { link = "Type" })
-    highlight("@type.builtin", { fg = c.yellow, bold = true })
-    highlight("@type.definition", { fg = c.yellow, bold = true })
+    highlight("@type.builtin", { fg = c.fg, bold = true })
+    highlight("@type.definition", { fg = c.blue, bold = true })
     highlight("@property", { fg = c.subtle })
     highlight("@label", { link = "Label" })
     highlight("@annotation", { fg = c.purple })
@@ -278,7 +278,7 @@ in
     highlight("@function.builtin", { fg = c.green, bold = true })
     highlight("@function.macro", { fg = c.cyan, bold = true })
     highlight("@function.method", { fg = c.light_blue, bold = true })
-    highlight("@keyword.conditional", { fg = c.red })
+    highlight("@keyword.conditional", { link = "Conditional" })
     highlight("@keyword.import", { link = "Include" })
     highlight("@keyword.repeat", { fg = c.red })
     highlight("@markup", { fg = c.norm })
