@@ -125,6 +125,11 @@ vim.keymap.set("n", "<leader>w>", "<C-w>>", { noremap = true, silent = true, des
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 
+-- YAML Schema keymaps
+vim.keymap.set("n", "<leader>ys", function() 
+  require("k8s-schemas").force_schema_update() 
+end, { desc = "Force YAML schema update" })
+
 -- You should instead use these keybindings so that they are still easy to use, but don't conflict
 vim.keymap.set({ "v", "x", "n" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
 vim.keymap.set(
@@ -188,16 +193,6 @@ vim.filetype.add({
 		["Dockerfile[^/]*"] = "dockerfile",
 		["docker%-compose%.y.?ml"] = "yaml.docker-compose",
 		['.*/templates/.*%.yaml'] = 'helm',
-		[".*/(k8s|kubernetes|manifests|charts)/.*%.ya?ml$"] = "yaml.kubernetes",
-		["^.*(deploy|deployment|svc|service|sts|statefulset|daemonset|pod|configmap|secret|ingress|job|cronjob)%.ya?ml$"] = "yaml.kubernetes",
-		[".+%.ya?ml$"] = function(_, bufnr)
-			local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 10, false)
-			local content = table.concat(lines, "\n")
-			if content:match("^apiVersion:%s*([%w%.%/%-]+)") and content:match("^kind:%s*([%w%-]+)") then
-				return "yaml.kubernetes"
-			end
-			return nil
-		end,
 	},
 })
 
@@ -373,6 +368,9 @@ require("lze").load({
 			vim.lsp.enable(plugin.name)
 		end,
 		before = function(_)
+			-- Setup YAML schema auto-registration
+			require("k8s-schemas").setup_autoregistration()
+			
 			vim.lsp.config("*", {
 				on_attach = function(_, bufnr)
 					local opts = { buffer = bufnr }
@@ -430,8 +428,8 @@ require("lze").load({
 	{
 		"yamlls",
 		lsp = {
-			filetypes = { "yaml", "yaml.docker-compose", "yaml.kubernetes" },
-			settings = require("k8s-schemas").settings_for(vim.bo.filetype)
+			filetypes = { "yaml", "yaml.docker-compose", "helm" },
+			settings = require("k8s-schemas").get_settings(),
 		},
 	},
 
