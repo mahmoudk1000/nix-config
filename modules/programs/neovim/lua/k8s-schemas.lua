@@ -9,28 +9,12 @@ local function is_kubernetes_yaml(bufnr)
   local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
   local content = table.concat(lines, "\n"):lower()
   
-  -- Check for Kubernetes indicators
-  local has_apiversion = content:match("^apiVersion:%s*([%w%.%/%-]+):")
-  local has_kind = content:match("^kind:%s*([%w%-]+)")
+  -- Check for Kubernetes indicators - simple and dynamic
+  local has_apiversion = content:match("apiversion%s*:")
+  local has_kind = content:match("kind%s*:")
   
-  -- Additional K8s resource types
-  local k8s_kinds = {
-    "deployment", "service", "pod", "configmap", "secret", "ingress",
-    "namespace", "statefulset", "daemonset", "job", "cronjob",
-    "persistentvolume", "persistentvolumeclaim", "serviceaccount",
-    "role", "rolebinding", "clusterrole", "clusterrolebinding",
-    "replicaset", "horizontalpodautoscaler", "networkpolicy"
-  }
-  
-  local has_k8s_kind = false
-  for _, kind in ipairs(k8s_kinds) do
-    if content:match("kind%s*:%s*" .. kind) then
-      has_k8s_kind = true
-      break
-    end
-  end
-  
-  return (has_apiversion and has_kind) or has_k8s_kind
+  -- If both apiVersion and kind are present, it's likely Kubernetes
+  return has_apiversion and has_kind
 end
 
 -- Get comprehensive schemas that include both K8s and common YAML types
@@ -53,8 +37,39 @@ local function get_comprehensive_schemas()
   }
 end
 
--- Main function to get settings for yamlls
-function M.get_settings()
+-- Get Kubernetes-specific settings with enhanced completion
+local function get_k8s_settings()
+  return {
+    yaml = {
+      validate = true,
+      hover = true,
+      completion = true,
+      schemaStore = {
+        enable = false,
+        url = ""
+      },
+      -- Remove customTags for Kubernetes - they interfere with K8s completion
+      customTags = {},
+      schemas = {
+        ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.3/all.json"] = "*.{yaml,yml}"
+      },
+      -- Enhanced completion settings for Kubernetes
+      suggest = {
+        parentSkeletonSelectedFirst = true,
+      },
+      format = {
+        enable = true,
+        singleQuote = false,
+        bracketSpacing = true,
+        proseWrap = "preserve",
+        printWidth = 120
+      }
+    }
+  }
+end
+
+-- Get comprehensive settings for non-K8s YAML files
+local function get_comprehensive_settings()
   return {
     yaml = {
       validate = true,
@@ -69,9 +84,24 @@ function M.get_settings()
         "!Sub", "!Base64", "!GetAZs", "!ImportValue", "!FindInMap",
         "!Equals", "!If", "!And", "!Or", "!Not"
       },
-      schemas = get_comprehensive_schemas()
+      schemas = get_comprehensive_schemas(),
+      suggest = {
+        parentSkeletonSelectedFirst = true,
+      },
+      format = {
+        enable = true,
+        singleQuote = false,
+        bracketSpacing = true,
+        proseWrap = "preserve",
+        printWidth = 120
+      }
     }
   }
+end
+
+-- Main function to get settings for yamlls
+function M.get_settings()
+  return get_comprehensive_settings()
 end
 
 -- Update yamlls configuration when entering insert mode on K8s files
@@ -88,25 +118,10 @@ local function update_schemas_for_k8s()
     return
   end
   
-  -- Send workspace configuration update
+  -- Send workspace configuration update with K8s-specific settings
   local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "yamlls" })
   for _, client in ipairs(clients) do
-    local k8s_schemas = {
-      ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.3/all.json"] = "*.{yaml,yml}"
-    }
-    
-    local new_settings = {
-      yaml = {
-        validate = true,
-        hover = true,
-        completion = true,
-        schemaStore = {
-          enable = false,
-          url = ""
-        },
-        schemas = k8s_schemas
-      }
-    }
+    local new_settings = get_k8s_settings()
     
     client.config.settings = new_settings
     client.notify("workspace/didChangeConfiguration", {
@@ -141,7 +156,7 @@ function M.setup_autoregistration()
       -- Reset to comprehensive schemas
       local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "yamlls" })
       for _, client in ipairs(clients) do
-        local settings = M.get_settings()
+        local settings = get_comprehensive_settings()
         client.config.settings = settings
         client.notify("workspace/didChangeConfiguration", {
           settings = settings
@@ -156,11 +171,6 @@ function M.force_schema_update()
   local bufnr = vim.api.nvim_get_current_buf()
   local filename = vim.api.nvim_buf_get_name(bufnr)
   
-  if not filename:match("%.ya?ml$") then
-    vim.notify("Current buffer is not a YAML file", vim.log.levels.WARN)
-    return
-  end
-  
   local is_k8s = is_kubernetes_yaml(bufnr)
   vim.notify(string.format("File: %s, Detected as: %s", 
     vim.fn.fnamemodify(filename, ":t"), 
@@ -169,6 +179,9 @@ function M.force_schema_update()
   
   if is_k8s then
     update_schemas_for_k8s()
+    vim.notify("Schema update completed!", vim.log.levels.INFO)
+  else
+    vim.notify("Regular YAML - using default schemas", vim.log.levels.INFO)
   end
 end
 

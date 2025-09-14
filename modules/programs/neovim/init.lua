@@ -301,6 +301,11 @@ require("lze").load({
 							},
 						},
 					},
+					trigger = {
+						show_on_trigger_character = true,
+						show_on_insert_on_trigger_character = true,
+						show_on_x_blocked_trigger_characters = { "'", '"', '(', '{' },
+					},
 					menu = {
 						min_width = 20,
 						auto_show = true,
@@ -309,7 +314,7 @@ require("lze").load({
 						draw = {
 							columns = {
 								{ "label", "label_description", gap = 1 },
-								{ "kind_icon" },
+								{  "kind_icon", "kind", gap = 1 },
 								{ "source_name" },
 							},
 						},

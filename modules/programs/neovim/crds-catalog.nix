@@ -7,7 +7,7 @@ pkgs.stdenv.mkDerivation {
     owner = "datreeio";
     repo = "CRDs-catalog";
     rev = "553f0527c94a5f9802989aad4ac7b4073074896d";
-    sha256 = "sha256-ywLqV5Ct8uOLWQ833QiofhNSDihp8VQw+Dh+CB1fPf4=";
+    sha256 = "sha256-+OcxUy6DtzaxDMH6YzRrugMSQj8pozeWOUUlIMQBvMM=";
   };
 
   buildPhase = ''
