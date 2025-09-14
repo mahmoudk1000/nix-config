@@ -2,10 +2,16 @@
 
 let
   groovy-language-server = import ./groovyls.nix { inherit pkgs; };
+  crds-catalog = import ./crds-catalog.nix { inherit pkgs; };
   # customVimPlugins = import ./vim-plugins.nix { inherit pkgs; };
 in
 {
   imports = [ ./islet.nix ];
+
+  xdg.configFile = {
+    "nvim/lua".source = ./lua;
+    "nvim/crds-catalog".source = "${crds-catalog}";
+  };
 
   programs.neovim = {
     enable = true;

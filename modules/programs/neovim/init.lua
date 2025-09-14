@@ -17,63 +17,64 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- User Interface
-vim.opt.termguicolors = true
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = false
-vim.opt.signcolumn = "yes"
-vim.opt.list = true
-vim.opt.listchars = { space = "⋅", eol = "↴", tab = "→ ", nbsp = "␣", trail = "·" }
-vim.opt.wrap = true
-vim.opt.linebreak = true
+vim.o.termguicolors = true
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorline = false
+vim.o.signcolumn = "yes"
+vim.o.list = true
+vim.o.listchars = "space:⋅,eol:↴,tab:→ ,nbsp:␣,trail:·"
+vim.o.wrap = true
+vim.o.linebreak = true
 vim.o.breakindent = true
 
 -- Search
-vim.opt.hlsearch = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.hlsearch = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Editing
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
-vim.opt.backspace = { "indent", "eol", "start" }
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.expandtab = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
+vim.o.backspace = "indent,eol,start"
 
 -- Splits
-vim.opt.splitbelow = true
-vim.opt.splitright = true
+vim.o.splitbelow = true
+vim.o.splitright = true
 
 -- Clipboard
-vim.opt.clipboard = "unnamedplus"
+vim.o.clipboard = "unnamedplus"
 
 -- Mouse
-vim.opt.mouse = "a"
+vim.o.mouse = "a"
 
 -- Undo
-vim.opt.undofile = true
+vim.o.undofile = true
 
 -- Spelling
-vim.opt.spell = true
-vim.opt.spelllang = { "en_us" }
+vim.o.spell = true
+vim.o.spelllang = "en_us"
+vim.o.spelloptions = "camel"
 
 -- Completion
-vim.opt.omnifunc = "syntaxcomplete#Complete"
+vim.o.omnifunc = "syntaxcomplete#Complete"
 vim.o.completeopt = "menu,preview,noselect"
 
 -- Encoding
-vim.opt.encoding = "utf-8"
+vim.o.encoding = "utf-8"
 
 -- Folding
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.o.foldmethod = "expr"
+-- vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Command line & Timings
 vim.o.cmdheight = 0
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
 
 -- Color Scheme
 vim.cmd.colorscheme("islet")
@@ -83,7 +84,7 @@ vim.cmd.colorscheme("islet")
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "remove formatoptions",
 	callback = function()
-		vim.opt.formatoptions:remove({ "c", "r", "o" })
+		vim.o.formatoptions:gsub("c", ""):gsub("o", ""):gsub("r", "")
 	end,
 })
 
@@ -178,8 +179,6 @@ vim.filetype.add({
 		tfstate = "json",
 		latex = "tex",
 		bib = "tex",
-		html = "html",
-		h = "c",
 	},
 	filename = {
 		["Jenkinsfile"] = "groovy",
@@ -188,6 +187,17 @@ vim.filetype.add({
 	pattern = {
 		["Dockerfile[^/]*"] = "dockerfile",
 		["docker%-compose%.y.?ml"] = "yaml.docker-compose",
+		['.*/templates/.*%.yaml'] = 'helm',
+		[".*/(k8s|kubernetes|manifests|charts)/.*%.ya?ml$"] = "yaml.kubernetes",
+		["^.*(deploy|deployment|svc|service|sts|statefulset|daemonset|pod|configmap|secret|ingress|job|cronjob)%.ya?ml$"] = "yaml.kubernetes",
+		[".+%.ya?ml$"] = function(_, bufnr)
+			local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 10, false)
+			local content = table.concat(lines, "\n")
+			if content:match("^apiVersion:%s*([%w%.%/%-]+)") and content:match("^kind:%s*([%w%-]+)") then
+				return "yaml.kubernetes"
+			end
+			return nil
+		end,
 	},
 })
 
@@ -420,7 +430,8 @@ require("lze").load({
 	{
 		"yamlls",
 		lsp = {
-			filetypes = { "yaml", "yaml.docker-compose" },
+			filetypes = { "yaml", "yaml.docker-compose", "yaml.kubernetes" },
+			settings = require("k8s-schemas").settings_for(vim.bo.filetype)
 		},
 	},
 
@@ -1026,13 +1037,6 @@ require("lze").load({
 				group = vim.api.nvim_create_augroup("lint", { clear = true }),
 				callback = function()
 					require("lint").try_lint()
-				end,
-			})
-
-			vim.api.nvim_create_autocmd("TermOpen", {
-				group = vim.api.nvim_create_augroup("NoSpellCheck", { clear = true }),
-				callback = function()
-					vim.opt_local.spell = false
 				end,
 			})
 		end,

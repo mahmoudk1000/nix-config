@@ -41,6 +41,7 @@ in
 
     local function highlight(group, opts)
         opts.force = true
+        opts.cterm = opts.cterm or {}
 
         vim.api.nvim_set_hl(0, group, opts)
     end
