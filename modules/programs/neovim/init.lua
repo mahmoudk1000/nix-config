@@ -125,11 +125,6 @@ vim.keymap.set("n", "<leader>w>", "<C-w>>", { noremap = true, silent = true, des
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 
--- YAML Schema keymaps
-vim.keymap.set("n", "<leader>ys", function() 
-  require("k8s-schemas").force_schema_update() 
-end, { desc = "Force YAML schema update" })
-
 -- You should instead use these keybindings so that they are still easy to use, but don't conflict
 vim.keymap.set({ "v", "x", "n" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
 vim.keymap.set(
@@ -373,11 +368,11 @@ require("lze").load({
 			vim.lsp.enable(plugin.name)
 		end,
 		before = function(_)
-			-- Setup YAML schema auto-registration
-			require("k8s-schemas").setup_autoregistration()
+			-- Setup YAML schema detection
+			require("k8s-schemas").setup()
 			
 			vim.lsp.config("*", {
-				on_attach = function(_, bufnr)
+				on_attach = function(client, bufnr)
 					local opts = { buffer = bufnr }
 
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -433,8 +428,63 @@ require("lze").load({
 	{
 		"yamlls",
 		lsp = {
-			filetypes = { "yaml", "yaml.docker-compose", "helm" },
-			settings = require("k8s-schemas").get_settings(),
+			filetypes = { "yaml" },
+			before_init = function(_, config)
+				local k8s = require("k8s-schemas")
+				local bufnr = vim.api.nvim_get_current_buf()
+
+				config.settings.yaml.schemas = config.settings.yaml.schemas or {}
+
+				if k8s.isKubernetesResource(bufnr) then 
+					config.settings.yaml.schemas = vim.tbl_extend(
+						"force",
+						k8s.buildScheme(bufnr),
+						config.settings.yaml.schemas
+					)
+				end
+			end,
+			settings = {
+				redhat = {
+					telemetry = { enabled = false }
+				},
+				yaml = {
+					validate = true,
+					hover = true,
+					completion = true,
+					keyOrdering = false,
+					schemaStore = {
+						enable = false,
+						url = ""
+					},
+					schemas = {
+						["https://json.schemastore.org/github-workflow.json"] = ".github/workflows/*.{yaml,yml}",
+						["https://json.schemastore.org/github-action.json"] = ".github/action.{yaml,yml}",
+						["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yaml,yml}",
+						["https://json.schemastore.org/ansible-playbook.json"] = "*play*.{yaml,yml}",
+						["https://json.schemastore.org/chart.json"] = "Chart.{yaml,yml}",
+						["https://json.schemastore.org/kustomization.json"] = "kustomization.{yaml,yml}",
+						["https://json.schemastore.org/dependabot-v2.json"] = ".github/dependabot.{yaml,yml}",
+						["https://json.schemastore.org/gitlab-ci.json"] = "*gitlab-ci*.{yaml,yml}",
+						["https://json.schemastore.org/prettierrc.json"] = ".prettierrc.{yaml,yml}",
+						["https://json.schemastore.org/ansible-stable-2.9.json"] = "roles/tasks/*.{yaml,yml}",
+					},
+					customTags = {
+						"!Ref", "!Condition", "!GetAtt", "!Join", "!Select", "!Split",
+						"!Sub", "!Base64", "!GetAZs", "!ImportValue", "!FindInMap",
+						"!Equals", "!If", "!And", "!Or", "!Not"
+					},
+					suggest = {
+						parentSkeletonSelectedFirst = true,
+					},
+					format = {
+						enable = true,
+						singleQuote = false,
+						bracketSpacing = true,
+						proseWrap = "preserve",
+						printWidth = 120
+					}
+				}
+			},
 		},
 	},
 
