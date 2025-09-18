@@ -82,9 +82,10 @@ vim.cmd.colorscheme("islet")
 -- [[ Disable auto comment on enter ]]
 -- See :help formatoptions
 vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "*" },
 	desc = "remove formatoptions",
 	callback = function()
-		vim.o.formatoptions:gsub("c", ""):gsub("o", ""):gsub("r", "")
+		vim.o.formatoptions = "jqlnt"
 	end,
 })
 
@@ -187,7 +188,7 @@ vim.filetype.add({
 	pattern = {
 		["Dockerfile[^/]*"] = "dockerfile",
 		["docker%-compose%.y.?ml"] = "yaml.docker-compose",
-		['.*/templates/.*%.yaml'] = 'helm',
+		[".*/templates/.*%.yaml"] = "helm",
 	},
 })
 
@@ -299,7 +300,7 @@ require("lze").load({
 					trigger = {
 						show_on_trigger_character = true,
 						show_on_insert_on_trigger_character = true,
-						show_on_x_blocked_trigger_characters = { "'", '"', '(', '{' },
+						show_on_x_blocked_trigger_characters = { "'", '"', "(", "{" },
 					},
 					menu = {
 						min_width = 20,
@@ -309,8 +310,7 @@ require("lze").load({
 						draw = {
 							columns = {
 								{ "label", "label_description", gap = 1 },
-								{  "kind_icon", "kind", gap = 1 },
-								{ "source_name" },
+								{ "kind_icon", "kind", gap = 1 },
 							},
 						},
 					},
@@ -355,8 +355,6 @@ require("lze").load({
 		"nvim-lspconfig",
 		priority = 90,
 		on_require = { "lspconfig" },
-		-- define a function to run over all type(plugin.lsp) == table
-		-- when their filetype trigger loads them
 		lsp = function(plugin)
 			local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 			capabilities.general.positionEncodings = { "utf-16" }
@@ -368,11 +366,8 @@ require("lze").load({
 			vim.lsp.enable(plugin.name)
 		end,
 		before = function(_)
-			-- Setup YAML schema detection
-			require("k8s-schemas").setup()
-			
 			vim.lsp.config("*", {
-				on_attach = function(client, bufnr)
+				on_attach = function(_, bufnr)
 					local opts = { buffer = bufnr }
 
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -428,33 +423,27 @@ require("lze").load({
 	{
 		"yamlls",
 		lsp = {
-			filetypes = { "yaml" },
+			filetypes = { "yaml", "yml" },
 			before_init = function(_, config)
 				local k8s = require("k8s-schemas")
-				local bufnr = vim.api.nvim_get_current_buf()
-
 				config.settings.yaml.schemas = config.settings.yaml.schemas or {}
-
-				if k8s.isKubernetesResource(bufnr) then 
-					config.settings.yaml.schemas = vim.tbl_extend(
-						"force",
-						k8s.buildScheme(bufnr),
-						config.settings.yaml.schemas
-					)
+				if k8s.isKubernetesResource() then
+					config.settings.yaml.customTags = {}
+					config.settings.yaml.schemas =
+						vim.tbl_extend("force", k8s.buildScheme(), config.settings.yaml.schemas)
 				end
 			end,
 			settings = {
 				redhat = {
-					telemetry = { enabled = false }
+					telemetry = { enabled = false },
 				},
 				yaml = {
 					validate = true,
 					hover = true,
 					completion = true,
-					keyOrdering = false,
 					schemaStore = {
 						enable = false,
-						url = ""
+						url = "",
 					},
 					schemas = {
 						["https://json.schemastore.org/github-workflow.json"] = ".github/workflows/*.{yaml,yml}",
@@ -469,9 +458,22 @@ require("lze").load({
 						["https://json.schemastore.org/ansible-stable-2.9.json"] = "roles/tasks/*.{yaml,yml}",
 					},
 					customTags = {
-						"!Ref", "!Condition", "!GetAtt", "!Join", "!Select", "!Split",
-						"!Sub", "!Base64", "!GetAZs", "!ImportValue", "!FindInMap",
-						"!Equals", "!If", "!And", "!Or", "!Not"
+						"!Ref",
+						"!Condition",
+						"!GetAtt",
+						"!Join",
+						"!Select",
+						"!Split",
+						"!Sub",
+						"!Base64",
+						"!GetAZs",
+						"!ImportValue",
+						"!FindInMap",
+						"!Equals",
+						"!If",
+						"!And",
+						"!Or",
+						"!Not",
 					},
 					suggest = {
 						parentSkeletonSelectedFirst = true,
@@ -481,9 +483,9 @@ require("lze").load({
 						singleQuote = false,
 						bracketSpacing = true,
 						proseWrap = "preserve",
-						printWidth = 120
-					}
-				}
+						printWidth = 120,
+					},
+				},
 			},
 		},
 	},
