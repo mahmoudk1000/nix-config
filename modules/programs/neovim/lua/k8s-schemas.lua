@@ -1,8 +1,6 @@
 local M = {}
 
--- Configuration
 local CONFIG = {
-	-- Use Neovim's config dir for relative path (portable)
 	crds_catalog_path = vim.fn.stdpath("config") .. "/crds-catalog",
 	k8s_core_schema = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.3/all.json",
 	k8s_filename_patterns = {
@@ -82,10 +80,7 @@ local CONFIG = {
 	},
 }
 
-local cache = {
-	catalog = nil,
-	buffer_resources = {},
-}
+local cache = { catalog = nil, buffer_resources = {} }
 
 local function get_catalog_file()
 	return CONFIG.crds_catalog_path .. "/catalog.txt"
@@ -113,9 +108,6 @@ local function is_k8s_filename(filepath)
 end
 
 local function is_core_k8s_resource(api_version)
-	if not api_version then
-		return false
-	end
 	for _, core_api in ipairs(CONFIG.core_k8s_apis) do
 		if api_version == core_api then
 			return true
@@ -129,21 +121,21 @@ local function load_crd_catalog()
 		return cache.catalog
 	end
 	cache.catalog = {}
-	local catalog_file_path = get_catalog_file()
-	if vim.fn.filereadable(catalog_file_path) ~= 1 then
+	local path = get_catalog_file()
+	if vim.fn.filereadable(path) ~= 1 then
 		return cache.catalog
 	end
-	local catalog_file = io.open(catalog_file_path, "r")
-	if not catalog_file then
+	local file = io.open(path, "r")
+	if not file then
 		return cache.catalog
 	end
-	local ok, content = pcall(catalog_file.read, catalog_file, "*all")
-	catalog_file:close()
-	if not ok or not content then
+	local content = file:read("*all")
+	file:close()
+	if not content then
 		return cache.catalog
 	end
 	for line in content:gmatch("[^\r\n]+") do
-		if line ~= "" and line:match("%.json$") then
+		if line:match("%.json$") then
 			table.insert(cache.catalog, line)
 		end
 	end
@@ -163,42 +155,44 @@ local function extract_k8s_resources(content)
 		documents = { content }
 	end
 	for _, doc in ipairs(documents) do
-		if doc and doc:match("%S") then
-			local api_version = doc:match("apiVersion:%s*([%w%.%/%-]+)")
-			local kind = doc:match("kind:%s*([%w%-]+)")
-			if api_version and kind then
-				table.insert(resources, { apiVersion = api_version, kind = kind })
-			end
+		local api_version = doc:match("apiVersion:%s*([%w%.%/%-]+)")
+		local kind = doc:match("kind:%s*([%w%-]+)")
+		if api_version and kind then
+			table.insert(resources, { apiVersion = api_version, kind = kind })
 		end
 	end
 	return resources
 end
 
 local function normalize_crd_name(api_version, kind)
-	if not api_version or not kind then
-		return nil
-	end
 	local group, version = api_version:match("([^/]+)/([^/]+)")
-	if not group or not version then
+	if not group or not version or not kind then
 		return nil
 	end
 	return group .. "/" .. kind:lower() .. "_" .. version .. ".json"
 end
 
+local function fuzzy_find_crd_name(crd_name, catalog)
+	crd_name = crd_name:lower()
+	for _, v in ipairs(catalog) do
+		if v:lower():find(crd_name, 1, true) then
+			return v
+		end
+	end
+	return nil
+end
+
 local function find_crd_schemas(resources)
-	local schemas = {}
-	local catalog = load_crd_catalog()
-	for _, resource in ipairs(resources or {}) do
-		if resource and resource.apiVersion and not is_core_k8s_resource(resource.apiVersion) then
-			local crd_name = normalize_crd_name(resource.apiVersion, resource.kind)
+	local schemas, catalog = {}, load_crd_catalog()
+	for _, r in ipairs(resources or {}) do
+		if r.apiVersion and not is_core_k8s_resource(r.apiVersion) then
+			local crd_name = normalize_crd_name(r.apiVersion, r.kind)
 			if crd_name then
-				for _, crd_path in ipairs(catalog) do
-					if crd_path and crd_path:match(vim.pesc(crd_name)) then
-						local schema_path = get_schemas_dir() .. "/" .. crd_path
-						if vim.fn.filereadable(schema_path) == 1 then
-							schemas["file://" .. schema_path] = true
-							break
-						end
+				local crd_path = fuzzy_find_crd_name(crd_name, catalog)
+				if crd_path then
+					local schema_path = get_schemas_dir() .. "/" .. crd_path
+					if vim.fn.filereadable(schema_path) == 1 then
+						schemas["file://" .. schema_path] = true
 					end
 				end
 			end
@@ -211,25 +205,23 @@ local function get_buffer_resources(bufnr)
 	if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
 		return {}
 	end
-	local ok, changedtick = pcall(vim.fn.getbufvar, bufnr, "changedtick")
-	if not ok then
-		return {}
-	end
+	local changedtick = vim.fn.getbufvar(bufnr, "changedtick")
 	local cache_key = bufnr .. "_" .. changedtick
 	if cache.buffer_resources[cache_key] then
 		return cache.buffer_resources[cache_key]
 	end
-	local ok2, lines = pcall(vim.api.nvim_buf_get_lines, bufnr, 0, -1, false)
-	if not ok2 or not lines then
+	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+	if not lines then
 		return {}
 	end
 	local content = table.concat(lines, "\n")
 	local resources = extract_k8s_resources(content)
 	cache.buffer_resources[cache_key] = resources
 	if vim.tbl_count(cache.buffer_resources) > 10 then
-		local keys = vim.tbl_keys(cache.buffer_resources)
-		for i = 1, math.min(5, #keys) do
-			cache.buffer_resources[keys[i]] = nil
+		for i, k in ipairs(vim.tbl_keys(cache.buffer_resources)) do
+			if i <= 5 then
+				cache.buffer_resources[k] = nil
+			end
 		end
 	end
 	return resources
@@ -237,52 +229,41 @@ end
 
 function M.isKubernetesResource(bufnr)
 	bufnr = bufnr or vim.api.nvim_get_current_buf()
-	if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
+	if not vim.api.nvim_buf_is_valid(bufnr) then
 		return false
 	end
-	local ok, buffer_name = pcall(vim.api.nvim_buf_get_name, bufnr)
-	if ok and buffer_name and is_k8s_filename(buffer_name) then
+	local buffer_name = vim.api.nvim_buf_get_name(bufnr)
+	if is_k8s_filename(buffer_name) then
 		return true
 	end
-	local resources = get_buffer_resources(bufnr)
-	return #resources > 0
+	return #get_buffer_resources(bufnr) > 0
 end
 
 function M.buildScheme(bufnr)
 	bufnr = bufnr or vim.api.nvim_get_current_buf()
-	if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
+	if not vim.api.nvim_buf_is_valid(bufnr) then
 		return {}
 	end
-	local ok, buffer_name = pcall(vim.api.nvim_buf_get_name, bufnr)
-	if not ok then
-		return {}
-	end
-	local file_pattern = buffer_name and buffer_name ~= "" and buffer_name or "*.{yaml,yml}"
+	local buffer_name = vim.api.nvim_buf_get_name(bufnr)
+	local file_pattern = buffer_name ~= "" and buffer_name or "*.{yaml,yml}"
 	if not M.isKubernetesResource(bufnr) then
 		return {}
 	end
-	local schemas = {}
-	local resources = get_buffer_resources(bufnr)
+	local schemas, resources = {}, get_buffer_resources(bufnr)
 	local has_core_k8s = false
-	for _, resource in ipairs(resources) do
-		if resource and is_core_k8s_resource(resource.apiVersion) then
+	for _, r in ipairs(resources) do
+		if is_core_k8s_resource(r.apiVersion) then
 			has_core_k8s = true
 			break
 		end
 	end
-	if has_core_k8s or (buffer_name and is_k8s_filename(buffer_name)) then
+	if has_core_k8s then
 		schemas[CONFIG.k8s_core_schema] = file_pattern
 	end
-	local crd_schemas = find_crd_schemas(resources)
-	for schema_url, _ in pairs(crd_schemas) do
+	for schema_url in pairs(find_crd_schemas(resources)) do
 		schemas[schema_url] = file_pattern
 	end
 	return schemas
-end
-
-function M.clearCache()
-	cache.catalog = nil
-	cache.buffer_resources = {}
 end
 
 return M
