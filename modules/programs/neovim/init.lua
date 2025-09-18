@@ -526,9 +526,10 @@ require("lze").load({
 	},
 
 	{
-		"nixd",
+		"nil_ls",
 		lsp = {
 			filetypes = { "nix" },
+			root_markers = { "flake.nix", ".git" },
 			settings = {
 				formatting = {
 					command = { "nixfmt" },

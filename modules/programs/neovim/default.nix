@@ -56,7 +56,7 @@ in
       biber
       shfmt
       gopls
-      nixd
+      nil
       ruff
       gcc
       fd
