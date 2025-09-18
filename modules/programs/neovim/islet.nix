@@ -133,16 +133,16 @@ in
     highlight("ToolbarLine", { bg = "NONE" })
 
     -- __SYNTAX__
-    highlight("Function", { fg = c.white, bold = true })
+    highlight("Function", { fg = c.light_blue, bold = true })
     highlight("Identifier", { fg = c.norm })
     highlight("Type", { fg = c.subtle, bold = true })
     highlight("Variable", { fg = c.norm })
     highlight("Statement", { fg = c.blue })
     highlight("Include", { fg = c.blue })
     highlight("Special", { fg = c.cyan })
-    highlight("Keyword", { fg = c.blue })
-    highlight("Conditional", { fg = c.blue })
-    highlight("Repeat", { fg = c.blue })
+    highlight("Keyword", { fg = c.light_purple, bold = true })
+    highlight("Conditional", { fg = c.purple })
+    highlight("Repeat", { fg = c.purple })
     highlight("Label", { fg = c.subtle, italic = true })
     highlight("Exception", { fg = c.red })
     highlight("PreProc", { fg = c.subtle })
@@ -154,12 +154,12 @@ in
 
     -- __CONSTANTS__
     highlight("String", { fg = c.green })
-    highlight("Constant", { fg = c.white })
+    highlight("Constant", { fg = c.white, bold = true })
     highlight("Directory", { fg = c.blue })
-    highlight("Character", { fg = c.green })
-    highlight("Number", { fg = c.cyan })
-    highlight("Boolean", { fg = c.cyan })
-    highlight("Float", { fg = c.cyan })
+    highlight("Character", { fg = c.light_green })
+    highlight("Number", { fg = c.yellow })
+    highlight("Boolean", { fg = c.light_red })
+    highlight("Float", { fg = c.light_yellow })
 
     -- __PUNCTUATION__
     highlight("Quote", { fg = c.green })
