@@ -41,6 +41,7 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.backspace = "indent,eol,start"
+vim.o.formatoptions = "jqlnt"
 
 -- Splits
 vim.o.splitbelow = true
@@ -78,16 +79,6 @@ vim.o.timeoutlen = 300
 
 -- Color Scheme
 vim.cmd.colorscheme("islet")
-
--- [[ Disable auto comment on enter ]]
--- See :help formatoptions
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "*" },
-	desc = "remove formatoptions",
-	callback = function()
-		vim.o.formatoptions = "jqlnt"
-	end,
-})
 
 -- Disable space in normal and visual mode (since it's our leader)
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
