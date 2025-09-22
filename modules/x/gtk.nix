@@ -76,8 +76,8 @@ in
     enable = true;
     platformTheme.name = "gtk3";
     style = {
-      name = "breeze";
-      package = pkgs.libsForQt5.breeze-qt5;
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt6;
     };
   };
 }

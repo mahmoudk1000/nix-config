@@ -52,7 +52,6 @@
         evince
         zoom-us
 
-        libsForQt5.breeze-icons
         xorg.xmodmap
       ])
       ++ (import ../../modules/scripts { inherit config pkgs lib; });

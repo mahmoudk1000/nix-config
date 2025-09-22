@@ -77,7 +77,7 @@ in
             };
             "NixOS Wiki" = {
               urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
-              iconUpdateURL = "https://nixos.wiki/favicon.png";
+              icon = "https://nixos.wiki/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000;
               definedAliases = [ "@nw" ];
             };
@@ -93,15 +93,15 @@ in
                   ];
                 }
               ];
-              iconUpdateURL = "https://upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.svg";
+              icon = "https://upload.wikimedia.org/wikipedia/commons/1/13/Arch_Linux_%22Crystal%22_icon.svg";
               updateInterval = 24 * 60 * 60 * 1000;
               definedAliases = [ "@arch" ];
             };
-            "Wikipedia (en)".metaData.alias = "@wiki";
-            "Google".metaData.hidden = true;
-            "Amazon.com".metaData.hidden = true;
-            "Bing".metaData.hidden = true;
-            "eBay".metaData.hidden = true;
+            wikipedia.metaData.alias = "@wiki";
+            google.metaData.hidden = true;
+            amazondotcom-us.metaData.hidden = true;
+            bing.metaData.hidden = true;
+            ebay.metaData.hidden = true;
           };
         };
         extensions = {
@@ -124,30 +124,6 @@ in
             ++ (with customAddons; [ startpage ]);
         };
         inherit settings userChrome userContent;
-      };
-      work = {
-        id = 1;
-        name = "Work";
-        search = {
-          force = true;
-          default = "ddg";
-          engines = {
-            "Wikipedia (en)".metaData.alias = "@wiki";
-            "Google".metaData.hidden = true;
-            "Amazon.com".metaData.hidden = true;
-            "Bing".metaData.hidden = true;
-            "eBay".metaData.hidden = true;
-          };
-        };
-        extensions = {
-          packages = with pkgs.nur.repos.rycee.firefox-addons; [
-            ublock-origin
-            bitwarden
-            languagetool
-            tab-session-manager
-          ];
-        };
-        inherit settings;
       };
     };
   };
