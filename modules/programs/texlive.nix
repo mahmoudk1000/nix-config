@@ -27,6 +27,8 @@
         xurl
         xifthen
         titlesec
+        moderncv
+        luatexbase
         ;
     };
   };
