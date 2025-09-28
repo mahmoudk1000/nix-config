@@ -134,7 +134,7 @@ in
     highlight("ToolbarLine", { bg = "NONE" })
 
     -- __SYNTAX__
-    highlight("Function", { fg = c.norm, italic = true })
+    highlight("Function", { fg = c.blue, bold = true })
     highlight("Identifier", { fg = c.norm, italic = true })
     highlight("Type", { fg = c.subtle, bold = true })
     highlight("Variable", { fg = c.fg })
@@ -246,12 +246,12 @@ in
 
     -- __TREE SITTER__
     highlight("@keyword", { link = "Keyword" })
-    highlight("@keyword.function", { link = "Function" })
+    highlight("@keyword.function", { link = "Normal" })
     highlight("@keyword.return", { fg = c.blue, italic = true })
     highlight("@keyword.operator", { link = "Operator" })
     highlight("@keyword.builtin", { link = "Keyword" })
     highlight("@keyword.macro", { link = "PreProc" })
-    highlight("@keyword.method", { link = "Function" })
+    highlight("@keyword.method", { link = "Normal" })
     highlight("@keyword.conditional", { link = "Conditional" })
     highlight("@keyword.import", { link = "Include" })
     highlight("@keyword.repeat", { link = "Repeat" })

@@ -272,7 +272,7 @@ require("lze").load({
 				},
 				completion = {
 					keyword = {
-						range = "full",
+						range = "prefix",
 					},
 					list = {
 						selection = {
