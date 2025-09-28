@@ -17,6 +17,7 @@ let
     kalt = import ./kalt.nix;
     late = import ./late.nix;
     melle = import ./melle.nix;
+    mellow = import ./mellow.nix;
     momo = import ./momo.nix;
     mongo = import ./mongo.nix;
     mountain = import ./mountain.nix;
