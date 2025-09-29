@@ -15,6 +15,7 @@ let
     idx = import ./idx.nix;
     jotai = import ./jotai.nix;
     kalt = import ./kalt.nix;
+    kanagawa = import ./kanagawa.nix;
     late = import ./late.nix;
     melle = import ./melle.nix;
     mellow = import ./mellow.nix;
