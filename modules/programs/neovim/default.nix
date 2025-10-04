@@ -8,6 +8,11 @@ in
 {
   imports = [ ./islet.nix ];
 
+  home.file.".config/nvim/snippets" = {
+    source = ./snippets;
+    recursive = true;
+  };
+
   xdg.configFile = {
     "nvim/lua".source = ./lua;
     "nvim/crds-catalog".source = "${crds-catalog}";
@@ -77,6 +82,7 @@ in
       copilot-lua
       fidget-nvim
       gitsigns-nvim
+      incline-nvim
       lualine-nvim
       luasnip
       lze

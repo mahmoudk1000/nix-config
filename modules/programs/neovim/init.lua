@@ -25,8 +25,12 @@ vim.o.signcolumn = "yes"
 vim.o.list = true
 vim.o.listchars = "space:⋅,eol:↴,tab:→ ,nbsp:␣,trail:·"
 vim.o.wrap = true
+vim.o.wrapmargin = 8
 vim.o.linebreak = true
 vim.o.breakindent = true
+vim.o.joinspaces = false
+vim.o.wildmenu = true
+vim.o.wildmode = "longest,full"
 
 -- Search
 vim.o.hlsearch = true
@@ -36,12 +40,16 @@ vim.o.smartcase = true
 -- Editing
 vim.o.autoindent = true
 vim.o.smartindent = true
+vim.o.smarttab = true
 vim.o.expandtab = true
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
+vim.o.shiftround = true
 vim.o.backspace = "indent,eol,start"
 vim.o.formatoptions = "jqlnt"
+vim.o.fcs = "eob: "
+vim.o.virtualedit = "block"
 
 -- Splits
 vim.o.splitbelow = true
@@ -69,8 +77,14 @@ vim.o.completeopt = "menu,preview,noselect"
 vim.o.encoding = "utf-8"
 
 -- Folding
--- vim.o.foldmethod = "expr"
--- vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldlevelstart = 99
+vim.o.foldnestmax = 10
+vim.o.foldenable = false
+vim.o.foldlevel = 99
+vim.opt.foldcolumn = "0"
+vim.opt.fillchars:append({ fold = " " })
 
 -- Command line & Timings
 vim.o.cmdheight = 0
@@ -101,6 +115,10 @@ vim.keymap.set("v", "<leader>ds", "y'>p", { noremap = true, silent = true, desc 
 -- Comments
 vim.keymap.set("n", "<leader>c", "gcc", { remap = true, silent = true, desc = "[C]omment Line" })
 vim.keymap.set("v", "<leader>/", "gc", { remap = true, silent = true, desc = "[C]omment Selection" })
+
+-- helpers for dealing with other people's code
+vim.keymap.set("n", "\\t", "<cmd>set ts=4 sts=4 sw=4 noet<cr>", { desc = "Set tabs" })
+vim.keymap.set("n", "\\s", "<cmd>set ts=4 sts=4 sw=4 et<cr>", { desc = "Set spaces" })
 
 -- WINDOW MANAGEMENT - <leader>w prefix
 vim.keymap.set("n", "<leader>wh", "<C-w>h", { noremap = true, silent = true, desc = "Go to left window" })
@@ -241,34 +259,8 @@ require("lze").load({
 					},
 				},
 				appearance = {
-					kind_icons = {
-						Text = "󰉿",
-						Method = "󰆧",
-						Function = "󰊕",
-						Constructor = "",
-						Field = "󰜢",
-						Variable = "󰀫",
-						Class = "󰠱",
-						Interface = "",
-						Module = "",
-						Property = "󰜢",
-						Unit = "󰑭",
-						Value = "󰎠",
-						Enum = "",
-						Keyword = "󰌋",
-						Snippet = "",
-						Color = "󰏘",
-						File = "󰈙",
-						Reference = "󰈇",
-						Folder = "󰉋",
-						EnumMember = "",
-						Constant = "󰏿",
-						Struct = "󰙅",
-						Event = "",
-						Operator = "󰆕",
-						Copilot = "󰚩",
-						TypeParameter = "",
-					},
+					use_nvim_cmp_as_default = true,
+					nerd_font_variant = "mono",
 				},
 				completion = {
 					keyword = {
@@ -337,6 +329,43 @@ require("lze").load({
 						border = "rounded",
 						scrollbar = false,
 					},
+				},
+			})
+		end,
+	},
+
+	-- {
+	-- 	"luasnip",
+	-- 	dep_of = { "blink.cmp" },
+	-- 	after = function()
+	-- 		require("luasnip").config.set_config({
+	-- 			enable_autosnippets = true,
+	-- 		})
+	-- 		require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.expand("~/.config/nvim/snippets/") } })
+	-- 	end,
+	-- },
+
+	{
+		"incline.nvim",
+		event = { "DeferredUIEnter" },
+		after = function(_)
+			require("incline").setup({
+				highlight = {
+					groups = {
+						InclineNormal = { default = true, group = "lualine_b_normal" },
+						InclineNormalNC = { default = true, group = "lualine_b_normal" },
+					},
+				},
+				window = { margin = { vertical = 0, horizontal = 1 } },
+				render = function(props)
+					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+					local icon, color = require("nvim-web-devicons").get_icon_color(filename)
+					return { { icon, guifg = color }, { icon and " " or "" }, { filename } }
+				end,
+				hide = {
+					cursorline = false,
+					focused_win = false,
+					only_win = true,
 				},
 			})
 		end,
