@@ -3,6 +3,7 @@
   pkgs,
   theme,
   font,
+  mylib,
   ...
 }:
 
@@ -114,17 +115,17 @@
           blue = "${theme.base06}";
           magenta = "${theme.base07}";
           cyan = "${theme.base08}";
-          white = "${theme.base09}";
+          white = "${mylib.adjustBrightness theme.base01 0.4}";
         };
         bright = {
-          black = "${theme.base0A}";
-          red = "${theme.base0B}";
-          green = "${theme.base0C}";
-          yellow = "${theme.base0D}";
-          blue = "${theme.base0E}";
-          magenta = "${theme.base0F}";
-          cyan = "${theme.base0G}";
-          white = "${theme.base0H}";
+          black = "${theme.base09}";
+          red = "${theme.base0a}";
+          green = "${theme.base0B}";
+          yellow = "${theme.base0C}";
+          blue = "${theme.base0D}";
+          magenta = "${theme.base0E}";
+          cyan = "${theme.base0F}";
+          white = "${mylib.adjustBrightness theme.base01 0.6}";
         };
       };
     };

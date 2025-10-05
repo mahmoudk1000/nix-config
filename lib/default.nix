@@ -20,12 +20,36 @@ let
       config.allowUnfree = true;
     }
   );
+
+  mylib = {
+    inherit (import ./colors.nix { inherit (inputs.nixpkgs) lib; }) adjustBrightness;
+  };
 in
 {
   inherit supportedSystems nixpkgsFor;
 
   forAllSystems = inputs.nixpkgs.lib.genAttrs supportedSystems;
 
-  inherit (import ./mkHost.nix { inherit self inputs nixpkgsFor; }) mkHost;
-  inherit (import ./mkHome.nix { inherit self inputs nixpkgsFor; }) mkHome;
+  inherit
+    (import ./mkHost.nix {
+      inherit
+        self
+        inputs
+        nixpkgsFor
+        mylib
+        ;
+    })
+    mkHost
+    ;
+  inherit
+    (import ./mkHome.nix {
+      inherit
+        self
+        inputs
+        nixpkgsFor
+        mylib
+        ;
+    })
+    mkHome
+    ;
 }

@@ -1,4 +1,4 @@
-{ theme, ... }:
+{ theme, mylib, ... }:
 
 with theme;
 
@@ -41,7 +41,7 @@ with theme;
     	/* color of accented buttons when hovered */
     	--accent-4: ${base08};
     	/* color of accented buttons when clicked */
-    	--accent-5: ${base0A};
+    	--accent-5: ${base09};
 
     	/* color of mentions and messages that mention you */
     	--mention: hsla(190, 80%, 52%, 0.1);
@@ -55,14 +55,14 @@ with theme;
     	/* color of normal text */
     	--text-3: ${base01};
     	/* color of icon buttons and channels */
-    	--text-4: ${base0H};
+    	--text-4: ${mylib.adjustBrightness theme.base01 0.4};
     	/* color of muted channels/chats and timestamps */
-    	--text-5: ${base0H};
+    	--text-5: ${mylib.adjustBrightness theme.base01 0.6};
 
     	/* color of dark buttons when clicked */
     	--bg-1: ${base02};
     	/* color of dark buttons */
-    	--bg-2: ${base0A};
+    	--bg-2: ${base09};
     	/* color of spacing around panels and secondary elements */
     	--bg-3: ${base00};
     	/* main background color */

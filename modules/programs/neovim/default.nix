@@ -34,6 +34,7 @@ in
       fd
       gcc
       go
+      gofumpt
       goimports-reviser
       golangci-lint
       golines

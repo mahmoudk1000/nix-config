@@ -2,6 +2,7 @@
   self,
   inputs,
   nixpkgsFor,
+  mylib,
   ...
 }:
 
@@ -35,6 +36,7 @@
                   inputs.agenix.homeManagerModules.default
                   { _module.args.theme = import ../modules/themes { inherit (host) theme; }; }
                   { _module.args.font = import ../modules/themes/font.nix { inherit pkgs; }; }
+                  { _module.args.mylib = mylib; }
                 ];
               };
             }

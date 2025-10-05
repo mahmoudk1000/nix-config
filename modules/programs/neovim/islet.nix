@@ -1,115 +1,14 @@
-{ theme, lib, ... }:
+{ theme, mylib, ... }:
 
 with theme;
 
 let
   name = "islet";
 
-  fromHex =
-    hex:
-    let
-      digits = {
-        "0" = 0;
-        "1" = 1;
-        "2" = 2;
-        "3" = 3;
-        "4" = 4;
-        "5" = 5;
-        "6" = 6;
-        "7" = 7;
-        "8" = 8;
-        "9" = 9;
-        "a" = 10;
-        "b" = 11;
-        "c" = 12;
-        "d" = 13;
-        "e" = 14;
-        "f" = 15;
-        "A" = 10;
-        "B" = 11;
-        "C" = 12;
-        "D" = 13;
-        "E" = 14;
-        "F" = 15;
-      };
-      chars = lib.stringToCharacters hex;
-    in
-    if builtins.length chars == 1 then
-      digits.${builtins.elemAt chars 0}
-    else if builtins.length chars == 2 then
-      digits.${builtins.elemAt chars 0} * 16 + digits.${builtins.elemAt chars 1}
-    else
-      throw "Invalid hex string: ${hex}";
-
-  toHex =
-    n:
-    let
-      digits = [
-        "0"
-        "1"
-        "2"
-        "3"
-        "4"
-        "5"
-        "6"
-        "7"
-        "8"
-        "9"
-        "a"
-        "b"
-        "c"
-        "d"
-        "e"
-        "f"
-      ];
-      toHexDigit = d: builtins.elemAt digits d;
-    in
-    if n < 16 then toHexDigit n else toHexDigit (n / 16) + toHexDigit (n - (n / 16) * 16);
-
-  adjustBrightness =
-    color: adjustment:
-    let
-      safeAdjustment =
-        if adjustment > 1.0 then
-          1.0
-        else if adjustment < -1.0 then
-          -1.0
-        else
-          adjustment;
-
-      cleanColor = lib.strings.removePrefix "#" color;
-
-      r = fromHex (builtins.substring 0 2 cleanColor);
-      g = fromHex (builtins.substring 2 2 cleanColor);
-      b = fromHex (builtins.substring 4 2 cleanColor);
-
-      adjustComponent =
-        component:
-        if safeAdjustment >= 0 then
-          let
-            remaining = 255 - component;
-          in
-          component + builtins.floor (remaining * safeAdjustment)
-        else
-          component + builtins.floor (component * safeAdjustment);
-
-      newR = lib.trivial.max 0 (lib.trivial.min 255 (adjustComponent r));
-      newG = lib.trivial.max 0 (lib.trivial.min 255 (adjustComponent g));
-      newB = lib.trivial.max 0 (lib.trivial.min 255 (adjustComponent b));
-
-      padHex =
-        n:
-        let
-          hex = toHex n;
-        in
-        if builtins.stringLength hex == 1 then "0${hex}" else hex;
-    in
-    "#${padHex newR}${padHex newG}${padHex newB}";
-
-  norm = adjustBrightness base01 (-0.1);
-  subtle = adjustBrightness base01 (-0.3);
-  white = adjustBrightness base01 0.4;
-  bright_white = adjustBrightness base01 0.6;
+  norm = mylib.adjustBrightness base01 (-0.1);
+  subtle = mylib.adjustBrightness base01 (-0.3);
+  white = mylib.adjustBrightness base01 0.4;
+  bright_white = mylib.adjustBrightness base01 0.6;
 in
 {
   home.file.".config/nvim/colors/${name}.lua".text = ''
@@ -259,7 +158,7 @@ in
     highlight("PreProc", { fg = c.bright_yellow })
     highlight("StorageClass", { fg = c.norm })
     highlight("Member", { fg = c.subtle })
-    highlight("Property", { fg = c.norm })
+    highlight("Property", { fg = c.subtle })
 
     -- __CONSTANTS__
     highlight("String", { fg = c.green })
@@ -407,7 +306,7 @@ in
     highlight("@markup.strong", { fg = c.white, bold = true })
     highlight("@markup.underline", { fg = c.norm, underline = true })
     highlight("@module", { fg = c.norm })
-    highlight("@namespace", { fg = c.norm })
+    highlight("@namespace", { link = "Type" })
     highlight("@none", { link = "Normal" })
     highlight("@number", { link = "Number" })
     highlight("@number.float", { link = "Float" })
@@ -520,7 +419,7 @@ in
     highlight("@lsp.type.keyword", { link = "@keyword" })
     highlight("@lsp.type.macro", { link = "@keyword" })
     highlight("@lsp.type.method", { link = "@method" })
-    highlight("@lsp.type.namespace", { link = "@namespace" })
+    highlight("@lsp.type.namespace", { link = "Type" })
     highlight("@lsp.type.parameter", { link = "@parameter" })
     highlight("@lsp.type.property", { link = "@property" })
     highlight("@lsp.type.struct", { link = "@type" })

@@ -57,7 +57,7 @@
       ...
     }@inputs:
     let
-      lib = import ./lib/default.nix { inherit self inputs overlays; };
+      mylib = import ./lib/default.nix { inherit self inputs overlays; };
 
       overlays = [
         (import ./overlays)
@@ -81,14 +81,14 @@
     in
     {
       nixosConfigurations = {
-        labbi = lib.mkHost {
+        labbi = mylib.mkHost {
           system = "x86_64-linux";
           host = hosts.labbi;
           extraModules = [
             inputs.disko.nixosModules.disko
           ];
         };
-        zanpakuto = lib.mkHost {
+        zanpakuto = mylib.mkHost {
           system = "x86_64-linux";
           host = hosts.zanpakuto;
           extraModules = [
@@ -98,24 +98,24 @@
       };
 
       homeConfigurations = {
-        labbi = lib.mkHome {
+        labbi = mylib.mkHome {
           system = "x86_64-linux";
           host = hosts.labbi;
           extraModules = [
             inputs.spicetify-nix.homeManagerModules.default
           ];
         };
-        zanpakuto = lib.mkHome {
+        zanpakuto = mylib.mkHome {
           system = "x86_64-linux";
           stateVersion = "24.11";
           host = hosts.zanpakuto;
         };
       };
 
-      devShells = lib.forAllSystems (
+      devShells = mylib.forAllSystems (
         system:
         let
-          pkgs = lib.nixpkgsFor.${system};
+          pkgs = mylib.nixpkgsFor.${system};
         in
         {
           default = pkgs.mkShell {
