@@ -109,7 +109,7 @@ let
   norm = adjustBrightness base01 (-0.1);
   subtle = adjustBrightness base01 (-0.3);
   white = adjustBrightness base01 0.4;
-  light_white = adjustBrightness base01 0.6;
+  bright_white = adjustBrightness base01 0.6;
 in
 {
   home.file.".config/nvim/colors/${name}.lua".text = ''
@@ -136,14 +136,14 @@ in
       purple = "${base07}",
       cyan = "${base08}",
       white = "${white}",
-      light_black = "${base0A}",
-      light_red = "${base0B}",
-      light_green = "${base0C}",
-      light_yellow = "${base0D}",
-      light_blue = "${base0E}",
-      light_purple = "${base0F}",
-      light_cyan = "${base0G}",
-      light_white = "${light_white}",
+      bright_black = "${base09}",
+      bright_red = "${base0A}",
+      bright_green = "${base0B}",
+      bright_yellow = "${base0C}",
+      bright_blue = "${base0D}",
+      bright_purple = "${base0E}",
+      bright_cyan = "${base0F}",
+      bright_white = "${bright_white}",
     }
 
     local function highlight(group, opts)
@@ -159,7 +159,7 @@ in
 
     -- __Normal__
     highlight("Cursor", { fg = c.bg, bg = c.norm, reverse = false })
-    highlight("SpecialKey", { fg = c.light_black })
+    highlight("SpecialKey", { fg = c.bright_black })
     highlight("Structure", { fg = c.subtle, bold = true })
     highlight("Define", { fg = c.subtle })
     highlight("Macro", { fg = c.subtle })
@@ -170,14 +170,14 @@ in
     highlight("Debug", { fg = c.red, italic = true })
 
     -- __CURSOR__
-    highlight("LineNr", { fg = c.light_black })
-    highlight("SignColumn", { fg = c.light_black, bg = c.none })
+    highlight("LineNr", { fg = c.bright_black })
+    highlight("SignColumn", { fg = c.bright_black, bg = c.none })
     highlight("CursorLineNr", { fg = c.yellow, bold = true })
     highlight("CursorLine", { bg = c.black })
     highlight("CursorColumn", { bg = c.black })
     highlight("highlightColumn", { bg = c.black })
-    highlight("FoldColumn", { fg = c.light_black })
-    highlight("YankHighlight", { fg = c.white, bg = c.light_black })
+    highlight("FoldColumn", { fg = c.bright_black })
+    highlight("YankHighlight", { fg = c.white, bg = c.bright_black })
 
     -- __SEARCH__
     highlight("Search", { fg = c.bg, bg = c.yellow, bold = true })
@@ -188,7 +188,7 @@ in
     -- __VISUAL__
     highlight("Visual", { fg = c.bg, bg = c.blue })
     highlight("VisualNOS", { fg = c.bg, bg = c.blue })
-    highlight("Ignore", { fg = c.light_black })
+    highlight("Ignore", { fg = c.bright_black })
 
     -- __MESSAGE__
     highlight("Error", { fg = c.red, bg = c.bg, bold = true, reverse = true })
@@ -215,14 +215,14 @@ in
 
     -- __FLOAT__
     highlight("NormalFloat", { fg = c.fg, bg = c.bg })
-    highlight("FloatBorder", { fg = c.light_black, bg = c.bg })
+    highlight("FloatBorder", { fg = c.bright_black, bg = c.bg })
     highlight("FloatTitle", { fg = c.fg })
 
     -- __MENU__
     highlight("Pmenu", { fg = c.norm, bg = c.bg })
     highlight("PmenuSel", { fg = c.bg, bg = c.blue, bold = true })
     highlight("PmenuSbar", { bg = c.bg })
-    highlight("PmenuThumb", { bg = c.light_black })
+    highlight("PmenuThumb", { bg = c.bright_black })
     highlight("PmenuKind", { fg = c.red, bg = c.bg })
     highlight("PmenuKindSel", { fg = c.red, bg = c.blue })
     highlight("PmenuExtra", { fg = c.subtle, bg = c.bg })
@@ -232,10 +232,10 @@ in
 
     -- __OTHER UI__
     highlight("WinSeparator", { fg = c.black })
-    highlight("EndOfBuffer", { fg = c.light_black })
+    highlight("EndOfBuffer", { fg = c.bright_black })
     highlight("QuickFixLine", { fg = c.cyan, bg = c.bg, reverse = true })
     highlight("ColorColumn", { bg = c.bg })
-    highlight("WildMenu", { fg = c.subtle, bg = c.light_black, bold = true })
+    highlight("WildMenu", { fg = c.subtle, bg = c.bright_black, bold = true })
     highlight("ToolbarButton", { fg = c.norm, bg = c.black, bold = true })
     highlight("ToolbarLine", { bg = "NONE" })
 
@@ -243,19 +243,19 @@ in
     highlight("Function", { fg = c.white, bold = true })
     highlight("Identifier", { fg = c.norm })
     highlight("Type", { fg = c.subtle })
-    highlight("Variable", { link = "Identifier" })
+    highlight("Variable", { fg = c.norm })
     highlight("Statement", { fg = c.blue })
-    highlight("Include", { link = "Statement" })
+    highlight("Include", { fg = c.bright_blue })
     highlight("Special", { fg = c.cyan })
-    highlight("Keyword", { link = "Statement" })
-    highlight("Conditional", { link = "Statement" })
-    highlight("Repeat", { link = "Statement" })
-    highlight("Label", { link = "Special" })
+    highlight("Keyword", { fg = c.blue })
+    highlight("Conditional", { fg = c.norm })
+    highlight("Repeat", { fg = c.red })
+    highlight("Label", { fg = c.fg })
     highlight("Exception", { fg = c.red })
-    highlight("PreProc", { link = "Statement" })
-    highlight("StorageClass", { link = "Statement" })
-    highlight("Member", { link = "Special" })
-    highlight("Property", { link = "Identifier" })
+    highlight("PreProc", { fg = c.bright_yellow })
+    highlight("StorageClass", { fg = c.norm })
+    highlight("Member", { fg = c.subtle })
+    highlight("Property", { fg = c.norm })
 
     -- __CONSTANTS__
     highlight("String", { fg = c.green })
@@ -263,26 +263,26 @@ in
     highlight("Directory", { fg = c.blue })
     highlight("Character", { fg = c.green, italic = true })
     highlight("Number", { fg = c.purple })
-    highlight("Boolean", { fg = c.light_blue, bold = true })
+    highlight("Boolean", { fg = c.bright_blue, bold = true })
     highlight("Float", { fg = c.purple })
 
     -- __PUNCTUATION__
     highlight("Quote", { fg = c.green })
     highlight("Operator", { fg = c.yellow })
     highlight("Delimiter", { fg = c.fg })
-    highlight("MatchParen", { bg = c.light_black, bold = true, underline = true })
+    highlight("MatchParen", { bg = c.bright_black, bold = true, underline = true })
 
     -- __NonText__
-    highlight("NonText", { fg = c.light_black })
-    highlight("Folded", { fg = c.light_black, bg = c.bg })
+    highlight("NonText", { fg = c.bright_black })
+    highlight("Folded", { fg = c.bright_black, bg = c.bg })
     highlight("qfLineNr", { link = "NonText" })
 
     -- __COMMENT__
     highlight("Todo", { fg = c.yellow, bg = c.black, bold = true, italic = true })
     highlight("Question", { fg = c.blue, bold = true })
-    highlight("Comment", { fg = c.light_black, italic = true })
+    highlight("Comment", { fg = c.bright_black, italic = true })
     highlight("SpecialComment", { link = "Comment" })
-    highlight("Conceal", { fg = c.light_black })
+    highlight("Conceal", { fg = c.bright_black })
 
     -- __SPELL__
     highlight("SpellBad", { fg = c.red, underline = true, sp = c.red })
@@ -291,7 +291,7 @@ in
     highlight("SpellLocal", { fg = c.blue, underline = true, sp = c.blue })
 
     -- __WILD MENU__
-    highlight("WildMenu", { fg = c.light_black, bold = true, underline = true })
+    highlight("WildMenu", { fg = c.bright_black, bold = true, underline = true })
 
     -- __HTML__
     highlight("htmlH1", { link = "Normal" })
@@ -309,8 +309,8 @@ in
     highlight("markdownH5", { fg = c.norm, bold = true })
     highlight("markdownH6", { fg = c.norm, bold = true })
     highlight("markdownListMarker", { fg = c.blue })
-    highlight("markdownCode", { fg = c.cyan, bg = c.light_black })
-    highlight("markdownInlineCode", { fg = c.cyan, bg = c.light_black })
+    highlight("markdownCode", { fg = c.cyan, bg = c.bright_black })
+    highlight("markdownInlineCode", { fg = c.cyan, bg = c.bright_black })
     highlight("markdownCodeDelimiter", { fg = c.subtle })
     highlight("markdownHeadingDelimiter", { fg = c.subtle })
     highlight("markdownBold", { fg = c.white, bold = true })
@@ -341,26 +341,26 @@ in
     vim.g.terminal_color_5 = c.purple
     vim.g.terminal_color_6 = c.cyan
     vim.g.terminal_color_7 = c.white
-    vim.g.terminal_color_8 = c.light_black
-    vim.g.terminal_color_9 = c.light_red
-    vim.g.terminal_color_10 = c.light_green
-    vim.g.terminal_color_11 = c.light_yellow
-    vim.g.terminal_color_12 = c.light_blue
-    vim.g.terminal_color_13 = c.light_purple
-    vim.g.terminal_color_14 = c.light_cyan
-    vim.g.terminal_color_15 = c.light_white
+    vim.g.terminal_color_8 = c.bright_black
+    vim.g.terminal_color_9 = c.bright_red
+    vim.g.terminal_color_10 = c.bright_green
+    vim.g.terminal_color_11 = c.bright_yellow
+    vim.g.terminal_color_12 = c.bright_blue
+    vim.g.terminal_color_13 = c.bright_purple
+    vim.g.terminal_color_14 = c.bright_cyan
+    vim.g.terminal_color_15 = c.bright_white
 
     -- __TREE SITTER__
-    highlight("@keyword", { fg = c.blue })
-    highlight("@keyword.function", { link = "@keyword" })
-    highlight("@keyword.return", { fg = c.blue, italic = true })
+    highlight("@keyword", { link = "Keyword" })
+    highlight("@keyword.function", { link = "keyword", italic = true })
+    highlight("@keyword.return", { link = "Keyword", italic = true })
     highlight("@keyword.operator", { link = "Operator" })
-    highlight("@keyword.builtin", { link = "@keyword" })
-    highlight("@keyword.macro", { link = "@keyword" })
-    highlight("@keyword.method", { link = "@keyword" })
-    highlight("@keyword.conditional", { link = "@keyword" })
-    highlight("@keyword.import", { link = "@keyword" })
-    highlight("@keyword.repeat", { link = "@keyword" })
+    highlight("@keyword.builtin", { link = "Keyword" })
+    highlight("@keyword.macro", { link = "Keyword" })
+    highlight("@keyword.method", { link = "Keyword" })
+    highlight("@keyword.conditional", { link = "Keyword" })
+    highlight("@keyword.import", { link = "Include" })
+    highlight("@keyword.repeat", { link = "Repeat" })
     highlight("@type", { link = "Type" })
     highlight("@type.builtin", { link = "Type" })
     highlight("@type.definition", { fg = c.norm, bold = true })
@@ -398,7 +398,7 @@ in
     highlight("@markup.link.label", { fg = c.white })
     highlight("@markup.list", { fg = c.yellow, bold = true })
     highlight("@markup.quote", { fg = c.subtle, italic = true })
-    highlight("@markup.raw", { fg = c.cyan, bg = c.light_black })
+    highlight("@markup.raw", { fg = c.cyan, bg = c.bright_black })
     highlight("@markup.strikethrough", { fg = c.subtle, strikethrough = true })
     highlight("@markup.strong", { fg = c.white, bold = true })
     highlight("@markup.underline", { fg = c.norm, underline = true })
@@ -413,7 +413,7 @@ in
     highlight("@punctuation.special", { link = "Delimiter" })
     highlight("@string", { link = "String" })
     highlight("@string.escape", { fg = c.cyan, bold = true })
-    highlight("@string.regexp", { link = "@string", bg = c.light_black, italic = true })
+    highlight("@string.regexp", { link = "@string", bg = c.bright_black, italic = true })
     highlight("@string.special.symbol", { link = "Special" })
     highlight("@string.special.url", { link = "@string", underline = true })
     highlight("@tag", { fg = c.cyan })
@@ -472,8 +472,8 @@ in
     highlight("DiagnosticUnderlineHint", { underline = true, sp = c.subtle })
 
     -- __LSP__
-    highlight("LspTroubleNormal", { fg = c.light_purple })
-    highlight("LspTroubleText", { fg = c.light_red })
+    highlight("LspTroubleNormal", { fg = c.bright_purple })
+    highlight("LspTroubleText", { fg = c.bright_red })
     highlight("LspTroubleCount", { fg = c.red })
 
     highlight("LspReferenceText", { fg = c.norm, bg = c.black })

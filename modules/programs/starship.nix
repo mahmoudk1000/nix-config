@@ -49,16 +49,16 @@
       git_branch = {
         disabled = false;
         symbol = " ";
-        style = "fg:${theme.base04} bg:${theme.base0A}";
-        format = "[[ ](fg:${theme.base0A})$symbol$branch[ ](fg:${theme.base0A})]($style)";
+        style = "fg:${theme.base04} bg:${theme.base09}";
+        format = "[[ ](fg:${theme.base09})$symbol$branch[ ](fg:${theme.base09})]($style)";
       };
       git_commit = {
-        style = "fg:${theme.base07} bg:${theme.base0A}";
+        style = "fg:${theme.base07} bg:${theme.base09}";
         commit_hash_length = 4;
-        format = "[[ ](fg:${theme.base0A})#$hash[ ](fg:${theme.base0A})]($style)";
+        format = "[[ ](fg:${theme.base09})#$hash[ ](fg:${theme.base09})]($style)";
       };
       git_state = {
-        style = "fg:${theme.base05} bg:${theme.base0A}";
+        style = "fg:${theme.base05} bg:${theme.base09}";
         rebase = "REBASING";
         merge = "MERGING";
         revert = "REVERTING";
@@ -66,10 +66,10 @@
         bisect = "BISECTING";
         am = "AM";
         am_or_rebase = "AM/REBASE";
-        format = "\([[ ](fg:${theme.base0A})$state($progress_current/$progress_total)[ ](fg:${theme.base0A})]($style)\)";
+        format = "\([[ ](fg:${theme.base09})$state($progress_current/$progress_total)[ ](fg:${theme.base09})]($style)\)";
       };
       git_status = {
-        style = "fg:${theme.base05} bg:${theme.base0A}";
+        style = "fg:${theme.base05} bg:${theme.base09}";
         stashed = " ⚑ \${count} ";
         ahead = " 󰜷 \${count} ";
         behind = " 󰜮 \${count} ";
@@ -80,7 +80,7 @@
         modified = " 󰙏 \${count} ";
         staged = " 󰸞 \${count} ";
         untracked = "  \${count} ";
-        format = "([[ ](fg:${theme.base0A})$stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[ ](fg:${theme.base0A})]($style))";
+        format = "([[ ](fg:${theme.base09})$stashed$staged$modified$renamed$untracked$deleted$conflicted$ahead_behind[ ](fg:${theme.base09})]($style))";
       };
       nix_shell = {
         disabled = false;

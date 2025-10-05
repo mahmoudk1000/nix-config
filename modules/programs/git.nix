@@ -46,7 +46,7 @@
       enable = true;
       package = pkgs.gitFull;
       lfs.enable = true;
-      userName = "Mahmoud Ayman";
+      userName = "Mahmoud Farouk";
       userEmail = "mahmoudk1000@gmail.com";
       includes = [
         {
@@ -112,8 +112,8 @@
             whitespace-error-style = "22 reverse";
             minus-style = "${theme.base03}";
             minus-emph-style = "${theme.base03} bold";
-            plus-style = "${theme.base0C}";
-            plus-emph-style = "${theme.base06} bold";
+            plus-style = "${theme.base04}";
+            plus-emph-style = "${theme.base04} bold";
             file-style = "7 italic";
             hunk-header-style = "7";
             hunk-header-decoration-style = "8 ul";
