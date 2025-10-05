@@ -712,6 +712,7 @@ require("lze").load({
 				function()
 					require("snacks").terminal()
 				end,
+				mode = { "n", "t" },
 				desc = "Toggle Terminal",
 			},
 			{
@@ -719,6 +720,7 @@ require("lze").load({
 				function()
 					require("snacks").terminal(nil, { win = { position = "float", height = 0.8 } })
 				end,
+				mode = { "n", "t" },
 				desc = "Toggle [F]loating Terminal",
 			},
 			{
@@ -733,86 +735,84 @@ require("lze").load({
 				function()
 					require("snacks").picker.lines()
 				end,
-				desc = "Fuzzily Search in Current Buffer",
+				desc = "[/] Fuzzily Search in Current Buffer",
 			},
 			{
 				"<leader>sf",
 				function()
 					require("snacks").picker.files()
 				end,
-				desc = "[S]earch [F]iles",
+				desc = "[s]earch [f]iles",
 			},
 			{
 				"<leader>sh",
 				function()
 					require("snacks").picker.help()
 				end,
-				desc = "[S]earch [H]elp",
+				desc = "[s]earch [h]elp",
 			},
 			{
 				"<leader>sw",
 				function()
 					require("snacks").picker.grep_word()
 				end,
-				mode = { "n", "x" },
-				desc = "[S]earch [W]ord",
+				desc = "[s]earch [w]ord",
 			},
 			{
 				"<leader>sg",
 				function()
 					require("snacks").picker.grep()
 				end,
-				desc = "[S]earch by [G]rep",
+				desc = "[s]earch by [g]rep",
 			},
 			{
 				"<leader>gc",
 				function()
 					require("snacks").picker.git_log()
 				end,
-				desc = "[G]it [C]omits",
+				desc = "[g]it [c]omits",
 			},
 			{
 				"<leader>gs",
 				function()
 					require("snacks").picker.git_status()
 				end,
-				desc = "Git Status",
+				desc = "[g]it [s]tatus",
 			},
 			{
 				"<leader>sb",
 				function()
 					require("snacks").picker.buffers()
 				end,
-				desc = "[S]earch [B]buffers",
+				desc = "[s]earch [b]buffers",
 			},
 			{
 				"<leader>sd",
 				function()
 					require("snacks").picker.diagnostics()
 				end,
-				desc = "[S]earch [D]iagnostics",
+				desc = "[s]earch [d]iagnostics",
 			},
 			{
 				"<leader>sD",
 				function()
 					require("snacks").picker.diagnostics_buffer()
 				end,
-				desc = "[S]earch Buffer [D]iagnostics",
+				desc = "[s]earch Buffer [D]iagnostics",
 			},
 			{
 				"<leader>gB",
 				function()
 					require("snacks").gitbrowse()
 				end,
-				mode = { "n", "v" },
-				desc = "[G]it [B]rowse",
+				desc = "[g]it [B]rowse",
 			},
 			{
 				"<leader>gb",
 				function()
 					require("snacks.git").blame_line()
 				end,
-				desc = "[G]it [B]lame Line",
+				desc = "[g]it [b]lame Line",
 			},
 		},
 		after = function()
