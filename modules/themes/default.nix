@@ -31,11 +31,11 @@ let
     techbase = import ./techbase.nix;
     tokyonight = import ./tokyonight.nix;
     uwu = import ./uwu.nix;
+    winter = import /winter.nix;
     yuto = import ./yuro.nix;
   };
 
   validThemes = builtins.attrNames themeGallery;
-
 in
 if theme == null then
   throw "Error: No theme specified. Please choose one of the following themes: ${builtins.concatStringsSep ", " validThemes}"
