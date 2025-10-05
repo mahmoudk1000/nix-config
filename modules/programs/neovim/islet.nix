@@ -147,10 +147,14 @@ in
     }
 
     local function highlight(group, opts)
-        opts.force = true
-        opts.cterm = opts.cterm or {}
-
+      if opts.link then
+        local link_attrs = vim.api.nvim_get_hl(0, { name = opts.link, link = false }) or {}
+        local new_opts = vim.tbl_deep_extend("force", {}, link_attrs, opts)
+        new_opts.link = nil
+        vim.api.nvim_set_hl(0, group, new_opts)
+      else
         vim.api.nvim_set_hl(0, group, opts)
+      end
     end
 
     -- __TEXT__
