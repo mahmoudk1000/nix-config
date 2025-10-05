@@ -8,13 +8,11 @@
   base06 = "#80A1C1";
   base07 = "#E3B3FF";
   base08 = "#B3FFFF";
-  base09 = "#D9DEE3";
-  base0A = "#1A2028";
-  base0B = "#FFD6D6";
-  base0C = "#D6FFD6";
-  base0D = "#FFFFD6";
-  base0E = "#A9C3DA";
-  base0F = "#F0D6FF";
-  base0G = "#D6FFFF";
-  base0H = "#E6EAEE";
+  base09 = "#1A2028";
+  base0A = "#FFD6D6";
+  base0B = "#D6FFD6";
+  base0C = "#FFFFD6";
+  base0D = "#A9C3DA";
+  base0E = "#F0D6FF";
+  base0F = "#D6FFFF";
 }
