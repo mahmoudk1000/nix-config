@@ -5,11 +5,11 @@ vim.g.maplocalleader = " "
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
+	pattern = "*",
+	group = highlight_group,
 	callback = function()
 		vim.highlight.on_yank()
 	end,
-	group = highlight_group,
-	pattern = "*",
 })
 
 -- Options
@@ -331,19 +331,9 @@ require("lze").load({
 					},
 				},
 			})
+			require("luasnip.loaders.from_vscode").lazy_load()
 		end,
 	},
-
-	-- {
-	-- 	"luasnip",
-	-- 	dep_of = { "blink.cmp" },
-	-- 	after = function()
-	-- 		require("luasnip").config.set_config({
-	-- 			enable_autosnippets = true,
-	-- 		})
-	-- 		require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.expand("~/.config/nvim/snippets/") } })
-	-- 	end,
-	-- },
 
 	{
 		"incline.nvim",

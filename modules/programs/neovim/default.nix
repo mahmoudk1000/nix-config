@@ -8,11 +8,6 @@ in
 {
   imports = [ ./islet.nix ];
 
-  home.file.".config/nvim/snippets" = {
-    source = ./snippets;
-    recursive = true;
-  };
-
   xdg.configFile = {
     "nvim/lua".source = ./lua;
     "nvim/crds-catalog".source = "${crds-catalog}";
@@ -28,44 +23,44 @@ in
       groovy-language-server
     ]
     ++ (with pkgs; [
-      dockerfile-language-server-nodejs
-      docker-compose-language-service
-      vscode-langservers-extracted
-      jsonnet-language-server
       ansible-language-server
-      yaml-language-server
-      java-language-server
-      lua-language-server
-      goimports-reviser
-      markdownlint-cli
-      nixfmt-rfc-style
-      golangci-lint
-      terraform-ls
       ansible-lint
-      shellcheck
+      biber
       checkmake
       codespell
-      marksman
-      yamllint
-      hadolint
-      python3
-      yamlfix
-      ripgrep
-      helm-ls
-      golines
       deadnix
+      docker-compose-language-service
+      dockerfile-language-server
+      fd
+      gcc
+      go
+      goimports-reviser
+      golangci-lint
+      golines
+      gopls
+      hadolint
+      helm-ls
+      java-language-server
+      jsonnet-language-server
+      lua-language-server
+      markdownlint-cli
+      marksman
+      nil
+      nixfmt-rfc-style
+      python3
+      ripgrep
+      ruff
+      shellcheck
+      shfmt
       statix
       stylua
-      tflint
+      terraform-ls
       texlab
-      biber
-      shfmt
-      gopls
-      nil
-      ruff
-      gcc
-      fd
-      go
+      tflint
+      vscode-langservers-extracted
+      yamlfix
+      yaml-language-server
+      yamllint
     ])
     ++ (with pkgs.nodePackages_latest; [ bash-language-server ])
     ++ (with pkgs.python3Packages; [
@@ -81,6 +76,7 @@ in
       conform-nvim
       copilot-lua
       fidget-nvim
+      friendly-snippets
       gitsigns-nvim
       incline-nvim
       lualine-nvim
