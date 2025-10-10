@@ -502,13 +502,6 @@ require("lze").load({
 	},
 
 	{
-		"ansiblels",
-		lsp = {
-			filetypes = { "yaml.ansible" },
-		},
-	},
-
-	{
 		"dockerls",
 		lsp = {
 			filetypes = { "dockerfile" },

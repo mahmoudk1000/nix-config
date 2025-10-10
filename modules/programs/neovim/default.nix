@@ -23,7 +23,6 @@ in
       groovy-language-server
     ]
     ++ (with pkgs; [
-      ansible-language-server
       ansible-lint
       biber
       checkmake
