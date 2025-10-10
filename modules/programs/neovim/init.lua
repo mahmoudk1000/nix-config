@@ -50,6 +50,7 @@ vim.o.backspace = "indent,eol,start"
 vim.o.formatoptions = "jqlnt"
 vim.o.fcs = "eob: "
 vim.o.virtualedit = "block"
+vim.o.showmatch = true
 
 -- Splits
 vim.o.splitbelow = true
@@ -59,7 +60,7 @@ vim.o.splitright = true
 vim.o.clipboard = "unnamedplus"
 
 -- Mouse
-vim.o.mouse = "a"
+vim.o.mouse = "n"
 
 -- Undo
 vim.o.undofile = true
