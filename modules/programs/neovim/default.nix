@@ -52,6 +52,7 @@ in
       ruff
       shellcheck
       shfmt
+      sqls
       statix
       stylua
       terraform-ls

@@ -425,6 +425,13 @@ require("lze").load({
 	},
 
 	{
+		"sqls",
+		lsp = {
+			filetypes = { "sql", "mysql" },
+		},
+	},
+
+	{
 		"marksman",
 		lsp = {
 			filetypes = { "markdown", "markdown.mdx" },
