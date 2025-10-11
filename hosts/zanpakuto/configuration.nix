@@ -59,7 +59,9 @@
     enable = true;
     defaultUser = "${host.username}";
     startMenuLaunchers = true;
-    docker-desktop.enable = true;
+    usbip = {
+      enable = true;
+    };
     wslConf = {
       interop = {
         enabled = false;
