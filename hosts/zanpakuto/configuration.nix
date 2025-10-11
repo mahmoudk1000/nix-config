@@ -53,21 +53,6 @@
         }
       ];
     };
-    openvscode-server = {
-      enable = true;
-      user = "${host.username}";
-      telemetryLevel = "off";
-      port = 8542;
-      host = "127.0.0.1";
-      withoutConnectionToken = true;
-      extraPackages = with pkgs; [
-        nodejs
-        git
-        gh
-        direnv
-        go
-      ];
-    };
   };
 
   wsl = {
