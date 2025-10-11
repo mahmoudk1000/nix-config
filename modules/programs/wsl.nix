@@ -8,6 +8,7 @@
     ./gnu.nix
     ./newsboat.nix
     ./starship.nix
+    ./superfile.nix
     ./texlive.nix
     ./tmux.nix
     ./yt-dlp.nix
