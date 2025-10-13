@@ -88,7 +88,7 @@
     };
   };
 
-  boot.isContainer = true;
+  # boot.isContainer = true;
 
   networking.hostName = "${host.hostName}";
 

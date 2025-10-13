@@ -48,7 +48,7 @@ in
         tfsec
         trivy
         azure-cli
-        awscli2
+        # awscli2
         powershell
         eksctl
         openssl
