@@ -31,9 +31,11 @@ vim.o.breakindent = true
 vim.o.joinspaces = false
 vim.o.wildmenu = true
 vim.o.wildmode = "longest,full"
+vim.o.hidden = true
 
 -- Search
-vim.o.hlsearch = true
+vim.o.hlsearch = false
+vim.o.incsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
@@ -51,6 +53,7 @@ vim.o.formatoptions = "jqlnt"
 vim.o.fcs = "eob: "
 vim.o.virtualedit = "block"
 vim.o.showmatch = true
+vim.o.inccommand = "nosplit"
 
 -- Splits
 vim.o.splitbelow = true
@@ -72,7 +75,7 @@ vim.o.spelloptions = "camel"
 
 -- Completion
 vim.o.omnifunc = "syntaxcomplete#Complete"
-vim.o.completeopt = "menu,preview,noselect"
+vim.o.completeopt = "menu,menuone,noselect"
 
 -- Encoding
 vim.o.encoding = "utf-8"
