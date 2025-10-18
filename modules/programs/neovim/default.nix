@@ -19,6 +19,8 @@ in
     package = pkgs.neovim-unwrapped;
     vimAlias = true;
     defaultEditor = true;
+    withNodeJs = true;
+    withPython3 = true;
     extraPackages = [
       groovy-language-server
     ]
