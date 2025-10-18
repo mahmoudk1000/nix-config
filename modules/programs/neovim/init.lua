@@ -584,6 +584,15 @@ require("lze").load({
 		"gopls",
 		lsp = {
 			filetypes = { "go", "gomod", "gowork", "gotmpl" },
+			settings = {
+				analyses = {
+					unusedparams = true,
+				},
+				staticcheck = true,
+				usePlaceholders = true,
+				completeUnimported = true,
+				gofumpt = true,
+			},
 		},
 	},
 
