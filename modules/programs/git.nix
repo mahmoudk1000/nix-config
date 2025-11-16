@@ -12,8 +12,8 @@
       enable = true;
       settings = {
         user = {
-          name = config.programs.git.userName;
-          email = config.programs.git.userEmail;
+          inherit (config.programs.git.settings.user) name;
+          inherit (config.programs.git.settings.user) email;
         };
         ui = {
           diff-editor = lib.mkIf config.programs.neovim.enable [
@@ -46,23 +46,11 @@
       enable = true;
       package = pkgs.gitFull;
       lfs.enable = true;
-      userName = "Mahmoud Farouk";
-      userEmail = "mahmoudk1000@gmail.com";
-      includes = [
-        {
-          condition = "gitdir:~/work/";
-          contents = {
-            commit.gpgSign = false;
-            user = {
-              name = "Mahmoud Frouk";
-              email = "mahmoud.frouk@atos.net";
-              signingKey = "A23D3563FD90EA8F";
-            };
-            gpg.format = "ssh";
-          };
-        }
-      ];
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Mahmoud Ayman";
+          email = "mahmoudk1000@gmail.com";
+        };
         commit.verbose = true;
         init = {
           defaultBranch = "main";
@@ -87,6 +75,20 @@
           autoupdate = true;
         };
       };
+      includes = [
+        {
+          condition = "gitdir:~/work/";
+          contents = {
+            commit.gpgSign = false;
+            user = {
+              name = "Mahmoud Frouk";
+              email = "mahmoud.frouk@atos.net";
+              signingKey = "A23D3563FD90EA8F";
+            };
+            gpg.format = "ssh";
+          };
+        }
+      ];
       signing = {
         signByDefault = true;
         key = "A23D3563FD90EA8F";
@@ -99,31 +101,32 @@
         "*result*"
         "node_modules"
       ];
-      delta = {
-        enable = true;
-        options = {
-          features = "decorations labels";
-          syntax-theme = "none";
-          zero-style = "8";
-          navigate = "true";
-          keep-plus-minus-markers = "true";
-          decorations = {
-            file-decoration-style = "none";
-            whitespace-error-style = "22 reverse";
-            minus-style = "${theme.base03}";
-            minus-emph-style = "${theme.base03} bold";
-            plus-style = "${theme.base04}";
-            plus-emph-style = "${theme.base04} bold";
-            file-style = "7 italic";
-            hunk-header-style = "7";
-            hunk-header-decoration-style = "8 ul";
-          };
-          labels = {
-            file-modified-label = " MODIFIED ";
-            file-removed-label = " REMOVED ";
-            file-added-label = " ADDED ";
-            file-renamed-label = " RENAMED ";
-          };
+    };
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        features = "decorations labels";
+        syntax-theme = "none";
+        zero-style = "8";
+        navigate = "true";
+        keep-plus-minus-markers = "true";
+        decorations = {
+          file-decoration-style = "none";
+          whitespace-error-style = "22 reverse";
+          minus-style = "${theme.base03}";
+          minus-emph-style = "${theme.base03} bold";
+          plus-style = "${theme.base04}";
+          plus-emph-style = "${theme.base04} bold";
+          file-style = "7 italic";
+          hunk-header-style = "7";
+          hunk-header-decoration-style = "8 ul";
+        };
+        labels = {
+          file-modified-label = " MODIFIED ";
+          file-removed-label = " REMOVED ";
+          file-added-label = " ADDED ";
+          file-renamed-label = " RENAMED ";
         };
       };
     };
