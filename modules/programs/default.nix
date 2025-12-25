@@ -22,6 +22,7 @@
     ./newsboat.nix
     ./rofi.nix
     ./spotify.nix
+    ./ssh.nix
     ./starship.nix
     ./texlive.nix
     ./thunar.nix
