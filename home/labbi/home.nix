@@ -21,38 +21,34 @@
     extraOutputsToInstall = [ "man" ];
     packages =
       (with pkgs; [
-        vim
-        unzip
-        curl
-        wget
-        jq
-        playerctl
-        pamixer
-        libnotify
-
-        mpc-cli
-        xclip
-        spotdl
-
-        ffmpeg
-        arandr
-        imagemagick
-        rtorrent
-        nsxiv
-
-        st-flexipatch
-        inkscape
-        freetube
-        libreoffice
-        vesktop
         anki-bin
-        tdesktop
+        arandr
+        curl
         element-desktop
-        foliate
         evince
-        zoom-us
-
+        ffmpeg
+        foliate
+        freetube
+        imagemagick
+        inkscape
+        jq
+        libnotify
+        libreoffice
+        mpc
+        nsxiv
+        pamixer
+        playerctl
+        rtorrent
+        spotdl
+        st-flexipatch
+        telegram-desktop
+        unzip
+        vesktop
+        vim
+        wget
+        xclip
         xorg.xmodmap
+        zoom-us
       ])
       ++ (import ../../modules/scripts { inherit config pkgs lib; });
 

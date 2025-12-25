@@ -67,19 +67,19 @@
       hinting.enable = false;
     };
     packages = with pkgs; [
-      iosevka
-      nerd-fonts.iosevka-term
-      nerd-fonts.noto
-      dejavu_fonts
-      jetbrains-mono
       amiri
-      liberation_ttf
-      noto-fonts
-      noto-fonts-emoji
-      ibm-plex
-      roboto
+      dejavu_fonts
       fira
       fira-code
+      ibm-plex
+      iosevka
+      jetbrains-mono
+      liberation_ttf
+      nerd-fonts.iosevka-term
+      nerd-fonts.noto
+      noto-fonts
+      noto-fonts-color-emoji
+      roboto
       unifont
     ];
   };
