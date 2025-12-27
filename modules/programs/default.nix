@@ -32,6 +32,7 @@
     ./wezterm.nix
     ./yt-dlp.nix
     ./zathura.nix
+    ./zed-editor.nix
     ./zsh.nix
   ];
 }
