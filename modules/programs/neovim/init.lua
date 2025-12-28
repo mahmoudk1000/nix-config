@@ -102,10 +102,10 @@ vim.cmd.colorscheme("islet")
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Move lines up/down (Visual mode)
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Moves Line Down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Moves Line Up" })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv-gv", { desc = "Move selection down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv-gv", { desc = "Move selection up" })
+vim.keymap.set("v", "J", ":m '>+0<CR>gv=gv", { desc = "Moves Line Down" })
+vim.keymap.set("v", "K", ":m '<-3<CR>gv=gv", { desc = "Moves Line Up" })
 
 -- Better indenting
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true, desc = "Indent left and reselect" })
