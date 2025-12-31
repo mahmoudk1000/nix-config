@@ -1137,6 +1137,13 @@ require("lze").load({
 		cmd = { "ConformInfo" },
 		after = function()
 			require("conform").setup({
+				formatters = {
+					yamlfix = {
+						env = {
+							YAMLFIX_SEQUENCE_STYLE = "block_style",
+						},
+					},
+				},
 				formatters_by_ft = {
 					["*"] = { "codespell" },
 					["_"] = { "trim_whitespace" },
