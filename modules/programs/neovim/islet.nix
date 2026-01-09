@@ -158,7 +158,7 @@ in
     highlight("PreProc", { fg = c.bright_yellow })
     highlight("StorageClass", { fg = c.norm })
     highlight("Member", { fg = c.subtle })
-    highlight("Property", { fg = c.subtle })
+    highlight("Property", { fg = c.norm })
 
     -- __CONSTANTS__
     highlight("String", { fg = c.green })
@@ -291,7 +291,7 @@ in
     highlight("@error", { link = "Error" })
     highlight("@exception", { link = "Exception" })
     highlight("@function", { link = "Function" })
-    highlight("@function.builtin", { link = "@function", italic = true })
+    highlight("@function.builtin", { fg = c.fg, italic = true })
     highlight("@function.macro", { link = "@keyword" })
     highlight("@function.method", { link = "@function" })
     highlight("@markup", { link = "Normal" })
