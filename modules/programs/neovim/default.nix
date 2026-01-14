@@ -90,7 +90,6 @@ in
       nvim-highlight-colors
       nvim-lint
       nvim-lspconfig
-      nvim-treesitter-textsubjects
       nvim-treesitter.withAllGrammars
       nvim-web-devicons
       snacks-nvim

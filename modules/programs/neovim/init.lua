@@ -642,7 +642,7 @@ require("lze").load({
 		end,
 		after = function()
 			vim.defer_fn(function()
-				require("nvim-treesitter.configs").setup({
+				require("nvim-treesitter").setup({
 					highlight = {
 						enable = true,
 						additional_vim_regex_highlighting = false,
