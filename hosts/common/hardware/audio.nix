@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  imports = [ ./lowLatency.nix ];
+  imports = [ ./audio-low-latency.nix ];
 
   services.pipewire = {
     enable = true;
