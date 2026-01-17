@@ -80,9 +80,6 @@
 
   virtualisation = {
     containers.enable = true;
-    docker = {
-      enable = true;
-    };
     podman = {
       enable = true;
     };
