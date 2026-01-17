@@ -34,7 +34,6 @@
         "input"
         "disk"
         (lib.mkIf config.virtualisation.docker.enable "docker")
-        (lib.mkIf config.programs.adb.enable "adbusers")
         (lib.mkIf config.virtualisation.libvirtd.enable "libvirtd")
         "wireshark"
         "polkituser"
