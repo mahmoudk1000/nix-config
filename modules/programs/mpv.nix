@@ -9,11 +9,20 @@
   programs.mpv = {
     enable = true;
     package = pkgs.mpv.override {
-      x11Support = true;
-      pipewireSupport = true;
-      sdl2Support = true;
-      vaapiSupport = true;
-      vdpauSupport = true;
+      scripts = with pkgs.mpvScripts; [
+        cutter
+        quality-menu
+        sponsorblock
+        thumbfast
+        uosc
+      ];
+      mpv = pkgs.mpv-unwrapped.override {
+        x11Support = true;
+        pipewireSupport = true;
+        sdl2Support = true;
+        vaapiSupport = true;
+        vdpauSupport = true;
+      };
     };
     defaultProfiles = [ "best" ];
     profiles = {

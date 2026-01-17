@@ -6,7 +6,7 @@
 
 let
   thunar-with-plugins =
-    with pkgs.xfce;
+    with pkgs;
     (thunar.override {
       thunarPlugins = [
         thunar-volman
