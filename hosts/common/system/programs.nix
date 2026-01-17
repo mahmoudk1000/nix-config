@@ -2,7 +2,6 @@
 
 {
   programs = {
-    android-tools.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
