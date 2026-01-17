@@ -199,6 +199,10 @@
       initContent = ''
         autoload -Uz promptinit; promptinit
 
+        command_not_found_handler() {
+          echo -e "nope, \e[31m'$0'\e[0m didn't work."; return 127
+        }
+
         # Keybinds
         bindkey '^ '            autosuggest-accept
         bindkey '^a'            beginning-of-line
