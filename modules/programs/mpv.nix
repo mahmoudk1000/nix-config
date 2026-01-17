@@ -16,13 +16,6 @@
         thumbfast
         uosc
       ];
-      mpv = pkgs.mpv-unwrapped.override {
-        x11Support = true;
-        pipewireSupport = true;
-        sdl2Support = true;
-        vaapiSupport = true;
-        vdpauSupport = true;
-      };
     };
     defaultProfiles = [ "best" ];
     profiles = {
