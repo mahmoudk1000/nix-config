@@ -10,6 +10,7 @@ let
     bluewery = import ./bluewery.nix;
     coral = import ./coral.nix;
     crystal = import ./crystal.nix;
+    duat = import ./duat.nix;
     darkgit = import ./darkgit.nix;
     fujin = import ./fuji.nix;
     iceberg = import ./iceberg.nix;
