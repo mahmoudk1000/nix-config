@@ -14,31 +14,31 @@
     colorSchemes = {
       default = {
         background = "${theme.base00}";
-        cursor_bg = "${theme.base00}";
-        cursor_border = "${theme.base02}";
-        cursor_fg = "${theme.base02}";
-        foreground = "${theme.base01}";
-        selection_bg = "${theme.base0A}";
-        selection_fg = "${theme.base01}";
+        cursor_bg = "${theme.base05}";
+        cursor_border = "${theme.base05}";
+        cursor_fg = "${theme.base00}";
+        foreground = "${theme.base05}";
+        selection_bg = "${theme.base02}";
+        selection_fg = "${theme.base05}";
         ansi = [
-          "${theme.base02}"
-          "${theme.base03}"
-          "${theme.base04}"
-          "${theme.base05}"
-          "${theme.base06}"
-          "${theme.base07}"
+          "${theme.base00}"
           "${theme.base08}"
-          "${theme.base01}"
-        ];
-        brights = [
-          "${theme.base0A}"
           "${theme.base0B}"
-          "${theme.base0C}"
-          "${theme.base0C}"
+          "${theme.base0A}"
           "${theme.base0D}"
           "${theme.base0E}"
-          "${theme.base0F}"
-          "${theme.base01}"
+          "${theme.base0C}"
+          "${theme.base05}"
+        ];
+        brights = [
+          "${theme.base03}"
+          "${theme.base08}"
+          "${theme.base0B}"
+          "${theme.base0A}"
+          "${theme.base0D}"
+          "${theme.base0E}"
+          "${theme.base0C}"
+          "${theme.base07}"
         ];
       };
     };

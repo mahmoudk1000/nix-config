@@ -49,7 +49,7 @@
         font-0 = "${font.nameTerm}:style=Semibold:size=10;3";
         font-1 = "Material Design Icons Desktop:size=10;3";
         background = theme.base00;
-        foreground = theme.base01;
+        foreground = theme.base0F;
         width = "10%";
         offset-x = 864;
         modules-center = "time";

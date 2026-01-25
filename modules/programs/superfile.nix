@@ -46,9 +46,9 @@
     };
     themes = {
       default = {
-        file_panel_border = theme.base01;
-        sidebar_border = theme.base01;
-        footer_border = theme.base01;
+        file_panel_border = theme.base0F;
+        sidebar_border = theme.base0F;
+        footer_border = theme.base0F;
 
         file_panel_border_active = theme.base06;
         sidebar_border_active = theme.base06;
@@ -85,7 +85,7 @@
         sidebar_title = theme.base06;
         sidebar_item_selected_fg = theme.base00;
         sidebar_item_selected_bg = theme.base06;
-        sidebar_divider = theme.base01;
+        sidebar_divider = theme.base0F;
 
         modal_cancel_fg = theme.base0A;
         modal_cancel_bg = theme.base02;

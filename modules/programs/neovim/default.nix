@@ -9,7 +9,7 @@ in
 
   xdg.configFile = {
     "nvim/lua".source = ./lua;
-    "nvim/after/queries".source = ./queries;
+    "nvim/queries".source = ./queries;
     "nvim/crds-catalog".source = import ./crds-catalog.nix { inherit pkgs; };
   };
 

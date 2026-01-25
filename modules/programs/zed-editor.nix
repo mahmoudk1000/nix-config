@@ -227,35 +227,35 @@
               background = "${base00}";
               "editor.background" = "${base00}";
               "editor.gutter.background" = "${base00}";
-              "editor.active_line.background" = "${base02}";
-              "status_bar.background" = "${base02}";
+              "editor.active_line.background" = "${base01}";
+              "status_bar.background" = "${base01}";
 
-              foreground = "${base01}";
-              text = "${base01}";
+              foreground = "${base05}";
+              text = "${base05}";
 
-              "editor.line_number" = "${base08}";
-              "editor.active_line_number" = "${base01}";
-              "editor.wrap_guide" = "${base09}";
+              "editor.line_number" = "${base03}";
+              "editor.active_line_number" = "${base0D}";
+              "editor.wrap_guide" = "${base02}";
 
-              error = "${base03}";
-              warning = "${base07}";
-              "warning.background" = "${base09}";
+              error = "${base08}";
+              warning = "${base0A}";
+              "warning.background" = "${base01}";
 
               players = [
                 {
-                  cursor = "${base01}";
-                  selection = "${base06}";
+                  cursor = "${base0D}";
+                  selection = "${base02}";
                 }
               ];
 
               syntax = {
                 comment = {
-                  color = "${base04}";
+                  color = "${base03}";
                   font_style = "italic";
                   font_weight = null;
                 };
                 string = {
-                  color = "${base0C}";
+                  color = "${base0B}";
                   font_style = null;
                   font_weight = null;
                 };

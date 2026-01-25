@@ -39,7 +39,7 @@ in
         border-color = theme.base02;
         font-0 = "${font.nameTerm}:style=Semibold:size=8;3";
         background = theme.base00;
-        foreground = theme.base01;
+        foreground = theme.base0F;
       };
       "bar/right" = {
         "inherit" = "section/base";

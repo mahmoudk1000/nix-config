@@ -30,7 +30,7 @@ in
         * {
           bg:	    ${theme.base00};
           lg:	    ${theme.base02};
-          fg:	    ${theme.base01};
+          fg:	    ${theme.base0F};
           se:         ${theme.base06};
           background-color:   @bg;
           text-color:         @fg;

@@ -35,7 +35,7 @@
   # UI
   "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
   "browser.display.background_color" = theme.base00;
-  "browser.display.foreground_color" = theme.base01;
+  "browser.display.foreground_color" = theme.base0F;
   "browser.toolbars.bookmarks.visibility" = "never";
   "browser.urlbar.suggest.quickactions" = false;
   "browser.urlbar.suggest.topsites" = false;

@@ -32,7 +32,7 @@
         modules-center = "time";
         modules-right = "bluetooth pulseaudio backlight battery";
         background = theme.base00;
-        foreground = theme.base01;
+        foreground = theme.base0F;
       };
       "module/ewmh" = {
         type = "internal/xworkspaces";

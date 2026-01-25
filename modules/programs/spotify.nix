@@ -41,8 +41,8 @@
         main = stripHexPrefix theme.base00;
         notification = stripHexPrefix theme.base0A;
         notification-error = stripHexPrefix theme.base03;
-        subtext = stripHexPrefix theme.base01;
-        text = stripHexPrefix theme.base01;
+        subtext = stripHexPrefix theme.base0F;
+        text = stripHexPrefix theme.base0F;
       };
     };
 

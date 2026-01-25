@@ -10,7 +10,7 @@ with theme;
 
     --arrowpanel-background: ${base00} !important;
     --arrowpanel-border-color: ${base02} !important;
-    --autocomplete-popup-highlight-color: ${base01} !important;
+    --autocomplete-popup-highlight-color: ${base0F} !important;
     --autocomplete-popup-highlight-background: ${base06} !important;
     --toolbarbutton-active-background: ${base06} !important;
     --lwt-toolbarbutton-icon-fill-attention: var(--button-primary-bgcolor, ${base06}) !important;
@@ -154,7 +154,7 @@ with theme;
   #urlbar-input {
     text-align: center !important;
     background-color: ${base00} !important;
-    color: ${base01} !important;
+    color: ${base0F} !important;
   }
   .urlbar-input-box {
     text-indent: 4px !important;
@@ -178,7 +178,7 @@ with theme;
   }
   #urlbar ::-moz-selection,
   .searchbar-textbox ::-moz-selection {
-    background-color: ${base01} !important;
+    background-color: ${base0F} !important;
     color: ${base0A} !important;
   }
   urlbar > #urlbar-background,
@@ -275,7 +275,7 @@ with theme;
   }
   .urlbarView {
     background: ${base02} !important;
-    color: ${base01} !important;
+    color: ${base0F} !important;
     margin: 6px 0 0 0 !important;
     width: 100% !important;
     position: absolute !important;
@@ -284,7 +284,7 @@ with theme;
     border: 0 !important;
   }
   #tabbrowser-tabpanels {
-    background-color: ${base01} !important;
+    background-color: ${base0F} !important;
   }
 
   /* Button Styling */

@@ -31,8 +31,8 @@ in
       theme = {
         "*" = {
           bg = mkLiteral theme.base00;
-          fg = mkLiteral theme.base01;
-          al = mkLiteral theme.base02;
+          fg = mkLiteral theme.base05;
+          al = mkLiteral theme.base01;
           background-color = mkLiteral "@bg";
           text-color = mkLiteral "@fg";
         };

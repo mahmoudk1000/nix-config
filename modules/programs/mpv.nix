@@ -48,7 +48,7 @@
       osc = "no";
       osd-font = ''"${font.nameTerm}"'';
       osd-font-size = 24;
-      osd-color = theme.base01;
+      osd-color = theme.base0F;
       osd-border-size = 2;
       osd-bar-h = 2;
       osd-bar-w = 60;

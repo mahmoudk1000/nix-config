@@ -12,10 +12,10 @@ with theme;
     --button-primary-active-bgcolor: ${base0E} !important;
     --button-primary-color: ${base00} !important;
     --input-bgcolor: ${base02} !important;
-    --input-color: ${base01} !important;
+    --input-color: ${base0F} !important;
     --input-border-color: ${base0A} !important;
     --lwt-accent-color: ${base00} !important;
-    --lwt-text-color: ${base01} !important;
+    --lwt-text-color: ${base0F} !important;
     --foldertree-background: ${base00} !important;
     --tree-view-bg: ${base00} !important;
     --tree-card-background: ${base00} !important;
@@ -36,7 +36,7 @@ with theme;
   }
   table[is="tree-view-table"] {
     background-color: ${base02} !important;
-    color: ${base01} !important;
+    color: ${base0F} !important;
   }
   .button {
     background-color: ${base02} !important;
@@ -74,7 +74,7 @@ with theme;
   #folderTree:focus-within li.selected > .container, #folderTree li.drop-target > .container,
   .minimonth-week {
     background-color: ${base0A} !important;
-    color: ${base01} !important;
+    color: ${base0F} !important;
   }
   .minimonth-day[selected="true"][today="true"] {
     background-color: ${base06} !important;

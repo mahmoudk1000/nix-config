@@ -37,8 +37,8 @@ let
       font = '${font.name}:size=9',
 
       -- Color Settings --
-      default_color = '${theme.base0A}',
-      color1 = '${theme.base01}',
+      default_color = '${theme.base0D}',
+      color1 = '${theme.base0E}',
 
       -- Window Settings --
       background = false,

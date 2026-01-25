@@ -3,7 +3,6 @@
   pkgs,
   theme,
   font,
-  mylib,
   ...
 }:
 
@@ -97,35 +96,35 @@
       colors = {
         primary = {
           background = "${theme.base00}";
-          foreground = "${theme.base01}";
+          foreground = "${theme.base05}";
         };
         cursor = {
-          text = "${theme.base0A}";
-          cursor = "${theme.base01}";
+          text = "${theme.base06}";
+          cursor = "${theme.base02}";
         };
         selection = {
-          text = "${theme.base01}";
-          background = "${theme.base0A}";
+          text = "${theme.base07}";
+          background = "${theme.base03}";
         };
         normal = {
           black = "${theme.base02}";
-          red = "${theme.base03}";
-          green = "${theme.base04}";
-          yellow = "${theme.base05}";
-          blue = "${theme.base06}";
-          magenta = "${theme.base07}";
-          cyan = "${theme.base08}";
-          white = "${mylib.adjustBrightness theme.base01 0.4}";
-        };
-        bright = {
-          black = "${theme.base09}";
-          red = "${theme.base0a}";
+          red = "${theme.base08}";
           green = "${theme.base0B}";
-          yellow = "${theme.base0C}";
+          yellow = "${theme.base0A}";
           blue = "${theme.base0D}";
           magenta = "${theme.base0E}";
-          cyan = "${theme.base0F}";
-          white = "${mylib.adjustBrightness theme.base01 0.6}";
+          cyan = "${theme.base0C}";
+          white = "${theme.base06}";
+        };
+        bright = {
+          black = "${theme.base03}";
+          red = "${theme.base08}";
+          green = "${theme.base0B}";
+          yellow = "${theme.base0A}";
+          blue = "${theme.base0D}";
+          magenta = "${theme.base0E}";
+          cyan = "${theme.base0C}";
+          white = "${theme.base07}";
         };
       };
     };

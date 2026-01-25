@@ -49,15 +49,15 @@ with theme;
     	--mention-hover: hsla(190, 80%, 52%, 0.05);
 
     	/* color of bright text on colored buttons */
-    	--text-1: ${base01};
+    	--text-1: ${base0F};
     	/* color of headings and important text */
     	--text-2: ${base09};
     	/* color of normal text */
-    	--text-3: ${base01};
+    	--text-3: ${base0F};
     	/* color of icon buttons and channels */
-    	--text-4: ${mylib.adjustBrightness theme.base01 0.4};
+    	--text-4: ${base07};
     	/* color of muted channels/chats and timestamps */
-    	--text-5: ${mylib.adjustBrightness theme.base01 0.6};
+    	--text-5: ${base0F};
 
     	/* color of dark buttons when clicked */
     	--bg-1: ${base02};

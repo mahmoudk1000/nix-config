@@ -346,8 +346,8 @@ require("lze").load({
 			require("incline").setup({
 				highlight = {
 					groups = {
-						InclineNormal = { default = true, group = "lualine_b_normal" },
-						InclineNormalNC = { default = true, group = "lualine_b_normal" },
+						InclineNormal = { default = true, group = "InclineNormal" },
+						InclineNormalNC = { default = true, group = "InclineNormalNC" },
 					},
 				},
 				window = { margin = { vertical = 0, horizontal = 1 } },
@@ -1232,8 +1232,8 @@ require("lze").load({
 				highlights = {
 					enabled = true,
 					groups = {
-						"BlinkPairsYellow",
 						"BlinkPairsPurple",
+						"BlinkPairsYellow",
 						"BlinkPairsCyan",
 					},
 					matchparen = {

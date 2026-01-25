@@ -21,8 +21,8 @@
 
         frame_width = 6;
         separator_height = 3;
-        frame_color = theme.base0A;
-        separator_color = theme.base0A;
+        frame_color = theme.base0D;
+        separator_color = theme.base0D;
 
         alignment = "left";
         word_wrap = "yes";
@@ -38,17 +38,17 @@
       };
       urgency_normal = {
         background = theme.base00;
-        foreground = theme.base01;
+        foreground = theme.base05;
         timeout = 10;
       };
       urgency_low = {
         background = theme.base00;
-        foreground = theme.base06;
+        foreground = theme.base03;
         timeout = 5;
       };
       urgency_critical = {
         background = theme.base00;
-        foreground = theme.base03;
+        foreground = theme.base08;
         timeout = 20;
       };
     };
