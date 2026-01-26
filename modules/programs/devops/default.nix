@@ -10,6 +10,10 @@ let
   cfgNetwork = config.programs.network;
 in
 {
+  imports = [
+    ./k9s.nix
+  ];
+
   options = {
     programs.devops = {
       enable = lib.mkOption {
@@ -52,11 +56,11 @@ in
         powershell
         eksctl
         openssl
-        k9s
         etcd
         kubeseal
         vcluster
         kubie
+        kubelogin-oidc
       ];
     })
 

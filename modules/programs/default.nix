@@ -2,6 +2,7 @@
   imports = [
     ./accounts
     ./awesome
+    ./devops
     ./firefox
     ./ncmpcpp
     ./neovim
@@ -13,7 +14,6 @@
     ./bitwarden.nix
     ./bspwm.nix
     ./chromium.nix
-    ./devops.nix
     ./fetch.nix
     ./git.nix
     ./gnu.nix
