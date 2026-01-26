@@ -13,7 +13,7 @@
     };
     wslConf = {
       interop = {
-        enabled = false;
+        enabled = true;
         appendWindowsPath = false;
       };
       automount.root = "/mnt";

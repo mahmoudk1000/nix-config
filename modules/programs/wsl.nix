@@ -1,8 +1,8 @@
 {
   imports = [
+    ./devops
     ./neovim
     ./bash.nix
-    ./devops.nix
     ./fetch.nix
     ./git.nix
     ./gnu.nix
