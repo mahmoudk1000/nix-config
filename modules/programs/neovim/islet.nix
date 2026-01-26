@@ -74,7 +74,7 @@ in
     highlight("SignColumn", { fg = c.base05 })
     highlight("IncSearch", { fg = c.base00, bg = c.base09 })
     highlight("Substitute", { fg = c.base00, bg = c.base0C })
-    highlight("LineNr", { fg = c.base03 })
+    highlight("LineNr", { fg = c.base02 })
     highlight("CursorLineNr", { fg = c.base05, bold = true })
     highlight("MatchParen", { bg = c.base02, bold = true, underline = true })
     highlight("ModeMsg", { fg = c.base0B })
@@ -82,7 +82,7 @@ in
     highlight("MsgSeparator", { fg = c.base03 })
     highlight("MoreMsg", { fg = c.base0C, bold = true })
     highlight("NonText", { fg = c.base03 })
-    highlight("Pmenu", { fg = c.base05, bg = c.base01 })
+    highlight("Pmenu", { fg = c.base05 })
     highlight("PmenuSel", { fg = c.base05, bg = c.base02, bold = true })
     highlight("PmenuSbar", { bg = c.base02 })
     highlight("PmenuThumb", { bg = c.base03 })
@@ -111,7 +111,7 @@ in
     highlight("Whitespace", { fg = c.base03 })
     highlight("WildMenu", { fg = c.base00, bg = c.base0D, bold = true })
     highlight("WinBar", { fg = c.base05, bg = c.base01 })
-    highlight("WinBarNC", { fg = c.base03 })
+    highlight("WinBarNC", { fg = c.base02 })
 
     -- Float
     highlight("FloatBorder", { fg = c.base03, bg = c.base01 })
@@ -125,7 +125,7 @@ in
     highlight("Character", { fg = c.base0B })
     highlight("Comment", { fg = c.base03, italic = true })
     highlight("Conditional", { fg = c.base0E })
-    highlight("Constant", { fg = c.base0C })
+    highlight("Constant", { fg = c.base06 })
     highlight("Define", { fg = c.base0E })
     highlight("Delimiter", { fg = c.base04 })
     highlight("Error", { fg = c.base08, bg = c.base00, bold = true })
@@ -133,12 +133,12 @@ in
     highlight("Float", { fg = c.base0C })
     highlight("Function", { fg = c.base06, italic = true })
     highlight("Identifier", { fg = c.base05 })
-    highlight("Include", { fg = c.base08 })
+    highlight("Include", { fg = c.base05 })
     highlight("Keyword", { fg = c.base0E, bold = true })
     highlight("Label", { fg = c.base0D })
     highlight("Macro", { fg = c.base0C })
     highlight("Number", { fg = c.base0C })
-    highlight("Operator", { fg = c.base0A })
+    highlight("Operator", { fg = c.base08 })
     highlight("PreCondit", { fg = c.base03 })
     highlight("PreProc", { fg = c.base0C })
     highlight("Repeat", { fg = c.base0E })
@@ -175,7 +175,7 @@ in
     highlight("@function.builtin", { fg = c.base0D, bold = true })
     highlight("@function.call", { fg = c.base0D })
     highlight("@function.macro", { link = "Macro" })
-    highlight("@function.method", { fg = c.base0D })
+    highlight("@function.method", { fg = c.base07, bold = true })
     highlight("@function.method.call", { fg = c.base0D })
     highlight("@constructor", { fg = c.base0D, bold = true })
     highlight("@constructor.lua", { fg = c.base0D })
@@ -184,7 +184,7 @@ in
     highlight("@keyword", { link = "Keyword" })
     highlight("@keyword.conditional", { link = "Conditional" })
     highlight("@keyword.exception", { link = "Exception" })
-    highlight("@keyword.function", { link = "Keyword" })
+    highlight("@keyword.function", { fg = c.base07, bold = true })
     highlight("@keyword.import", { link = "Include" })
     highlight("@keyword.operator", { link = "Operator" })
     highlight("@keyword.return", { fg = c.base0E, italic = true })
@@ -193,7 +193,7 @@ in
     -- Variables & Constants
     highlight("@variable", { fg = c.base05 })
     highlight("@variable.builtin", { fg = c.base05, italic = true })
-    highlight("@variable.member", { fg = c.base04 })
+    highlight("@variable.member", { fg = c.base07 })
     highlight("@variable.parameter", { fg = c.base05 })
     highlight("@constant", { link = "Constant" })
     highlight("@constant.builtin", { fg = c.base0F, bold = true })
@@ -363,8 +363,8 @@ in
     -- ============================================================================
 
     highlight("LuaLineNormalA", { fg = c.base00, bg = c.base0D, bold = true })
-    highlight("LuaLineNormalB", { fg = c.base05, bg = c.base01 })
-    highlight("LuaLineNormalC", { fg = c.base05 })
+    highlight("LuaLineNormalB", { fg = c.base05, bg = c.base00 })
+    highlight("LuaLineNormalC", { fg = c.base05, bg = c.base00 })
     highlight("LuaLineInsertA", { fg = c.base00, bg = c.base0B, bold = true })
     highlight("LuaLineVisualA", { fg = c.base00, bg = c.base0E, bold = true })
     highlight("LuaLineReplaceA", { fg = c.base00, bg = c.base08, bold = true })
@@ -388,9 +388,13 @@ in
     -- ============================================================================
 
     -- Snacks Picker
+    highlight("SnacksPicker", { fg = c.base05, bg = c.base00 })
     highlight("SnacksPickerBorder", { fg = c.base03 })
     highlight("SnacksPickerMatch", { fg = c.base0A, bold = true })
     highlight("SnacksPickerPrompt", { fg = c.base0C })
+    highlight("SnacksPickerGitStatusAdded", { fg = c.base0B })
+    highlight("SnacksPickerGitStatusModified", { fg = c.base09 })
+    highlight("SnacksPickerGitStatusStaged", { fg = c.base0E })
 
     -- Snacks Input
     highlight("SnacksInputBorder", { fg = c.base03 })
@@ -399,7 +403,7 @@ in
     highlight("SnacksInputIcon", { fg = c.base0C })
 
     -- Snacks Indent
-    highlight("SnacksIndent", { fg = c.base03 })
+    highlight("SnacksIndent", { fg = c.base01 })
     highlight("SnacksIndentScope", { fg = c.base03 })
 
     -- ============================================================================
