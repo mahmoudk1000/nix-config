@@ -114,10 +114,10 @@
         decorations = {
           file-decoration-style = "none";
           whitespace-error-style = "22 reverse";
-          minus-style = "${theme.base03}";
-          minus-emph-style = "${theme.base03} bold";
-          plus-style = "${theme.base04}";
-          plus-emph-style = "${theme.base04} bold";
+          minus-style = "${theme.base08}";
+          minus-emph-style = "${theme.base08} bold";
+          plus-style = "${theme.base0B}";
+          plus-emph-style = "${theme.base0B} bold";
           file-style = "7 italic";
           hunk-header-style = "7";
           hunk-header-decoration-style = "8 ul";

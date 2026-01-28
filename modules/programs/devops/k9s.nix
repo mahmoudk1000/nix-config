@@ -114,6 +114,7 @@
         enableImageScan = false;
         ui = {
           skin = "default";
+          enableMouse = false;
           headless = false;
           logoless = true;
           crumbsless = false;
@@ -127,6 +128,13 @@
           ];
         };
         readOnly = false;
+        logger = {
+          tail = 500;
+          buffer = 5000;
+          sinceSeconds = -1;
+          textWrap = true;
+          showTime = false;
+        };
       };
     };
     views = {
