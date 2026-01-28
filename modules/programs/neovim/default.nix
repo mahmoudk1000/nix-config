@@ -33,6 +33,7 @@ in
       docker-compose-language-service
       dockerfile-language-server
       fd
+      file
       gcc
       go
       gofumpt
@@ -42,7 +43,6 @@ in
       gopls
       hadolint
       helm-ls
-      java-language-server
       jsonnet-language-server
       lua-language-server
       markdownlint-cli
@@ -60,9 +60,8 @@ in
       terraform-ls
       texlab
       tflint
-      vscode-langservers-extracted
-      yamlfix
       yaml-language-server
+      yamlfix
       yamllint
     ])
     ++ (with pkgs.nodePackages_latest; [ bash-language-server ])

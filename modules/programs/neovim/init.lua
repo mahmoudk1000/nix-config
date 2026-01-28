@@ -604,14 +604,6 @@ require("lze").load({
 	},
 
 	{
-		"java_language_server",
-		lsp = {
-			filetypes = { "java" },
-			cmd = { "java-language-server" },
-		},
-	},
-
-	{
 		"lua_ls",
 		lsp = {
 			filetypes = { "lua" },

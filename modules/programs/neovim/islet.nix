@@ -7,7 +7,7 @@ let
 in
 {
   home.file.".config/nvim/colors/${name}.lua".text = ''
-    vim.cmd("hi clear")
+    vim.cmd("highlight clear")
     if vim.fn.exists("syntax_on") then
         vim.cmd("syntax reset")
     end
