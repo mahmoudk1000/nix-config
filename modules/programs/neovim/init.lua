@@ -623,12 +623,13 @@ require("lze").load({
 
 	{
 		"nvim-treesitter",
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "DeferredUIEnter", "BufReadPost", "BufNewFile" },
 		priority = 100,
 		load = function(name)
 			require("lzextras").loaders.multi({
 				name,
 				"nvim-treesitter-textobjects",
+				"treesitter-context",
 			})
 		end,
 		after = function()
@@ -636,10 +637,9 @@ require("lze").load({
 				require("nvim-treesitter").setup({
 					highlight = {
 						enable = true,
-						additional_vim_regex_highlighting = false,
 					},
 					indent = {
-						enable = true,
+						enable = false,
 					},
 					incremental_selection = {
 						enable = true,

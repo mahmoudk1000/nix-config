@@ -123,7 +123,7 @@ in
     -- SYNTAX HIGHLIGHTING
     -- ============================================================================
 
-    highlight("Boolean", { fg = c.base0C, bold = true })
+    highlight("Boolean", { fg = c.base08, bold = true })
     highlight("Character", { fg = c.base0B })
     highlight("Comment", { fg = c.base03, italic = true })
     highlight("Conditional", { fg = c.base0E })
