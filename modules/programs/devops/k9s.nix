@@ -141,6 +141,7 @@
     };
     views = {
       "v1/pods" = {
+        sortColumn = "NAME:asc";
         columns = [
           "NAMESPACE"
           "NAME"
@@ -152,6 +153,7 @@
         ];
       };
       "v1/services" = {
+        sortColumn = "NAME:asc";
         columns = [
           "NAMESPACE"
           "NAME"
