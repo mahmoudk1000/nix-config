@@ -27,6 +27,10 @@
             fgColor = "${theme.base05}";
             bgColor = "${theme.base00}";
             suggestColor = "${theme.base03}";
+            border = {
+              command = "${theme.base03}";
+              default = "${theme.base04}";
+            };
           };
           help = {
             fgColor = "${theme.base05}";
@@ -102,6 +106,12 @@
             logs = {
               fgColor = "${theme.base07}";
               bgColor = "${theme.base00}";
+              indicator = {
+                fgColor = "${theme.base05}";
+                bgColor = "${theme.base01}";
+                toggleOnColor = "${theme.base0B}";
+                toggleOffColor = "${theme.base08}";
+              };
             };
           };
         };
