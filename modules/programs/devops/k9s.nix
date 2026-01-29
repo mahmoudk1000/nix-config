@@ -68,6 +68,7 @@
               newColor = "${theme.base0B}";
               modifyColor = "${theme.base09}";
               addColor = "${theme.base0C}";
+              pendingColor = "${theme.base0F}";
               errorColor = "${theme.base08}";
               highlightcolor = "${theme.base03}";
               killColor = "${theme.base08}";
@@ -86,6 +87,7 @@
               fgColor = "${theme.base05}";
               bgColor = "${theme.base00}";
               cursorColor = "${theme.base02}";
+              markColor = "${theme.base0A}";
               header = {
                 fgColor = "${theme.base0D}";
                 bgColor = "${theme.base00}";
