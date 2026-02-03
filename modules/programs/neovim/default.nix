@@ -15,7 +15,7 @@ in
 
   programs.neovim = {
     enable = true;
-    extraLuaConfig = builtins.readFile ./init.lua;
+    initLua = builtins.readFile ./init.lua;
     package = pkgs.neovim-unwrapped;
     vimAlias = true;
     defaultEditor = true;
@@ -89,6 +89,9 @@ in
       nvim-highlight-colors
       nvim-lint
       nvim-lspconfig
+      nvim-treesitter
+      nvim-treesitter-textobjects
+      nvim-treesitter-context
       nvim-treesitter.withAllGrammars
       nvim-web-devicons
       snacks-nvim
@@ -97,8 +100,8 @@ in
       vim-nix
       vim-sleuth
       vim-terraform
-      vimtex
       vim-yaml
+      vimtex
     ];
   };
 }

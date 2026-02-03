@@ -140,7 +140,7 @@ in
     highlight("Label", { fg = c.base0D })
     highlight("Macro", { fg = c.base0C })
     highlight("Number", { fg = c.base0C })
-    highlight("Operator", { fg = c.base08 })
+    highlight("Operator", { fg = c.base04 })
     highlight("PreCondit", { fg = c.base03 })
     highlight("PreProc", { fg = c.base0C })
     highlight("Repeat", { fg = c.base0E })
@@ -195,7 +195,7 @@ in
     -- Variables & Constants
     highlight("@variable", { fg = c.base05 })
     highlight("@variable.builtin", { fg = c.base05, italic = true })
-    highlight("@variable.member", { fg = c.base07 })
+    highlight("@variable.member", { fg = c.base05 })
     highlight("@variable.parameter", { fg = c.base05 })
     highlight("@constant", { link = "Constant" })
     highlight("@constant.builtin", { fg = c.base0F, bold = true })
@@ -217,8 +217,8 @@ in
 
     -- Operators & Punctuation
     highlight("@operator", { link = "Operator" })
-    highlight("@punctuation.delimiter", { fg = c.base04 })
-    highlight("@punctuation.bracket", { fg = c.base04 })
+    highlight("@punctuation.delimiter", { fg = c.base08 })
+    highlight("@punctuation.bracket", { fg = c.base0C })
     highlight("@punctuation.special", { fg = c.base0F })
 
     -- Tags (HTML/JSX)
