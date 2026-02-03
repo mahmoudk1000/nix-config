@@ -60,6 +60,7 @@
             };
             menu = {
               fgColor = "${theme.base06}";
+              fgStyle = "bold";
               keyColor = "${theme.base0D}";
               numKeyColor = "${theme.base08}";
             };
@@ -90,6 +91,8 @@
             table = {
               fgColor = "${theme.base05}";
               bgColor = "${theme.base00}";
+              cursorFgColor = "${theme.base00}";
+              cursorBgColor = "${theme.base0D}";
               cursorColor = "${theme.base02}";
               markColor = "${theme.base0A}";
               header = {
@@ -97,6 +100,25 @@
                 bgColor = "${theme.base00}";
                 sorterColor = "${theme.base08}";
               };
+            };
+            xray = {
+              fgColor = "${theme.base05}";
+              bgColor = "${theme.base00}";
+              cursorColor = "${theme.base0D}";
+              cursorTextColor = "${theme.base00}";
+              graphicColor = "${theme.base0A}";
+            };
+            charts = {
+              bgColor = "${theme.base00}";
+              dialBgColor = "${theme.base03}";
+              chartBgColor = "${theme.base01}";
+              focusFgColor = "${theme.base0D}";
+              focusBgColor = "${theme.base00}";
+            };
+            picker = {
+              mainColor = "${theme.base0D}";
+              focusColor = "${theme.base0A}";
+              shortcutColor = "${theme.base0B}";
             };
             yaml = {
               keyColor = "${theme.base05}";
