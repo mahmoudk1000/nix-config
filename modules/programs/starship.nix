@@ -84,8 +84,8 @@
       };
       nix_shell = {
         disabled = false;
-        impure_msg = "[impure shell](bold fg:${theme.base08})";
-        pure_msg = "[pure shell](bold fg:${theme.base0B})";
+        impure_msg = "[impure ](bold fg:${theme.base08})";
+        pure_msg = "[pure ](bold fg:${theme.base0B})";
         symbol = "  ";
         heuristic = true;
         format = "via [$symbol$state(\($name\))]($style)";
