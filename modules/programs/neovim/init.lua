@@ -60,6 +60,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 
 -- Clipboard
+vim.o.clipboard = "unnamedplus"
 if vim.fn.has("wsl") == 1 then
 	vim.g.clipboard = {
 		name = "WslClipboard",
@@ -74,7 +75,6 @@ if vim.fn.has("wsl") == 1 then
 		cache_enabled = 0,
 	}
 else
-	vim.o.clipboard = "unnamedplus"
 	vim.g.clipboard = {
 		name = "xsel",
 		copy = {
