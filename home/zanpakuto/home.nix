@@ -21,7 +21,7 @@
       curl
       wget
       jq
-      xclip
+      xsel
       imagemagick
       rtorrent
     ];

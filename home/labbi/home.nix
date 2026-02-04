@@ -46,7 +46,7 @@
         vesktop
         vim
         wget
-        xclip
+        xsel
         xorg.xmodmap
         zoom-us
       ])

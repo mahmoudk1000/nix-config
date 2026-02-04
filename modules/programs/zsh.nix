@@ -129,7 +129,7 @@
           ".5" = "cd -- ../../../../..";
           ".6" = "cd -- ../../../../../..";
 
-          pwdcp = "pwd | tr -d '\n' | xclip -sel c";
+          pwdcp = "pwd | tr -d '\n' | xsel --clipboard --input";
           tree = "eza --tree --icons --tree";
 
           us = "systemctl --user";

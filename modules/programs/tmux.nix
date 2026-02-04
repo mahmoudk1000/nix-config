@@ -68,7 +68,7 @@
       bind P choose-buffer
 
       bind-key -T copy-mode-vi v send-keys -X begin-selection
-      bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -in -selection clipboard"
+      bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel --clipboard --input"
       bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
 
       # Statusline Hide/Unhide

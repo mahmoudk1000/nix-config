@@ -60,7 +60,34 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 
 -- Clipboard
-vim.o.clipboard = "unnamedplus"
+if vim.fn.has("wsl") == 1 then
+	vim.g.clipboard = {
+		name = "WslClipboard",
+		copy = {
+			["+"] = "clip.exe",
+			["*"] = "clip.exe",
+		},
+		paste = {
+			["+"] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+			["*"] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+		},
+		cache_enabled = 0,
+	}
+else
+	vim.o.clipboard = "unnamedplus"
+	vim.g.clipboard = {
+		name = "xsel",
+		copy = {
+			["+"] = "xsel -bi",
+			["*"] = "xsel -bi",
+		},
+		paste = {
+			["+"] = "xsel -bo",
+			["*"] = "xsel -bo",
+		},
+		cache_enabled = 0,
+	}
+end
 
 -- Mouse
 vim.o.mouse = "n"

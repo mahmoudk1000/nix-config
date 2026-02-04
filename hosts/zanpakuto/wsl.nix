@@ -14,7 +14,7 @@
     wslConf = {
       interop = {
         enabled = true;
-        appendWindowsPath = false;
+        appendWindowsPath = true;
       };
       automount.root = "/mnt";
       network = {
