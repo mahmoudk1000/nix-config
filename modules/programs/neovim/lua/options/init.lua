@@ -107,3 +107,9 @@ vim.opt.fillchars:append({ fold = " " })
 vim.o.cmdheight = 0
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
+
+-- Providers (Disable unused)
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0

@@ -1,81 +1,64 @@
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+-- Core Keymaps
+local map = vim.keymap.set
 
--- Move lines up/down (Visual mode)
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+-- Navigation
+map("n", "<C-h>", "<C-w>h", { desc = "Move left" })
+map("n", "<C-j>", "<C-w>j", { desc = "Move down" })
+map("n", "<C-k>", "<C-w>k", { desc = "Move up" })
+map("n", "<C-l>", "<C-w>l", { desc = "Move right" })
 
--- Better indenting
-vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true, desc = "Indent left and reselect" })
-vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true, desc = "Indent right and reselect" })
+-- Resize
+map("n", "<C-Up>", ":resize +2<CR>", { desc = "Height +" })
+map("n", "<C-Down>", ":resize -2<CR>", { desc = "Height -" })
+map("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Width -" })
+map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Width +" })
 
--- Duplicate Line
-vim.keymap.set("n", "<A-C-Down>", "yyP", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-C-Up>", "yyp", { noremap = true, silent = true })
-vim.keymap.set("v", "<leader>ds", "y'>p", { noremap = true, silent = true, desc = "[D]uplicate [S]election" })
+-- Scrolling
+map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
+map("n", "n", "nzzzv", { desc = "Next" })
+map("n", "N", "Nzzzv", { desc = "Prev" })
 
--- Comments
-vim.keymap.set("n", "<leader>c", "gcc", { remap = true, silent = true, desc = "[C]omment Line" })
-vim.keymap.set("v", "<leader>/", "gc", { remap = true, silent = true, desc = "[C]omment Selection" })
+-- Editing
+map("v", "<", "<gv", { desc = "Indent left" })
+map("v", ">", ">gv", { desc = "Indent right" })
+map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move down" })
+map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move up" })
+map("n", "J", "mzJ`z", { desc = "Join lines" })
+map("v", "p", '"_dP', { desc = "Paste" })
+map({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete" })
+map({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank" })
+map("n", "<leader>Y", '"+Y', { desc = "Yank line" })
 
--- Helpers for dealing with other people's code
-vim.keymap.set("n", "\\t", "<cmd>set ts=4 sts=4 sw=4 noet<cr>", { desc = "Set tabs" })
-vim.keymap.set("n", "\\s", "<cmd>set ts=4 sts=4 sw=4 et<cr>", { desc = "Set spaces" })
-
--- WINDOW MANAGEMENT - <leader>w prefix
-vim.keymap.set("n", "<leader>wh", "<C-w>h", { noremap = true, silent = true, desc = "Go to left window" })
-vim.keymap.set("n", "<leader>wj", "<C-w>j", { noremap = true, silent = true, desc = "Go to bottom window" })
-vim.keymap.set("n", "<leader>wk", "<C-w>k", { noremap = true, silent = true, desc = "Go to top window" })
-vim.keymap.set("n", "<leader>wl", "<C-w>l", { noremap = true, silent = true, desc = "Go to right window" })
-
-vim.keymap.set("n", "<leader>w=", "<C-w>=", { noremap = true, silent = true, desc = "Equalize window sizes" })
-vim.keymap.set("n", "<leader>w+", "<C-w>+", { noremap = true, silent = true, desc = "Increase window height" })
-vim.keymap.set("n", "<leader>w-", "<C-w>-", { noremap = true, silent = true, desc = "Decrease window height" })
-vim.keymap.set("n", "<leader>w<", "<C-w><", { noremap = true, silent = true, desc = "Decrease window width" })
-vim.keymap.set("n", "<leader>w>", "<C-w>>", { noremap = true, silent = true, desc = "Increase window width" })
-
--- Diagnostic keymaps
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-
--- Clipboard operations
-vim.keymap.set({ "v", "x", "n" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
-vim.keymap.set(
-	{ "n", "v", "x" },
-	"<leader>Y",
-	'"+yy',
-	{ noremap = true, silent = true, desc = "Yank line to clipboard" }
-)
-vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
-vim.keymap.set(
-	"i",
-	"<C-p>",
-	"<C-r><C-p>+",
-	{ noremap = true, silent = true, desc = "Paste from clipboard from within insert mode" }
-)
-vim.keymap.set(
-	"x",
-	"<leader>P",
-	'"_dP',
-	{ noremap = true, silent = true, desc = "Paste over selection without erasing unnamed register" }
-)
+-- Quick actions
+map("n", "<C-s>", ":w<CR>", { desc = "Save" })
+map("i", "<C-s>", "<Esc>:w<CR>a", { desc = "Save" })
+map("n", "<leader>q", ":q<CR>", { desc = "Quit" })
+map("n", "<leader>Q", ":qa!<CR>", { desc = "Quit all" })
+map("n", "<Esc>", ":noh<CR>", { desc = "Clear search" })
 
 -- Buffers
-vim.keymap.set("n", "<S-l>", ":bnext<CR>", { noremap = true, silent = true, desc = "Go to next buffer" })
-vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { noremap = true, silent = true, desc = "Go to previous buffer" })
-vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { noremap = true, silent = true, desc = "Delete current buffer" })
-vim.keymap.set("n", "<leader>bD", ":bufdo bdelete<CR>", { noremap = true, silent = true, desc = "Delete all buffers" })
+map("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
+map("n", "<S-h>", ":bprevious<CR>", { desc = "Prev buffer" })
+map("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
 
--- Replace
-vim.keymap.set(
-	"n",
-	"<leader>sr",
-	":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
-	{ noremap = true, desc = "Search and replace word under cursor" }
-)
-vim.keymap.set("v", "<leader>sr", ":s/", { noremap = true, desc = "Search and replace in selection" })
+-- Terminal
+map("t", "<Esc><Esc>", "<C-><C-n>", { desc = "Exit terminal" })
 
--- Save and quit
-vim.keymap.set("n", "<C-s>", ":w<CR>", { noremap = true, silent = true, desc = "Save file" })
-vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a", { noremap = true, silent = true, desc = "Save file (insert mode)" })
-vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true, desc = "Quit" })
-vim.keymap.set("n", "<leader>Q", ":qa<CR>", { noremap = true, silent = true, desc = "Quit all" })
-vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true, desc = "Save file" })
+-- Diagnostics
+map("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Prev diagnostic" })
+map("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Next diagnostic" })
+map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+
+-- Toggles
+map("n", "<leader>ts", function()
+	vim.o.spell = not vim.o.spell
+end, { desc = "Toggle spell" })
+
+map("n", "<leader>tw", function()
+	vim.o.wrap = not vim.o.wrap
+end, { desc = "Toggle wrap" })
