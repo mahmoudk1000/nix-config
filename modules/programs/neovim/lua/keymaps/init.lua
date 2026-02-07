@@ -1,4 +1,3 @@
--- Core Keymaps
 local map = vim.keymap.set
 
 -- Navigation
