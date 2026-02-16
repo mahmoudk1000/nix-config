@@ -10,7 +10,9 @@ require("lze").load({
 				desc = "Format buffer",
 			},
 		},
-		cmd = { "ConformInfo" },
+		init = function()
+			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+		end,
 		after = function()
 			require("conform").setup({
 				formatters = {
@@ -38,21 +40,9 @@ require("lze").load({
 					go = { "gofmt", "goimports-reviser", "golines" },
 				},
 				format_on_save = {
-					timeout_ms = 500,
+					timeout_ms = 1000,
 					lsp_format = "fallback",
 				},
-			})
-
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				pattern = "*",
-				callback = function(args)
-					require("conform").format({
-						timeout_ms = 1000,
-						async = false,
-						lsp_fallback = true,
-						bufnr = args.buf,
-					})
-				end,
 			})
 		end,
 	},
