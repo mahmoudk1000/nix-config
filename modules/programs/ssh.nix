@@ -2,13 +2,17 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
+    includes = [
+      "~/.ssh/conf.d/*"
+    ];
     matchBlocks = {
       "*" = {
         addKeysToAgent = "yes";
-        forwardAgent = true;
+        forwardAgent = false;
+        forwardX11 = false;
         serverAliveInterval = 30;
         serverAliveCountMax = 3;
-        hashKnownHosts = false;
+        hashKnownHosts = true;
         compression = true;
         controlMaster = "no";
         controlPersist = "no";
@@ -27,9 +31,9 @@
       ControlPath ~/.ssh/control-%C
       ControlPersist 2h
 
-      # Latency optimizations
-      ServerAliveCountMax 3
-      ConnectTimeout 10
+      ## Security
+      PreferredAuthentications publickey,keyboard-interactive,password
+      StrictHostKeyChecking ask
 
       # Enable pipelining
       EnableEscapeCommandline yes
