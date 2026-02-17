@@ -253,14 +253,6 @@
 
         # Custom Autosuggestion Setting
         typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
-
-        sudo-command-line() {
-          [[ -z $BUFFER ]] && zle up-history
-          [[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
-          zle end-of-line
-        }
-        zle -N sudo-command-line
-        bindkey '\e\e' sudo-command-line
       '';
       profileExtra = ''
         if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
