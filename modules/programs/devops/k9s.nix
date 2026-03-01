@@ -196,6 +196,17 @@
           "AGE"
         ];
       };
+      "apiextensions.k8s.io/v1/customresourcedefinitions" = {
+        sortColumn = "GROUP:asc";
+        columns = [
+          "NAME"
+          "GROUP"
+          "KIND"
+          "VERSION"
+          "SCOPE"
+          "AGE"
+        ];
+      };
     };
   };
 }
