@@ -101,6 +101,7 @@ require("lze").load({
 						url = "",
 					},
 					schemas = {
+						["https://squidfunk.github.io/mkdocs-material/schema.json"] = "mkdocs.yml",
 						["https://json.schemastore.org/github-workflow.json"] = ".github/workflows/*.{yaml,yml}",
 						["https://json.schemastore.org/github-action.json"] = ".github/action.{yaml,yml}",
 						["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yaml,yml}",
