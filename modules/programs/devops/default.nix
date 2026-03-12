@@ -34,49 +34,52 @@ in
   config = lib.mkMerge [
     (lib.mkIf cfgDevops.enable {
       home.packages = with pkgs; [
-        opentofu
+        # awscli2
         ansible
-        kubernetes-helm
-        helm-docs
-        kubectl
-        krew
-        kubectl-tree
-        kubectl-ktop
-        kubectl-view-secret
-        stern
-        docker-compose
-        gnumake
-        kustomize
-        terraform
+        azure-cli
         chart-testing
+        docker-compose
+        eksctl
+        etcd
+        gnumake
+        helm-docs
+        krew
+        kubectl
+        kubectl-ktop
+        kubectl-tree
+        kubectl-view-secret
+        kubelogin-oidc
+        kubernetes-helm
+        kubeseal
+        kubie
+        kustomize
+        ocm
+        openshift
+        openssl
+        opentofu
+        powershell
+        stern
+        terraform
         tfsec
         trivy
-        azure-cli
-        # awscli2
-        powershell
-        eksctl
-        openssl
-        etcd
-        kubeseal
         vcluster
-        kubie
-        kubelogin-oidc
       ];
     })
 
     (lib.mkIf cfgNetwork.enable {
       home.packages = with pkgs; [
-        nmap
-        wireshark
-        tcpdump
-        mtr
-        traceroute
-        whois
-        dig
-        nslookup
         curl
-        wget
+        dig
+        dnsutils
         hoppscotch
+        mtr
+        nmap
+        nslookup
+        tcpdump
+        traceroute
+        wget
+        whois
+        wireshark
       ];
     })
   ];
