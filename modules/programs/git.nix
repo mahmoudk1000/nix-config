@@ -90,7 +90,7 @@
         }
       ];
       signing = {
-        signByDefault = true;
+        signByDefault = false;
         key = "A23D3563FD90EA8F";
       };
       ignores = [
