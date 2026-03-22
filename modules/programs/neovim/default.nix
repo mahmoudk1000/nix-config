@@ -32,6 +32,7 @@ in
       checkmake
       codespell
       deadnix
+      deno
       docker-compose-language-service
       dockerfile-language-server
       fd
@@ -62,8 +63,10 @@ in
       terraform-ls
       texlab
       tflint
-      yaml-language-server
+      typescript
+      typescript-language-server
       yamlfix
+      yaml-language-server
       yamllint
     ])
     ++ (with pkgs.nodePackages_latest; [ bash-language-server ])

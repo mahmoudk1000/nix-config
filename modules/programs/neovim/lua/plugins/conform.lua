@@ -38,6 +38,8 @@ require("lze").load({
 					yaml = { "yamlfix" },
 					tex = { "latexindent" },
 					go = { "gofmt", "goimports-reviser", "golines" },
+					typescript = { { "deno_fmt" } },
+					typescriptreact = { { "deno_fmt" } },
 				},
 				format_on_save = {
 					timeout_ms = 1000,

@@ -17,6 +17,10 @@ require("lze").load({
 				nix = { "deadnix", "nix", "statix" },
 				tex = { "chktex" },
 				go = { "golangcilint" },
+				javascript = { "deno" },
+				javascriptreact = { "eno" },
+				typescript = { "deno" },
+				typescriptreact = { "deno" },
 			}
 
 			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

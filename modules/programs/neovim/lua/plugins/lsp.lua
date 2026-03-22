@@ -55,6 +55,59 @@ require("lze").load({
 	},
 
 	{
+		"ts_ls",
+		lsp = {
+			single_file_support = false,
+			root_dir = require("lspconfig").util.root_pattern("package.json"),
+			settings = {
+				typescript = {
+					inlayHints = {
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayEnumMemberValueHints = true,
+					},
+				},
+				javascript = {
+					inlayHints = {
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayEnumMemberValueHints = true,
+					},
+				},
+			},
+		},
+	},
+
+	{
+		"denols",
+		lsp = {
+			root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+			settings = {
+				deno = {
+					inlayHints = {
+						parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = true },
+						parameterTypes = { enabled = true },
+						variableTypes = { enabled = true, suppressWhenTypeMatchesName = true },
+						propertyDeclarationTypes = { enabled = true },
+						functionLikeReturnTypes = { enable = true },
+						enumMemberValues = { enabled = true },
+					},
+				},
+			},
+		},
+	},
+
+	{
 		"jsonls",
 		lsp = {
 			filetypes = { "json", "jsonc" },
