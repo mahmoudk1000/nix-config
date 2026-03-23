@@ -15,28 +15,37 @@ pkgs.stdenvNoCC.mkDerivation {
 
   postPatch = with theme; ''
     substituteInPlace scss/gtk-3.0/_colors.scss \
-      --replace "@bg0@" "${base00}" \
-      --replace "@bg1@" "${base02}" \
-      --replace "@bg2@" "${base0A}" \
-      --replace "@bg3@" "${base02}" \
-      --replace "@bg4@" "${base0A}" \
-      --replace "@red@" "${base03}" \
-      --replace "@red_light@" "${base0A}" \
-      --replace "@orange@" "#FCBF8D" \
-      --replace "@orange_light@" "#FDD9BB" \
-      --replace "@yellow@" "${base05}" \
-      --replace "@yellow_light@" "${base0C}" \
-      --replace "@green@" "${base04}" \
-      --replace "@green_light@" "${base0D}" \
-      --replace "@blue@" "${base06}" \
-      --replace "@blue_light@" "${base0D}" \
-      --replace "@purple@" "${base07}" \
-      --replace "@purple_light@" "${base0E}" \
-      --replace "@cyan@" "${base08}" \
-      --replace "@cyan_light@" "${base0F}"
+      --replace-warn "@bg0@" "${base00}" \
+      --replace-warn "@bg1@" "${base02}" \
+      --replace-warn "@bg2@" "${base0A}" \
+      --replace-warn "@bg3@" "${base02}" \
+      --replace-warn "@bg4@" "${base0A}" \
+      --replace-warn "@red@" "${base03}" \
+      --replace-warn "@red_light@" "${base0A}" \
+      --replace-warn "@orange@" "#FCBF8D" \
+      --replace-warn "@orange_light@" "#FDD9BB" \
+      --replace-warn "@yellow@" "${base05}" \
+      --replace-warn "@yellow_light@" "${base0C}" \
+      --replace-warn "@green@" "${base04}" \
+      --replace-warn "@green_light@" "${base0D}" \
+      --replace-warn "@blue@" "${base06}" \
+      --replace-warn "@blue_light@" "${base0D}" \
+      --replace-warn "@purple@" "${base07}" \
+      --replace-warn "@purple_light@" "${base0E}" \
+      --replace-warn "@cyan@" "${base08}" \
+      --replace-warn "@cyan_light@" "${base0F}"
   '';
 
-  nativeBuildInputs = with pkgs; [ sass ];
+  nativeBuildInputs = with pkgs; [
+    sass
+  ];
+
+  buildPhase = ''
+    runHook preBuild
+    mkdir -p gtk-3.0
+    sass scss/gtk-3.0/gtk.scss gtk-3.0/gtk.css
+    runHook postBuild
+  '';
 
   installFlags = [
     "DESTDIR=$(out)"
