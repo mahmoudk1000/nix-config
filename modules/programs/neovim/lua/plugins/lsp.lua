@@ -60,9 +60,23 @@ require("lze").load({
 	},
 
 	{
+		"ts_ls",
+		lsp = {
+			settings = {
+				ts = {
+					format = {
+						enable = true,
+						indentSize = 2,
+						tabSize = 2,
+					},
+				},
+			},
+		},
+	},
+
+	{
 		"biome",
 		lsp = {
-			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "css", "html" },
 			settings = {
 				biome = {
 					format = {
