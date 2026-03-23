@@ -36,7 +36,7 @@ pkgs.stdenvNoCC.mkDerivation {
       --replace "@cyan_light@" "${base0F}"
   '';
 
-  nativeBuildInputs = with pkgs; [ nodePackages.sass ];
+  nativeBuildInputs = with pkgs; [ sass ];
 
   installFlags = [
     "DESTDIR=$(out)"
