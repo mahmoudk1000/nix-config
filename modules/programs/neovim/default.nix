@@ -71,7 +71,6 @@ in
       bufferline-nvim
       codecompanion-nvim
       conform-nvim
-      copilot-lua
       fidget-nvim
       friendly-snippets
       gitsigns-nvim
