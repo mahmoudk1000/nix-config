@@ -33,18 +33,23 @@ require("lze").load({
 				virtual_text = true,
 				signs = true,
 				underline = true,
-				update_in_insert = false,
 				float = {
-					focusable = false,
-					style = "minimal",
 					border = "rounded",
 					source = true,
-					header = "",
-					prefix = "",
-					scope = "line",
 				},
 			})
 		end,
+	},
+
+	{
+		"copilot",
+		lsp = {
+			settings = {
+				telemetry = {
+					telemetryLevel = "off",
+				},
+			},
+		},
 	},
 
 	{
@@ -55,33 +60,14 @@ require("lze").load({
 	},
 
 	{
-		"ts_ls",
+		"biome",
 		lsp = {
-			single_file_support = false,
-			root_dir = require("lspconfig").util.root_pattern("package.json"),
+			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "css", "html" },
 			settings = {
-				typescript = {
-					inlayHints = {
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayEnumMemberValueHints = true,
-					},
-				},
-				javascript = {
-					inlayHints = {
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayEnumMemberValueHints = true,
+				biome = {
+					format = {
+						indentStyle = "space",
+						indentSize = 2,
 					},
 				},
 			},
@@ -89,22 +75,8 @@ require("lze").load({
 	},
 
 	{
-		"denols",
-		lsp = {
-			root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
-			settings = {
-				deno = {
-					inlayHints = {
-						parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = true },
-						parameterTypes = { enabled = true },
-						variableTypes = { enabled = true, suppressWhenTypeMatchesName = true },
-						propertyDeclarationTypes = { enabled = true },
-						functionLikeReturnTypes = { enable = true },
-						enumMemberValues = { enabled = true },
-					},
-				},
-			},
-		},
+		"tailwindcss",
+		lsp = {},
 	},
 
 	{

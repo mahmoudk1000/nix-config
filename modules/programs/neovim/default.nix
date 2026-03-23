@@ -29,10 +29,11 @@ in
     ++ (with pkgs; [
       ansible-lint
       biber
+      biome
       checkmake
       codespell
+      copilot-language-server
       deadnix
-      deno
       docker-compose-language-service
       dockerfile-language-server
       fd
@@ -60,6 +61,7 @@ in
       sqls
       statix
       stylua
+      tailwindcss
       terraform-ls
       texlab
       tflint
@@ -69,7 +71,12 @@ in
       yaml-language-server
       yamllint
     ])
-    ++ (with pkgs.nodePackages_latest; [ bash-language-server ])
+    ++ (with pkgs.luajitPackages; [
+      jsregexp
+    ])
+    ++ (with pkgs.nodePackages_latest; [
+      bash-language-server
+    ])
     ++ (with pkgs.python3Packages; [
       pynvim
     ]);
