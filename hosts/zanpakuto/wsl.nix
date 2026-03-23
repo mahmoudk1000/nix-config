@@ -14,13 +14,20 @@
     wslConf = {
       interop = {
         enabled = true;
-        appendWindowsPath = true;
+        appendWindowsPath = false;
       };
       automount.root = "/mnt";
       network = {
         generateHosts = true;
       };
     };
+    extraBin = [
+      { src = "/mnt/c/Windows/System32/cmd.exe"; }
+      { src = "/mnt/c/Program Files/PowerShell/7/pwsh.exe"; }
+      { src = "/mnt/c/Windows/System32/clip.exe"; }
+      { src = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"; }
+      { src = "/mnt/c/Windows/system32/wsl.exe"; }
+    ];
   };
 
   systemd = {
