@@ -28,8 +28,6 @@ in
     ]
     ++ (with pkgs; [
       ansible-lint
-      biber
-      biome
       checkmake
       codespell
       copilot-language-server
@@ -39,12 +37,6 @@ in
       fd
       file
       gcc
-      go
-      gofumpt
-      goimports-reviser
-      golangci-lint
-      golines
-      gopls
       hadolint
       helm-ls
       jsonnet-language-server
@@ -53,26 +45,17 @@ in
       marksman
       nil
       nixfmt
-      python3
       ripgrep
-      ruff
       shellcheck
       shfmt
       sqls
       statix
       stylua
-      tailwindcss
       terraform-ls
-      texlab
       tflint
-      typescript
-      typescript-language-server
       yamlfix
       yaml-language-server
       yamllint
-    ])
-    ++ (with pkgs.luajitPackages; [
-      jsregexp
     ])
     ++ (with pkgs.nodePackages_latest; [
       bash-language-server
