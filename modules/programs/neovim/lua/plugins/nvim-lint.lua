@@ -5,7 +5,7 @@ require("lze").load({
 		after = function()
 			require("lint").linters_by_ft = {
 				ansible = { "ansible_lint" },
-				css = { "biome" },
+				css = { "biomejs" },
 				dockerfile = { "hadolint" },
 				go = { "golangcilint" },
 				javascript = { "biomejs" },
@@ -18,6 +18,7 @@ require("lze").load({
 				terraform = { "tfsec", "trivy", "terraform_validate", "tflint" },
 				tex = { "chktex" },
 				tf = { "tfsec", "trivy", "terraform_validate", "tflint" },
+				typescript = { "biomejs" },
 				typescriptreact = { "biomejs" },
 				yaml = { "yamllint" },
 				zsh = { "shellcheck" },
