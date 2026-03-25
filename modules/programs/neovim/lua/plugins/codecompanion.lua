@@ -1,15 +1,15 @@
 require("lze").load({
 	{
 		"codecompanion",
-		cmd = "CodeCompanion",
+		event = "BufReadPre",
 		keys = {
 			{ "<C-x>", ":CodeCompanionActions<CR>", desc = "AI Code Actions" },
-			{ "<C-a>", ":CodeCompanionChat<CR>", desc = "AI Code Chat" },
 		},
 		after = function()
 			require("codecompanion").setup({
 				strategies = {
 					chat = {
+						user = "Mahmoud",
 						adapter = "copilot",
 						roles = {
 							-- https://github.com/olimorris/codecompanion.nvim/discussions/1094
@@ -24,7 +24,6 @@ require("lze").load({
 
 								return "  " .. adapter.formatted_name .. " (" .. model .. ")"
 							end,
-							user = "Mahmoud",
 						},
 					},
 					inline = {
@@ -35,12 +34,15 @@ require("lze").load({
 					chat = {
 						window = {
 							position = "right",
-							width = 0.33,
+							width = 0.35,
 						},
 					},
 				},
 				adapters = {
 					http = {
+						opts = {
+							show_model_choices = true,
+						},
 						copilot = function()
 							return require("codecompanion.adapters").extend("copilot", {
 								schema = {
@@ -48,16 +50,31 @@ require("lze").load({
 										default = "gemini-3-pro-preview",
 										choices = {
 											["gpt-5.2"] = {
-												opts = { can_stream = true, can_use_tools = true, has_vision = true },
+												opts = {
+													can_stream = true,
+													can_use_tools = true,
+													has_vision = true,
+												},
 											},
 											["gpt-5.3-codex"] = {
-												opts = { can_stream = true, can_use_tools = true, has_vision = true },
+												opts = {
+													can_stream = true,
+													can_use_tools = true,
+													has_vision = true,
+												},
 											},
 											["claude-haiku-4.5"] = {
-												opts = { can_stream = true, can_use_tools = true, has_vision = true },
+												opts = {
+													can_stream = true,
+													can_use_tools = true,
+													has_vision = true,
+												},
 											},
 											["gemini-3-pro-preview"] = {
-												opts = { can_stream = true, can_use_tools = true, has_vision = true },
+												opts = {
+													can_reason = true,
+													can_use_tools = true,
+												},
 											},
 										},
 									},
