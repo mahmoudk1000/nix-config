@@ -47,25 +47,28 @@ require("lze").load({
 							return require("codecompanion.adapters").extend("copilot", {
 								schema = {
 									model = {
-										default = "gemini-3-pro-preview",
+										default = "claude-haiku-4.5",
 										choices = {
+											["gpt-4.1"] = {
+												opts = {
+													can_use_tools = true,
+												},
+											},
 											["gpt-5.2"] = {
 												opts = {
-													can_stream = true,
 													can_use_tools = true,
 													has_vision = true,
 												},
 											},
 											["gpt-5.3-codex"] = {
 												opts = {
-													can_stream = true,
 													can_use_tools = true,
 													has_vision = true,
 												},
 											},
 											["claude-haiku-4.5"] = {
 												opts = {
-													can_stream = true,
+													can_reason = true,
 													can_use_tools = true,
 													has_vision = true,
 												},
