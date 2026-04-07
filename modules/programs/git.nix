@@ -85,12 +85,12 @@
               email = "mahmoud.frouk@atos.net";
               signingKey = "A23D3563FD90EA8F";
             };
-            gpg.format = "ssh";
           };
         }
       ];
       signing = {
         signByDefault = false;
+        format = null;
         key = "A23D3563FD90EA8F";
       };
       ignores = [

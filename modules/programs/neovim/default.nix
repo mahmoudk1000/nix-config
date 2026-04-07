@@ -28,6 +28,7 @@ in
     ]
     ++ (with pkgs; [
       ansible-lint
+      bash-language-server
       checkmake
       codespell
       copilot-language-server
@@ -56,9 +57,6 @@ in
       yamlfix
       yaml-language-server
       yamllint
-    ])
-    ++ (with pkgs.nodePackages_latest; [
-      bash-language-server
     ])
     ++ (with pkgs.python3Packages; [
       pynvim
