@@ -135,7 +135,7 @@ in
     highlight("Float", { fg = c.base0E })
     highlight("Function", { fg = c.base06, italic = true })
     highlight("Identifier", { fg = c.base05 })
-    highlight("Include", { fg = c.base0E })
+    highlight("Include", { fg = c.base08 })
     highlight("Keyword", { fg = c.base0E, bold = true })
     highlight("Label", { fg = c.base0D })
     highlight("Macro", { fg = c.base0C })
