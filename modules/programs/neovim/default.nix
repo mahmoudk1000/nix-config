@@ -81,10 +81,6 @@ in
       nvim-highlight-colors
       nvim-lint
       nvim-lspconfig
-      nvim-treesitter
-      nvim-treesitter-textobjects
-      nvim-treesitter-context
-      nvim-treesitter.withAllGrammars
       nvim-web-devicons
       snacks-nvim
       tmux-nvim
