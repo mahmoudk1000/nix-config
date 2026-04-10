@@ -85,6 +85,7 @@
               email = "mahmoud.frouk@atos.net";
               signingKey = "A23D3563FD90EA8F";
             };
+            url."git@github-work:".insteadOf = "git@github.com:";
           };
         }
       ];
