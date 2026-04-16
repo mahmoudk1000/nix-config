@@ -22,6 +22,7 @@ in
     defaultEditor = true;
     withNodeJs = true;
     withPython3 = true;
+    withRuby = false;
     waylandSupport = false;
     extraPackages = [
       groovy-language-server

@@ -157,63 +157,51 @@ in
     highlight("Typedef", { fg = c.base07 })
 
     -- ============================================================================
-    -- TREESITTER (Linked to Syntax)
+    -- NATIVE TREESITTER (Neovim 0.9+)
     -- ============================================================================
 
     -- Literals
     highlight("@boolean", { link = "Boolean" })
     highlight("@character", { link = "Character" })
-    highlight("@character.special", { link = "SpecialChar" })
     highlight("@number", { link = "Number" })
-    highlight("@number.float", { link = "Float" })
+    highlight("@float", { link = "Float" })
     highlight("@string", { link = "String" })
     highlight("@string.escape", { fg = c.base0D, bold = true })
-    highlight("@string.regexp", { fg = c.base0F })
-    highlight("@string.special.symbol", { fg = c.base0C })
-    highlight("@string.special.url", { fg = c.base09, underline = true })
+    highlight("@string.special", { fg = c.base0C })
 
     -- Functions & Methods
     highlight("@function", { link = "Function" })
-    highlight("@function.builtin", { fg = c.base0D, bold = true })
     highlight("@function.call", { fg = c.base0D })
-    highlight("@function.macro", { link = "Macro" })
-    highlight("@function.method", { fg = c.base07, bold = true })
-    highlight("@function.method.call", { fg = c.base0D })
+    highlight("@function.builtin", { fg = c.base0D, bold = true })
     highlight("@constructor", { fg = c.base0D, bold = true })
-    highlight("@constructor.lua", { fg = c.base0D })
+    highlight("@method", { fg = c.base07, bold = true })
 
     -- Keywords
     highlight("@keyword", { link = "Keyword" })
+    highlight("@keyword.function", { fg = c.base07, bold = true })
+    highlight("@keyword.repeat", { link = "Repeat" })
     highlight("@keyword.conditional", { link = "Conditional" })
     highlight("@keyword.exception", { link = "Exception" })
-    highlight("@keyword.function", { fg = c.base07, bold = true })
     highlight("@keyword.import", { link = "Include" })
     highlight("@keyword.operator", { link = "Operator" })
-    highlight("@keyword.return", { fg = c.base0E, italic = true })
-    highlight("@keyword.repeat", { link = "Repeat" })
 
     -- Variables & Constants
     highlight("@variable", { fg = c.base05 })
-    highlight("@variable.builtin", { fg = c.base05, italic = true })
-    highlight("@variable.member", { fg = c.base05 })
-    highlight("@variable.parameter", { fg = c.base05 })
+    highlight("@parameter", { fg = c.base05 })
     highlight("@constant", { link = "Constant" })
     highlight("@constant.builtin", { fg = c.base0F, bold = true })
-    highlight("@constant.macro", { link = "Macro" })
 
     -- Types
     highlight("@type", { link = "Type" })
     highlight("@type.builtin", { link = "Typedef" })
     highlight("@type.definition", { link = "Typedef" })
-    highlight("@type.declaration", { fg = c.base0D })
 
     -- Identifiers
-    highlight("@property", { fg = c.base07 })
     highlight("@field", { fg = c.base04 })
-    highlight("@parameter", { fg = c.base05 })
-    highlight("@label", { link = "Label" })
-    highlight("@module", { fg = c.base07 })
+    highlight("@property", { fg = c.base07 })
     highlight("@namespace", { link = "Type" })
+    highlight("@symbol", { fg = c.base0C })
+    highlight("@module", { fg = c.base07 })
 
     -- Operators & Punctuation
     highlight("@operator", { link = "Operator" })
@@ -221,85 +209,48 @@ in
     highlight("@punctuation.bracket", { fg = c.base0C })
     highlight("@punctuation.special", { fg = c.base0F })
 
-    -- Tags (HTML/JSX)
+    -- Tags (HTML/XML/JSX)
     highlight("@tag", { fg = c.base0E })
-    highlight("@tag.attribute", { fg = c.base05 })
     highlight("@tag.delimiter", { link = "Delimiter" })
+    highlight("@tag.attribute", { fg = c.base05 })
 
-    -- Markup (Markdown, etc.)
-    highlight("@markup", { fg = c.base05 })
-    highlight("@markup.strong", { fg = c.base05, bold = true })
-    highlight("@markup.emphasis", { fg = c.base05, italic = true })
-    highlight("@markup.underline", { fg = c.base05, underline = true })
-    highlight("@markup.strikethrough", { fg = c.base05, strikethrough = true })
-    highlight("@markup.heading", { fg = c.base0D, bold = true })
-    highlight("@markup.link", { fg = c.base0B })
-    highlight("@markup.link.label", { fg = c.base0C })
-    highlight("@markup.link.url", { fg = c.base0C, underline = true })
-    highlight("@markup.list", { fg = c.base09 })
-    highlight("@markup.quote", { fg = c.base03, italic = true })
-    highlight("@markup.raw", { fg = c.base0B, bg = c.base01 })
-    highlight("@markup.math", { fg = c.base0C })
+    -- Text & Markup
+    highlight("@text", { fg = c.base05 })
+    highlight("@text.strong", { fg = c.base05, bold = true })
+    highlight("@text.emphasis", { fg = c.base05, italic = true })
+    highlight("@text.title", { fg = c.base0D, bold = true })
+    highlight("@text.literal", { fg = c.base0B, bg = c.base01 })
+    highlight("@text.reference", { fg = c.base0C })
+    highlight("@text.uri", { fg = c.base0C, underline = true })
+    highlight("@text.diff.add", { fg = c.base0B })
+    highlight("@text.diff.delete", { fg = c.base08 })
+    highlight("@text.note", { fg = c.base0C, bold = true })
+    highlight("@text.warning", { fg = c.base09, bold = true })
+    highlight("@text.danger", { fg = c.base08, bold = true })
 
     -- Comments
     highlight("@comment", { link = "Comment" })
-    highlight("@comment.documentation", { link = "Comment" })
-    highlight("@comment.error", { fg = c.base08, bold = true })
-    highlight("@comment.warning", { fg = c.base09, bold = true })
-    highlight("@comment.todo", { link = "Todo" })
-    highlight("@comment.note", { fg = c.base0C, bold = true })
-    highlight("@comment.info", { fg = c.base0C })
-    highlight("@comment.highlight", { fg = c.base0D, bold = true })
 
     -- Misc
-    highlight("@attribute", { fg = c.base0C })
-    highlight("@annotation", { fg = c.base0F })
-    highlight("@error", { link = "Error" })
-    highlight("@none", { fg = c.base05 })
-
-    -- Diff
-    highlight("@diff.plus", { fg = c.base0B })
-    highlight("@diff.minus", { fg = c.base08 })
-    highlight("@diff.delta", { fg = c.base09 })
-    highlight("@text.diff.add", { fg = c.base0B })
-    highlight("@text.diff.delete", { fg = c.base08 })
-
-    -- Legacy treesitter groups
-    highlight("@text.strong", { link = "@markup.strong" })
-    highlight("@text.emphasis", { link = "@markup.emphasis" })
-    highlight("@text.underline", { link = "@markup.underline" })
-    highlight("@text.strike", { link = "@markup.strikethrough" })
-    highlight("@text.title", { link = "@markup.heading" })
-    highlight("@text.literal", { link = "@markup.raw" })
-    highlight("@text.uri", { link = "@markup.link.url" })
-    highlight("@text.math", { link = "@markup.math" })
-    highlight("@text.reference", { fg = c.base0C })
-    highlight("@method", { link = "@function.method" })
-    highlight("@method.call", { link = "@function.method.call" })
+    highlight("@label", { link = "Label" })
+    highlight("@repeat", { link = "Repeat" })
+    highlight("@conditional", { link = "Conditional" })
+    highlight("@exception", { link = "Exception" })
     highlight("@include", { link = "Include" })
-    highlight("@preproc", { link = "PreProc" })
-    highlight("@define", { link = "Define" })
-    highlight("@storageclass", { link = "StorageClass" })
-    highlight("@structure", { link = "Structure" })
-    highlight("@typedef", { link = "Typedef" })
-    highlight("@typedef.definition", { link = "@type.definition" })
-    highlight("@symbol", { fg = c.base0C })
+    highlight("@attribute", { fg = c.base0C })
 
     -- ============================================================================
     -- LSP SEMANTIC TOKENS & DIAGNOSTICS
     -- ============================================================================
 
-    -- LSP Semantic Tokens (linked to existing groups)
+    -- LSP Semantic Tokens
     highlight("@lsp.type.class", { link = "@type" })
     highlight("@lsp.type.comment", { link = "Comment" })
-    highlight("@lsp.type.decorator", { fg = c.base0F })
     highlight("@lsp.type.enum", { link = "@type" })
-    highlight("@lsp.type.enumMember", { link = "@constant" })
     highlight("@lsp.type.function", { link = "@function" })
     highlight("@lsp.type.interface", { link = "@type" })
     highlight("@lsp.type.keyword", { link = "@keyword" })
-    highlight("@lsp.type.macro", { link = "@keyword" })
-    highlight("@lsp.type.method", { link = "@function.method" })
+    highlight("@lsp.type.method", { link = "@method" })
     highlight("@lsp.type.namespace", { link = "Type" })
     highlight("@lsp.type.parameter", { link = "@parameter" })
     highlight("@lsp.type.property", { link = "@property" })
@@ -307,12 +258,6 @@ in
     highlight("@lsp.type.type", { link = "@type" })
     highlight("@lsp.type.typeParameter", { link = "@type" })
     highlight("@lsp.type.variable", { link = "@variable" })
-    highlight("@lsp.type.builtinConstant", { link = "@constant.builtin" })
-    highlight("@lsp.type.builtinType", { link = "@type.builtin" })
-    highlight("@lsp.typemod.function.defaultLibrary", { link = "@function.builtin" })
-    highlight("@lsp.typemod.function.definition", { link = "@function" })
-    highlight("@lsp.typemod.variable.defaultLibrary", { link = "@constant.builtin" })
-    highlight("@lsp.typemod.variable.definition", { link = "@property" })
 
     -- Diagnostics
     highlight("DiagnosticError", { fg = c.base08, bold = true })
@@ -345,12 +290,6 @@ in
     highlight("LspReferenceText", { bg = c.base02 })
     highlight("LspReferenceRead", { bg = c.base02 })
     highlight("LspReferenceWrite", { bg = c.base02 })
-
-    -- Legacy LSP Diagnostics
-    highlight("LspDiagnosticsDefaultError", { link = "DiagnosticError" })
-    highlight("LspDiagnosticsDefaultWarning", { link = "DiagnosticWarn" })
-    highlight("LspDiagnosticsDefaultInformation", { link = "DiagnosticInfo" })
-    highlight("LspDiagnosticsDefaultHint", { link = "DiagnosticHint" })
 
     -- ============================================================================
     -- PLUGIN SPECIFIC: Blink
@@ -438,18 +377,6 @@ in
 
     highlight("FidgetTask", { fg = c.base03 })
     highlight("FidgetTitle", { fg = c.base0D })
-
-    -- ============================================================================
-    -- PLUGIN SPECIFIC: nvim-highlight-colors
-    -- ============================================================================
-
-    -- Uses default rendering
-
-    -- ============================================================================
-    -- PLUGIN SPECIFIC: Conform & nvim-lint
-    -- ============================================================================
-
-    -- Uses LSP diagnostics
 
     -- ============================================================================
     -- TERMINAL COLORS
