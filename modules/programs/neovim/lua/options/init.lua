@@ -5,6 +5,7 @@ vim.g.loaded_netrwPlugin = 1
 -- User Interface
 vim.o.termguicolors = true
 vim.o.number = true
+vim.o.nu = true
 vim.o.relativenumber = true
 vim.o.cursorline = false
 vim.o.signcolumn = "yes"

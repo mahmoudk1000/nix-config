@@ -119,13 +119,7 @@ require("lze").load({
 		lsp = {
 			filetypes = { "yaml", "yml" },
 			before_init = function(_, config)
-				local k8s = require("extra.k8s-schemas")
 				config.settings.yaml.schemas = config.settings.yaml.schemas or {}
-				if k8s.isKubernetesResource() then
-					config.settings.yaml.customTags = {}
-					config.settings.yaml.schemas =
-						vim.tbl_extend("force", k8s.buildScheme(), config.settings.yaml.schemas)
-				end
 			end,
 			settings = {
 				redhat = {
@@ -140,6 +134,8 @@ require("lze").load({
 						url = "",
 					},
 					schemas = {
+						["https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/application-crd.yaml"] = "application.{yaml,yml}",
+						["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.35.0-standalone-strict/all.json"] = "",
 						["https://squidfunk.github.io/mkdocs-material/schema.json"] = "mkdocs.yml",
 						["https://json.schemastore.org/github-workflow.json"] = ".github/workflows/*.{yaml,yml}",
 						["https://json.schemastore.org/github-action.json"] = ".github/action.{yaml,yml}",
@@ -151,24 +147,6 @@ require("lze").load({
 						["https://json.schemastore.org/gitlab-ci.json"] = "*gitlab-ci*.{yaml,yml}",
 						["https://json.schemastore.org/prettierrc.json"] = ".prettierrc.{yaml,yml}",
 						["https://json.schemastore.org/ansible-stable-2.9.json"] = "roles/tasks/*.{yaml,yml}",
-					},
-					customTags = {
-						"!Ref",
-						"!Condition",
-						"!GetAtt",
-						"!Join",
-						"!Select",
-						"!Split",
-						"!Sub",
-						"!Base64",
-						"!GetAZs",
-						"!ImportValue",
-						"!FindInMap",
-						"!Equals",
-						"!If",
-						"!And",
-						"!Or",
-						"!Not",
 					},
 					suggest = {
 						parentSkeletonSelectedFirst = true,

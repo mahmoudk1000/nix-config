@@ -1,9 +1,5 @@
 { pkgs, ... }:
 
-let
-  groovy-language-server = import ./groovyls.nix { inherit pkgs; };
-  # customVimPlugins = import ./vim-plugins.nix { inherit pkgs; };
-in
 {
   imports = [ ./islet.nix ];
 
@@ -11,7 +7,6 @@ in
     "nvim/lua".source = ./lua;
     "nvim/queries".source = ./queries;
     "nvim/ftplugin".source = ./ftplugin;
-    "nvim/crds-catalog".source = import ./crds-catalog.nix { inherit pkgs; };
   };
 
   programs.neovim = {
@@ -24,44 +19,46 @@ in
     withPython3 = true;
     withRuby = false;
     waylandSupport = false;
-    extraPackages = [
-      groovy-language-server
-    ]
-    ++ (with pkgs; [
-      ansible-lint
-      bash-language-server
-      checkmake
-      codespell
-      copilot-language-server
-      deadnix
-      docker-compose-language-service
-      dockerfile-language-server
-      fd
-      file
-      gcc
-      hadolint
-      helm-ls
-      jsonnet-language-server
-      lua-language-server
-      markdownlint-cli
-      marksman
-      nil
-      nixfmt
-      ripgrep
-      shellcheck
-      shfmt
-      sqls
-      statix
-      stylua
-      terraform-ls
-      tflint
-      yamlfix
-      yaml-language-server
-      yamllint
-    ])
-    ++ (with pkgs.python3Packages; [
-      pynvim
-    ]);
+    extraPackages =
+      with pkgs;
+      [
+        ansible-lint
+        bash-language-server
+        checkmake
+        codespell
+        copilot-language-server
+        deadnix
+        docker-compose-language-service
+        dockerfile-language-server
+        fd
+        file
+        gcc
+        hadolint
+        helm-ls
+        jsonnet-language-server
+        lua-language-server
+        markdownlint-cli
+        marksman
+        nil
+        nixfmt
+        ripgrep
+        shellcheck
+        shfmt
+        sqls
+        statix
+        stylua
+        terraform-ls
+        tflint
+        yamlfix
+        yaml-language-server
+        yamllint
+      ]
+      ++ (with luajitPackages; [
+        tree-sitter-cli
+      ])
+      ++ (with pkgs.python3Packages; [
+        pynvim
+      ]);
     plugins = with pkgs.vimPlugins; [
       ansible-vim
       blink-cmp
@@ -82,6 +79,7 @@ in
       nvim-highlight-colors
       nvim-lint
       nvim-lspconfig
+      nvim-treesitter.withAllGrammars
       nvim-web-devicons
       snacks-nvim
       tmux-nvim
