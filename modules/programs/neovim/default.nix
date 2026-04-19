@@ -53,9 +53,6 @@
         yaml-language-server
         yamllint
       ]
-      ++ (with luajitPackages; [
-        tree-sitter-cli
-      ])
       ++ (with pkgs.python3Packages; [
         pynvim
       ]);
