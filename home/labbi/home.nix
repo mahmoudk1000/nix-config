@@ -47,7 +47,7 @@
         vim
         wget
         xsel
-        xorg.xmodmap
+        xmodmap
         zoom-us
       ])
       ++ (import ../../modules/scripts { inherit config pkgs lib; });
@@ -63,6 +63,7 @@
   xdg = {
     userDirs = {
       enable = true;
+      setSessionVariables = true;
       desktop = "${config.home.homeDirectory}/";
       documents = "${config.home.homeDirectory}/docs";
       download = "${config.home.homeDirectory}/download";

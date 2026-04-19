@@ -18,7 +18,7 @@ in
   home = {
     packages = [
       thunar-with-plugins
-      pkgs.xfce.xfconf
+      pkgs.xfconf
       pkgs.dconf
       pkgs.gvfs
     ];

@@ -6,7 +6,7 @@
   gd,
   glib,
   imlib2,
-  xorg,
+  libxcursor,
   pkg-config,
   ...
 }:
@@ -29,7 +29,7 @@
     glib
     imlib2
     pkg-config
-    xorg.libXcursor
+    libxcursor
   ];
 
   postPatch = oldAttrs.postPatch or "" + ''
