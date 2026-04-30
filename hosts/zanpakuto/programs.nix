@@ -30,7 +30,6 @@
       vim
       wget
       git
-      wslu
       wsl-open
       wsl-vpnkit
       man-pages
