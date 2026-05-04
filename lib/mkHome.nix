@@ -14,6 +14,12 @@
       stateVersion ? "22.05",
       extraModules ? [ ],
     }:
+    let
+      cfg = {
+        isWsl = false;
+      }
+      // host;
+    in
     inputs.home-manager.lib.homeManagerConfiguration rec {
       pkgs = nixpkgsFor."${system}";
       modules = [
@@ -25,10 +31,10 @@
       ]
       ++ extraModules;
       extraSpecialArgs = {
+        host = cfg;
         inherit
           self
           inputs
-          host
           stateVersion
           ;
       };

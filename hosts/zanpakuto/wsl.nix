@@ -27,6 +27,8 @@
       { src = "/mnt/c/Windows/System32/clip.exe"; }
       { src = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"; }
       { src = "/mnt/c/Windows/system32/wsl.exe"; }
+      { src = "/mnt/c/Windows/explorer.exe"; }
+      { src = "/mnt/c/Windows/System32/rundll32.exe"; }
     ];
   };
 

@@ -14,6 +14,12 @@
       extraModules ? [ ],
       includeHomeManager ? true,
     }:
+    let
+      cfg = {
+        isWsl = false;
+      }
+      // host;
+    in
     inputs.nixpkgs.lib.nixosSystem rec {
       inherit system;
       pkgs = nixpkgsFor.${system};
@@ -44,7 +50,8 @@
               { config, ... }:
               {
                 config.home-manager.extraSpecialArgs = {
-                  inherit self inputs host;
+                  host = cfg;
+                  inherit self inputs;
                   inherit (config.system) stateVersion;
                 };
               }
