@@ -5,17 +5,17 @@
     includes = [
       "~/.ssh/conf.d/*"
     ];
-    matchBlocks = {
+    settings = {
       "*" = {
-        addKeysToAgent = "yes";
-        forwardAgent = false;
+        AddKeysToAgent = "yes";
+        ForwardAgent = false;
+        Compression = true;
+        ServerAliveInterval = 30;
+        ServerAliveCountMax = 3;
+        HashKnownHosts = true;
         forwardX11 = false;
-        serverAliveInterval = 30;
-        serverAliveCountMax = 3;
-        hashKnownHosts = true;
-        compression = true;
-        controlMaster = "no";
-        controlPersist = "no";
+        ControlMaster = "no";
+        ControlPersist = "no";
       };
     };
     extraConfig = ''
