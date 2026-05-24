@@ -1,5 +1,24 @@
 { pkgs, ... }:
 
+let
+  allGrammears = pkgs.vimUtils.buildVimPlugin {
+    name = "treesitter-all-parsers";
+    src = pkgs.symlinkJoin {
+      name = "treesitter-all-parsers-src";
+      paths = pkgs.vimPlugins.nvim-treesitter.withAllGrammars.dependencies;
+    };
+  };
+
+  arborist-queries = pkgs.vimUtils.buildVimPlugin {
+    name = "arborist-queries";
+    src = pkgs.fetchFromGitHub {
+      owner = "arborist-ts";
+      repo = "queries";
+      rev = "fdc5479d5f07c83841323429238d8a6f95bd10d7";
+      hash = "sha256-MG0K8OkCm94ZFRisJer6W3BGLZeRpn+yhZe7Rr3gYbw=";
+    };
+  };
+in
 {
   imports = [ ./islet.nix ];
 
@@ -57,7 +76,9 @@
         pynvim
       ]);
     plugins = with pkgs.vimPlugins; [
+      allGrammears
       ansible-vim
+      arborist-queries
       blink-cmp
       blink-copilot
       blink-pairs
@@ -76,7 +97,6 @@
       nvim-highlight-colors
       nvim-lint
       nvim-lspconfig
-      nvim-treesitter.withAllGrammars
       nvim-web-devicons
       snacks-nvim
       tmux-nvim
@@ -84,8 +104,8 @@
       vim-nix
       vim-sleuth
       vim-terraform
-      vim-yaml
       vimtex
+      vim-yaml
     ];
   };
 }
