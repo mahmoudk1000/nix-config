@@ -3,6 +3,7 @@
   pkgs,
   theme,
   lib,
+  host,
   ...
 }:
 
@@ -48,7 +49,7 @@
       lfs.enable = true;
       settings = {
         user = {
-          name = "Mahmoud Ayman";
+          name = "Mahmoud";
           email = "mahmoudk1000@gmail.com";
         };
         commit.verbose = true;
@@ -77,7 +78,8 @@
       };
       includes = [
         {
-          condition = "gitdir:~/work/";
+          condition = "gitdir:/home/${host.username}/work/**";
+          path = "/home/${host.username}/.config/git/work.gitconfig";
           contents = {
             commit.gpgSign = false;
             user = {
@@ -133,13 +135,18 @@
     };
   };
 
-  home.packages = lib.mkIf config.programs.git.enable (
-    with pkgs;
-    [
-      git-crypt
-      gh
-    ]
-  );
-
-  home.sessionVariables.DELTA_PAGER = "less -R";
+  home = {
+    file.".config/git/work.gitconfig".text = ''
+      [core]
+        sshCommand = ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes
+    '';
+    sessionVariables.DELTA_PAGER = "less -R";
+    packages = lib.mkIf config.programs.git.enable (
+      with pkgs;
+      [
+        git-crypt
+        gh
+      ]
+    );
+  };
 }
