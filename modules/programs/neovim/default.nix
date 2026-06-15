@@ -68,6 +68,7 @@ in
         stylua
         terraform-ls
         tflint
+        vscode-langservers-extracted
         yamlfix
         yaml-language-server
         yamllint
