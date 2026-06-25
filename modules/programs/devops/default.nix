@@ -80,6 +80,7 @@ in
         wget
         whois
         wireshark
+        dnsutils
       ];
     })
   ];
