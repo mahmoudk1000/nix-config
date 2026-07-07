@@ -63,24 +63,21 @@ in
         tfsec
         trivy
         vcluster
+        dnsutils
       ];
     })
 
     (lib.mkIf cfgNetwork.enable {
       home.packages = with pkgs; [
         curl
-        dig
-        dnsutils
         hoppscotch
         mtr
         nmap
-        nslookup
         tcpdump
         traceroute
         wget
         whois
         wireshark
-        dnsutils
       ];
     })
   ];
