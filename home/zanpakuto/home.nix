@@ -24,6 +24,7 @@
       xsel
       imagemagick
       rtorrent
+      opencode
     ];
   };
 
