@@ -79,20 +79,20 @@
       includes = [
         {
           condition = "gitdir:/home/${host.username}/work/**";
-          path = "/home/${host.username}/.config/git/work.gitconfig";
           contents = {
             commit.gpgSign = false;
             user = {
               name = "Mahmoud Frouk";
               email = "mahmoud.frouk@atos.net";
-              signingKey = "A23D3563FD90EA8F";
             };
-            url."git@github-work:".insteadOf = "git@github.com:";
+            core = {
+              sshCommand = "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes";
+            };
           };
         }
       ];
       signing = {
-        signByDefault = false;
+        signByDefault = true;
         format = null;
         key = "A23D3563FD90EA8F";
       };
@@ -136,10 +136,6 @@
   };
 
   home = {
-    file.".config/git/work.gitconfig".text = ''
-      [core]
-        sshCommand = ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes
-    '';
     sessionVariables.DELTA_PAGER = "less -R";
     packages = lib.mkIf config.programs.git.enable (
       with pkgs;
