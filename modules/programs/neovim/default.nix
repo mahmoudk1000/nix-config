@@ -20,7 +20,7 @@ let
   };
 in
 {
-  imports = [ ./islet.nix ];
+  imports = [ ./theme.nix ];
 
   xdg.configFile = {
     "nvim/lua".source = ./lua;

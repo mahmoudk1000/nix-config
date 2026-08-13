@@ -10,7 +10,7 @@ let
     bluewery = import ./bluewery.nix;
     coral = import ./coral.nix;
     crystal = import ./crystal.nix;
-    duat = import ./duat.nix;
+    benthic = import ./benthic.nix;
     darkgit = import ./darkgit.nix;
     fujin = import ./fuji.nix;
     iceberg = import ./iceberg.nix;
@@ -21,6 +21,7 @@ let
     late = import ./late.nix;
     melle = import ./melle.nix;
     mellow = import ./mellow.nix;
+    midnight = import ./midnight.nix;
     momo = import ./momo.nix;
     mongo = import ./mongo.nix;
     mountain = import ./mountain.nix;

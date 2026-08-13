@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set color scheme
-vim.cmd.colorscheme("islet")
+vim.cmd.colorscheme("default")
 
 -- ============================================================================
 -- Plugin Configuration with lz.n
