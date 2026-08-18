@@ -119,7 +119,7 @@ in
     highlight("WinBar", { fg = c.base04, bg = c.base00 })
     highlight("WinBarNC", { fg = c.base04, bg = c.base01 })
     highlight("FloatBorder", { fg = c.base0D, bg = c.base01 })
-    highlight("FloatTitle", { fg = c.base06, bg = c.base01 })
+    highlight("FloatTitle", { fg = c.base06, bg = c.base00 })
 
     -- Basic UI/Formatting Extras
     highlight("TooLong", { bg = c.base02 })
@@ -205,7 +205,7 @@ in
     highlight("@type.qualifier", { link = "StorageClass" })
     highlight("@module", { fg = c.base07 })
     highlight("@module.builtin", { fg = c.base07 })
-    highlight("@property", { fg = c.base04 })
+    highlight("@property", { fg = c.base05 })
     highlight("@attribute", { fg = c.base0F })
     highlight("@operator", { link = "Operator" })
     highlight("@punctuation.delimiter", { link = "Delimiter" })
