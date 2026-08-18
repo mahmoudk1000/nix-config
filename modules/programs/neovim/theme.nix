@@ -439,6 +439,7 @@ in
     highlight("BlinkCmpKindText", { fg = c.base04 })
     highlight("BlinkCmpKindFunction", { fg = c.base0D })
     highlight("BlinkCmpKindProperty", { fg = c.base09 })
+    highlight("BlinkCmpKindInterface", { fg = c.base08 })
     highlight("BlinkCmpKindVariable", { fg = c.base0B })
     highlight("BlinkCmpKindStruct", { fg = c.base0A })
     highlight("BlinkCmpKindModule", { fg = c.base0E })
