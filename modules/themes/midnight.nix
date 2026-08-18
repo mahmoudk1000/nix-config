@@ -1,18 +1,18 @@
 {
-  base00 = "#0b101b";
-  base01 = "#131a29";
-  base02 = "#1c2638";
-  base03 = "#2c3b57";
+  base00 = "#0B101B";
+  base01 = "#131A29";
+  base02 = "#1C2638";
+  base03 = "#2C3B57";
   base04 = "#465880";
-  base05 = "#c6d0f5";
-  base06 = "#dbe2ff";
-  base07 = "#f0f4ff";
-  base08 = "#f2b0bd";
-  base09 = "#f5d6b1";
-  base0A = "#f0e7b1";
-  base0B = "#b5e1c5";
-  base0C = "#b5e3e6";
-  base0D = "#b2c1ff";
-  base0E = "#c1c2f7";
-  base0F = "#eebebe";
+  base05 = "#C6D0F5";
+  base06 = "#DBE2FF";
+  base07 = "#F0F4FF";
+  base08 = "#F2B0BD";
+  base09 = "#F5D6B1";
+  base0A = "#F0E7B1";
+  base0B = "#B5E1C5";
+  base0C = "#B5E3E6";
+  base0D = "#B2C1FF";
+  base0E = "#C1C2F7";
+  base0F = "#EEBEBE";
 }
