@@ -151,7 +151,7 @@ in
     highlight("PreProc", { fg = c.base09 })
     highlight("Repeat", { fg = c.base09 })
     highlight("Special", { fg = c.base04 })
-    highlight("SpecialChar", { fg = c.base04 })
+    highlight("SpecialChar", { fg = c.base05 })
     highlight("SpecialComment", { fg = c.base08 })
     highlight("Statement", { fg = c.base09 })
     highlight("StorageClass", { fg = c.base09 })
