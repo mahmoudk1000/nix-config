@@ -48,7 +48,7 @@ in
     end
 
     -- Base Theme
-    highlight("Normal", { fg = c.base04, bg = c.base00 })
+    highlight("Normal", { fg = c.base05, bg = c.base00 })
     highlight("NormalFloat", { fg = c.base07, bg = c.base01 })
     highlight("NormalNC", { fg = c.base04, bg = c.base00 })
     highlight("ColorColumn", { bg = c.base01 })
