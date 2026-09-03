@@ -47,81 +47,105 @@ in
       end
     end
 
-    -- Base Theme
-    highlight("Normal", { fg = c.base05, bg = c.base00 })
-    highlight("NormalFloat", { fg = c.base07, bg = c.base01 })
-    highlight("NormalNC", { fg = c.base04, bg = c.base00 })
-    highlight("ColorColumn", { bg = c.base01 })
-    highlight("Conceal", {})
-    highlight("Cursor", { fg = c.base00, bg = c.base04 })
-    highlight("lCursor", { fg = c.base00, bg = c.base04 })
-    highlight("CursorIM", { fg = c.base00, bg = c.base04 })
-    highlight("CursorColumn", { bg = c.base01 })
-    highlight("CursorLine", { bg = c.base01 })
+    -- Editor
+    highlight("Normal", { fg = c.base05 })
+    highlight("NormalNC", { fg = c.base04 })
     highlight("Directory", { fg = c.base08 })
-    highlight("DiffAdd", { fg = c.base00, bg = c.base0D })
-    highlight("DiffChange", { fg = c.base00, bg = c.base09 })
-    highlight("DiffDelete", { fg = c.base00, bg = c.base0A })
-    highlight("DiffText", { fg = c.base00, bg = c.base08 })
-    highlight("DiffAdded", { fg = c.base07 })
-    highlight("DiffChanged", { fg = c.base09 })
-    highlight("DiffRemoved", { fg = c.base0A })
+    highlight("Title", { fg = c.base04 })
     highlight("EndOfBuffer", { fg = c.base01 })
-    highlight("ErrorMsg", { fg = c.base0A })
-    highlight("NvimInternalError", { fg = c.base00, bg = c.base08 })
-    highlight("VertSplit", { fg = c.base01, bg = c.base00 })
-    highlight("WinSeparator", { fg = c.base01, bg = c.base00 })
-    highlight("Folded", { fg = c.base02, bg = c.base01 })
-    highlight("FoldColumn", { fg = c.base01, bg = c.base00 })
-    highlight("SignColumn", { fg = c.base01, bg = c.base00 })
-    highlight("IncSearch", { fg = c.base06, bg = c.base0A })
-    highlight("Substitute", { fg = c.base01, bg = c.base08 })
-    highlight("LineNr", { fg = c.base03, bg = c.base00 })
+
+    -- Cursor
+    highlight("Cursor", { fg = c.base01, bg = c.base04 })
+    highlight("CursorIM", { fg = c.base02, bg = c.base04 })
+    highlight("lCursor", { fg = c.base01, bg = c.base04 })
+    highlight("CursorLine", { bg = c.base01 })
+    highlight("CursorColumn", { bg = c.base01 })
+    highlight("ColorColumn", { bg = c.base01 })
+
+    -- Gutters
+    highlight("LineNr", { fg = c.base03 })
     highlight("CursorLineNr", { fg = c.base04 })
-    highlight("MatchParen", { bg = c.base02, underline = true })
-    highlight("ModeMsg", { fg = c.base04 })
-    highlight("MsgArea", { fg = c.base05 })
-    highlight("MsgSeparator", { fg = c.base03 })
-    highlight("MoreMsg", { fg = c.base08 })
-    highlight("NonText", { fg = c.base02 })
+    highlight("SignColumn", { fg = c.base01 })
+    highlight("FoldColumn", { fg = c.base02 })
+    highlight("Folded", { fg = c.base02 })
+
+    -- Splits
+    highlight("WinSeparator", { fg = c.base01 })
+    highlight("VertSplit", { fg = c.base01 })
+    highlight("StatusLine", { fg = c.base04 })
+    highlight("StatusLineNC", { fg = c.base04, bg = c.base01 })
+    highlight("WinBar", { fg = c.base04 })
+    highlight("WinBarNC", { fg = c.base04, bg = c.base01 })
+
+    -- Floats
+    highlight("NormalFloat", { fg = c.base07, bg = c.base01 })
+    highlight("FloatBorder", { fg = c.base0D, bg = c.base01 })
+    highlight("FloatTitle", { fg = c.base06, bg = c.base00 })
+
+    -- Popup menu
     highlight("Pmenu", { fg = c.base04, bg = c.base01 })
     highlight("PmenuSel", { fg = c.base08, bg = c.base02 })
-    highlight("PmenuSbar", { fg = c.base04, bg = c.base01 })
-    highlight("PmenuThumb", { fg = c.base08, bg = c.base02 })
+    highlight("PmenuMatch", { fg = c.base0A, bold = true })
     highlight("PmenuKind", { fg = c.base08 })
     highlight("PmenuKindSel", { fg = c.base08 })
     highlight("PmenuExtra", { fg = c.base06, bg = c.base01 })
     highlight("PmenuExtraSel", { fg = c.base0B, bg = c.base02, bold = true })
-    highlight("PmenuMatch", { fg = c.base0A, bold = true })
-    highlight("Question", { fg = c.base04 })
-    highlight("QuickFixLine", { bg = c.base01 })
+    highlight("PmenuSbar", { fg = c.base04, bg = c.base01 })
+    highlight("PmenuThumb", { fg = c.base08, bg = c.base02 })
+    highlight("WildMenu", { fg = c.base08, bg = c.base01 })
+
+    -- Search
     highlight("Search", { fg = c.base01, bg = c.base08 })
     highlight("CurSearch", { fg = c.base01, bg = c.base0B })
-    highlight("SpecialKey", { fg = c.base03 })
+    highlight("IncSearch", { fg = c.base06, bg = c.base0A })
+    highlight("Substitute", { fg = c.base01, bg = c.base08 })
+    highlight("MatchParen", { bg = c.base02, underline = true })
+    highlight("Visual", { bg = c.base02 })
+    highlight("VisualNOS", { bg = c.base02 })
+    highlight("QuickFixLine", { bg = c.base01 })
+
+    -- Diffs
+    highlight("DiffAdd", { fg = c.base00, bg = c.base0D })
+    highlight("DiffAdded", { fg = c.base07 })
+    highlight("DiffChange", { fg = c.base00, bg = c.base09 })
+    highlight("DiffChanged", { fg = c.base09 })
+    highlight("DiffDelete", { fg = c.base00, bg = c.base0A })
+    highlight("DiffRemoved", { fg = c.base0A })
+    highlight("DiffText", { fg = c.base00, bg = c.base08 })
+
+    -- Messages
+    highlight("MsgArea", { fg = c.base05 })
+    highlight("MsgSeparator", { fg = c.base03 })
+    highlight("ModeMsg", { fg = c.base04 })
+    highlight("MoreMsg", { fg = c.base08 })
+    highlight("Question", { fg = c.base04 })
+    highlight("WarningMsg", { fg = c.base0E })
+    highlight("ErrorMsg", { fg = c.base0A })
+    highlight("NvimInternalError", { fg = c.base00, bg = c.base08 })
+
+    -- Tabs
+    highlight("TabLine", { link = "StatusLineNC" })
+    highlight("TabLineFill", { link = "TabLine" })
+    highlight("TabLineSel", { link = "StatusLine" })
+
+    -- Spelling
     highlight("SpellBad", { sp = c.base0A, undercurl = true })
     highlight("SpellCap", { sp = c.base08, undercurl = true })
     highlight("SpellLocal", { sp = c.base0C, undercurl = true })
     highlight("SpellRare", { sp = c.base0E, undercurl = true })
-    highlight("StatusLine", { fg = c.base04, bg = c.base00 })
-    highlight("StatusLineNC", { fg = c.base04, bg = c.base01 })
-    highlight("TabLine", { link = "StatusLineNC" })
-    highlight("TabLineFill", { link = "TabLine" })
-    highlight("TabLineSel", { link = "StatusLine" })
+
+    -- Whitespace
+    highlight("Whitespace", { fg = c.base03 })
+    highlight("NonText", { fg = c.base02 })
+    highlight("SpecialKey", { fg = c.base03 })
+    highlight("Conceal", {})
+
+    -- Terminal
     highlight("Terminal", { fg = c.base05 })
     highlight("TermCursor", { fg = c.base00, bg = c.base04 })
     highlight("TermCursorNC", { fg = c.base00, bg = c.base04 })
-    highlight("Title", { fg = c.base04 })
-    highlight("Visual", { bg = c.base02 })
-    highlight("VisualNOS", { bg = c.base02 })
-    highlight("WarningMsg", { fg = c.base0E })
-    highlight("Whitespace", { fg = c.base03 })
-    highlight("WildMenu", { fg = c.base08, bg = c.base01 })
-    highlight("WinBar", { fg = c.base04, bg = c.base00 })
-    highlight("WinBarNC", { fg = c.base04, bg = c.base01 })
-    highlight("FloatBorder", { fg = c.base0D, bg = c.base01 })
-    highlight("FloatTitle", { fg = c.base06, bg = c.base00 })
 
-    -- Basic UI/Formatting Extras
+    -- Basic Formatting
     highlight("TooLong", { bg = c.base02 })
     highlight("Debug", { fg = c.base0D })
     highlight("Bold", { bold = true })
@@ -168,7 +192,7 @@ in
     highlight("helpHeadline", { fg = c.base0A })
     highlight("helpHeader", { fg = c.base0F })
 
-    -- TreeSitter standard
+    -- TreeSitter
     highlight("@boolean", { link = "Boolean" })
     highlight("@character", { link = "Character" })
     highlight("@number", { link = "Number" })
@@ -435,7 +459,7 @@ in
     highlight("BlinkCmpLabelDepricated", { fg = c.base04, strikethrough = true })
     highlight("BlinkCmpLabelMatch", { fg = c.base08, bold = true })
     highlight("BlinkCmpGhostText", { fg = c.base02 })
-    highlight("BlinkCmpKind", { bg = c.base00 })
+    highlight("BlinkCmpKind", { fg = c.base05 })
     highlight("BlinkCmpKindText", { fg = c.base04 })
     highlight("BlinkCmpKindFunction", { fg = c.base0D })
     highlight("BlinkCmpKindProperty", { fg = c.base09 })
@@ -448,20 +472,20 @@ in
     highlight("BlinkCmpKindField", { fg = c.base0A })
     highlight("BlinkCmpKindConstant", { fg = c.base08 })
     highlight("BlinkCmpKindMethod", { fg = c.base0F })
-    highlight("BlinkCmpSource", { bg = c.base00 })
+    highlight("BlinkCmpSource", { fg = c.base05 })
     highlight("BlinkPairsYellow", { fg = c.base0A })
     highlight("BlinkPairsPurple", { fg = c.base0E })
     highlight("BlinkPairsCyan", { fg = c.base0C })
 
     -- NvimTree
-    highlight("NvimTreeImageFile", { fg = c.base0C })
-    highlight("NvimTreeFolderIcon", { fg = c.base0C })
-    highlight("NvimTreeWinSeparator", { fg = c.base00, bg = c.base00 })
-    highlight("NvimTreeFolderName", { fg = c.base09 })
-    highlight("NvimTreeIndentMarker", { fg = c.base02 })
     highlight("NvimTreeEmptyFolderName", { fg = c.base0F })
+    highlight("NvimTreeFolderIcon", { fg = c.base0C })
+    highlight("NvimTreeFolderName", { fg = c.base09 })
+    highlight("NvimTreeImageFile", { fg = c.base0C })
+    highlight("NvimTreeIndentMarker", { fg = c.base02 })
+    highlight("NvimTreeNormal", { fg = c.base04 })
     highlight("NvimTreeOpenedFolderName", { fg = c.base0F })
-    highlight("NvimTreeNormal", { fg = c.base04, bg = c.base00 })
+    highlight("NvimTreeWinSeparator", { fg = c.base00 })
 
     -- Gitsigns
     highlight("GitSignsCurrentLineBlame", { link = "Comment" })
@@ -485,14 +509,14 @@ in
 
     -- LuaLine
     highlight("LuaLineNormalA", { fg = c.base00, bg = c.base0D, bold = true })
-    highlight("LuaLineNormalB", { fg = c.base05, bg = c.base00 })
-    highlight("LuaLineNormalC", { fg = c.base05, bg = c.base00 })
+    highlight("LuaLineNormalB", { fg = c.base05 })
+    highlight("LuaLineNormalC", { fg = c.base05 })
     highlight("LuaLineInsertA", { fg = c.base00, bg = c.base0B, bold = true })
     highlight("LuaLineVisualA", { fg = c.base00, bg = c.base0E, bold = true })
     highlight("LuaLineReplaceA", { fg = c.base00, bg = c.base08, bold = true })
 
     -- Snacks
-    highlight("SnacksPicker", { fg = c.base05, bg = c.base00 })
+    highlight("SnacksPicker", { fg = c.base05 })
     highlight("SnacksPickerBorder", { fg = c.base01 })
     highlight("SnacksPickerMatch", { fg = c.base0A, bold = true })
     highlight("SnacksPickerPrompt", { fg = c.base0C })
