@@ -12,6 +12,7 @@ in
 {
   imports = [
     ./k9s.nix
+    ./sofka.nix
   ];
 
   options = {
@@ -64,6 +65,7 @@ in
         trivy
         vcluster
         dnsutils
+        sofka
       ];
     })
 
