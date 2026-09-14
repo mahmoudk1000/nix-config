@@ -2,7 +2,7 @@
 
 {
   programs.k9s = {
-    enable = true;
+    enable = false;
     aliases = {
       pp = "v1/pods";
       sv = "v1/services";

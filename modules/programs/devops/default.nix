@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -11,6 +12,7 @@ let
 in
 {
   imports = [
+    inputs.sofka.homeManagerModules.default
     ./k9s.nix
     ./sofka.nix
   ];
@@ -51,6 +53,7 @@ in
         kubectl-view-secret
         kubelogin-oidc
         kubernetes-helm
+        kubectl-images
         kubeseal
         kubie
         kustomize
@@ -65,7 +68,6 @@ in
         trivy
         vcluster
         dnsutils
-        sofka
       ];
     })
 

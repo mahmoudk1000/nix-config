@@ -250,6 +250,28 @@
         "type": "github"
       }
     },
+    "home-manager_3": {
+      "inputs": {
+        "nixpkgs": [
+          "sofka",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788642154,
+        "narHash": "sha256-sPpQFVaFTDqO/4vvCAhuAhqTgqN/ygu+9eJcs5eB0js=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "fd0956c99c41ae3c13a73a638f1f7e963aebc4ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-26.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "infuse": {
       "flake": false,
       "locked": {
@@ -553,16 +575,17 @@
     },
     "sofka": {
       "inputs": {
+        "home-manager": "home-manager_3",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1788902172,
-        "narHash": "sha256-lgVen2tJRNT2my+YoeKI+NPSARmKxFokp9TGsoVn93c=",
+        "lastModified": 1789383344,
+        "narHash": "sha256-sgUccRCWhZ+QcSyxDF4ZFqkgPjBMwJt+aBXHwEw8low=",
         "owner": "nklmilojevic",
         "repo": "sofka",
-        "rev": "98e24e15f786270726333323d83c67fc8d9f3484",
+        "rev": "de3b72927e636feae8be302283854505430c1c3f",
         "type": "github"
       },
       "original": {
