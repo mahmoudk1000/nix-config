@@ -34,7 +34,6 @@ map("n", "<C-s>", ":w<CR>", { desc = "Save" })
 map("i", "<C-s>", "<Esc>:w<CR>a", { desc = "Save" })
 map("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 map("n", "<leader>Q", ":qa!<CR>", { desc = "Quit all" })
-map("n", "<Esc>", ":noh<CR>", { desc = "Clear search" })
 
 -- Buffers
 map("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
