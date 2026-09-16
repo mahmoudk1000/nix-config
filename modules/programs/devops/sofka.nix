@@ -214,7 +214,6 @@
             }
           ];
         };
-
         "v1/nodes" = {
           replace = true;
           sort = "NAME:asc";
@@ -230,6 +229,10 @@
             {
               name = "ROLES";
               builtin = "ROLES";
+            }
+            {
+              name = "TAINTS";
+              builtin = "TAINTS";
             }
             {
               name = "GPU";
