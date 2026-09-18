@@ -266,6 +266,36 @@
             }
           ];
         };
+        "v1/persistentvolumeclaims" = {
+          replace = true;
+          sort = "NAME:asc";
+          columns = [
+            {
+              name = "NAME";
+              builtin = "NAME";
+            }
+            {
+              name = "STATUS";
+              path = "/status/phase";
+            }
+            {
+              name = "VOLUME";
+              path = "/spec/volumeName";
+            }
+            {
+              name = "CAPACITY";
+              path = "/status/capacity/storage";
+            }
+            {
+              name = "STORAGECLASS";
+              path = "/spec/storageClassName";
+            }
+            {
+              name = "AGE";
+              builtin = "AGE";
+            }
+          ];
+        };
         "apiextensions.k8s.io/v1/customresourcedefinitions" = {
           sort = "GROUP:asc";
         };
