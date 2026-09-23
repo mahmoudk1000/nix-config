@@ -22,7 +22,7 @@
         np = "networkpolicies";
       };
       logs = {
-        tail = 500;
+        tail = 1000;
         buffer = 5000;
         since = "-1s";
         wrap = false;
@@ -32,20 +32,18 @@
         background = false;
         colors = {
           base = "#${theme.base00}";
+          text = "#${theme.base07}";
           mantle = "#${theme.base01}";
           crust = "#${theme.base01}";
           surface0 = "#${theme.base01}";
           surface1 = "#${theme.base02}";
           surface2 = "#${theme.base03}";
-
           overlay0 = "#${theme.base02}";
           overlay1 = "#${theme.base04}";
-
-          text = "#${theme.base07}";
           subtext0 = "#${theme.base05}";
           subtext1 = "#${theme.base04}";
-          lavender = "#${theme.base0D}";
 
+          lavender = "#${theme.base0D}";
           red = "#${theme.base08}";
           maroon = "#${theme.base08}";
           peach = "#${theme.base09}";
