@@ -28,6 +28,26 @@
         wrap = false;
         show_time = false;
       };
+      bookmarks = [
+        {
+          name = "p";
+          context = "p";
+          resource = "pods";
+          key = "alt-1";
+        }
+        {
+          name = "q";
+          context = "q";
+          resource = "pods";
+          key = "alt-2";
+        }
+        {
+          name = "t";
+          context = "t";
+          resource = "pods";
+          key = "alt-3";
+        }
+      ];
       skin = {
         background = false;
         colors = {
