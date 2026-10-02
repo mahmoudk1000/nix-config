@@ -245,6 +245,10 @@
               builtin = "STATUS";
             }
             {
+              name = "VERSION";
+              path = "/status/nodeInfo/kubeletVersion";
+            }
+            {
               name = "ROLES";
               builtin = "ROLES";
             }
