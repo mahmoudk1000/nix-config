@@ -41,6 +41,7 @@ in
         ansible
         azure-cli
         chart-testing
+        dnsutils
         docker-compose
         eksctl
         etcd
@@ -48,12 +49,12 @@ in
         helm-docs
         krew
         kubectl
+        kubectl-images
         kubectl-ktop
         kubectl-tree
         kubectl-view-secret
         kubelogin-oidc
         kubernetes-helm
-        kubectl-images
         kubeseal
         kubie
         kustomize
@@ -67,7 +68,6 @@ in
         tfsec
         trivy
         vcluster
-        dnsutils
       ];
     })
 
