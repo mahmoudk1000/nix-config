@@ -4,7 +4,6 @@
   programs.sofka = {
     enable = true;
     settings = {
-      debug.image = "docker.io/nicolaka/netshoot:v0.13";
       default_resource = "pods";
       default_namespace = "kube-system";
       favorite_namespaces = [ "kube-system" ];
@@ -20,6 +19,10 @@
         ro = "roles";
         rb = "rolebindings";
         np = "networkpolicies";
+      };
+      debug = {
+        image = "docker.io/nicolaka/netshoot:latest";
+        node_image = "docker.io/nicolaka/netshoot:latest";
       };
       logs = {
         tail = 1000;
@@ -63,17 +66,17 @@
           subtext0 = "#${theme.base05}";
           subtext1 = "#${theme.base04}";
 
-          lavender = "#${theme.base0D}";
+          lavender = "#${theme.base0E}";
           red = "#${theme.base08}";
           maroon = "#${theme.base08}";
-          peach = "#${theme.base09}";
+          peach = "#${theme.base0F}";
           yellow = "#${theme.base0A}";
           green = "#${theme.base0B}";
-          teal = "#${theme.base0D}";
+          teal = "#${theme.base0C}";
           blue = "#${theme.base0D}";
           sapphire = "#${theme.base0D}";
           sky = "#${theme.base08}";
-          mauve = "#${theme.base0D}";
+          mauve = "#${theme.base0E}";
           rosewater = "#${theme.base0A}";
           pink = "#${theme.base0F}";
           flamingo = "#${theme.base0F}";

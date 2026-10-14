@@ -102,7 +102,7 @@
         }
       ];
       signing = {
-        signByDefault = true;
+        signByDefault = false;
         format = null;
         key = "A23D3563FD90EA8F";
       };
