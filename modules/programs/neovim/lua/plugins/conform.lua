@@ -26,6 +26,7 @@ require("lze").load({
 				formatters_by_ft = {
 					["*"] = { "codespell" },
 					["_"] = { "trim_whitespace" },
+					astro = { "biome" },
 					bash = { "shfmt" },
 					css = { "biome" },
 					go = { "gofmt", "goimports-reviser", "golines" },

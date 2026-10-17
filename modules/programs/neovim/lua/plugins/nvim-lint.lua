@@ -5,6 +5,7 @@ require("lze").load({
 		after = function()
 			require("lint").linters_by_ft = {
 				ansible = { "ansible_lint" },
+				astro = { "biomejs" },
 				css = { "biomejs" },
 				dockerfile = { "hadolint" },
 				go = { "golangcilint" },

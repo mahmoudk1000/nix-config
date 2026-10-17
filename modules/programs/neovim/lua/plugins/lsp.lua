@@ -273,4 +273,11 @@ require("lze").load({
 			},
 		},
 	},
+
+	{
+		"astro",
+		lsp = {
+			filetypes = { "astro" },
+		},
+	},
 })
