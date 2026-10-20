@@ -2,8 +2,6 @@
   imports = [
     ./devops
     ./neovim
-    ./bash.nix
-    ./fetch.nix
     ./git.nix
     ./gnu.nix
     ./ssh.nix
@@ -11,7 +9,6 @@
     ./superfile.nix
     ./texlive.nix
     ./tmux.nix
-    ./yt-dlp.nix
     ./zsh.nix
   ];
 }

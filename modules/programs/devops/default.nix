@@ -39,15 +39,11 @@ in
       home.packages = with pkgs; [
         # awscli2
         ansible
-        azure-cli
+        # azure-cli
         chart-testing
-        dnsutils
         docker-compose
-        eksctl
-        etcd
         gnumake
         helm-docs
-        krew
         kubectl
         kubectl-images
         kubectl-ktop
@@ -59,22 +55,18 @@ in
         kubie
         kustomize
         ocm
-        openshift
         openssl
         opentofu
-        powershell
         stern
         terraform
         tfsec
         trivy
-        vcluster
       ];
     })
 
     (lib.mkIf cfgNetwork.enable {
       home.packages = with pkgs; [
         curl
-        hoppscotch
         mtr
         nmap
         tcpdump
@@ -82,6 +74,7 @@ in
         wget
         whois
         wireshark
+        dnsutils
       ];
     })
   ];

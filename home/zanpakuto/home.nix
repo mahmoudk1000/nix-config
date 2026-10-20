@@ -23,14 +23,13 @@
       jq
       xsel
       imagemagick
-      rtorrent
       opencode
     ];
   };
 
   programs = {
     devops.enable = true;
-    network.enable = false;
     home-manager.enable = true;
+    network.enable = false;
   };
 }
