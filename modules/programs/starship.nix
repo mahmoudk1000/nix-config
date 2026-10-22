@@ -88,7 +88,7 @@
         pure_msg = "[pure ](bold fg:${theme.base0B})";
         symbol = "  ";
         heuristic = true;
-        format = "via [$symbol$state(\($name\))]($style)";
+        format = "via [$symbol$state(\($name\))]($style) ";
       };
       aws = {
         disabled = true;
