@@ -96,7 +96,7 @@
               email = "mahmoud.frouk@atos.net";
             };
             core = {
-              sshCommand = "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes";
+              sshCommand = "ssh -i ~/.ssh/id_ed25519 -i ~/.ssh/id_rsa -o IdentitiesOnly=yes";
             };
           };
         }
