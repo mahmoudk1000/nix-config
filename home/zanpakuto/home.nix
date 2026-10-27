@@ -23,7 +23,7 @@
       jq
       xsel
       imagemagick
-      opencode
+      pi-coding-agent
     ];
   };
 
