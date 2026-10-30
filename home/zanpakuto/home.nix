@@ -30,6 +30,6 @@
   programs = {
     devops.enable = true;
     home-manager.enable = true;
-    network.enable = false;
+    network.enable = true;
   };
 }

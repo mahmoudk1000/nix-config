@@ -73,7 +73,7 @@ in
         traceroute
         wget
         whois
-        wireshark
+        # wireshark
         dnsutils
       ];
     })
