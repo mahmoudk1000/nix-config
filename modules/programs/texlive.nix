@@ -29,6 +29,16 @@
         titlesec
         moderncv
         luatexbase
+        paracol
+        tcolorbox
+        environ
+        fontawesome5
+        pgf
+        babel-german
+        babel-english
+        bidi
+        xetex
+        tikzfill
         ;
     };
   };
