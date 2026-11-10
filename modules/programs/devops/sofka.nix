@@ -23,6 +23,9 @@
       debug = {
         image = "docker.io/nicolaka/netshoot:latest";
         node_image = "docker.io/nicolaka/netshoot:latest";
+        command = [ "bash" ];
+        node_namespace = "default";
+        node_profile = "sysadmin";
       };
       logs = {
         tail = 1000;
