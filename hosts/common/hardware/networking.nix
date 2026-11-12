@@ -21,6 +21,9 @@
       iwd.enable = true;
       interfaces = [ "wlan0" ];
     };
+    nftables = {
+      enable = true;
+    };
     useDHCP = false;
     interfaces.wlan0.useDHCP = true;
     interfaces.enp2s0.useDHCP = true;
