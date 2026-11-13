@@ -34,15 +34,21 @@
 
   systemd = {
     services = {
-      "serial-getty@ttyS0".enable = false;
-      "serial-getty@hvc0".enable = false;
-      "getty@tty1".enable = false;
       "autovt@".enable = false;
       firewall.enable = false;
-      systemd-udevd.enable = false;
+      "getty@tty1".enable = false;
+      "serial-getty@hvc0".enable = false;
+      "serial-getty@ttyS0".enable = false;
       systemd-resolved.enable = false;
+      systemd-udevd.enable = false;
+      "user@".serviceConfig.Delegate = "memory pids cpu cpuset";
     };
 
     enableEmergencyMode = false;
+  };
+
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = "1";
+    "net.ipv4.ip_unprivileged_port_start" = 80;
   };
 }
