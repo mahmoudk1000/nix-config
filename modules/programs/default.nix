@@ -24,7 +24,6 @@
     ./spotify.nix
     ./ssh.nix
     ./starship.nix
-    ./texlive.nix
     ./thunar.nix
     ./tmux.nix
     ./urxvt.nix

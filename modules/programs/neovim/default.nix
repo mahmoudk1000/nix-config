@@ -55,7 +55,6 @@ in
         hadolint
         helm-ls
         jsonnet-language-server
-        lua-language-server
         markdownlint-cli
         marksman
         nil
@@ -65,7 +64,6 @@ in
         shfmt
         sqls
         statix
-        stylua
         terraform-ls
         tflint
         vscode-langservers-extracted
