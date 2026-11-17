@@ -12,7 +12,7 @@ let
     crystal = import ./crystal.nix;
     benthic = import ./benthic.nix;
     darkgit = import ./darkgit.nix;
-    fujin = import ./fuji.nix;
+    fuji = import ./fuji.nix;
     iceberg = import ./iceberg.nix;
     idx = import ./idx.nix;
     jotai = import ./jotai.nix;
@@ -29,13 +29,13 @@ let
     oxo = import ./oxo.nix;
     poimandres = import ./poimandres.nix;
     rnvy = import ./rnvy.nix;
-    rogue = import ./rogue.nix;
+    rouge = import ./rouge.nix;
     seaul = import ./seaul.nix;
     techbase = import ./techbase.nix;
     tokyonight = import ./tokyonight.nix;
     uwu = import ./uwu.nix;
-    winter = import /winter.nix;
-    yuto = import ./yuro.nix;
+    winter = import ./winter.nix;
+    yuro = import ./yuro.nix;
   };
 
   validThemes = builtins.attrNames themeGallery;

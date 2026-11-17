@@ -1,7 +1,6 @@
 {
   imports = [
-    ../common/core/nix.nix
-    ../common/core/locale.nix
+    ../common/core
     ./wsl.nix
     ./users.nix
     ./networking.nix

@@ -1,11 +1,39 @@
 {
-  theme,
+  lib,
   pkgs,
   inputs,
+  theme,
   font,
+  host ? {
+    isWSL = false;
+  },
   ...
 }:
 
+let
+  inherit (host) isWSL;
+
+  # Per-environment settings.
+  # The first attrset is the bare-metal Linux default;
+  # the second overrides it when running under WSL.
+  env = lib.attrsets.mergeAttrsList [
+    # --- Linux ---
+    {
+      window_decorations = "RESIZE";
+      font_size = 9.0;
+      command_palette_font_size = 9.0;
+    }
+    # --- WSL ---
+    (lib.optionalAttrs isWSL {
+      # Wezterm runs inside Windows Terminal / WSLg:
+      # let the host handle the window frame.
+      window_decorations = "None";
+      # Larger font to match Windows DPI scaling.
+      font_size = 11.0;
+      command_palette_font_size = 11.0;
+    })
+  ];
+in
 {
   programs.wezterm = {
     enable = true;
@@ -68,10 +96,20 @@
           label = "Open tmux",
           args = { "tmux" },
         },
-        {
-          label = "Open PowerShell",
-          args = { "pwsh" },
-        },
+        ${lib.optionalString isWSL ''
+          {
+            label = "Open PowerShell",
+            args = { "pwsh" },
+          },
+          {
+            label = "Open Explorer",
+            args = { "explorer" },
+          },
+          {
+            label = "Open cmd",
+            args = { "cmd" },
+          },
+        ''}
       }
 
       return {
@@ -89,7 +127,7 @@
         bold_brightens_ansi_colors    = "No",
         hide_tab_bar_if_only_one_tab  = true,
         window_padding                = { left = 35, right = 35, top = 18, bottom = 18 },
-        window_decorations            = "RESIZE",
+        window_decorations            = "${env.window_decorations}",
         default_cursor_style          = "BlinkingUnderline",
         enable_tab_bar                = false,
         use_fancy_tab_bar             = false,
@@ -101,8 +139,8 @@
         font                      = fonts,
         unicode_version           = 16,
         custom_block_glyphs       = true,
-        font_size                 = 9.0,
-        command_palette_font_size = 9.0,
+        font_size                 = ${toString env.font_size},
+        command_palette_font_size = ${toString env.command_palette_font_size},
         line_height               = 1.0,
         freetype_load_flags       = "NO_HINTING",
 

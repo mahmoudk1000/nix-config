@@ -27,7 +27,7 @@
         frame_gap = 0;
         mouse_recenter_gap = 0;
         focus_follows_mouse = true;
-        tree_style = ''╾│ ├└╼─┐'';
+        tree_style = "╾│ ├└╼─┐";
         default_frame_layout = 3;
         set_layout = "grid";
       };

@@ -3,6 +3,7 @@
     ../common
     ./hardware.nix
     ./boot.nix
+    ./users.nix
     ./virtualisation.nix
   ];
 

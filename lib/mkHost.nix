@@ -16,7 +16,7 @@
     }:
     let
       cfg = {
-        isWsl = false;
+        isWSL = false;
       }
       // host;
     in

@@ -6,7 +6,7 @@
     settings = {
       General = {
         savePath = "${config.home.homeDirectory}/scrots";
-        filenamePattern = ''%F_%H-%M'';
+        filenamePattern = "%F_%H-%M";
         savePathFixed = true;
         saveAsFileExtension = ".png";
         uiColor = theme.base06;

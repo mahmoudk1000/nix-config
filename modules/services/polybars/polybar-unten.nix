@@ -84,7 +84,7 @@ in
       };
       "module/backlight" = {
         type = "custom/script";
-        exec = ''${pkgs.light}/bin/light | ${pkgs.coreutils}/bin/cut -d. -f1'';
+        exec = "${pkgs.light}/bin/light | ${pkgs.coreutils}/bin/cut -d. -f1";
         format = " <label>%";
         format-forground = theme.base03;
         tail = true;
