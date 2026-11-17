@@ -28,7 +28,7 @@
     ./tmux.nix
     ./urxvt.nix
     ./vencord.nix
-    ./wezterm.nix
+    ./wezterm
     ./yt-dlp.nix
     ./zathura.nix
     ./zed-editor.nix

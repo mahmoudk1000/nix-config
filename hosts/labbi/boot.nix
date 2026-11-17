@@ -9,10 +9,10 @@
       "xfs"
       "vfat"
       "ext4"
+      "btrfs"
       "ntfs"
     ];
     kernelPackages = pkgs.linuxPackages_latest;
-    initrd.systemd.enable = false;
     loader = {
       systemd-boot = {
         enable = true;

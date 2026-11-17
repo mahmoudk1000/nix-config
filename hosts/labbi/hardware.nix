@@ -5,6 +5,7 @@
   config,
   lib,
   modulesPath,
+  host,
   ...
 }:
 
@@ -32,7 +33,9 @@
     ];
   };
 
-  fileSystems = {
+  # Legacy on-disk layout, kept until the one-time disko re-partition
+  # (disks/default.nix). Superseded by disko.nix when `disko = true`.
+  fileSystems = lib.mkIf (host.disko != true) {
     "/" = {
       device = "/dev/linux/os";
       fsType = "xfs";

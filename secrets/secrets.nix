@@ -29,4 +29,7 @@ in
   "accounts/secondary.age".publicKeys = personal;
   "accounts/work.age".publicKeys = personal;
   "accounts/uni.age".publicKeys = personal;
+
+  # Systems (LUKS passphrases; see README, "LUKS")
+  "systems/labbi-luks.age".publicKeys = systems.labbi;
 }

@@ -66,6 +66,11 @@
           username = "mahmoud";
           hostName = "labbi";
           theme = "melle";
+          # Disk layout managed by disko, from a named disk profile (disks/).
+          # Keep false until the one-time re-partition is done (see disks/README.md).
+          disko = true;
+          diskProfile = "luks-btrfs-home";
+          diskDevice = "/dev/nvme0n1";
         };
         zanpakuto = {
           username = "farouk";
@@ -105,6 +110,15 @@
           system = "x86_64-linux";
           stateVersion = "24.11";
           host = hosts.zanpakuto;
+        };
+      };
+
+      # disko CLI, pinned to the same input as the flake:
+      #   sudo nix run .#disko -- --mode disko ./disks/default.nix --arg device /dev/nvme0n1
+      apps = {
+        "x86_64-linux".disko = {
+          type = "app";
+          program = "${inputs.disko.packages.x86_64-linux.default}/bin/disko";
         };
       };
 

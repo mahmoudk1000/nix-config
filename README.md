@@ -1,89 +1,137 @@
 # NixOS System Configurations
 
 ![built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20With%20Nix&color=5277C3)
-![Nix Channel](https://img.shields.io/badge/NixOS-unstable-informational.svg?style=flat&logo=nixos&logoColor=CAD3F5&colorA=24273A&colorB=8AADF4)
-[![built with garnix](https://img.shields.io/endpoint?url=https%3A%2F%2Fgarnix.io%2Fapi%2Fbadges%2Fmahmoudk1000%2Fnix-config%3Fbranch%3Dmain)](https://garnix.io)
-[![Statix Lint](https://github.com/mahmoudk1000/nix-config/actions/workflows/lint.yml/badge.svg)](https://github.com/mahmoudk1000/nix-config/actions/workflows/lint.yml)
 
-Welcome to nix configuration! This repository contains my NixOS system configurations and [dotfiles](https://github.com/mahmoudk1000/dotfiles)
+NixOS system and home configurations for two hosts, managed with flakes and
+[home-manager](https://github.com/nix-community/home-manager).
+
 > I am no Nix expert.
 
 ## Screenshot
 
-![awesomewm desktop screenshot](https://github.com/mahmoudk1000/nix-config/blob/main/assets/awesomewm.png)
+![awesomewm desktop screenshot](assets/awesomewm.png)
+
+## Hosts
+
+| Host        | Role                          | Notes                                                        |
+| ----------- | ----------------------------- | ------------------------------------------------------------ |
+| `labbi`     | Linux laptop (bare metal)     | Awesome WM, X11, systemd-boot, disko-managed disk, Docker    |
+| `zanpakuto` | NixOS inside WSL (Windows)    | WSL interop, podman, Windows-side WezTerm                    |
+
+Each host is a small **profile** in `flake.nix` (username, hostname, theme and
+the `isWSL` / `disko` flags) plus two module trees:
+
+- `hosts/<host>/` — the NixOS system configuration
+- `home/<host>/` — the home-manager configuration
+
+> [!CAUTION]
+> These system and home configurations are public for learning and research.
+> They are not meant to be used on any hardware other than mine. Trying to
+> build and deploy them to other systems without appropriate changes can
+> render your machines unbootable and damage data.
+
+## Repository layout
+
+```
+├── flake.nix            # flake outputs + host profiles
+├── lib/                 # mkHost / mkHome builders, colors
+├── hosts/
+│   ├── common/          # shared system modules (core / hardware / system)
+│   ├── labbi/           # system config for the laptop
+│   └── zanpakuto/       # system config for the WSL host
+├── home/
+│   ├── labbi/           # home-manager config for the laptop
+│   └── zanpakuto/       # home-manager config for WSL
+├── modules/
+│   ├── programs/        # per-program modules (many with theme support)
+│   ├── services/        # system services
+│   └── themes/          # color themes + font definitions
+├── disks/               # disko disk profiles (named layouts)
+└── overlays/            # package overlays
+```
 
 ## Installation
 
-> [!CAUTION]
-> This hosts system and home configurations are public for your own learning and
-> research. They are not meant to be used with any hardware other than mine.
-> Trying to build and deploy them to other systems without appropriate changes
-> can render your machines unbootable and damage data.
+### labbi (bare-metal laptop)
 
-My nix configurations runs flakes and home-manager. And it's meant mainly only for my laptop.
-
-<details>
-    <summary>Installation Steps</summary>
-
-After mounting the partitions, you can move to the second part...
+The disk is (re)partitioned with [disko](https://github.com/nix-community/disko) —
+the full layout, LUKS setup and one-time install steps are documented in
+[`disks/README.md`](disks/README.md). Short version, from a NixOS live USB:
 
 ```shell
-# go inside a nix shell with the specified programs
-nix-shell -p git nixUnstable neovim
-
-# create this folder if necessary
-mkdir -p /mnt/etc/
-
-# clone the repo
-git clone https://github.com/mahmoudk1000/nix-config.git /mnt/etc/nixos
-
-# remove this file
-rm /mnt/etc/nixos/hosts/redyf/hardware-configuration.nix
-
-# generate the config and take some files
-nixos-generate-config --root /mnt
-mv /mnt/etc/nixos/configuration.nix
-mv /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/hosts/labbi
-
-# make sure you're in this path
-cd /mnt/etc/nixos
-
-# Install my config:
-nixos-install --flake '.#labbi'
-
-If you'd like to use my config as a template, all you need to do is replace "hosts" with your username.
+git clone <this-repo> /mnt/etc/nixos && cd /mnt/etc/nixos
+# create the LUKS passphrase secret (see disks/README.md), then:
+sudo nix run .#disko -- --mode disko ./disks/default.nix \
+  --argstr device /dev/nvme0n1 --argstr passwordFile /tmp/labbi-luks-passphrase
+sudo nixos-rebuild boot --flake '.#labbi'
 ```
 
-</details>
+### zanpakuto (WSL)
 
-<hr>
+```shell
+# From PowerShell
+wsl --install -d NixOS
 
-Disko is also available for formatting partitions (Only for advanced users)
-
-<details>
-
-<summary>Disko</summary>
-
-If you save disko's config file in **./disks/default.nix**, and run the following command:
-
-```nix
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disks/default.nix --arg device '/dev/nvme0n1'
+# Inside the NixOS distro
+nixos-rebuild switch --flake 'github:<your-user>/<this-repo>#zanpakuto'
 ```
 
-you will partition, format and mount the disk for /dev/nvme0n1 (change as needed).
+## Everyday usage
 
-</details>
+```shell
+# Rebuild the system (home-manager is built into it)
+nixos-rebuild switch --flake '.#labbi' # or '#zanpakuto'
 
-<hr>
+# Rebuild the home configuration only
+home-manager build --flake '.#labbi'
+
+# Development shell
+nix develop
+```
+
+## Disk layout (disko profiles)
+
+Disk layouts are **named profiles** (like themes) in [`disks/`](disks/) —
+selected per host with `diskProfile`, and at install time with
+`--arg profile <name>`. There is one profile today, `luks-btrfs-home`:
+LUKS2-encrypted btrfs root (`/`, `/nix`, `/persist`) plus an unencrypted
+ext4 `/home`. The same profile is consumed by the disko CLI at install time
+and by the NixOS module at evaluation time, so it is the single source of
+truth for the layout.
+
+The full documentation — layouts, LUKS + auto-decrypt, secret creation and
+the one-time re-partition workflow — is in
+[`disks/README.md`](disks/README.md).
+
+## Themes
+
+Themes live in [`modules/themes/`](modules/themes) and are selected per host
+with the `theme` key on the profile (`melle` on labbi, `midnight` on
+zanpakuto). Both the system configuration and the home-manager configuration
+consume the same theme, and most program modules (wezterm, rofi, neovim, ...)
+read their colors from it.
+
+Available: `blaulicht`, `blind`, `bliss`, `benthic`, `bluewery`, `coral`,
+`crystal`, `darkgit`, `fuji`, `iceberg`, `idx`, `jotai`, `kalt`, `kanagawa`,
+`late`, `melle`, `mellow`, `midnight`, `momo`, `mongo`, `mountain`, `night`,
+`oxo`, `poimandres`, `rnvy`, `rouge`, `seaul`, `techbase`, `tokyonight`,
+`uwu`, `winter`, `yuro`.
+
+## Adding a new host
+
+1. Add a profile in `flake.nix` under `hosts`:
+   `username`, `hostName`, `theme`, and `isWSL` / `disko` / `diskProfile` /
+   `diskDevice` as needed.
+2. Add `nixosConfigurations.<host>` and `homeConfigurations.<host>` entries
+   (copy one of the existing hosts and adjust `extraModules`).
+3. Create `hosts/<host>/configuration.nix` (importing the right subset of
+   `hosts/common/`) and `home/<host>/home.nix`.
+4. `git add .` and rebuild.
 
 ## Credits
 
-[nerdypepper](https://git.peppe.rs/config/nixos/about/)
-
-[JavaCafe01](https://github.com/JavaCafe01/frostedflakes)
-
-[Gvolpe](https://github.com/gvolpe/nix-config/)
-
-[redyf](https://github.com/redyf/nixdots)
-
-[linuxmobile](https://github.com/linuxmobile/kaku)
+- [nerdypepper](https://git.peppe.rs/config/nixos/about/)
+- [JavaCafe01](https://github.com/JavaCafe01/frostedflakes)
+- [Gvolpe](https://github.com/gvolpe/nix-config/)
+- [redyf](https://github.com/redyf/nixdots)
+- [linuxmobile](https://github.com/linuxmobile/kaku)

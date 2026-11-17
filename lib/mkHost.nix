@@ -17,6 +17,7 @@
     let
       cfg = {
         isWSL = false;
+        disko = false;
       }
       // host;
     in
@@ -62,7 +63,8 @@
       )
       ++ extraModules;
       specialArgs = {
-        inherit self inputs host;
+        inherit self inputs;
+        host = cfg;
       };
     };
 }

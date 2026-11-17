@@ -13,7 +13,7 @@
       "/home/${host.username}/.ssh/id_ed25519"
     ];
     secrets = {
-      "users/${host.username}".file = ../../../secrets/users/mahmoud.age;
+      "users/${host.username}".file = ../../secrets/users/mahmoud.age;
     };
   };
 

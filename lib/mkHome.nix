@@ -17,6 +17,7 @@
     let
       cfg = {
         isWSL = false;
+        disko = false;
       }
       // host;
     in

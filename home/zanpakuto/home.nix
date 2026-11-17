@@ -16,14 +16,15 @@
     homeDirectory = "/home/${host.username}";
     extraOutputsToInstall = [ "man" ];
     packages = with pkgs; [
-      vim
-      unzip
       curl
-      wget
-      jq
-      xsel
       imagemagick
+      jq
       pi-coding-agent
+      unzip
+      vim
+      wget
+      xdg-utils
+      xsel
     ];
   };
 

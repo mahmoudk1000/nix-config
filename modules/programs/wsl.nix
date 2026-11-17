@@ -8,7 +8,7 @@
     ./starship.nix
     ./superfile.nix
     ./tmux.nix
-    ./wezterm.nix
+    ./wezterm
     ./zsh.nix
   ];
 }

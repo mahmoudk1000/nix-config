@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ./audio-low-latency.nix ];
@@ -16,15 +16,9 @@
     jack.enable = true;
     pulse.enable = true;
     wireplumber.enable = true;
+    extraLadspaPackages = with pkgs; [
+      rnnoise-plugin
+      lsp-plugins
+    ];
   };
-
-  systemd.user.services.pipewire.environment.LADSPA_PATH =
-    lib.makeSearchPathOutput "lib" "lib/ladspa"
-      (
-        with pkgs;
-        [
-          rnnoise-plugin
-          lsp-plugins
-        ]
-      );
 }
